@@ -35,7 +35,7 @@ export default function PartnerAccess() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             type="password"
-            maxLength={16}
+            maxLength={20}
             placeholder="Enter access code"
             value={value}
             onChange={e => { setValue(e.target.value); setError(false); }}
