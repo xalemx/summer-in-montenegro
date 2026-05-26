@@ -2,16 +2,16 @@ import CTAButton from '../components/CTAButton';
 import { Plane, Users, Calendar, Info } from 'lucide-react';
 
 const DATES = [
-  ['19 July 2026', '26 July 2026'],
-  ['26 July 2026', '2 August 2026'],
-  ['2 August 2026', '9 August 2026'],
-  ['9 August 2026', '16 August 2026'],
-  ['16 August 2026', '23 August 2026'],
-  ['23 August 2026', '30 August 2026'],
-  ['30 August 2026', '6 September 2026'],
-  ['6 September 2026', '13 September 2026'],
-  ['13 September 2026', '20 September 2026'],
-  ['20 September 2026', '27 September 2026'],
+  ['19 July 2026', '26 July 2026', 4],
+  ['26 July 2026', '2 August 2026', 6],
+  ['2 August 2026', '9 August 2026', 8],
+  ['9 August 2026', '16 August 2026', 3],
+  ['16 August 2026', '23 August 2026', 8],
+  ['23 August 2026', '30 August 2026', 5],
+  ['30 August 2026', '6 September 2026', 7],
+  ['6 September 2026', '13 September 2026', 8],
+  ['13 September 2026', '20 September 2026', 8],
+  ['20 September 2026', '27 September 2026', 8],
 ];
 
 const NOTES = [
@@ -37,12 +37,18 @@ export default function DepartureDates() {
             <div className="p-4">Return</div>
             <div className="p-4 text-center">Status</div>
           </div>
-          {DATES.map(([dep, ret], i) => (
+          {DATES.map(([dep, ret, spots], i) => (
             <div key={i} className={`grid grid-cols-3 text-sm ${i % 2 === 0 ? 'bg-card' : 'bg-secondary/30'}`}>
               <div className="p-4 font-medium">{dep}</div>
               <div className="p-4 text-muted-foreground">{ret}</div>
               <div className="p-4 text-center">
-                <span className="inline-block px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-semibold">Open</span>
+                {spots <= 3 ? (
+                  <span className="inline-block px-3 py-1 bg-red-50 text-red-600 rounded-full text-xs font-semibold">Only {spots} left</span>
+                ) : spots <= 6 ? (
+                  <span className="inline-block px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-semibold">{spots} spots left</span>
+                ) : (
+                  <span className="inline-block px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-semibold">Available</span>
+                )}
               </div>
             </div>
           ))}

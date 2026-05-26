@@ -115,6 +115,10 @@ export default function Summer2027() {
       {/* CLOSING CTA */}
       <section className="py-24 px-6 text-center border-t border-white/5">
         <div className="max-w-xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-red-500/20 border border-red-400/30 rounded-full mb-6">
+            <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+            <span className="text-red-300 text-xs font-semibold tracking-wider uppercase">Early access — max 8 per departure</span>
+          </div>
           <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
             2027 spaces are filling now.
           </h2>

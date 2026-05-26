@@ -82,7 +82,11 @@ export default function Book() {
     <div className="py-16 md:py-24 px-4">
       <div className="max-w-2xl mx-auto">
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-center mb-2">Reserve Your Spot</h1>
-        <p className="text-center text-muted-foreground text-sm mb-10">Summer 2026 · Montenegro · 7-day hosted adventure</p>
+        <p className="text-center text-muted-foreground text-sm mb-4">Summer 2026 · Montenegro · 7-day hosted adventure</p>
+        <div className="flex items-center justify-center gap-2 mb-8">
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-sm font-semibold text-red-600">Only 8 guests per departure — some dates already filling up</span>
+        </div>
 
         {/* Step indicator */}
         <div className="flex items-center justify-center gap-2 mb-10">

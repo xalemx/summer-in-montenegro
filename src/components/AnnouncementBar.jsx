@@ -8,7 +8,7 @@ export default function AnnouncementBar() {
       className="block bg-primary text-primary-foreground text-center py-2.5 px-4 text-sm font-medium hover:bg-primary/90 transition-colors"
     >
       <span className="inline-flex items-center gap-2">
-        ✈️ Escape London this summer — Summer 2027 now open · reserve from £100/month
+        🔥 Limited spots remaining — only 8 guests per departure · Summer 2026 now booking · fly from London
         <ArrowRight size={14} />
       </span>
     </Link>

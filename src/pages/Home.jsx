@@ -85,7 +85,7 @@ export default function Home() {
         {/* Trust bar */}
         <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm border-t border-white/10 py-3 px-6">
           <p className="text-center text-white/50 text-xs tracking-wider">
-            7-day hosted experiences &nbsp;·&nbsp; 4–8 guests per group &nbsp;·&nbsp; Flights not included
+            🔥 Only 8 spots per departure &nbsp;·&nbsp; Weekly departures from London &nbsp;·&nbsp; Limited Summer 2026 availability
           </p>
         </div>
       </section>
@@ -153,7 +153,10 @@ export default function Home() {
         style={{ background: 'hsl(158 45% 12%)' }}
       >
         <div className="relative z-10 max-w-xl mx-auto">
-          <p className="text-white/40 tracking-[0.3em] text-xs uppercase mb-6">Flying from London · Summer 2026</p>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-red-500/20 border border-red-400/30 rounded-full mb-6">
+            <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+            <span className="text-red-300 text-xs font-semibold tracking-wider uppercase">Limited availability — Summer 2026</span>
+          </div>
           <h2 className="font-heading text-5xl md:text-6xl font-bold text-white mb-3">From £899</h2>
           <p className="text-white/50 text-sm mb-6">per person · fly from London · 7 days · all-inclusive except flights</p>
           <p className="text-white/65 mb-10 leading-relaxed max-w-sm mx-auto">
@@ -165,7 +168,7 @@ export default function Home() {
           >
             Reserve Your Spot <ArrowRight size={16} />
           </Link>
-          <p className="mt-6 text-white/30 text-xs">Limited spots per departure · Minimum 4 guests</p>
+          <p className="mt-6 text-white/30 text-xs">Max 8 guests per departure · 10 weekly departures · Minimum 4 guests</p>
         </div>
       </section>
 
