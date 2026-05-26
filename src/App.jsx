@@ -13,6 +13,7 @@ import Accommodation from './pages/Accommodation';
 import Activities from './pages/Activities';
 import Summer2027 from './pages/Summer2027';
 import PartnerOffers from './pages/PartnerOffers';
+import PartnerAccess from './pages/PartnerAccess';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 
@@ -49,7 +50,7 @@ const AuthenticatedApp = () => {
         <Route path="/accommodation" element={<Accommodation />} />
         <Route path="/activities" element={<Activities />} />
         <Route path="/summer-2027" element={<Summer2027 />} />
-        <Route path="/partners" element={<PartnerOffers />} />
+        <Route path="/partners" element={<PartnerAccess />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<PageNotFound />} />
