@@ -9,7 +9,7 @@ export default function AnnouncementBar() {
     >
       <span className="inline-flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse inline-block"></span>
-        This is not a package holiday · Summer in Montenegro 2026 · 8 people, 7 days, one summer you’ll actually remember
+        Escape London this summer — Montenegro from £899 · Direct flights · 8 people · 7 days fully hosted
         <ArrowRight size={14} />
       </span>
     </Link>

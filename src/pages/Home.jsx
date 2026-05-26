@@ -60,10 +60,10 @@ export default function Home() {
           </div>
           <p className="text-white/55 tracking-[0.4em] text-xs uppercase mb-6 font-light">A Summer You Won’t Forget · From London</p>
           <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-bold text-white leading-[1.02] mb-8">
-            The summer<br />you’ve been<br /><em>waiting for.</em>
+            Escape London<br />this<br /><em>summer.</em>
           </h1>
           <p className="text-white/75 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-            8 people. 7 days. One local host. A version of summer that most people only dream about.
+            Trade London stress for mountain air. 8 people. 7 days. One local host. Europe beyond the crowds.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
