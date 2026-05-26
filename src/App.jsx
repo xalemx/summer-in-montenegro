@@ -17,6 +17,7 @@ import PartnerAccess from './pages/PartnerAccess';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Book from './pages/Book';
+import Gallery from './pages/Gallery';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -55,6 +56,7 @@ const AuthenticatedApp = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
