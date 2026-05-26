@@ -279,7 +279,7 @@ export default function Home() {
           <div className="overflow-hidden">
             <div
               className="flex gap-3"
-              style={{ animation: 'socialScroll 32s linear infinite', width: 'max-content' }}
+              style={{ animation: 'marquee 32s linear infinite', width: 'max-content' }}
               onMouseEnter={e => e.currentTarget.style.animationPlayState = 'paused'}
               onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
             >
@@ -305,7 +305,30 @@ export default function Home() {
         </div>
       </section>
 
-      <TestimonialsSection />
+      {/* TESTIMONIALS */}
+      <section className="py-28 px-6 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-primary/60 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Why Guests Choose This Summer</p>
+          <h2 className="font-heading text-center text-4xl md:text-5xl font-bold text-foreground mb-14">What you come back with.</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { quote: "I didn't book a holiday. I joined a summer.", name: 'The Promise', sub: 'What every guest walks away saying', icon: '\u2726' },
+              { quote: "The food alone was worth the trip. Every single meal.", name: 'The Food', sub: 'Home-cooked, family-table, no menus', icon: '\ud83c\udf7d\ufe0f' },
+              { quote: "I came solo. Left with 7 friends I'll have forever.", name: 'The People', sub: 'Small groups create real connections', icon: '\ud83d\udc65' },
+            ].map((t, i) => (
+              <div key={i} className="p-8 rounded-3xl bg-card border border-border shadow-sm flex flex-col">
+                <span className="text-2xl mb-6">{t.icon}</span>
+                <p className="font-heading text-xl italic text-foreground leading-snug mb-auto">&ldquo;{t.quote}&rdquo;</p>
+                <div className="mt-8 pt-6 border-t border-border">
+                  <p className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-1">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-muted-foreground/40 text-xs mt-10 italic">Video testimonials publishing after July 2026</p>
+        </div>
+      </section>
 
       {/* SMALL GROUP ETHOS */}
       <section className="py-36 px-6 bg-secondary/20">

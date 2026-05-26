@@ -1,0 +1,36 @@
+{
+  "name": "DepartureDate",
+  "type": "object",
+  "properties": {
+    "departure": {
+      "type": "string",
+      "title": "Departure Date"
+    },
+    "return_date": {
+      "type": "string",
+      "title": "Return Date"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "open",
+        "limited",
+        "almost_full",
+        "sold_out"
+      ],
+      "default": "open"
+    },
+    "spots_remaining": {
+      "type": "number",
+      "title": "Spots Remaining",
+      "default": 8
+    }
+  },
+  "required": [
+    "departure",
+    "return_date",
+    "status",
+    "spots_remaining"
+  ]
+}

@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
 import CTAButton from '../components/CTAButton';
 import { Plane, Users, Calendar, Info } from 'lucide-react';
 
@@ -29,6 +31,13 @@ const NOTES = [
 ];
 
 export default function DepartureDates() {
+  const [dates, setDates] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    base44.entities.DepartureDate.list('departure').then(d => { setDates(d); setLoading(false); });
+  }, []);
+
   return (
     <div className="py-16 md:py-24 px-4">
       <div className="max-w-4xl mx-auto">
@@ -44,7 +53,7 @@ export default function DepartureDates() {
             <div className="p-4">Return</div>
             <div className="p-4 text-center">Status</div>
           </div>
-          {DATES.map((d, i) => {
+          {(loading ? [] : dates.length > 0 ? dates.map(d => ({ dep: d.departure, ret: d.return_date, spots: d.spots_remaining })) : DATES).map((d, i) => {
             const s = getStatus(d.spots);
             return (
             <div key={i} className={`grid grid-cols-3 text-sm ${i % 2 === 0 ? 'bg-card' : 'bg-secondary/30'}`}>
