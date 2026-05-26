@@ -1,4 +1,5 @@
 import CTAButton from '../components/CTAButton';
+import MonteMap from '../components/MonteMap';
 
 const DAYS = [
   { day: 1, title: 'Arrival & South Montenegro', text: 'Arrival at Podgorica Airport. Meet your host and group. Begin with a South Montenegro experience depending on arrival time, such as coastal views, Lake Skadar, Budva/Kotor area or a scenic welcome dinner.' },
@@ -41,6 +42,8 @@ export default function Experience() {
           <CTAButton to="/dates">Check Departure Dates</CTAButton>
         </div>
       </div>
+
+      <MonteMap />
     </div>
   );
 }
