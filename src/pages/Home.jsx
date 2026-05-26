@@ -84,19 +84,25 @@ export default function Home() {
 
         {/* Trust bar */}
         <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm border-t border-white/10 py-3 px-6">
-          <p className="text-center text-white/50 text-xs tracking-wider">
-            🔥 Only 8 spots per departure &nbsp;·&nbsp; Weekly departures from London &nbsp;·&nbsp; Limited Summer 2026 availability
-          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1">
+            <span className="text-white/50 text-xs tracking-wider">✦ Only 8 spots per departure</span>
+            <span className="text-white/50 text-xs tracking-wider">✦ Weekly summer departures</span>
+            <span className="text-white/30 text-xs">|</span>
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400/90">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              Limited Summer 2026 availability
+            </span>
+          </div>
         </div>
       </section>
 
       {/* STATEMENT — cinematic pull quote */}
-      <section className="py-28 md:py-36 px-6 bg-background">
+      <section className="py-32 md:py-44 px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-heading text-3xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">
+          <p className="font-heading text-4xl md:text-6xl lg:text-7xl font-light text-foreground leading-tight tracking-tight">
             "Escape London.
             <br />
-            <span className="text-primary/70 italic">This is the trip you'll talk about forever."</span>
+            <span className="text-primary/70 italic font-light">This is the trip you'll talk about forever."</span>
           </p>
           <div className="mt-10 w-12 h-px bg-primary/30 mx-auto" />
           <p className="mt-8 text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
@@ -153,9 +159,9 @@ export default function Home() {
         style={{ background: 'hsl(158 45% 12%)' }}
       >
         <div className="relative z-10 max-w-xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-red-500/20 border border-red-400/30 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-500/10 mb-6">
             <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
-            <span className="text-red-300 text-xs font-semibold tracking-wider uppercase">Limited availability — Summer 2026</span>
+            <span className="text-red-300 text-xs font-semibold tracking-wider uppercase">Limited availability · Summer 2026</span>
           </div>
           <h2 className="font-heading text-5xl md:text-6xl font-bold text-white mb-3">From £899</h2>
           <p className="text-white/50 text-sm mb-6">per person · fly from London · 7 days · all-inclusive except flights</p>
@@ -163,12 +169,12 @@ export default function Home() {
             Accommodation, transfers, breakfast and dinner, guided activities, local transport and your host — included.
           </p>
           <Link
-            to="/contact"
+            to="/book"
             className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-semibold rounded-full hover:brightness-105 transition-all shadow-xl"
           >
             Reserve Your Spot <ArrowRight size={16} />
           </Link>
-          <p className="mt-6 text-white/30 text-xs">Max 8 guests per departure · 10 weekly departures · Minimum 4 guests</p>
+          <p className="mt-6 text-white/30 text-xs">Max 8 guests per departure · 10 weekly departures remaining</p>
         </div>
       </section>
 
@@ -238,37 +244,6 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* SOCIAL PROOF STATS */}
-      <section className="py-20 px-6 bg-background">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-xs tracking-[0.3em] uppercase text-muted-foreground mb-12">Why Travellers Choose This</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {TRUST_STATS.map((s, i) => (
-              <div key={i} className="text-center p-6 rounded-2xl bg-card border border-border shadow-sm">
-                <p className="font-heading text-4xl md:text-5xl font-bold text-primary mb-2">{s.value}</p>
-                <p className="font-semibold text-foreground text-sm mb-1">{s.label}</p>
-                <p className="text-muted-foreground text-xs">{s.sub}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 grid sm:grid-cols-3 gap-4 text-center text-sm">
-            {[
-              { icon: '✈️', text: 'Fly from London Gatwick, Luton or Stansted' },
-              { icon: '🏠', text: 'Boutique local accommodation' },
-              { icon: '🥾', text: 'Expert local guide included' },
-              { icon: '🍽️', text: 'All breakfasts & dinners' },
-              { icon: '🚐', text: 'All in-country transport' },
-              { icon: '📍', text: 'Hidden spots off the map' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-secondary/50 border border-border">
-                <span className="text-lg">{item.icon}</span>
-                <span className="text-foreground font-medium">{item.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* INSTAGRAM / TIKTOK FEED */}
       <section className="py-20 px-4 bg-secondary/30">
