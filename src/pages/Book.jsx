@@ -7,10 +7,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 const DATES = [
-  { label: '19 Jul 2026', sub: 'Sunday departure', spots: 4 },
-  { label: '26 Jul 2026', sub: 'Sunday departure', spots: 6 },
-  { label: '2 Aug 2026', sub: 'Sunday departure', spots: 8 },
-  { label: '9 Aug 2026', sub: 'Sunday departure', spots: 3 },
+  { label: '19 Jul 2026', sub: 'Sunday departure', spots: 2 },
+  { label: '26 Jul 2026', sub: 'Sunday departure', spots: 3 },
+  { label: '2 Aug 2026', sub: 'Sunday departure', spots: 6 },
+  { label: '9 Aug 2026', sub: 'Sunday departure', spots: 8 },
   { label: '16 Aug 2026', sub: 'Sunday departure', spots: 8 },
   { label: '23 Aug 2026', sub: 'Sunday departure', spots: 8 },
   { label: '30 Aug 2026', sub: 'Sunday departure', spots: 7 },
@@ -18,6 +18,13 @@ const DATES = [
   { label: '13 Sep 2026', sub: 'Sunday departure', spots: 8 },
   { label: '20 Sep 2026', sub: 'Sunday departure', spots: 8 },
 ];
+
+function getStatusLabel(spots) {
+  if (spots === 0) return { text: 'Sold Out', color: 'text-red-600' };
+  if (spots <= 2) return { text: spots + ' spot' + (spots !== 1 ? 's' : '') + ' left — Almost Full', color: 'text-red-500' };
+  if (spots <= 4) return { text: spots + ' spots — Limited', color: 'text-amber-600' };
+  return { text: spots + ' spots available', color: 'text-primary' };
+}
 
 const STEPS = [
   { icon: Calendar, label: 'Choose Date' },

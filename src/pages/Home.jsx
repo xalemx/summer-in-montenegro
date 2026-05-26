@@ -274,32 +274,28 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Feed grid — TikTok-style vertical cards */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {SOCIAL_POSTS.map((post, i) => (
-              <div key={i} className="group relative rounded-2xl overflow-hidden cursor-pointer" style={{ aspectRatio: '9/16' }}>
-                <img
-                  src={post.img}
-                  alt={post.caption}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                {/* Play icon for reels */}
-                {post.type === 'reel' && (
-                  <div className="absolute top-3 right-3 opacity-70">
-                    <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                      <Play size={12} className="text-white fill-white" />
-                    </div>
+          {/* Feed — infinite auto-scroll */}
+          <div className="overflow-hidden">
+            <div
+              className="flex gap-3"
+              style={{ animation: 'socialScroll 32s linear infinite', width: 'max-content' }}
+              onMouseEnter={e => e.currentTarget.style.animationPlayState = 'paused'}
+              onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
+            >
+              {[...SOCIAL_POSTS, ...SOCIAL_POSTS].map((post, i) => (
+                <div key={i} className="group relative rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-all duration-300 hover:scale-105" style={{ aspectRatio: '9/16', width: '160px' }}>
+                  <img src={post.img} alt={post.caption} className="w-full h-full object-cover transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {post.type === 'reel' && (
+                    <div className="absolute top-3 right-3"><div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"><Play size={12} className="text-white fill-white" /></div></div>
+                  )}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <p className="text-white text-xs leading-tight line-clamp-2">{post.caption}</p>
+                    <p className="text-white/60 text-xs mt-1">❤️ {post.likes}</p>
                   </div>
-                )}
-                {/* Caption on hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-white text-xs leading-tight line-clamp-2">{post.caption}</p>
-                  <p className="text-white/60 text-xs mt-1">❤️ {post.likes}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <p className="text-center text-muted-foreground text-xs mt-8">

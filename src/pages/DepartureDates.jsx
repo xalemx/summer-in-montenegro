@@ -2,17 +2,24 @@ import CTAButton from '../components/CTAButton';
 import { Plane, Users, Calendar, Info } from 'lucide-react';
 
 const DATES = [
-  ['19 July 2026', '26 July 2026', 'filling'],
-  ['26 July 2026', '2 August 2026', 'filling'],
-  ['2 August 2026', '9 August 2026', 'open'],
-  ['9 August 2026', '16 August 2026', 'open'],
-  ['16 August 2026', '23 August 2026', 'open'],
-  ['23 August 2026', '30 August 2026', 'open'],
-  ['30 August 2026', '6 September 2026', 'open'],
-  ['6 September 2026', '13 September 2026', 'open'],
-  ['13 September 2026', '20 September 2026', 'open'],
-  ['20 September 2026', '27 September 2026', 'open'],
+  { dep: '19 July 2026', ret: '26 July 2026', spots: 2 },
+  { dep: '26 July 2026', ret: '2 August 2026', spots: 3 },
+  { dep: '2 August 2026', ret: '9 August 2026', spots: 6 },
+  { dep: '9 August 2026', ret: '16 August 2026', spots: 8 },
+  { dep: '16 August 2026', ret: '23 August 2026', spots: 8 },
+  { dep: '23 August 2026', ret: '30 August 2026', spots: 8 },
+  { dep: '30 August 2026', ret: '6 September 2026', spots: 7 },
+  { dep: '6 September 2026', ret: '13 September 2026', spots: 8 },
+  { dep: '13 September 2026', ret: '20 September 2026', spots: 8 },
+  { dep: '20 September 2026', ret: '27 September 2026', spots: 8 },
 ];
+
+function getStatus(spots) {
+  if (spots === 0) return { label: 'Sold Out', classes: 'bg-red-100 text-red-700', dot: 'bg-red-500', pulse: false };
+  if (spots <= 2) return { label: 'Almost Full', classes: 'bg-red-50 text-red-600', dot: 'bg-red-500', pulse: true };
+  if (spots <= 4) return { label: 'Limited Availability', classes: 'bg-amber-50 text-amber-700', dot: 'bg-amber-500', pulse: true };
+  return { label: 'Open', classes: 'bg-green-50 text-green-700', dot: 'bg-green-500', pulse: false };
+}
 
 const NOTES = [
   { icon: Plane, text: 'Direct flights from London to Tivat or Podgorica — available Tuesday, Wednesday, Friday and Sunday' },
