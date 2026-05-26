@@ -36,8 +36,9 @@ export default function Footer() {
             <div className="flex gap-4">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Instagram</a>
               <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">TikTok</a>
-              <a href="https://wa.me/447000000000" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">WhatsApp</a>
+              <a href="https://wa.me/447758162004" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">WhatsApp</a>
             </div>
+          <a href="mailto:summerinmontenegro.com@gmail.com" className="block mt-3 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">summerinmontenegro.com@gmail.com</a>
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-primary-foreground/10 text-center text-xs text-primary-foreground/40">
