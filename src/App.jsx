@@ -5,7 +5,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
-// Add page imports here
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import Experience from './pages/Experience';
+import DepartureDates from './pages/DepartureDates';
+import Accommodation from './pages/Accommodation';
+import Activities from './pages/Activities';
+import Summer2027 from './pages/Summer2027';
+import PartnerOffers from './pages/PartnerOffers';
+import FAQ from './pages/FAQ';
+import Contact from './pages/Contact';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -33,8 +42,18 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      {/* Add your page Route elements here */}
-      <Route path="*" element={<PageNotFound />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/experience" element={<Experience />} />
+        <Route path="/dates" element={<DepartureDates />} />
+        <Route path="/accommodation" element={<Accommodation />} />
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/summer-2027" element={<Summer2027 />} />
+        <Route path="/partners" element={<PartnerOffers />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Route>
     </Routes>
   );
 };
