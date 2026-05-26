@@ -4,7 +4,7 @@ import { Lock } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const PIN = '2026';
+const PIN = 'SIM-PARTNER-26';
 
 export default function PartnerAccess() {
   const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem('partner_access') === 'true');
@@ -35,8 +35,8 @@ export default function PartnerAccess() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             type="password"
-            maxLength={6}
-            placeholder="Enter PIN"
+            maxLength={16}
+            placeholder="Enter access code"
             value={value}
             onChange={e => { setValue(e.target.value); setError(false); }}
             className={`text-center text-lg tracking-widest ${error ? 'border-red-400' : ''}`}
