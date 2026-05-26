@@ -44,21 +44,24 @@ export default function DepartureDates() {
             <div className="p-4">Return</div>
             <div className="p-4 text-center">Status</div>
           </div>
-          {DATES.map(([dep, ret, status], i) => (
+          {DATES.map((d, i) => {
+            const s = getStatus(d.spots);
+            return (
             <div key={i} className={`grid grid-cols-3 text-sm ${i % 2 === 0 ? 'bg-card' : 'bg-secondary/30'}`}>
-              <div className="p-4 font-medium">{dep}</div>
-              <div className="p-4 text-muted-foreground">{ret}</div>
+              <div className="p-4 font-medium">{d.dep}</div>
+              <div className="p-4 text-muted-foreground">{d.ret}</div>
               <div className="p-4 text-center">
-                {status === 'filling' ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>Filling Fast
-                  </span>
-                ) : (
-                  <span className="inline-block px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-semibold">Open</span>
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${s.classes}`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${s.dot} ${s.pulse ? 'animate-pulse' : ''}`}></span>
+                  {s.label}
+                </span>
+                {d.spots > 0 && d.spots < 8 && (
+                  <p className="text-xs text-muted-foreground mt-1">{d.spots} spot{d.spots !== 1 ? 's' : ''} left</p>
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
         <div className="mt-4 flex items-center justify-center gap-2 py-3 px-4 bg-amber-50 border border-amber-200 rounded-xl">
           <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>

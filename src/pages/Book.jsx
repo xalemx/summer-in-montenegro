@@ -134,9 +134,7 @@ export default function Book() {
                   >
                     <p className="font-semibold text-sm">{d.label}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">{d.sub}</p>
-                    <p className={`text-xs mt-1.5 font-medium ${d.spots <= 3 ? 'text-amber-600' : 'text-primary'}`}>
-                      {d.spots} {d.spots === 1 ? 'spot' : 'spots'} remaining
-                    </p>
+                    {(() => { const s = getStatusLabel(d.spots); return <p className={`text-xs mt-1.5 font-medium ${s.color}`}>{s.text}</p>; })()}
                   </button>
                 ))}
               </div>
