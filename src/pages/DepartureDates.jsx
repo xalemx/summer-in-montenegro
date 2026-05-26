@@ -15,19 +15,20 @@ const DATES = [
 ];
 
 const NOTES = [
-  { icon: Plane, text: 'Arrivals may align with Tuesday, Wednesday, Friday or Sunday flights depending on availability' },
+  { icon: Plane, text: 'Direct flights from London to Tivat or Podgorica — available Tuesday, Wednesday, Friday and Sunday' },
   { icon: Calendar, text: 'Sunday-to-Sunday is the main group structure' },
   { icon: Users, text: 'Minimum 4 guests required • Groups organised in 4-person blocks' },
-  { icon: Plane, text: 'Flights not included • Podgorica airport pickup included' },
+  { icon: Plane, text: 'Flights not included — fly from London Gatwick, Luton or Stansted · Airport pickup included on arrival' },
 ];
 
 export default function DepartureDates() {
   return (
     <div className="py-16 md:py-24 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="font-heading text-3xl md:text-5xl font-bold text-center mb-4">Summer 2026 Departure Dates</h1>
+        <p className="text-center text-xs tracking-[0.25em] uppercase text-primary font-semibold mb-3">Flying from London</p>
+        <h1 className="font-heading text-3xl md:text-5xl font-bold text-center mb-4">Summer 2026 Departures</h1>
         <p className="text-center text-muted-foreground mb-12 max-w-lg mx-auto">
-          Weekly Sunday-to-Sunday departures from 19 July until late September 2026.
+          Weekly Sunday-to-Sunday departures from London, 19 July until late September 2026.
         </p>
 
         <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden mb-10">

@@ -8,7 +8,7 @@ export default function AnnouncementBar() {
       className="block bg-primary text-primary-foreground text-center py-2.5 px-4 text-sm font-medium hover:bg-primary/90 transition-colors"
     >
       <span className="inline-flex items-center gap-2">
-        Summer 2027 early access now open — reserve your Montenegro adventure from £100/month
+        ✈️ Escape London this summer — Summer 2027 now open · reserve from £100/month
         <ArrowRight size={14} />
       </span>
     </Link>

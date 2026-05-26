@@ -53,12 +53,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <p className="text-white/60 tracking-[0.3em] text-xs uppercase mb-6 font-medium">Montenegro · Small-Group Adventures</p>
+          <p className="text-white/60 tracking-[0.3em] text-xs uppercase mb-6 font-medium">From London · Montenegro · Small-Group Adventures</p>
           <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] mb-6">
             Discover the<br />Wild Beauty of<br />Montenegro
           </h1>
           <p className="text-white/75 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-            Small-group hosted journeys through coast, mountains and hidden landscapes. From London.
+            Small-group hosted journeys from London through Montenegro's coast, mountains and hidden landscapes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -94,13 +94,13 @@ export default function Home() {
       <section className="py-28 md:py-36 px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-heading text-3xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">
-            "This isn't a package holiday.
+            "Escape London.
             <br />
-            <span className="text-primary/70 italic">It's the trip you'll talk about forever."</span>
+            <span className="text-primary/70 italic">This is the trip you'll talk about forever."</span>
           </p>
           <div className="mt-10 w-12 h-px bg-primary/30 mx-auto" />
           <p className="mt-8 text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
-            We take small groups of 4–8 people from the UK through Montenegro's most extraordinary landscapes — with a local host, authentic food, real adventure and zero stress.
+            We fly small groups of 4–8 people from London to Montenegro's most extraordinary landscapes — with a local host, authentic food, real adventure and zero logistics stress.
           </p>
         </div>
       </section>
@@ -153,9 +153,9 @@ export default function Home() {
         style={{ background: 'hsl(158 45% 12%)' }}
       >
         <div className="relative z-10 max-w-xl mx-auto">
-          <p className="text-white/40 tracking-[0.3em] text-xs uppercase mb-6">Summer 2026 · Founder Launch</p>
+          <p className="text-white/40 tracking-[0.3em] text-xs uppercase mb-6">Flying from London · Summer 2026</p>
           <h2 className="font-heading text-5xl md:text-6xl font-bold text-white mb-3">From £899</h2>
-          <p className="text-white/50 text-sm mb-6">per person · 7 days · all-inclusive except flights</p>
+          <p className="text-white/50 text-sm mb-6">per person · fly from London · 7 days · all-inclusive except flights</p>
           <p className="text-white/65 mb-10 leading-relaxed max-w-sm mx-auto">
             Accommodation, transfers, breakfast and dinner, guided activities, local transport and your host — included.
           </p>
@@ -251,7 +251,7 @@ export default function Home() {
           </div>
           <div className="mt-10 grid sm:grid-cols-3 gap-4 text-center text-sm">
             {[
-              { icon: '✈️', text: 'Fly from any UK airport' },
+              { icon: '✈️', text: 'Fly from London Gatwick, Luton or Stansted' },
               { icon: '🏠', text: 'Boutique local accommodation' },
               { icon: '🥾', text: 'Expert local guide included' },
               { icon: '🍽️', text: 'All breakfasts & dinners' },

@@ -33,14 +33,14 @@ export default function Summer2027() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 pb-20 pt-32">
-          <p className="text-amber-400/80 tracking-[0.35em] text-xs uppercase font-semibold mb-5">Early Access · Summer 2027</p>
+          <p className="text-amber-400/80 tracking-[0.35em] text-xs uppercase font-semibold mb-5">From London · Early Access · Summer 2027</p>
           <h1 className="font-heading text-5xl md:text-7xl font-bold leading-[1.05] mb-6">
             The trip you've been<br />
             <span className="italic text-amber-300">putting off.</span><br />
             Book it now.
           </h1>
           <p className="text-white/55 text-lg max-w-xl leading-relaxed">
-            Montenegro. 7 days. 4–8 people. A summer that changes how you think about travel.
+            Fly from London. 7 days in Montenegro. 4–8 people. A summer that changes how you think about travel.
           </p>
         </div>
       </section>

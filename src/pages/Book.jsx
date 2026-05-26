@@ -1,0 +1,273 @@
+import { useState } from 'react';
+import { base44 } from '@/api/base44Client';
+import { CheckCircle, ChevronRight, ChevronLeft, Calendar, Users, User, MessageCircle } from 'lucide-react';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+
+const DATES = [
+  { label: '19 Jul 2026', sub: 'Sunday departure', spots: 4 },
+  { label: '26 Jul 2026', sub: 'Sunday departure', spots: 6 },
+  { label: '2 Aug 2026', sub: 'Sunday departure', spots: 8 },
+  { label: '9 Aug 2026', sub: 'Sunday departure', spots: 3 },
+  { label: '16 Aug 2026', sub: 'Sunday departure', spots: 8 },
+  { label: '23 Aug 2026', sub: 'Sunday departure', spots: 8 },
+  { label: '30 Aug 2026', sub: 'Sunday departure', spots: 7 },
+  { label: '6 Sep 2026', sub: 'Sunday departure', spots: 8 },
+  { label: '13 Sep 2026', sub: 'Sunday departure', spots: 8 },
+  { label: '20 Sep 2026', sub: 'Sunday departure', spots: 8 },
+];
+
+const STEPS = [
+  { icon: Calendar, label: 'Choose Date' },
+  { icon: Users, label: 'Guests' },
+  { icon: User, label: 'Your Details' },
+  { icon: CheckCircle, label: 'Confirm' },
+];
+
+export default function Book() {
+  const [step, setStep] = useState(0);
+  const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    departure_date: '',
+    guests: 1,
+    full_name: '',
+    email: '',
+    whatsapp: '',
+    airport: '',
+    activity_level: 'moderate',
+    dietary: '',
+    notes: '',
+  });
+
+  const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
+
+  const submit = async () => {
+    setLoading(true);
+    await base44.entities.BookingRequest.create({ ...form, status: 'new' });
+    setDone(true);
+    setLoading(false);
+  };
+
+  if (done) {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center px-4">
+        <div className="max-w-md w-full text-center">
+          <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle size={36} className="text-primary" />
+          </div>
+          <h2 className="font-heading text-3xl font-bold mb-3">{"You're on the list."}</h2>
+          <p className="text-muted-foreground mb-8 leading-relaxed">
+            {"We've received your reservation request for "}
+            <strong>{form.departure_date}</strong>
+            {". We'll reach out on WhatsApp within 24 hours with availability and next steps."}
+          </p>
+          <a
+            href={`https://wa.me/447758162004?text=Hi! I just submitted a booking request for ${encodeURIComponent(form.departure_date)} for ${form.guests} guest(s).`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#25D366] text-white font-semibold rounded-full text-sm hover:brightness-105 transition-all shadow-md"
+          >
+            <MessageCircle size={18} />
+            Message us on WhatsApp
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="py-16 md:py-24 px-4">
+      <div className="max-w-2xl mx-auto">
+        <h1 className="font-heading text-3xl md:text-4xl font-bold text-center mb-2">Reserve Your Spot</h1>
+        <p className="text-center text-muted-foreground text-sm mb-10">Summer 2026 · Montenegro · 7-day hosted adventure</p>
+
+        {/* Step indicator */}
+        <div className="flex items-center justify-center gap-2 mb-10">
+          {STEPS.map((s, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                i < step ? 'bg-primary text-primary-foreground' :
+                i === step ? 'bg-accent text-accent-foreground' :
+                'bg-muted text-muted-foreground'
+              }`}>
+                {i < step ? '✓' : i + 1}
+              </div>
+              {i < STEPS.length - 1 && (
+                <div className={`h-px w-8 md:w-16 transition-all ${i < step ? 'bg-primary' : 'bg-border'}`} />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-card rounded-2xl p-6 md:p-8 shadow-sm border border-border min-h-[340px]">
+
+          {/* Step 0 - Choose Date */}
+          {step === 0 && (
+            <div>
+              <h2 className="font-heading text-xl font-semibold mb-6 flex items-center gap-2">
+                <Calendar size={20} className="text-primary" /> Choose Your Departure
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {DATES.map(d => (
+                  <button
+                    key={d.label}
+                    onClick={() => set('departure_date', d.label)}
+                    className={`text-left p-4 rounded-xl border-2 transition-all ${
+                      form.departure_date === d.label
+                        ? 'border-primary bg-primary/5'
+                        : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    <p className="font-semibold text-sm">{d.label}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{d.sub}</p>
+                    <p className={`text-xs mt-1.5 font-medium ${d.spots <= 3 ? 'text-amber-600' : 'text-primary'}`}>
+                      {d.spots} {d.spots === 1 ? 'spot' : 'spots'} remaining
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Step 1 - Guests */}
+          {step === 1 && (
+            <div>
+              <h2 className="font-heading text-xl font-semibold mb-6 flex items-center gap-2">
+                <Users size={20} className="text-primary" /> How Many Guests?
+              </h2>
+              <div className="grid grid-cols-4 gap-3 mb-8">
+                {[1,2,3,4,5,6,7,8].map(n => (
+                  <button
+                    key={n}
+                    onClick={() => set('guests', n)}
+                    className={`py-4 rounded-xl border-2 font-bold text-lg transition-all ${
+                      form.guests === n ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+              <div className="bg-secondary/50 rounded-xl p-4 text-sm text-muted-foreground">
+                <p>Total estimate: <strong className="text-foreground">{'£'}{form.guests * 899}</strong> &nbsp;·&nbsp; Deposit: <strong className="text-foreground">{'£'}{form.guests * 199}</strong></p>
+                <p className="text-xs mt-1">Deposit secures your spot. Balance due before departure.</p>
+              </div>
+              <div className="mt-6 space-y-2">
+                <Label className="text-sm">Activity level</Label>
+                <div className="flex gap-3">
+                  {['easy','moderate','active'].map(l => (
+                    <button
+                      key={l}
+                      onClick={() => set('activity_level', l)}
+                      className={`flex-1 py-2.5 rounded-xl border-2 text-sm font-medium capitalize transition-all ${
+                        form.activity_level === l ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
+                      }`}
+                    >
+                      {l}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 2 - Contact */}
+          {step === 2 && (
+            <div className="space-y-4">
+              <h2 className="font-heading text-xl font-semibold mb-4 flex items-center gap-2">
+                <User size={20} className="text-primary" /> Your Details
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <Label>Full Name *</Label>
+                  <Input required value={form.full_name} onChange={e => set('full_name', e.target.value)} placeholder="Your name" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Email *</Label>
+                  <Input required type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="your@email.com" />
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <Label>WhatsApp Number *</Label>
+                  <Input required value={form.whatsapp} onChange={e => set('whatsapp', e.target.value)} placeholder="+44..." />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Flying from</Label>
+                  <Input value={form.airport} onChange={e => set('airport', e.target.value)} placeholder="e.g. London Luton" />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <Label>Dietary requirements or medical notes</Label>
+                <Input value={form.dietary} onChange={e => set('dietary', e.target.value)} placeholder="e.g. vegetarian, nut allergy" />
+              </div>
+              <div className="space-y-1.5">
+                <Label>Anything else we should know?</Label>
+                <Textarea rows={2} value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="Questions, requests..." />
+              </div>
+            </div>
+          )}
+
+          {/* Step 3 - Review */}
+          {step === 3 && (
+            <div>
+              <h2 className="font-heading text-xl font-semibold mb-6 flex items-center gap-2">
+                <CheckCircle size={20} className="text-primary" /> Review your booking
+              </h2>
+              <div className="space-y-3 mb-8">
+                {[
+                  ['Departure', form.departure_date],
+                  ['Guests', `${form.guests} ${form.guests === 1 ? 'person' : 'people'}`],
+                  ['Activity level', form.activity_level],
+                  ['Name', form.full_name],
+                  ['Email', form.email],
+                  ['WhatsApp', form.whatsapp],
+                  ['Airport', form.airport || '—'],
+                  ['Dietary / Medical', form.dietary || '—'],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex justify-between py-2 border-b border-border text-sm">
+                    <span className="text-muted-foreground">{k}</span>
+                    <span className="font-medium capitalize">{v}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 text-sm text-muted-foreground">
+                This is a reservation request. We will contact you on WhatsApp within 24 hours to confirm availability and arrange payment.
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Navigation */}
+        <div className="flex gap-3 mt-6">
+          {step > 0 && (
+            <Button variant="outline" onClick={() => setStep(s => s - 1)} className="flex items-center gap-1 rounded-full">
+              <ChevronLeft size={16} /> Back
+            </Button>
+          )}
+          <div className="flex-1" />
+          {step < 3 ? (
+            <Button
+              onClick={() => setStep(s => s + 1)}
+              disabled={step === 0 && !form.departure_date}
+              className="bg-accent text-accent-foreground hover:brightness-105 rounded-full px-8 flex items-center gap-1"
+            >
+              Continue <ChevronRight size={16} />
+            </Button>
+          ) : (
+            <Button
+              onClick={submit}
+              disabled={loading || !form.full_name || !form.email || !form.whatsapp}
+              className="bg-accent text-accent-foreground hover:brightness-105 rounded-full px-8"
+            >
+              {loading ? 'Submitting...' : 'Send Reservation Request'}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
