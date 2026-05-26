@@ -9,7 +9,8 @@ export default function AnnouncementBar() {
     >
       <span className="inline-flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse inline-block"></span>
-        Escape London this summer — Montenegro from £899 · Direct flights · 8 people · 7 days fully hosted
+        <span className="hidden sm:inline">Escape London this summer — Montenegro from £899 · Direct flights · 8 people · 7 days fully hosted</span>
+        <span className="sm:hidden">Escape London this summer · Montenegro from £899</span>
         <ArrowRight size={14} />
       </span>
     </Link>

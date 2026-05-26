@@ -78,7 +78,7 @@ export default function Gallery() {
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="text-white/30 text-xs tracking-[0.4em] uppercase mb-8">Reels · Most Viewed</p>
-          <div className="flex gap-4 overflow-x-auto pb-3 scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+          <div className="flex gap-3 overflow-x-auto pb-3" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             {REELS.map(reel => (
               <div key={reel.id} className="group relative flex-shrink-0 rounded-2xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300" style={{ width: '180px', aspectRatio: '9/16' }}>
                 <img src={reel.img} alt={reel.caption} className="w-full h-full object-cover" />
@@ -116,10 +116,7 @@ export default function Gallery() {
 
       {/* TRUE MASONRY */}
       <section className="py-10 px-4 md:px-6">
-        <div
-          className="max-w-7xl mx-auto"
-          style={{ columnCount: 3, columnGap: '12px', columnFill: 'balance' }}
-        >
+        <div className="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-3">
           {filtered.map(item => (
             <div
               key={item.id}

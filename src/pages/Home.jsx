@@ -59,22 +59,22 @@ export default function Home() {
             <span className="text-white/90 text-xs font-semibold tracking-wide">Summer 2026 · Only 8 spots per departure</span>
           </div>
           <p className="text-white/55 tracking-[0.4em] text-xs uppercase mb-6 font-light">A Summer You Won’t Forget · From London</p>
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-bold text-white leading-[1.02] mb-8">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold text-white leading-[1.02] mb-6 md:mb-8">
             Escape London<br />this<br /><em>summer.</em>
           </h1>
-          <p className="text-white/75 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-white/75 text-base md:text-xl max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed">
             Trade London stress for mountain air. 8 people. 7 days. One local host. Europe beyond the crowds.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 justify-center w-full sm:w-auto px-2 sm:px-0">
             <Link
               to="/book"
-              className="px-10 py-5 bg-accent text-accent-foreground font-bold rounded-full text-base hover:brightness-105 transition-all shadow-2xl"
+              className="w-full sm:w-auto px-10 py-5 bg-accent text-accent-foreground font-bold rounded-full text-base hover:brightness-105 transition-all shadow-2xl"
             >
               I’m In
             </Link>
             <Link
               to="/experience"
-              className="px-10 py-4 border border-white/40 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-all backdrop-blur-sm"
+              className="w-full sm:w-auto px-10 py-4 border border-white/40 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-all backdrop-blur-sm"
             >
               See the Experience
             </Link>
@@ -88,7 +88,7 @@ export default function Home() {
         </div>
 
         {/* Trust bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 py-4 px-6">
+        <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 py-3 px-4 hidden sm:block">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-1">
             <span className="text-white/50 text-xs tracking-wider">Not a holiday. A properly good summer.</span>
             <span className="text-white/30 text-xs">·</span>

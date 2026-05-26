@@ -251,7 +251,7 @@ export default function Book() {
         </div>
 
         {/* Navigation */}
-        <div className="flex gap-3 mt-6">
+        <div className="flex gap-3 mt-6 sticky bottom-0 bg-background/95 backdrop-blur-sm pb-6 pt-3 -mx-4 px-4 sm:static sm:bg-transparent sm:pb-0 sm:pt-0 sm:mx-0 sm:px-0 border-t border-border sm:border-0">
           {step > 0 && (
             <Button variant="outline" onClick={() => setStep(s => s - 1)} className="flex items-center gap-1 rounded-full">
               <ChevronLeft size={16} /> Back
