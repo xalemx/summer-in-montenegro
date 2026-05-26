@@ -34,8 +34,8 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-primary-foreground/50">Connect</h4>
             <div className="flex gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Instagram</a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">TikTok</a>
+              <a href="https://www.instagram.com/summerinmontenegro_com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Instagram</a>
+              <a href="https://www.tiktok.com/@summerinmontenegro.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">TikTok</a>
               <a href="https://wa.me/447758162004" target="_blank" rel="noopener noreferrer" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">WhatsApp</a>
             </div>
           <a href="mailto:summerinmontenegro.com@gmail.com" className="block mt-3 text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">summerinmontenegro.com@gmail.com</a>
