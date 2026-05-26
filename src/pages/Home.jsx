@@ -17,7 +17,7 @@ const TRUST_STATS = [
   { value: '0', label: 'Tourist traps', sub: 'Hidden locations only' },
 ];
 
-const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/046226db5_generated_video.mp4';
+const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/50ede03d7_MontenegroDrone4K_BreathtakingLandscapesfromMountainstotheBay_720p.MP4';
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c57a4140f_generated_image.png';
 const SILHOUETTE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/404e10428_generated_image.png';
 const LAKE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/d2e76465c_generated_image.png';
