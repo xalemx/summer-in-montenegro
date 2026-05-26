@@ -57,25 +57,25 @@ export default function Home() {
             <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
             <span className="text-white/90 text-xs font-semibold tracking-wide">Summer 2026 · Only 8 spots per departure</span>
           </div>
-          <p className="text-white/60 tracking-[0.35em] text-xs uppercase mb-6 font-medium">From London · Montenegro · Small-Group Adventures</p>
+          <p className="text-white/55 tracking-[0.4em] text-xs uppercase mb-6 font-light">A Summer You Won’t Forget · From London</p>
           <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-bold text-white leading-[1.02] mb-8">
-            Discover the<br />Wild Beauty of<br />Montenegro
+            The summer<br />you’ve been<br /><em>waiting for.</em>
           </h1>
           <p className="text-white/75 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-            Small-group hosted journeys from London through Montenegro's coast, mountains and hidden landscapes.
+            8 people. 7 days. One local host. A version of summer that most people only dream about.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/book"
               className="px-10 py-5 bg-accent text-accent-foreground font-bold rounded-full text-base hover:brightness-105 transition-all shadow-2xl"
             >
-              Reserve Your Spot
+              I’m In
             </Link>
             <Link
-              to="/dates"
+              to="/experience"
               className="px-10 py-4 border border-white/40 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-all backdrop-blur-sm"
             >
-              View 2026 Dates
+              See the Experience
             </Link>
           </div>
         </div>
@@ -89,10 +89,11 @@ export default function Home() {
         {/* Trust bar */}
         <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 py-4 px-6">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-1">
-            <span className="text-white/60 text-xs tracking-wider">✦ 7-day hosted experience</span>
-            <span className="text-amber-400/80 text-xs tracking-wider font-semibold">⚡ Only 8 guests per group</span>
-            <span className="text-white/60 text-xs tracking-wider">✦ Weekly departures from London</span>
-            <span className="text-amber-400/80 text-xs tracking-wider font-semibold">⚡ Limited Summer 2026 availability</span>
+            <span className="text-white/50 text-xs tracking-wider">Not a holiday. A properly good summer.</span>
+            <span className="text-white/30 text-xs">·</span>
+            <span className="text-white/50 text-xs tracking-wider">Only 8 people.</span>
+            <span className="text-white/30 text-xs">·</span>
+            <span className="text-amber-400/80 text-xs tracking-wider font-medium">From London. Summer 2026.</span>
           </div>
         </div>
       </section>
@@ -100,14 +101,14 @@ export default function Home() {
       {/* STATEMENT — cinematic pull quote */}
       <section className="py-36 md:py-48 px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="font-heading text-4xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.1]">
-            "Escape London.
+          <p className="font-heading text-4xl md:text-6xl lg:text-7xl font-light text-foreground leading-[1.08] italic">
+            The mountains don’t care
             <br />
-            <span className="text-primary/70 italic">This is the trip you'll talk about forever."</span>
+            <span className="text-primary/70 not-italic font-semibold">how busy you are.</span>
           </p>
           <div className="mt-14 w-16 h-px bg-primary/20 mx-auto" />
           <p className="mt-10 text-muted-foreground text-xl max-w-xl mx-auto leading-[1.7]">
-            We fly small groups of 4–8 people from London to Montenegro's most extraordinary landscapes — with a local host, authentic food, real adventure and zero logistics stress.
+            Summer in Montenegro is a week with strangers who become friends, in places your Instagram algorithm will never find. Hosted, unhurried, and completely real.
           </p>
         </div>
       </section>
@@ -196,8 +197,8 @@ export default function Home() {
       <section className="py-36 md:py-44 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
-            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Why Travellers Choose This</p>
-            <h2 className="font-heading text-5xl md:text-6xl font-bold text-foreground leading-tight">Built differently.<br />By design.</h2>
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">What Makes It Different</p>
+            <h2 className="font-heading text-5xl md:text-6xl font-bold text-foreground leading-tight">Not a tour company.<br /><em>A mindset.</em></h2>
           </div>
 
           {/* Stats row */}
@@ -219,12 +220,12 @@ export default function Home() {
           {/* Trust checklist */}
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              { icon: '🎯', title: 'Hidden locations only', desc: 'Places most tourists never find — shared by people who live there.' },
-              { icon: '🚐', title: 'Airport pickup included', desc: 'We meet you at Tivat or Podgorica. You relax from minute one.' },
-              { icon: '🏡', title: 'Boutique accommodation', desc: 'Small guesthouses and eco-lodges. Never a chain hotel.' },
-              { icon: '🍽️', title: 'Breakfast & dinner every day', desc: 'Home-cooked local food, family tables. No tourist menus.' },
-              { icon: '🥾', title: 'Flexible activity levels', desc: 'Easy strolls or serious hikes — the choice is always yours.' },
-              { icon: '📵', title: 'Genuinely off-grid', desc: 'No social media noise. Just mountains, silence and good people.' },
+              { icon: '🏔', title: 'Places people don’t go', desc: 'No tour buses. No Tripadvisor badges. Just the real Montenegro.' },
+              { icon: '👥', title: 'A group you’ll actually like', desc: 'Max 8 people. Carefully designed to feel like you picked them yourself.' },
+              { icon: '🍽️', title: 'Food that changes you', desc: 'Family tables, local ingredients, no menus. The kind of meal you remember forever.' },
+              { icon: '🚐', title: 'Zero logistics stress', desc: 'We pick you up. We drop you off. Every night is sorted. You just show up.' },
+              { icon: '📵', title: 'A week without your phone', desc: 'Not literally. But you won’t want it. The mountains will outcompete the feed.' },
+              { icon: '⚡', title: 'Something changes', desc: 'People come back different. Lighter. People say: I didn’t know I needed this.' },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 p-5 rounded-2xl bg-secondary/40 border border-border">
                 <span className="text-2xl mt-0.5">{item.icon}</span>
@@ -237,8 +238,9 @@ export default function Home() {
           </div>
 
           {/* Future testimonials placeholder */}
-          <div className="mt-16 p-8 rounded-3xl border-2 border-dashed border-border text-center">
-            <p className="text-muted-foreground/50 text-sm italic">⭐⭐⭐⭐⭐ · Real guest reviews coming Summer 2026</p>
+          <div className="mt-16 p-8 rounded-3xl bg-primary/5 border border-primary/10 text-center">
+            <p className="font-heading text-2xl italic text-primary/80 mb-2">“I didn’t book a holiday. I joined a summer.”</p>
+            <p className="text-muted-foreground text-sm">First reviews publishing after July 2026</p>
           </div>
         </div>
       </section>
@@ -311,12 +313,12 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-20 items-center">
             <div>
-              <p className="text-primary text-xs tracking-[0.3em] uppercase font-semibold mb-4">The Experience</p>
+              <p className="text-primary/70 text-xs tracking-[0.3em] uppercase font-semibold mb-4">The Philosophy</p>
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                4 to 8 people.<br />That's it.
+                Small enough<br />to be real.
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                No coach tours. No crowds. A local host who knows every hidden road, every honest restaurant and every view that doesn't appear on Google.
+                Eight people is a dinner party. It’s a group that moves together, eats together, gets lost together. It’s the reason people come home and say: “that changed me.”
               </p>
               <Link to="/experience" className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all text-sm">
                 See the 7-day journey <ArrowRight size={16} />

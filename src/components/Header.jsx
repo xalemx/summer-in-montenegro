@@ -3,13 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const NAV = [
-  { label: 'Home', to: '/' },
   { label: 'The Experience', to: '/experience' },
-  { label: 'Departure Dates', to: '/dates' },
-  { label: 'Accommodation', to: '/accommodation' },
-  { label: 'Activities', to: '/activities' },
-  { label: 'Summer 2027', to: '/summer-2027' },
+  { label: 'The Dates', to: '/dates' },
+  { label: 'Where We Stay', to: '/accommodation' },
+  { label: 'What We Do', to: '/activities' },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'Summer 2027', to: '/summer-2027' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
 ];
