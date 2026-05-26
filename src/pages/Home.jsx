@@ -23,12 +23,17 @@ export default function Home() {
 
       {/* HERO — full bleed cinematic */}
       <section className="relative h-[100svh] flex flex-col items-center justify-center overflow-hidden">
-        <img
-          src={HERO_IMG}
-          alt="Montenegro landscape"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={HERO_IMG}
           className="absolute inset-0 w-full h-full object-cover scale-105"
           style={{ filter: 'brightness(0.72)' }}
-        />
+        >
+          <source src="https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3e896ddb9_generated_video.mp4" type="video/mp4" />
+        </video>
         {/* Vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
 
