@@ -1,5 +1,21 @@
 import { Link } from 'react-router-dom';
-import { ArrowDown, ArrowRight } from 'lucide-react';
+import { ArrowDown, ArrowRight, Play } from 'lucide-react';
+
+const SOCIAL_POSTS = [
+  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/ddc6cbee6_generated_image.png', caption: 'Top of the world 🏔️ #Montenegro #hiking', likes: '2.4k', type: 'reel' },
+  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/69e8ce240_generated_image.png', caption: 'Day 3 in the mountains ✨ #travel #adventure', likes: '1.8k', type: 'reel' },
+  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/e5d7ebd76_generated_image.png', caption: 'Dinner with the group 🍽️ pure magic #foodie', likes: '3.1k', type: 'photo' },
+  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/a7e672def_generated_image.png', caption: 'Plav Lake 💙 words cannot describe it', likes: '5.2k', type: 'reel' },
+  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/4fefc5042_generated_image.png', caption: 'This road 😭 #coast #roadtrip #Montenegro', likes: '4.7k', type: 'reel' },
+  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/6ec2ad059_generated_image.png', caption: 'Local breakfast 🧀 never eating at a hotel again', likes: '2.9k', type: 'photo' },
+];
+
+const TRUST_STATS = [
+  { value: '4–8', label: 'Guests per group', sub: 'Intentionally small' },
+  { value: '7', label: 'Days fully hosted', sub: 'From landing to farewell' },
+  { value: '100%', label: 'Airport pickup included', sub: 'No logistics stress' },
+  { value: '0', label: 'Tourist traps', sub: 'Hidden locations only' },
+];
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/046226db5_generated_video.mp4';
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c57a4140f_generated_image.png';
@@ -216,6 +232,100 @@ export default function Home() {
           <div className="mt-16 p-8 rounded-3xl border-2 border-dashed border-border text-center">
             <p className="text-muted-foreground/50 text-sm italic">⭐⭐⭐⭐⭐ · Real guest reviews coming Summer 2026</p>
           </div>
+        </div>
+      </section>
+
+
+      {/* SOCIAL PROOF STATS */}
+      <section className="py-20 px-6 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-center text-xs tracking-[0.3em] uppercase text-muted-foreground mb-12">Why Travellers Choose This</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {TRUST_STATS.map((s, i) => (
+              <div key={i} className="text-center p-6 rounded-2xl bg-card border border-border shadow-sm">
+                <p className="font-heading text-4xl md:text-5xl font-bold text-primary mb-2">{s.value}</p>
+                <p className="font-semibold text-foreground text-sm mb-1">{s.label}</p>
+                <p className="text-muted-foreground text-xs">{s.sub}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 grid sm:grid-cols-3 gap-4 text-center text-sm">
+            {[
+              { icon: '✈️', text: 'Fly from any UK airport' },
+              { icon: '🏠', text: 'Boutique local accommodation' },
+              { icon: '🥾', text: 'Expert local guide included' },
+              { icon: '🍽️', text: 'All breakfasts & dinners' },
+              { icon: '🚐', text: 'All in-country transport' },
+              { icon: '📍', text: 'Hidden spots off the map' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-secondary/50 border border-border">
+                <span className="text-lg">{item.icon}</span>
+                <span className="text-foreground font-medium">{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INSTAGRAM / TIKTOK FEED */}
+      <section className="py-20 px-4 bg-secondary/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+            <div>
+              <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-2">Follow the Journey</p>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">Real Moments, Real Places</h2>
+            </div>
+            <div className="flex gap-3">
+              <a
+                href="https://www.instagram.com/summerinmontenegro_com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium"
+              >
+                <span className="text-lg">📸</span> Instagram
+              </a>
+              <a
+                href="https://www.tiktok.com/@summerinmontenegro.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium"
+              >
+                <span className="text-lg">🎵</span> TikTok
+              </a>
+            </div>
+          </div>
+
+          {/* Feed grid — TikTok-style vertical cards */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {SOCIAL_POSTS.map((post, i) => (
+              <div key={i} className="group relative rounded-2xl overflow-hidden cursor-pointer" style={{ aspectRatio: '9/16' }}>
+                <img
+                  src={post.img}
+                  alt={post.caption}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Play icon for reels */}
+                {post.type === 'reel' && (
+                  <div className="absolute top-3 right-3 opacity-70">
+                    <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <Play size={12} className="text-white fill-white" />
+                    </div>
+                  </div>
+                )}
+                {/* Caption on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <p className="text-white text-xs leading-tight line-clamp-2">{post.caption}</p>
+                  <p className="text-white/60 text-xs mt-1">❤️ {post.likes}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-muted-foreground text-xs mt-8">
+            Follow <strong>@summerinmontenegro_com</strong> on Instagram and <strong>@summerinmontenegro.com</strong> on TikTok for daily content
+          </p>
         </div>
       </section>
 
