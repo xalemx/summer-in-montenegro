@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import TestimonialsSection from '../components/TestimonialsSection';
 import { ArrowDown, ArrowRight, Play } from 'lucide-react';
 
 const SOCIAL_POSTS = [
@@ -303,6 +304,8 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <TestimonialsSection />
 
       {/* SMALL GROUP ETHOS */}
       <section className="py-36 px-6 bg-secondary/20">
