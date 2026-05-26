@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 
+const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/046226db5_generated_video.mp4';
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c57a4140f_generated_image.png';
 const SILHOUETTE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/404e10428_generated_image.png';
 const LAKE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/d2e76465c_generated_image.png';
@@ -21,21 +22,19 @@ export default function Home() {
   return (
     <div className="bg-background">
 
-      {/* HERO — full bleed cinematic */}
+      {/* HERO — fullscreen video */}
       <section className="relative h-[100svh] flex flex-col items-center justify-center overflow-hidden">
         <video
+          src={HERO_VIDEO}
           autoPlay
           muted
           loop
           playsInline
-          poster={HERO_IMG}
           className="absolute inset-0 w-full h-full object-cover scale-105"
-          style={{ filter: 'brightness(0.72)' }}
-        >
-          <source src="https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3e896ddb9_generated_video.mp4" type="video/mp4" />
-        </video>
+          poster={HERO_IMG}
+        />
         {/* Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <p className="text-white/60 tracking-[0.3em] text-xs uppercase mb-6 font-medium">Montenegro · Small-Group Adventures</p>
@@ -62,7 +61,7 @@ export default function Home() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
+        <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
           <span className="text-xs tracking-widest uppercase">Scroll</span>
           <ArrowDown size={16} className="animate-bounce" />
         </div>
@@ -166,6 +165,57 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 text-center pb-12 px-6">
           <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-2">Day 4</p>
           <h3 className="font-heading text-3xl md:text-4xl font-bold text-white">Plav Lake, 900m above sea level</h3>
+        </div>
+      </section>
+
+      {/* SOCIAL PROOF */}
+      <section className="py-24 md:py-32 px-6 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary text-xs tracking-[0.3em] uppercase font-semibold mb-3">Why Travellers Choose This</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground">Built differently.<br />By design.</h2>
+          </div>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            {[
+              { value: '4–8', label: 'Guests per group', sub: 'Never a crowd' },
+              { value: '100%', label: 'Local partners', sub: 'Authentic experiences' },
+              { value: '7', label: 'Days, all-inclusive', sub: 'Except flights' },
+              { value: '1', label: 'Dedicated host', sub: 'With you throughout' },
+            ].map((s, i) => (
+              <div key={i} className="text-center py-8 px-4 rounded-2xl bg-card border border-border shadow-sm">
+                <p className="font-heading text-4xl md:text-5xl font-bold text-primary mb-1">{s.value}</p>
+                <p className="font-semibold text-foreground text-sm mb-1">{s.label}</p>
+                <p className="text-muted-foreground text-xs">{s.sub}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Trust checklist */}
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { icon: '🎯', title: 'Hidden locations only', desc: 'Places most tourists never find — shared by people who live there.' },
+              { icon: '🚐', title: 'Airport pickup included', desc: 'We meet you at Tivat or Podgorica. You relax from minute one.' },
+              { icon: '🏡', title: 'Boutique accommodation', desc: 'Small guesthouses and eco-lodges. Never a chain hotel.' },
+              { icon: '🍽️', title: 'Breakfast & dinner every day', desc: 'Home-cooked local food, family tables. No tourist menus.' },
+              { icon: '🥾', title: 'Flexible activity levels', desc: 'Easy strolls or serious hikes — the choice is always yours.' },
+              { icon: '📵', title: 'Genuinely off-grid', desc: 'No social media noise. Just mountains, silence and good people.' },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 p-5 rounded-2xl bg-secondary/40 border border-border">
+                <span className="text-2xl mt-0.5">{item.icon}</span>
+                <div>
+                  <p className="font-semibold text-foreground text-sm mb-1">{item.title}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Future testimonials placeholder */}
+          <div className="mt-16 p-8 rounded-3xl border-2 border-dashed border-border text-center">
+            <p className="text-muted-foreground/50 text-sm italic">⭐⭐⭐⭐⭐ · Real guest reviews coming Summer 2026</p>
+          </div>
         </div>
       </section>
 
