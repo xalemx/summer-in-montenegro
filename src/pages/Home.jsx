@@ -274,9 +274,9 @@ export default function Home() {
       <section className="py-28 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">What Travellers Say</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why People Love Montenegro</h2>
-            <p className="text-xs text-muted-foreground mt-3 italic">Placeholder testimonials — to be replaced with real reviews</p>
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">What To Expect</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why Small-Group Travel Works</h2>
+            <p className="text-sm text-muted-foreground mt-3 max-w-xl mx-auto">What guests typically tell us after their first trip to Montenegro.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {REVIEWS.map((r, i) => (
@@ -393,10 +393,10 @@ export default function Home() {
               <p className="text-primary font-semibold text-sm mb-1">Based in Montenegro · UK roots</p>
               <p className="text-muted-foreground text-xs mb-6">WhatsApp: +44 7758 162004</p>
               <p className="text-muted-foreground leading-relaxed mb-4 text-lg">
-                Summer in Montenegro was created to help UK travellers discover the real Montenegro — beyond crowded resorts and tourist routes.
+                Born with UK roots and based between the UK and Montenegro, I created Summer in Montenegro to show travellers the side of the country most tourists never see.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Each trip is personally coordinated to provide an authentic small-group experience through Montenegro's coastline, mountains, lakes and hidden places.
+                This isn't a tour company. It's a small, personally hosted trip through Montenegro's coastline, mountains, lakes and hidden places — run by someone who genuinely loves it here.
               </p>
               <div className="space-y-3 mb-10">
                 {HOST_POINTS.map((item, i) => (

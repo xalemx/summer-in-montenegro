@@ -255,7 +255,7 @@ export default function Book() {
               </div>
               <div className="space-y-1.5">
                 <Label>How did you hear about us?</Label>
-                <Select onValueChange={v => set('referral', v)}>
+                <Select onValueChange={v => set('source', v)}>
                   <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
                   <SelectContent>
                     {['TikTok','Instagram','Facebook','Google','Friend','Other'].map(s => (
@@ -285,6 +285,7 @@ export default function Book() {
                   ['Country', form.country || '—'],
                   ['From London?', form.from_london || '—'],
                   ['London airport', form.airport || '—'],
+                  ['How did you hear about us?', form.source || '—'],
                   ['Name', form.full_name],
                   ['Email', form.email],
                   ['WhatsApp', form.whatsapp],
