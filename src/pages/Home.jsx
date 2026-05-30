@@ -138,6 +138,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COUNTDOWN */}
+      {(() => {
+        const firstDep = new Date('2026-07-17');
+        const today = new Date();
+        const daysLeft = Math.max(0, Math.ceil((firstDep - today) / (1000 * 60 * 60 * 24)));
+        return (
+          <section className="py-4 px-4 bg-foreground">
+            <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
+              {daysLeft > 0 ? (
+                <>
+                  <span className="text-background/60 text-xs tracking-[0.3em] uppercase font-semibold">Summer 2026 launches in</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-heading text-3xl font-bold text-background">{daysLeft}</span>
+                    <span className="text-background/70 text-sm font-medium">days</span>
+                  </div>
+                  <div className="w-px h-5 bg-background/20 hidden sm:block" />
+                </>
+              ) : null}
+              <span className="text-background/80 text-sm font-semibold">Only 10 departures available this season.</span>
+              <Link to="/dates" className="text-xs font-bold text-accent underline underline-offset-2 hover:opacity-80 transition-opacity">View dates →</Link>
+            </div>
+          </section>
+        );
+      })()}
+
       {/* TRUST STRIP */}
       <section className="py-4 px-4 bg-primary">
         <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2">

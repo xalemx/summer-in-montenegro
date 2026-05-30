@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const NAV = [
+  { label: 'Why Montenegro', to: '/about-montenegro' },
   { label: 'Experience', to: '/experience' },
   { label: '2026 Dates', to: '/dates' },
   { label: 'Pricing', to: '/pricing' },
