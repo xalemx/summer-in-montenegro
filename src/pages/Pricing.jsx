@@ -54,7 +54,7 @@ export default function Pricing() {
         <img src={HERO_IMG} alt="Montenegro coast" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
         <div className="relative z-10 px-6 pb-14 max-w-4xl mx-auto w-full">
-          <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-3">Summer 2026</p>
+          <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-3">Summer 2026 · Founder Price</p>
           <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight mb-3">
             Everything you need.<br /><em>Nothing you don't.</em>
           </h1>
@@ -72,9 +72,9 @@ export default function Pricing() {
             {/* Header */}
             <div className="px-10 py-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6" style={{ background: 'hsl(158 45% 12%)' }}>
               <div>
-                <span className="inline-block text-xs tracking-[0.3em] uppercase font-semibold text-white/40 mb-2">Summer 2026</span>
+                <span className="inline-block text-xs tracking-[0.3em] uppercase font-semibold text-white/40 mb-2">Summer 2026 · Founder Price</span>
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-white leading-tight">Mountains. Lakes. Coast.<br /><em>One Week from London.</em></h2>
-                <p className="text-white/50 mt-2 text-sm">4 Nights Mountains · 3 Nights Adriatic Coast · Private Room</p>
+                <p className="text-white/50 mt-2 text-sm">Friday to Friday · From London</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Per person</p>
