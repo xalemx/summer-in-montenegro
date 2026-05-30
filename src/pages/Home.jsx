@@ -133,26 +133,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SCROLLING SCENES */}
-      <section className="py-32 px-6 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-center text-muted-foreground/60 text-xs tracking-[0.4em] uppercase mb-14">What Awaits You</p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-            {SCENES.map((s, i) => (
-              <div
-                key={i}
-                className={`group relative overflow-hidden rounded-2xl ${i === 0 ? 'col-span-2 md:col-span-2 row-span-2' : ''}`}
-                style={{ aspectRatio: i === 0 ? '1/1.2' : '3/4' }}
-              >
-                <img src={s.img} alt={s.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <p className="absolute bottom-3 left-4 text-white font-heading font-semibold text-sm">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* PRICING */}
       <section
         className="relative py-40 px-6 text-center overflow-hidden"
