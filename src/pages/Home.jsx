@@ -105,7 +105,7 @@ export default function Home() {
             <span className="text-white/90 text-xs font-semibold tracking-wide">Summer 2026 · Friday departures from London</span>
           </div>
 
-          <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.02] mb-5">
+          <h1 className="font-heading text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[1.02] mb-5">
             Escape London.<br /><em>Discover Montenegro.</em>
           </h1>
 
