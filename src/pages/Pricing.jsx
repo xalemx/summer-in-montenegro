@@ -90,6 +90,7 @@ export default function Pricing() {
                 <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Per person</p>
                 <p className="font-heading text-6xl font-bold text-white leading-none">£999</p>
                 <p className="text-white/40 text-sm mt-2">Reserve with £199 deposit.</p>
+                <p className="text-white/40 text-xs mt-3">Flexible payment options may be available at checkout through Klarna, subject to eligibility and approval. Summer in Montenegro does not provide finance directly.</p>
               </div>
             </div>
 

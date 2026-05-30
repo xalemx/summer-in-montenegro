@@ -118,10 +118,7 @@ export default function Summer2027() {
               <p className="font-heading text-2xl font-semibold text-white mb-4">Per Person</p>
               <p className="font-heading text-6xl font-bold text-white mb-1">£999</p>
               <p className="text-white/60 text-sm mb-6">All inclusive · Private room included</p>
-              <div className="text-white/50 text-xs space-y-1">
-                <p>Flexible payment options available. Pay securely using card, Apple Pay, Google Pay or Klarna (subject to eligibility and availability).</p>
-                <p>Monthly payment options may be available through Klarna at checkout. Summer in Montenegro does not provide finance directly.</p>
-              </div>
+              <p className="text-white/50 text-xs mt-2">Flexible payment options may be available at checkout through Klarna, subject to eligibility and approval. Summer in Montenegro does not provide finance directly.</p>
             </div>
           </div>
 

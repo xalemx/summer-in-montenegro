@@ -288,10 +288,7 @@ export default function Book() {
               </div>
               <div className="bg-secondary/50 rounded-xl p-4 text-sm text-muted-foreground">
                 <p>Total: <strong className="text-foreground">£{form.guests * 999}</strong> &nbsp;·&nbsp; £999 per person</p>
-                <div className="text-xs mt-1 space-y-0.5 text-muted-foreground">
-                  <p>Flexible payment options available. Pay securely using card, Apple Pay, Google Pay or Klarna (subject to eligibility and availability).</p>
-                  <p>Monthly payment options may be available through Klarna at checkout. Summer in Montenegro does not provide finance directly.</p>
-                </div>
+                <p className="text-xs mt-1 text-muted-foreground">Flexible payment options may be available at checkout through Klarna, subject to eligibility and approval. Summer in Montenegro does not provide finance directly.</p>
               </div>
               <div className="mt-6 space-y-2">
                 <Label className="text-sm">Activity preference</Label>
