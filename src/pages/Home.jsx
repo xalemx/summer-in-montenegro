@@ -381,25 +381,68 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Europe's Hidden Gem</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why Montenegro?</h2>
+            <h2 className="font-heading text-4xl md:text-6xl font-bold text-foreground leading-tight">Why Montenegro?</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { icon: '🏔', title: 'Mountains and coast in one trip', desc: 'Swim in the Adriatic in the morning. Be in the mountains by afternoon. No other destination does this.' },
-              { icon: '🙌', title: 'Less crowded than Spain and Portugal', desc: 'Fewer tourists, shorter queues, lower prices. The experience Spain had 30 years ago.' },
-              { icon: '🤝', title: 'Authentic local experiences', desc: 'Local cafés, real villages, genuine hospitality. Not a curated version of culture — the actual thing.' },
-              { icon: '💎', title: "Europe's hidden gem", desc: 'Pristine national parks, glacial lakes and a dramatic coastline — almost entirely undiscovered by mass tourism.' },
-              { icon: '🛏', title: 'Private room included', desc: 'Every guest gets their own private room for all 7 nights. No dorms, no sharing unless you choose to.' },
-              { icon: '👥', title: 'Small groups only', desc: 'Maximum 8 guests per departure. Intentionally small so it feels personal, not like a package tour.' },
+              {
+                icon: '🏔',
+                title: 'Mountains and Coast in One Trip',
+                desc: 'Swim in the Adriatic in the morning. Be in the mountains by afternoon. No other destination does this.',
+                accent: true,
+              },
+              {
+                icon: '🙌',
+                title: 'Less Crowded Than Spain',
+                desc: 'Fewer tourists, shorter queues, lower prices. The experience Spain had 30 years ago.',
+                accent: false,
+              },
+              {
+                icon: '🤝',
+                title: 'Authentic Local Experiences',
+                desc: 'Local cafés, real villages, genuine hospitality. Not a curated version of culture — the actual thing.',
+                accent: false,
+              },
+              {
+                icon: '💎',
+                title: "Europe's Hidden Gem",
+                desc: 'Pristine national parks, glacial lakes and a dramatic coastline — almost entirely undiscovered by mass tourism.',
+                accent: false,
+              },
+              {
+                icon: '🛏',
+                title: 'Private Rooms Included',
+                desc: 'Every guest gets their own private room for all 7 nights. No dorms, no sharing unless you choose to.',
+                accent: true,
+              },
+              {
+                icon: '👥',
+                title: 'Small Groups Only',
+                desc: 'Maximum 8 guests per departure. Intentionally small so it feels personal, not like a package tour.',
+                accent: false,
+              },
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-4 p-6 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                <span className="text-3xl mt-0.5 flex-shrink-0">{item.icon}</span>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-green-600 font-bold text-sm">✓</span>
-                    <p className="font-semibold text-sm text-foreground">{item.title}</p>
+              <div
+                key={i}
+                className={`relative rounded-3xl p-8 border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden group ${
+                  item.accent
+                    ? 'border-primary/30 text-primary-foreground'
+                    : 'bg-card border-border'
+                }`}
+                style={item.accent ? { background: 'hsl(155 43% 18%)' } : {}}
+              >
+                {item.accent && (
+                  <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,_hsl(43_81%_46%)_0%,_transparent_70%)] pointer-events-none" />
+                )}
+                <div className="flex items-start gap-5">
+                  <span className="text-3xl flex-shrink-0 mt-0.5">{item.icon}</span>
+                  <div>
+                    <div className={`flex items-center gap-2 mb-3`}>
+                      <span className={`font-bold text-xs ${item.accent ? 'text-green-400' : 'text-green-600'}`}>✓</span>
+                      <p className={`font-semibold text-sm leading-snug ${item.accent ? 'text-white' : 'text-foreground'}`}>{item.title}</p>
+                    </div>
+                    <p className={`text-sm leading-relaxed ${item.accent ? 'text-white/60' : 'text-muted-foreground'}`}>{item.desc}</p>
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
