@@ -30,7 +30,9 @@ const STOPS = [
   { num: 3, name: 'Bar', desc: 'Day 1–2 · Sleep. Coastal town, local atmosphere, Adriatic feel.', lat: 42.098, lng: 19.100 },
   { num: 4, name: 'Biogradska Gora', desc: 'Day 2 · One of Europe\'s last primeval forests. A hidden gem.', lat: 42.887, lng: 19.609 },
   { num: 5, name: 'Gusinje', desc: 'Day 2–6 · Your mountain base. Boutique guesthouse, local food, wild landscapes.', lat: 42.558, lng: 19.834 },
-  { num: 6, name: 'Kolašin', desc: 'Day 7 · Return south via this charming mountain town.', lat: 42.823, lng: 19.524 },
+  { num: 6, name: 'Plavsko Jezero', desc: 'Day 3–4 · Glacial lake at 900m. Swimming, kayaking, coffee by the water.', lat: 42.599, lng: 19.945 },
+  { num: 7, name: 'Prokletije', desc: 'Day 3 · Accursed Mountains National Park. Epic hikes, viewpoints, mountain air.', lat: 42.510, lng: 19.790 },
+  { num: 8, name: 'Kolašin', desc: 'Day 7 · Return south via this charming mountain town.', lat: 42.823, lng: 19.524 },
 ];
 
 const ROUTE = STOPS.map(s => [s.lat, s.lng]);
