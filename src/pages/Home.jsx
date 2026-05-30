@@ -49,7 +49,7 @@ const WHO_FOR = [
 ];
 
 const INCLUDED_2026 = ['Accommodation', 'Private Room', 'Daily Breakfast', 'Airport Transfers', 'Local Transport', 'Hosted Experience'];
-const INCLUDED_2027 = ['Everything in 2026', 'Monthly payment plan', 'Founder discount', 'Priority access'];
+const INCLUDED_2027 = ['Everything in 2026', 'Founder discount', 'Priority access', 'Early booking price'];
 
 const HOST_POINTS = [
   'Small group — 4 to 8 people only',
@@ -591,22 +591,12 @@ export default function Home() {
             <div className="rounded-3xl overflow-hidden border border-primary/20 shadow-xl flex flex-col" style={{ background: 'hsl(155 43% 21%)' }}>
               <div className="px-8 py-8 border-b border-white/10">
                 <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-2">Summer 2027 · Early Access</p>
-                <h3 className="font-heading text-3xl font-bold text-white mb-1">Pay in Full</h3>
+                <h3 className="font-heading text-3xl font-bold text-white mb-1">Summer 2027</h3>
                 <div className="flex items-end gap-2 mt-4">
                   <span className="font-heading text-5xl font-bold text-white">£999</span>
                   <span className="text-white/50 text-sm mb-1.5">per person</span>
                 </div>
-                <div className="mt-4 pt-4 border-t border-white/10">
-                  <p className="text-white/60 text-xs mb-2">Or pay monthly:</p>
-                  <div className="flex items-end gap-2">
-                    <span className="font-heading text-3xl font-bold text-white">10 × £99.90</span>
-                  </div>
-                  <div className="flex flex-wrap gap-x-4 gap-y-0.5 mt-2">
-                    {['No interest', 'No hidden fees', 'No finance agreement'].map((t, i) => (
-                      <span key={i} className="text-white/50 text-xs flex items-center gap-1"><span className="text-green-400">✓</span>{t}</span>
-                    ))}
-                  </div>
-                </div>
+                <p className="text-white/50 text-xs mt-4">Flexible payment options such as Klarna may be available at checkout depending on eligibility.</p>
               </div>
               <div className="px-8 py-6 flex-1">
                 <div className="space-y-3">
@@ -624,7 +614,7 @@ export default function Home() {
                 <Link to="/summer-2027" className="flex items-center justify-center gap-2 w-full py-4 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-md">
                   Reserve 2027 <ArrowRight size={16} />
                 </Link>
-                <p className="text-xs text-white/30 text-center mt-3">Pay in full · Or 10 × £99.90 · 8 spots per week</p>
+                <p className="text-xs text-white/30 text-center mt-3">From £999 per person · 8 spots per week</p>
               </div>
             </div>
           </div>

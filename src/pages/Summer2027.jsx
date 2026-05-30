@@ -41,7 +41,7 @@ export default function Summer2027() {
             Reserve Next Summer<br /><em>Before It's Sold Out.</em>
           </h1>
           <p className="text-white/70 text-lg max-w-lg mx-auto leading-relaxed mb-8">
-            Reserve your 2027 Montenegro escape early and spread the cost with flexible monthly payments.
+            Reserve your 2027 Montenegro escape early and secure your spot before it sells out.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -92,7 +92,7 @@ export default function Summer2027() {
           </p>
           <div className="mt-12 w-16 h-px bg-primary/20 mx-auto" />
           <p className="mt-10 text-muted-foreground text-xl max-w-xl mx-auto leading-[1.7]">
-            Montenegro is still Europe's best-kept secret. For Summer 2027, lock in your place before anyone else — and pay it off like a Netflix subscription.
+            Montenegro is still Europe's best-kept secret. For Summer 2027, lock in your place before anyone else.
           </p>
         </div>
       </section>
@@ -103,42 +103,22 @@ export default function Summer2027() {
           <div className="text-center mb-16">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">The Smarter Way to Book</p>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">
-              Reserve today.<br /><em>Pay it off monthly.</em>
+              Reserve today.<br /><em>Lock in your place.</em>
             </h2>
           </div>
 
           <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
-            Book early and spread the cost of your Montenegro adventure with simple monthly payments.
+            Book early and lock in your spot for Summer 2027.
           </p>
 
-          {/* Pricing options */}
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
-            {/* Option 1 */}
-            <div className="rounded-3xl p-10 bg-card border border-border text-center shadow-sm">
-              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-2">Option 1</p>
-              <p className="font-heading text-2xl font-semibold text-foreground mb-4">Pay in Full</p>
-              <p className="font-heading text-6xl font-bold text-foreground mb-1">£999</p>
-              <p className="text-muted-foreground text-sm mb-6">per person</p>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <p className="font-semibold text-foreground">Best value.</p>
-                <p>One simple payment.</p>
-              </div>
-            </div>
-
-            {/* Option 2 */}
+          {/* Pricing */}
+          <div className="max-w-sm mx-auto mb-10">
             <div className="rounded-3xl p-10 border-2 border-primary text-center shadow-xl" style={{ background: 'hsl(155 43% 18%)' }}>
-              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-2">Option 2</p>
-              <p className="font-heading text-2xl font-semibold text-white mb-4">Pay Monthly</p>
-              <p className="font-heading text-5xl font-bold text-white mb-1">10 × £99.90</p>
-              <p className="text-white/60 text-sm mb-6">Total price remains £999</p>
-              <div className="space-y-2">
-                {['No interest.', 'No hidden fees.', 'No finance agreement.'].map((item, i) => (
-                  <div key={i} className="flex items-center justify-center gap-2">
-                    <span className="text-green-400 font-bold text-xs">✓</span>
-                    <span className="text-white/80 text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-2">Summer 2027</p>
+              <p className="font-heading text-2xl font-semibold text-white mb-4">Per Person</p>
+              <p className="font-heading text-6xl font-bold text-white mb-1">£999</p>
+              <p className="text-white/60 text-sm mb-6">All inclusive · Private room included</p>
+              <p className="text-white/50 text-xs">Flexible payment options such as Klarna may be available at checkout depending on eligibility and location.</p>
             </div>
           </div>
 
@@ -160,7 +140,7 @@ export default function Summer2027() {
             >
               Reserve Your 2027 Spot <ArrowRight size={16} />
             </Link>
-            <p className="mt-4 text-muted-foreground text-xs">Reserve your place early and spread the cost over time. All balances must be paid before travel.</p>
+            <p className="mt-4 text-muted-foreground text-xs">Spaces are limited. Reserve yours now.</p>
           </div>
         </div>
       </section>
@@ -241,7 +221,7 @@ export default function Summer2027() {
             2027 spaces<br /><em>are open now.</em>
           </h2>
           <p className="text-white/50 mb-10 text-lg">
-            £199 holds your place. The rest follows on your schedule.
+            £999 per person, all inclusive. Flexible payment options may be available at checkout.
           </p>
           <Link
             to="/contact"

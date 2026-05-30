@@ -60,7 +60,6 @@ export default function Book() {
     notes: '',
     from_london: '',
     source: '',
-    payment_plan: 'full',
   });
 
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
@@ -80,7 +79,6 @@ export default function Book() {
       full_name: form.full_name,
       email: form.email,
       booking_id: booking.id,
-      payment_plan: form.payment_plan,
     });
     if (res.data?.url) {
       window.location.href = res.data.url;
@@ -288,30 +286,9 @@ export default function Book() {
                   </button>
                 ))}
               </div>
-              <div className="mb-6">
-                <p className="text-sm font-medium text-foreground mb-3">Payment option</p>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => set('payment_plan', 'full')}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${
-                      form.payment_plan === 'full' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/40'
-                    }`}
-                  >
-                    <p className="font-bold text-sm text-foreground">Pay in Full</p>
-                    <p className="text-lg font-heading font-bold text-primary mt-1">£{form.guests * 999}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">One payment · Best value</p>
-                  </button>
-                  <button
-                    onClick={() => set('payment_plan', 'monthly')}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${
-                      form.payment_plan === 'monthly' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/40'
-                    }`}
-                  >
-                    <p className="font-bold text-sm text-foreground">Pay Monthly</p>
-                    <p className="text-lg font-heading font-bold text-primary mt-1">£{form.guests * 99.9}/mo</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">10 months · No interest</p>
-                  </button>
-                </div>
+              <div className="bg-secondary/50 rounded-xl p-4 text-sm text-muted-foreground">
+                <p>Total: <strong className="text-foreground">£{form.guests * 999}</strong> &nbsp;·&nbsp; £999 per person</p>
+                <p className="text-xs mt-1">Flexible payment options such as Klarna may be available at checkout depending on eligibility and location.</p>
               </div>
               <div className="mt-6 space-y-2">
                 <Label className="text-sm">Activity preference</Label>
@@ -409,7 +386,6 @@ export default function Book() {
                   ['From London?', form.from_london || '—'],
                   ['London airport', form.airport || '—'],
                   ['How did you hear about us?', form.source || '—'],
-                  ['Payment plan', form.payment_plan === 'monthly' ? '10 × £' + (form.guests * 99.9).toFixed(2) + '/mo' : '£' + (form.guests * 999) + ' upfront'],
                   ['Name', form.full_name],
                   ['Email', form.email],
                   ['WhatsApp', form.whatsapp],
@@ -423,7 +399,7 @@ export default function Book() {
                 ))}
               </div>
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 text-sm text-muted-foreground">
-                You will be taken to a secure Stripe checkout to complete your {form.payment_plan === 'monthly' ? 'first monthly payment' : 'full payment'}. We will confirm your spot and send trip details once payment is received.
+                You will be taken to a secure Stripe checkout to complete your payment. We will confirm your spot and send trip details once payment is received.
               </div>
             </div>
           )}
@@ -451,7 +427,7 @@ export default function Book() {
               disabled={loading || !form.full_name || !form.email || !form.whatsapp}
               className="bg-accent text-accent-foreground hover:brightness-105 rounded-full px-8"
             >
-              {loading ? 'Processing...' : form.payment_plan === 'monthly' ? `Pay £${(form.guests * 99.9).toFixed(2)}/mo & Reserve` : `Pay £${form.guests * 999} & Reserve`}
+              {loading ? 'Processing...' : `Pay £${form.guests * 999} & Reserve`}
             </Button>
           )}
         </div>
