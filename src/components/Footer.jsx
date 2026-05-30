@@ -36,8 +36,11 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold mb-2 text-sm uppercase tracking-wider text-primary-foreground/50">Get in Touch</h4>
-            <p className="text-primary-foreground/50 text-xs mb-5 leading-snug">We respond to all enquiries within 24 hours. Feel free to message before you commit.</p>
+            <h4 className="font-semibold mb-2 text-sm uppercase tracking-wider text-primary-foreground/50">Quick Contact</h4>
+            <p className="text-primary-foreground/50 text-xs mb-5 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span>
+              Response usually within 24 hours
+            </p>
             <div className="space-y-3">
               <a href="https://wa.me/447758162004?text=Hi%20%E2%80%94%20I%27d%20love%20to%20know%20more%20about%20Summer%20in%20Montenegro!" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
@@ -49,7 +52,7 @@ export default function Footer() {
               <a href="https://www.instagram.com/summerinmontenegro_com" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                 <span className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center flex-shrink-0 text-sm">📸</span>
-                Instagram
+                @summerinmontenegro_com
               </a>
               <a href="mailto:summerinmontenegro.com@gmail.com"
                 className="flex items-center gap-3 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
@@ -59,12 +62,10 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-12 pt-8 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-primary-foreground/40">
-          <span>© 2026 Summer in Montenegro. All rights reserved.</span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            Response usually within 24 hours
-          </span>
+        <div className="mt-12 pt-8 border-t border-primary-foreground/10 text-center">
+          <p className="text-xs text-primary-foreground/40">© 2026 Summer in Montenegro. All rights reserved.</p>
+          <p className="text-xs text-primary-foreground/30 mt-1">WhatsApp · Instagram · Email · We respond within 24 hours</p>
+          © 2026 Summer in Montenegro. All rights reserved.
         </div>
       </div>
     </footer>

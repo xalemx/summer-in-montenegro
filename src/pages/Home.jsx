@@ -5,7 +5,8 @@ import { ArrowRight, ArrowDown, Check, Plane, Car, Users, Calendar, User } from 
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3d38f555d_videoplayback.mp4';
 const HERO_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80';
-const SILHOUETTE_IMG = 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80';
+const SILHOUETTE_IMG = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1400&q=80';
+const KOTOR_IMG = 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=1400&q=80';
 const LAKE_IMG = 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=1400&q=80';
 const MOUNTAIN_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80';
 const COAST_IMG = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80';
@@ -286,15 +287,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CINEMATIC SPLIT */}
+      {/* CINEMATIC SPLIT — COAST */}
       <section className="relative h-[80vh] md:h-[95vh] overflow-hidden">
-        <img src={SILHOUETTE_IMG} alt="Montenegro adventure" className="absolute inset-0 w-full h-full object-cover" style={{ filter: 'brightness(0.75)' }} />
+        <img src={SILHOUETTE_IMG} alt="Bay of Kotor, Montenegro" className="absolute inset-0 w-full h-full object-cover" style={{ filter: 'brightness(0.75)' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
         <div className="absolute inset-0 flex items-end p-10 md:p-16 max-w-2xl">
           <div>
+            <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-3">The Coast</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">The Adriatic.<br />Clear water, dramatic coastline.</h2>
+            <Link to="/experience" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors">
+              See the 8-day itinerary <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CINEMATIC SPLIT — MOUNTAINS */}
+      <section className="relative h-[60vh] overflow-hidden">
+        <img src={MOUNTAIN_IMG} alt="Prokletije Mountains" className="absolute inset-0 w-full h-full object-cover" style={{ filter: 'brightness(0.7)' }} />
+        <div className="absolute inset-0 bg-gradient-to-l from-black/60 via-black/20 to-transparent" />
+        <div className="absolute inset-0 flex items-end justify-end p-10 md:p-16">
+          <div className="text-right max-w-lg">
             <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-3">The North</p>
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">Prokletije.<br />Where the world ends.</h2>
-            <Link to="/experience" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors">
+            <Link to="/experience" className="inline-flex items-center justify-end gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors">
               See the 8-day itinerary <ArrowRight size={16} />
             </Link>
           </div>
@@ -307,13 +323,13 @@ export default function Home() {
           <p className="text-center text-xs tracking-[0.4em] uppercase text-primary/70 font-semibold mb-12">The Experience</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4" style={{ gridAutoRows: '200px' }}>
             <div className="rounded-3xl overflow-hidden md:row-span-2 group">
-              <img src={MOUNTAIN_IMG} alt="Prokletije" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={COAST_IMG} alt="The Adriatic Coast" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="rounded-3xl overflow-hidden group">
               <img src={LAKE_IMG} alt="Plav Lake" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="rounded-3xl overflow-hidden group row-span-2">
-              <img src={COAST_IMG} alt="The Coast" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <img src={MOUNTAIN_IMG} alt="Prokletije Mountains" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
             <div className="rounded-3xl overflow-hidden group">
               <img src={FOOD_IMG} alt="Local Food" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />

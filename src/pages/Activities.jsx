@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/8d8db3a11_generated_948706a3.png';
+const HERO_IMG = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80';
 const COAST_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c477aa20c_generated_5ab95a92.png';
 const MTN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
 const LAKE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/df13fa70f_generated_5bd1d860.png';
@@ -10,10 +10,10 @@ const SPRINGS_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee
 const FOOD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/f1c34b4b6_generated_0a69661e.png';
 
 const ACTIVITIES = [
-  { title: 'Rafting', desc: 'White-water rafting through Montenegro\'s dramatic river canyons.', img: HORSE_IMG, level: 'Moderate', price: '€35–€50' },
+  { title: 'Rafting', desc: 'White-water rafting through Montenegro\'s dramatic river canyons.', img: SPRINGS_IMG, level: 'Moderate', price: '€35–€50' },
   { title: 'Horse Riding', desc: 'Mountain horse riding through the Prokletije foothills and alpine meadows.', img: HORSE_IMG, level: 'Easy', price: '€20–€40' },
   { title: 'Kayaking', desc: 'Kayaking on Plav Lake with spectacular mountain views and crystal-clear water.', img: LAKE_IMG, level: 'Easy', price: '€10–€20' },
-  { title: '4x4 Scenic Tours', desc: 'Off-road exploration through remote mountain villages and hidden landscapes.', img: COAST_IMG, level: 'Easy', price: '€40–€70' },
+  { title: '4x4 Scenic Tours', desc: 'Off-road exploration through remote mountain villages and hidden landscapes.', img: MTN_IMG, level: 'Easy', price: '€40–€70' },
   { title: 'Guided Hiking', desc: 'Guided routes in Prokletije National Park — from easy scenic walks to more demanding trails.', img: MTN_IMG, level: 'All levels', price: 'Varies' },
   { title: 'Local Food Experiences', desc: 'Traditional Montenegrin cuisine, home cooking and local food culture.', img: FOOD_IMG, level: 'All levels', price: 'Varies' },
 ];

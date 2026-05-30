@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/ddc6cbee6_generated_image.png';
-const MOUNTAIN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
+const COAST_IMG = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80';
+const LAKE_IMG = 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=1400&q=80';
 
 const INCLUDED = [
   '7 nights accommodation',
@@ -197,7 +198,7 @@ export default function Summer2027() {
             </div>
           </div>
           <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: '3/4' }}>
-            <img src={MOUNTAIN_IMG} alt="Montenegro" className="w-full h-full object-cover" />
+            <img src={LAKE_IMG} alt="Montenegro — Plav Lake" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-white/60 text-xs tracking-widest uppercase mb-1">Summer 2027</p>

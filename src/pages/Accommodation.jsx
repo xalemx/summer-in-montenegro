@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin } from 'lucide-react';
 
-const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
+const HERO_IMG = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1400&q=80';
 
 const PARTNERS = [
   {
@@ -51,7 +51,7 @@ export default function Accommodation() {
           <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight mb-3">
             Authentic Montenegro
           </h1>
-          <p className="text-white/60 text-lg max-w-xl">Local character, mountain views and genuine hospitality — not a hotel chain in sight.</p>
+          <p className="text-white/60 text-lg max-w-xl">Coast, mountains and lakes — local character and genuine hospitality wherever you stay.</p>
         </div>
       </section>
 
@@ -59,7 +59,7 @@ export default function Accommodation() {
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
-            We work with trusted local accommodation partners in Gusinje and northern Montenegro, combining mountain views, local hospitality and authentic atmosphere.
+            From coastal arrivals on the Adriatic to mountain guesthouses in the north, every night is arranged in carefully selected local stays.
           </p>
         </div>
       </section>
