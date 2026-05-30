@@ -555,6 +555,37 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHY £899 */}
+      <section className="py-24 px-6 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Everything Sorted</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why £899?</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
+            {[
+              { icon: '🏠', label: 'Accommodation', sub: '7 nights included' },
+              { icon: '🍳', label: 'Breakfast', sub: 'Every morning' },
+              { icon: '✈️', label: 'Airport Transfers', sub: 'Pickup & drop-off from Podgorica' },
+              { icon: '🚐', label: 'Local Transport', sub: 'Throughout the trip' },
+              { icon: '🧭', label: 'Local Host', sub: 'Personally coordinated' },
+              { icon: '👥', label: 'Small Groups', sub: 'Max 8 guests only' },
+              { icon: '🗺️', label: 'Carefully Planned Route', sub: 'Coast, mountains & hidden places' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-card border border-border shadow-sm">
+                <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground">{item.sub}</p>
+                </div>
+                <span className="ml-auto text-green-600 font-bold text-sm flex-shrink-0">✓</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm text-muted-foreground italic">Flights and optional activities are not included.</p>
+        </div>
+      </section>
+
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
