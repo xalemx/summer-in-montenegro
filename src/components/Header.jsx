@@ -10,6 +10,7 @@ const NAV = [
   { label: 'Accommodation', to: '/accommodation' },
   { label: 'Activities', to: '/activities' },
   { label: 'Summer 2027', to: '/summer-2027' },
+  { label: 'Gallery', to: '/gallery' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
 ];
