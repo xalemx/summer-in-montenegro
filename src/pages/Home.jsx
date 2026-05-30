@@ -211,23 +211,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOCIAL FEED */}
-      <section className="py-32 px-6 bg-secondary/20">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4 text-center">Follow the Journey</p>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-8">Find us on social media</h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://www.instagram.com/summerinmontenegro_com" target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-border bg-card hover:border-primary hover:bg-secondary transition-all font-semibold text-sm">
-              <span className="text-2xl">📸</span> @summerinmontenegro_com
-            </a>
-            <a href="https://www.tiktok.com/@summerinmontenegro.com" target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-border bg-card hover:border-primary hover:bg-secondary transition-all font-semibold text-sm">
-              <span className="text-2xl">🎵</span> @summerinmontenegro.com
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* WHO THIS IS FOR */}
       <section className="py-28 px-6 bg-background">
