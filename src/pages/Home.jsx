@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import GuestMemories from '../components/GuestMemories';
+import JourneyTimeline from '../components/JourneyTimeline';
 import RouteTimeline from '../components/RouteTimeline';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -763,6 +764,8 @@ export default function Home() {
       </section>
 
       <RouteTimeline />
+
+      <JourneyTimeline />
 
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
