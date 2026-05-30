@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 import { ArrowRight, ArrowDown, Check } from 'lucide-react';
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3d38f555d_videoplayback.mp4';
@@ -9,7 +11,7 @@ const MOUNTAIN_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32d
 const COAST_IMG = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80';
 const FOOD_IMG = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80';
 const HORSE_IMG = 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&q=80';
-const HOST_IMG = 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1400&q=80';
+const HOST_IMG_FALLBACK = 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1400&q=80';
 
 const QUICK_FACTS = [
   { icon: '💷', label: 'From £899', sub: 'Founder Pricing' },
@@ -76,6 +78,13 @@ const REVIEWS = [
 ];
 
 export default function Home() {
+  const { data: settings } = useQuery({
+    queryKey: ['siteSettings'],
+    queryFn: () => base44.entities.SiteSettings.list(),
+    select: (d) => d[0] || {},
+  });
+  const hostImg = settings?.founder_photo || HOST_IMG_FALLBACK;
+
   return (
     <div className="bg-background">
 
@@ -377,7 +386,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4/5' }}>
-              <img src={HOST_IMG} alt="Your host in Montenegro" className="w-full h-full object-cover" />
+              <img src={hostImg} alt="Your host in Montenegro" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="text-white/60 text-xs tracking-widest uppercase mb-1">Your Host</p>

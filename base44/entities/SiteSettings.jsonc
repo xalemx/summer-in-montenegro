@@ -1,0 +1,13 @@
+{
+  "name": "SiteSettings",
+  "type": "object",
+  "properties": {
+    "founder_photo": {
+      "type": "string",
+      "title": "Founder Photo",
+      "format": "uri",
+      "description": "URL of the founder photo used in the Meet Your Host section"
+    }
+  },
+  "required": []
+}
