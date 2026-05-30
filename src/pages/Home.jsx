@@ -454,31 +454,17 @@ export default function Home() {
       {/* BRING A FRIEND */}
       <section className="py-20 px-6 bg-background">
         <div className="max-w-4xl mx-auto">
-          <div className="rounded-3xl bg-card border-2 border-accent/30 p-8 md:p-12 text-center shadow-lg relative overflow-hidden">
-            <div className="absolute top-4 right-4">
-              <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Limited Offer</span>
-            </div>
+          <div className="rounded-3xl bg-card border-2 border-accent/30 p-8 md:p-12 text-center shadow-lg">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Travel Together</p>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">Bring a Friend &amp; Save</h2>
-            <p className="text-muted-foreground text-lg mb-6 max-w-lg mx-auto">
-              Book 2 places together and save <strong className="text-foreground">£50 each</strong>. That is £100 total back in your pocket — towards flights or activities.
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">Bring a Friend</h2>
+            <p className="text-muted-foreground text-lg mb-3 max-w-lg mx-auto">
+              Book with a friend and both receive <strong className="text-foreground">£50 off</strong>.
             </p>
-            <div className="grid sm:grid-cols-3 gap-4 mb-8 max-w-xl mx-auto">
-              <div className="rounded-2xl bg-secondary p-4 text-center">
-                <p className="font-heading text-2xl font-bold text-foreground">2+</p>
-                <p className="text-xs text-muted-foreground">People booking together</p>
-              </div>
-              <div className="rounded-2xl bg-secondary p-4 text-center">
-                <p className="font-heading text-2xl font-bold text-foreground">£50</p>
-                <p className="text-xs text-muted-foreground">Saved per person</p>
-              </div>
-              <div className="rounded-2xl bg-secondary p-4 text-center">
-                <p className="font-heading text-2xl font-bold text-foreground">£100</p>
-                <p className="text-xs text-muted-foreground">Total saved together</p>
-              </div>
-            </div>
+            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+              Small groups make the experience more enjoyable and help guarantee departures.
+            </p>
             <Link to="/book" className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-lg">
-              Book as a Pair &amp; Save £50 Each <ArrowRight size={16} />
+              Reserve Together <ArrowRight size={16} />
             </Link>
             <p className="mt-4 text-xs text-muted-foreground">Mention this offer when booking · Subject to availability</p>
           </div>
