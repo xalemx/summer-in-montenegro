@@ -739,13 +739,16 @@ export default function Home() {
           <p className="text-muted-foreground text-lg leading-relaxed mb-4 max-w-2xl mx-auto">
             Many guests travel solo and join small groups of like-minded travellers.
           </p>
+          <p className="text-muted-foreground leading-relaxed mb-4 max-w-2xl mx-auto">
+            Private rooms are included for all guests.
+          </p>
           <p className="text-muted-foreground leading-relaxed mb-12 max-w-2xl mx-auto">
-            Summer in Montenegro is designed to be welcoming for solo travellers, couples and friends.
+            Summer in Montenegro is ideal for solo travellers, couples and friends.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             {[
-              { icon: '🧍', label: 'Solo Travellers', desc: 'Come alone, leave with friends' },
-              { icon: '💑', label: 'Couples', desc: 'Share an adventure together' },
+              { icon: '🧕', label: 'Solo Travellers', desc: 'Come alone, leave with friends' },
+              { icon: '👑', label: 'Couples', desc: 'Share an adventure together' },
               { icon: '👫', label: 'Friends', desc: "The trip you keep saying you'll book" },
             ].map((item, i) => (
               <div key={i} className="flex flex-col items-center gap-3 px-8 py-6 rounded-2xl bg-card border border-border shadow-sm flex-1">
