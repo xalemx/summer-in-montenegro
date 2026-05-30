@@ -205,7 +205,7 @@ export default function Book() {
                 ))}
               </div>
               <div className="bg-secondary/50 rounded-xl p-4 text-sm text-muted-foreground">
-                <p>Total estimate: <strong className="text-foreground">{'£'}{form.guests * 899}</strong> &nbsp;·&nbsp; Deposit: <strong className="text-foreground">{'£'}{form.guests * 199}</strong></p>
+                <p>Total estimate: <strong className="text-foreground">{'£'}{form.guests * 999}</strong> &nbsp;·&nbsp; Deposit: <strong className="text-foreground">{'£'}{form.guests * 199}</strong></p>
                 <p className="text-xs mt-1">Deposit secures your spot. Balance due before departure.</p>
               </div>
               <div className="mt-6 space-y-2">

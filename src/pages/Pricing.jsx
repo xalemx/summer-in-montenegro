@@ -5,12 +5,12 @@ const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97c
 const MOUNTAIN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
 
 const INCLUDED = [
-  { icon: '🛏', label: 'Private Room', sub: '7 nights included' },
+  { icon: '🏠', label: 'Accommodation', sub: '7 nights included' },
+  { icon: '🛏', label: 'Private room', sub: 'Every night' },
   { icon: '🍳', label: 'Daily breakfast', sub: 'Every morning' },
-  { icon: '✈️', label: 'Airport pickup', sub: 'From Podgorica (TGD)' },
-  { icon: '✈️', label: 'Airport drop-off', sub: 'To Podgorica (TGD)' },
+  { icon: '✈️', label: 'Airport transfers', sub: 'From/to Podgorica (TGD)' },
   { icon: '🚐', label: 'Local transport', sub: 'Throughout the trip' },
-  { icon: '🧭', label: 'Hosted experience', sub: 'Guided throughout' },
+  { icon: '🧭', label: 'Hosted experience', sub: 'Personally coordinated' },
 ];
 
 const NOT_INCLUDED = [
@@ -19,7 +19,6 @@ const NOT_INCLUDED = [
   'Dinner',
   'Optional activities',
   'Travel insurance',
-  'Personal expenses',
 ];
 
 const DATES = [
@@ -55,7 +54,7 @@ export default function Pricing() {
         <img src={HERO_IMG} alt="Montenegro coast" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
         <div className="relative z-10 px-6 pb-14 max-w-4xl mx-auto w-full">
-          <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-3">Summer 2026 · Founder Price</p>
+          <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-3">Summer 2026</p>
           <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight mb-3">
             Everything you need.<br /><em>Nothing you don't.</em>
           </h1>
@@ -73,13 +72,13 @@ export default function Pricing() {
             {/* Header */}
             <div className="px-10 py-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6" style={{ background: 'hsl(158 45% 12%)' }}>
               <div>
-                <span className="inline-block text-xs tracking-[0.3em] uppercase font-semibold text-white/40 mb-2">Summer 2026 · Founder Price</span>
+                <span className="inline-block text-xs tracking-[0.3em] uppercase font-semibold text-white/40 mb-2">Summer 2026</span>
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-white leading-tight">Mountains. Lakes. Coast.<br /><em>One Week from London.</em></h2>
-                <p className="text-white/50 mt-2 text-sm">Friday to Friday · From London</p>
+                <p className="text-white/50 mt-2 text-sm">4 Nights Mountains · 3 Nights Adriatic Coast · Private Room</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
                 <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Per person</p>
-                <p className="font-heading text-6xl font-bold text-white leading-none">£899</p>
+                <p className="font-heading text-6xl font-bold text-white leading-none">£999</p>
                 <p className="text-white/40 text-sm mt-2">Deposit from £199</p>
               </div>
             </div>
@@ -250,7 +249,7 @@ export default function Pricing() {
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
             Mountains. Lakes. Coast.<br /><em>One week from London.</em>
           </h2>
-          <p className="text-white/50 mb-10 text-lg">From £199 deposit. Spaces are limited.</p>
+          <p className="text-white/50 mb-10 text-lg">From £999 per person. Spaces are limited.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/book" className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-105 transition-all shadow-xl">
               Reserve Your Spot <ArrowRight size={16} />
@@ -260,7 +259,7 @@ export default function Pricing() {
               Chat on WhatsApp
             </a>
           </div>
-          <p className="mt-6 text-white/25 text-xs">Friday departures · 4–8 guests only · From £899 pp · Accommodation included</p>
+          <p className="mt-6 text-white/25 text-xs">Friday departures · 4–8 guests only · From £999 pp · Private room included</p>
         </div>
       </section>
 

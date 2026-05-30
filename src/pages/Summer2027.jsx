@@ -20,15 +20,15 @@ const NOT_INCLUDED = ['Flights', 'Lunch and dinner', 'Optional activities', 'Per
 
 const INSTALMENTS = [
   { step: '01', label: 'Today', amount: '£199', sub: 'Reserve your place' },
-  { step: '02', label: 'Monthly', amount: 'From £84', sub: 'Pay at your own pace' },
+  { step: '02', label: 'Monthly', amount: 'From £75', sub: 'Pay at your own pace' },
   { step: '03', label: 'Departure', amount: '£0 due', sub: 'You arrive fully paid' },
 ];
 
 const PRICING_ROWS = [
   { label: 'Pay in full', value: '£999 pp' },
-  { label: 'Flexible payment plan', value: '£1,199 pp' },
+  { label: 'Flexible payment plan', value: '£1,099 pp' },
   { label: 'Deposit to secure', value: '£199 non-refundable' },
-  { label: 'Monthly from', value: '£84 / month' },
+  { label: 'Monthly from', value: '£75 / month' },
 ];
 
 export default function Summer2027() {
@@ -68,7 +68,7 @@ export default function Summer2027() {
               View 2026 Dates
             </Link>
           </div>
-          <p className="mt-6 text-white/40 text-xs">£199 deposit · balances fully paid before travel confirmation · flights not included</p>
+          <p className="mt-6 text-white/40 text-xs">Reserve your place early and spread the cost over time. All balances must be paid before travel.</p>
         </div>
       </section>
 
@@ -77,7 +77,7 @@ export default function Summer2027() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {[
-              { icon: '£', label: 'From £899 pp', sub: '2027 Founder Price' },
+              { icon: '💷', label: 'From £999 pp', sub: 'Pay in full' },
               { icon: '✈️', label: 'Friday departures', sub: 'From London' },
               { icon: '👥', label: '4–8 guests only', sub: 'Intentionally small' },
               { icon: '🍳', label: 'Breakfast included', sub: 'Every morning' },
@@ -128,9 +128,9 @@ export default function Summer2027() {
             </div>
             <div className="rounded-2xl p-8 bg-primary text-primary-foreground border border-primary text-center">
               <p className="text-xs tracking-[0.3em] uppercase font-semibold text-primary-foreground/60 mb-2">Flexible Monthly Plan</p>
-              <p className="font-heading text-5xl font-bold text-primary-foreground mb-1">£1,199</p>
+              <p className="font-heading text-5xl font-bold text-primary-foreground mb-1">£1,099</p>
               <p className="text-primary-foreground/70 text-sm mb-4">per person</p>
-              <p className="text-xs text-primary-foreground/60">£199 deposit today, then from £84/month</p>
+              <p className="text-xs text-primary-foreground/60">£199 deposit today, then from £75/month</p>
               <span className="mt-3 inline-block text-xs font-semibold text-primary-foreground/60 border border-primary-foreground/20 rounded-full px-3 py-0.5">Most popular</span>
             </div>
           </div>
@@ -167,7 +167,7 @@ export default function Summer2027() {
             >
               Lock In 2027 — £199 Deposit <ArrowRight size={16} />
             </Link>
-            <p className="mt-4 text-muted-foreground text-xs">Flights and optional activities not included · All balances must be fully paid before travel confirmation</p>
+            <p className="mt-4 text-muted-foreground text-xs">Reserve your place early and spread the cost over time. All balances must be paid before travel.</p>
           </div>
         </div>
       </section>

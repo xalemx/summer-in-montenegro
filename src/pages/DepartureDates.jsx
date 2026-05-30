@@ -115,7 +115,7 @@ export default function DepartureDates() {
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-right hidden sm:block">
-                            <p className="font-heading text-2xl font-bold text-foreground">£899</p>
+                            <p className="font-heading text-2xl font-bold text-foreground">£999</p>
                             <p className="text-xs text-muted-foreground">per person</p>
                           </div>
                           {s.disabled ? (

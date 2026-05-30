@@ -16,7 +16,7 @@ const HORSE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97
 const HOST_IMG_FALLBACK = 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1400&q=80';
 
 const QUICK_FACTS = [
-  { icon: '💷', label: 'From £899', sub: 'Founder Pricing' },
+  { icon: '💷', label: 'From £999', sub: 'Per Person' },
   { icon: '✈️', label: 'Friday Flights', sub: 'London → Podgorica' },
   { icon: '👥', label: '4–8 Guests', sub: 'Small Groups Only' },
   { icon: '🗓', label: '7 Nights', sub: '4 Mountains · 3 Coast' },
@@ -46,7 +46,7 @@ const WHO_FOR = [
   { icon: '🌍', label: 'Beyond Spain', desc: 'Somewhere different. Somewhere real.' },
 ];
 
-const INCLUDED_2026 = ['Private Room (7 Nights)', 'Daily Breakfast', 'Airport Transfers', 'Local Transport'];
+const INCLUDED_2026 = ['Accommodation', 'Private Room', 'Daily Breakfast', 'Airport Transfers', 'Local Transport', 'Hosted Experience'];
 const INCLUDED_2027 = ['Everything in 2026', 'Monthly payment plan', 'Founder discount', 'Priority access'];
 
 const HOST_POINTS = [
@@ -421,7 +421,7 @@ export default function Home() {
                 <h3 className="font-heading text-3xl font-bold text-foreground mb-1">Founder Experience</h3>
                 <p className="text-muted-foreground text-sm mt-1">4 Nights Mountains · 3 Nights Adriatic Coast</p>
               <div className="flex items-end gap-2 mt-4">
-                  <span className="font-heading text-5xl font-bold text-foreground">£899</span>
+                  <span className="font-heading text-5xl font-bold text-foreground">£999</span>
                   <span className="text-muted-foreground text-sm mb-1.5">per person</span>
                 </div>
               </div>
@@ -441,7 +441,7 @@ export default function Home() {
                 <Link to="/book" className="flex items-center justify-center gap-2 w-full py-4 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-md">
                   Reserve 2026 <ArrowRight size={16} />
                 </Link>
-                <p className="text-xs text-muted-foreground text-center mt-3">Friday departures · July – September</p>
+                <p className="text-xs text-muted-foreground text-center mt-3">Friday departures · July – September · From £999 pp</p>
               </div>
             </div>
 
@@ -643,15 +643,15 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Everything Sorted</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why £899?</h2>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why £999?</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
             {[
-              { icon: '🏠', label: 'Accommodation', sub: '7 nights included' },
+              { icon: '🛏', label: 'Private Room', sub: '7 nights included' },
               { icon: '🍳', label: 'Breakfast', sub: 'Every morning' },
-              { icon: '✈️', label: 'Airport Transfers', sub: 'Pickup & drop-off from Podgorica' },
+              { icon: '✈️', label: 'Airport Transfers', sub: 'Pickup & drop-off' },
               { icon: '🚐', label: 'Local Transport', sub: 'Throughout the trip' },
-              { icon: '🧭', label: 'Local Host', sub: 'Personally coordinated' },
+              { icon: '🧭', label: 'Hosted Experience', sub: 'Personally coordinated' },
               { icon: '👥', label: 'Small Groups', sub: 'Max 8 guests only' },
               { icon: '🗺️', label: 'Carefully Planned Route', sub: 'Coast, mountains & hidden places' },
             ].map((item, i) => (
