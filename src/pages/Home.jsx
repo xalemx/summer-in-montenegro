@@ -16,12 +16,11 @@ const HORSE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97
 const HOST_IMG_FALLBACK = 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1400&q=80';
 
 const QUICK_FACTS = [
-  { icon: '💷', label: 'From £999', sub: 'Per Person' },
-  { icon: '✈️', label: 'Friday Flights', sub: 'London → Podgorica' },
-  { icon: '👥', label: '4–8 Guests', sub: 'Small Groups Only' },
-  { icon: '🗓', label: '7 Nights', sub: '4 Mountains · 3 Coast' },
-  { icon: '🛏', label: 'Private Room', sub: 'Included Every Night' },
-  { icon: '🍳', label: 'Breakfast Included', sub: 'Every Morning' },
+  { icon: '💷', label: '£999 Per Person', sub: 'All inclusive price' },
+  { icon: '🛏', label: 'Private Room Included', sub: 'Every night' },
+  { icon: '🏔', label: '4 Nights Mountains', sub: 'Gusinje, Prokletije' },
+  { icon: '🌊', label: '3 Nights Coast', sub: 'Bar, Adriatic' },
+  { icon: '✈️', label: 'Weekly Friday Departures', sub: 'London → Podgorica' },
 ];
 
 const TRUST_ITEMS = [
