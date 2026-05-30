@@ -57,7 +57,7 @@ export default function Summer2027() {
               View 2026 Dates
             </Link>
           </div>
-          <p className="mt-6 text-white/40 text-xs">Reserve your place early and spread the cost over time. All balances must be paid before travel.</p>
+          <p className="mt-6 text-white/40 text-xs">Spaces are limited. Reserve your place for Summer 2027.</p>
         </div>
       </section>
 

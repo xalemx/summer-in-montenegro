@@ -14,7 +14,7 @@ export default function TermsAndConditions() {
           <section>
             <h2 className="font-heading text-xl font-bold mb-2">1. Booking Confirmation</h2>
             <p className="text-muted-foreground leading-relaxed">
-              A booking is confirmed once full payment or the first approved instalment has been received.
+              A booking is confirmed once full payment has been received.
             </p>
           </section>
 
@@ -47,9 +47,9 @@ export default function TermsAndConditions() {
           </section>
 
           <section>
-            <h2 className="font-heading text-xl font-bold mb-2">4. Instalment Plans</h2>
+            <h2 className="font-heading text-xl font-bold mb-2">4. Third-Party Payment Options</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Monthly payments are non-refundable once paid. If a customer cancels, future payments will be cancelled, but previous payments may not be refunded according to the cancellation policy above.
+              Summer in Montenegro does not provide finance or instalment plans directly. Payment options such as Klarna may be available at checkout subject to eligibility and availability. Any payment arrangements through third-party providers are subject to those providers' own terms and conditions.
             </p>
           </section>
 
