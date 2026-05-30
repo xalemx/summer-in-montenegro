@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PrivateRoomBadge from '../components/PrivateRoomBadge';
 import { ArrowRight, MapPin } from 'lucide-react';
 
 const HERO_IMG = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1400&q=80';
@@ -65,9 +66,8 @@ export default function Accommodation() {
         <img src={HERO_IMG} alt="Montenegro accommodation" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
         <div className="relative z-10 px-6 pb-14 max-w-4xl mx-auto w-full">
-          <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-400/30 rounded-full px-4 py-1.5 mb-5">
-            <span className="text-green-300 font-bold text-sm">✓</span>
-            <span className="text-green-200 text-xs font-semibold tracking-wide">Private Room Included</span>
+          <div className="mb-5">
+            <PrivateRoomBadge size="md" className="bg-white/20 border border-white/30 backdrop-blur-sm shadow-none" />
           </div>
           <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-3">Where You'll Stay</p>
           <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight mb-3">

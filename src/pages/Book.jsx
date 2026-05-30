@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PrivateRoomBadge from '../components/PrivateRoomBadge';
 import { base44 } from '@/api/base44Client';
 import { CheckCircle, ChevronRight, ChevronLeft, Calendar, Users, User, MessageCircle } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -125,7 +126,10 @@ export default function Book() {
           </div>
         </div>
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-center mb-2">Reserve Your Spot</h1>
-        <p className="text-center text-muted-foreground text-sm mb-4">Summer 2026 · 4 Nights Mountains · 3 Nights Adriatic Coast · Private Room Included</p>
+        <div className="flex justify-center mb-3">
+          <PrivateRoomBadge size="md" />
+        </div>
+        <p className="text-center text-muted-foreground text-sm mb-4">Summer 2026 · 4 Nights Mountains · 3 Nights Adriatic Coast</p>
         <div className="flex items-center justify-center gap-2 mb-8">
           <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
           <span className="text-sm font-semibold text-red-600">Only 8 guests per departure — some dates already filling up</span>

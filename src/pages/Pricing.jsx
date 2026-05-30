@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PrivateRoomBadge from '../components/PrivateRoomBadge';
 import { Check, X, ArrowRight, Calendar } from 'lucide-react';
 
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c477aa20c_generated_5ab95a92.png';
@@ -83,6 +84,9 @@ export default function Pricing() {
                 <p className="text-white/50 mt-2 text-sm">Friday to Friday · From London</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
+                <div className="flex justify-end mb-3">
+                  <PrivateRoomBadge size="sm" />
+                </div>
                 <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Per person</p>
                 <p className="font-heading text-6xl font-bold text-white leading-none">£999</p>
                 <p className="text-white/40 text-sm mt-2">Reserve with £199 deposit.</p>

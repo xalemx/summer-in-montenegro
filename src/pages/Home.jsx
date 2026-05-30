@@ -5,6 +5,7 @@ import RouteTimeline from '../components/RouteTimeline';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { ArrowRight, ArrowDown, Check, Plane, Car, Users, Calendar, User } from 'lucide-react';
+import PrivateRoomBadge from '../components/PrivateRoomBadge';
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3d38f555d_videoplayback.mp4';
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/6884dd21b_anastasiia-malai-vxzJBvWcunU-unsplash.jpg';
@@ -108,6 +109,9 @@ export default function Home() {
             <span className="text-white/90 text-xs font-semibold tracking-wide">Summer 2026 · Friday departures from London</span>
           </div>
 
+          <div className="mb-5">
+            <PrivateRoomBadge size="md" className="bg-white/20 border border-white/30 backdrop-blur-sm shadow-none" />
+          </div>
           <h1 className="font-heading text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[1.02] mb-5">
             Mountains. Lakes. Coast.
           </h1>

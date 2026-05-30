@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { Plane, Users, Calendar, Info, ArrowRight } from 'lucide-react';
+import PrivateRoomBadge from '../components/PrivateRoomBadge';
 
 const DATES = [
   { dep: '17 July 2026', ret: '24 July 2026', spots: 2, guaranteed: false },
@@ -53,6 +54,9 @@ export default function DepartureDates() {
       {/* Hero */}
       <section className="py-20 md:py-28 px-6 text-center border-b border-border">
         <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Flying from London</p>
+        <div className="flex justify-center mb-5">
+          <PrivateRoomBadge size="lg" />
+        </div>
         <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4 leading-tight">Summer 2026 Departures</h1>
         <p className="text-muted-foreground text-lg max-w-lg mx-auto mb-6">
           Weekly Friday-to-Friday departures from London. 4 nights mountains, 3 nights Adriatic coast. Private room included. From 17 July until late September 2026.
