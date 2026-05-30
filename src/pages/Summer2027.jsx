@@ -19,7 +19,7 @@ const NOT_INCLUDED = ['Flights', 'Lunch and dinner', 'Optional activities', 'Per
 
 const INSTALMENTS = [
   { step: '01', label: 'Today', amount: '£199', sub: 'Reserve your place' },
-  { step: '02', label: 'Monthly', amount: '£100–£250', sub: 'Pay at your own pace' },
+  { step: '02', label: 'Monthly', amount: 'From £84', sub: 'Pay at your own pace' },
   { step: '03', label: 'Departure', amount: '£0 due', sub: 'You arrive fully paid' },
 ];
 
@@ -115,6 +115,23 @@ export default function Summer2027() {
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">
               Reserve today.<br /><em>Pay it off monthly.</em>
             </h2>
+          </div>
+
+          {/* Pricing options */}
+          <div className="grid md:grid-cols-2 gap-4 mb-12">
+            <div className="rounded-2xl p-8 bg-card border border-border text-center">
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-2">Pay in Full</p>
+              <p className="font-heading text-5xl font-bold text-foreground mb-1">£999</p>
+              <p className="text-muted-foreground text-sm mb-4">per person</p>
+              <p className="text-xs text-muted-foreground">Best value — pay once and you're done</p>
+            </div>
+            <div className="rounded-2xl p-8 bg-primary text-primary-foreground border border-primary text-center">
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-primary-foreground/60 mb-2">Flexible Monthly Plan</p>
+              <p className="font-heading text-5xl font-bold text-primary-foreground mb-1">£1,199</p>
+              <p className="text-primary-foreground/70 text-sm mb-4">per person</p>
+              <p className="text-xs text-primary-foreground/60">£199 deposit today, then from £84/month</p>
+              <span className="mt-3 inline-block text-xs font-semibold text-primary-foreground/60 border border-primary-foreground/20 rounded-full px-3 py-0.5">Most popular</span>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-4 mb-12">
