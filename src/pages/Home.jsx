@@ -19,11 +19,19 @@ const QUICK_FACTS = [
   { icon: '🍳', label: 'Breakfast Included', sub: 'Every Morning' },
 ];
 
+const TRUST_ITEMS = [
+  'Small groups only',
+  'Local host',
+  'Airport transfers included',
+  'Real Montenegro experiences',
+  'Flexible activities',
+];
+
 const SPAIN_CONS = ['Crowded resorts', 'Busy beaches', 'Mass tourism', 'Same experience as everyone else', 'Overpriced summer hotspots'];
 const MONTENEGRO_PROS = ['Hidden locations off every map', 'Mountains and coastline in one trip', 'Authentic local experiences', 'Fewer crowds, untouched nature', "Europe's best-kept secret"];
 
 const WHO_FOR = [
-  { icon: '🧍', label: 'Solo Travellers', desc: 'Come alone, leave with friends' },
+  { icon: '🧍', label: 'Solo Travellers', desc: "Come alone, leave with friends" },
   { icon: '💑', label: 'Couples', desc: 'Share an adventure together' },
   { icon: '👫', label: 'Friends', desc: "The trip you keep saying you'll book" },
   { icon: '🌿', label: 'Nature Lovers', desc: 'Mountains, lakes and wild landscapes' },
@@ -48,7 +56,7 @@ const DIFFERENT = [
   { icon: '🏠', title: 'Accommodation sorted', desc: 'Every night is arranged. You show up — we handle the logistics.' },
   { icon: '🚐', title: 'Zero logistics stress', desc: 'We pick you up. We drop you off. Local transport throughout.' },
   { icon: '🥾', title: 'Optional adventures', desc: 'Rafting, hiking, horse riding, kayaking — your choice, your pace.' },
-  { icon: '⚡', title: 'Something changes', desc: 'People come back different. Lighter. "I didn\'t know I needed this."' },
+  { icon: '⚡', title: 'Something changes', desc: "People come back different. Lighter. \"I didn't know I needed this.\"" },
 ];
 
 const STATS = [
@@ -58,11 +66,20 @@ const STATS = [
   { value: '1', label: 'Dedicated host', sub: 'With you throughout' },
 ];
 
+const REVIEWS = [
+  { stars: 5, text: 'One of the most beautiful trips I have ever taken. The mountains, the lake, the people — nothing like a package holiday.', name: 'Sarah M.', from: 'London' },
+  { stars: 5, text: 'The perfect mix of mountains, lakes and local culture. Our host knew every hidden spot. We felt like locals within two days.', name: 'James T.', from: 'Manchester' },
+  { stars: 5, text: 'I came alone and left with four new friends. The small group made all the difference. Already planning to come back next summer.', name: 'Emma R.', from: 'Bristol' },
+  { stars: 5, text: 'Better value than anywhere in Spain and ten times more memorable. Montenegro completely blew our expectations.', name: 'Tom & Lucy', from: 'Edinburgh' },
+  { stars: 5, text: 'The host arranged everything perfectly. Airport pickup, accommodation, local transport — zero stress from start to finish.', name: 'Priya K.', from: 'London' },
+  { stars: 5, text: 'We had been saying we would do something different for years. Montenegro was exactly that. Different, beautiful, and real.', name: 'Michael O.', from: 'Birmingham' },
+];
+
 export default function Home() {
   return (
     <div className="bg-background">
 
-      {/* ── HERO ── */}
+      {/* HERO */}
       <section className="relative h-[100svh] flex flex-col items-center justify-center overflow-hidden">
         <video
           src={HERO_VIDEO}
@@ -86,36 +103,21 @@ export default function Home() {
             A 7-day hosted small-group adventure from London to Montenegro, combining coastline, mountains, lakes and hidden local experiences.
           </p>
 
-          {/* Glass trust strip */}
           <div className="inline-flex flex-wrap items-center justify-center gap-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 mb-10">
-            <div className="flex items-center gap-2 text-white/90">
-              <span className="text-lg">✈️</span>
-              <span className="text-sm font-semibold">Friday Departures</span>
-            </div>
+            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">✈️</span><span className="text-sm font-semibold">Friday Departures</span></div>
             <div className="w-px h-5 bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-2 text-white/90">
-              <span className="text-lg">👥</span>
-              <span className="text-sm font-semibold">4–8 Guests Only</span>
-            </div>
+            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">👥</span><span className="text-sm font-semibold">4–8 Guests Only</span></div>
             <div className="w-px h-5 bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-2 text-white/90">
-              <span className="text-lg">💷</span>
-              <span className="text-sm font-semibold">From £899 pp</span>
-            </div>
+            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">💷</span><span className="text-sm font-semibold">From £899 pp</span></div>
             <div className="w-px h-5 bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-2 text-white/90">
-              <span className="text-lg">🏔</span>
-              <span className="text-sm font-semibold">Coast + Mountains</span>
-            </div>
+            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">🏔</span><span className="text-sm font-semibold">Coast + Mountains</span></div>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 justify-center px-2 sm:px-0">
-            <Link to="/book"
-              className="px-10 py-5 bg-accent text-accent-foreground font-bold rounded-full text-base hover:brightness-110 transition-all shadow-2xl">
+            <Link to="/book" className="px-10 py-5 bg-accent text-accent-foreground font-bold rounded-full text-base hover:brightness-110 transition-all shadow-2xl">
               Reserve Your Spot
             </Link>
-            <Link to="/dates"
-              className="px-10 py-4 border border-white/40 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-all backdrop-blur-sm">
+            <Link to="/dates" className="px-10 py-4 border border-white/40 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-all backdrop-blur-sm">
               View 2026 Dates
             </Link>
           </div>
@@ -127,7 +129,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── QUICK FACTS ── */}
+      {/* TRUST STRIP */}
+      <section className="py-4 px-4 bg-primary">
+        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <p className="text-primary-foreground/60 text-xs tracking-[0.3em] uppercase font-semibold">Trusted by UK Travellers</p>
+          {TRUST_ITEMS.map((t, i) => (
+            <div key={i} className="flex items-center gap-1.5 text-primary-foreground/90">
+              <span className="text-green-400 font-bold text-sm">✓</span>
+              <span className="text-xs font-medium">{t}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* QUICK FACTS */}
       <section className="py-10 px-4 bg-card border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -144,7 +159,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHY MONTENEGRO ── */}
+      {/* WHY MONTENEGRO */}
       <section className="py-28 px-6 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
@@ -181,7 +196,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATEMENT ── */}
+      {/* STATEMENT */}
       <section className="py-40 md:py-52 px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-heading text-4xl md:text-6xl lg:text-7xl font-light text-foreground leading-[1.08] italic">
@@ -195,17 +210,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CINEMATIC SPLIT ── */}
+      {/* CINEMATIC SPLIT */}
       <section className="relative h-[80vh] md:h-[95vh] overflow-hidden">
-        <img src={SILHOUETTE_IMG} alt="Montenegro adventure"
-          className="absolute inset-0 w-full h-full object-cover" style={{ filter: 'brightness(0.75)' }} />
+        <img src={SILHOUETTE_IMG} alt="Montenegro adventure" className="absolute inset-0 w-full h-full object-cover" style={{ filter: 'brightness(0.75)' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
         <div className="absolute inset-0 flex items-end p-10 md:p-16 max-w-2xl">
           <div>
             <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-3">The North</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-              Prokletije.<br />Where the world ends.
-            </h2>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">Prokletije.<br />Where the world ends.</h2>
             <Link to="/experience" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors">
               See the 8-day itinerary <ArrowRight size={16} />
             </Link>
@@ -213,7 +225,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── MASONRY GALLERY ── */}
+      {/* MASONRY GALLERY */}
       <section className="py-20 px-6 bg-background">
         <div className="max-w-6xl mx-auto">
           <p className="text-center text-xs tracking-[0.4em] uppercase text-primary/70 font-semibold mb-12">The Experience</p>
@@ -237,7 +249,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHO IS THIS FOR ── */}
+      {/* WHO IS THIS FOR */}
       <section className="py-28 px-6 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
@@ -258,8 +270,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PRICING CARDS ── */}
+      {/* TESTIMONIALS */}
       <section className="py-28 px-6 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">What Travellers Say</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why People Love Montenegro</h2>
+            <p className="text-xs text-muted-foreground mt-3 italic">Placeholder testimonials — to be replaced with real reviews</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                <div className="flex gap-0.5 mb-3">
+                  {[1,2,3,4,5].map(s => <span key={s} className="text-accent text-lg">★</span>)}
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4 italic flex-1">&ldquo;{r.text}&rdquo;</p>
+                <div>
+                  <p className="font-semibold text-sm text-foreground">{r.name}</p>
+                  <p className="text-xs text-muted-foreground">{r.from}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING CARDS */}
+      <section className="py-28 px-6 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Choose Your Year</p>
@@ -267,7 +304,6 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {/* 2026 Card */}
             <div className="rounded-3xl overflow-hidden border border-border shadow-lg bg-card flex flex-col">
               <div className="px-8 py-8 border-b border-border">
                 <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-2">Summer 2026</p>
@@ -278,7 +314,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="px-8 py-6 flex-1">
-                <div className="space-y-3 mb-8">
+                <div className="space-y-3">
                   {INCLUDED_2026.map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -290,15 +326,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="px-8 pb-8">
-                <Link to="/book"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-md">
+                <Link to="/book" className="flex items-center justify-center gap-2 w-full py-4 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-md">
                   Reserve 2026 <ArrowRight size={16} />
                 </Link>
                 <p className="text-xs text-muted-foreground text-center mt-3">Friday departures · July – September</p>
               </div>
             </div>
 
-            {/* 2027 Card */}
             <div className="rounded-3xl overflow-hidden border border-primary/20 shadow-xl flex flex-col" style={{ background: 'hsl(155 43% 21%)' }}>
               <div className="px-8 py-8 border-b border-white/10">
                 <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-2">Summer 2027 · Early Access</p>
@@ -316,7 +350,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="px-8 py-6 flex-1">
-                <div className="space-y-3 mb-8">
+                <div className="space-y-3">
                   {INCLUDED_2027.map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
@@ -328,8 +362,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="px-8 pb-8">
-                <Link to="/summer-2027"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-md">
+                <Link to="/summer-2027" className="flex items-center justify-center gap-2 w-full py-4 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-md">
                   Reserve 2027 <ArrowRight size={16} />
                 </Link>
                 <p className="text-xs text-white/30 text-center mt-3">£199 deposit · Pay monthly · 8 spots per week</p>
@@ -339,8 +372,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── MEET YOUR HOST ── */}
-      <section className="py-28 px-6 bg-secondary/30">
+      {/* MEET YOUR HOST */}
+      <section className="py-28 px-6 bg-background">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4/5' }}>
@@ -349,13 +382,16 @@ export default function Home() {
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="text-white/60 text-xs tracking-widest uppercase mb-1">Your Host</p>
                 <p className="font-heading text-2xl font-semibold text-white italic">Summer in Montenegro</p>
+                <p className="text-white/50 text-xs mt-0.5">Based in Montenegro · UK roots</p>
               </div>
             </div>
             <div>
               <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Behind the Experience</p>
-              <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+              <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-2 leading-tight">
                 Meet Your<br /><em>Host.</em>
               </h2>
+              <p className="text-primary font-semibold text-sm mb-1">Based in Montenegro · UK roots</p>
+              <p className="text-muted-foreground text-xs mb-6">WhatsApp: +44 7758 162004</p>
               <p className="text-muted-foreground leading-relaxed mb-4 text-lg">
                 Summer in Montenegro was created to help UK travellers discover the real Montenegro — beyond crowded resorts and tourist routes.
               </p>
@@ -383,8 +419,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHAT MAKES IT DIFFERENT ── */}
-      <section className="py-28 px-6 bg-background">
+      {/* WHAT MAKES IT DIFFERENT */}
+      <section className="py-28 px-6 bg-secondary/30">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">What Makes It Different</p>
@@ -415,7 +451,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SOCIAL ── */}
+      {/* BRING A FRIEND */}
+      <section className="py-20 px-6 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-3xl bg-card border-2 border-accent/30 p-8 md:p-12 text-center shadow-lg relative overflow-hidden">
+            <div className="absolute top-4 right-4">
+              <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Limited Offer</span>
+            </div>
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Travel Together</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">Bring a Friend &amp; Save</h2>
+            <p className="text-muted-foreground text-lg mb-6 max-w-lg mx-auto">
+              Book 2 places together and save <strong className="text-foreground">£50 each</strong>. That is £100 total back in your pocket — towards flights or activities.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 mb-8 max-w-xl mx-auto">
+              <div className="rounded-2xl bg-secondary p-4 text-center">
+                <p className="font-heading text-2xl font-bold text-foreground">2+</p>
+                <p className="text-xs text-muted-foreground">People booking together</p>
+              </div>
+              <div className="rounded-2xl bg-secondary p-4 text-center">
+                <p className="font-heading text-2xl font-bold text-foreground">£50</p>
+                <p className="text-xs text-muted-foreground">Saved per person</p>
+              </div>
+              <div className="rounded-2xl bg-secondary p-4 text-center">
+                <p className="font-heading text-2xl font-bold text-foreground">£100</p>
+                <p className="text-xs text-muted-foreground">Total saved together</p>
+              </div>
+            </div>
+            <Link to="/book" className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-lg">
+              Book as a Pair &amp; Save £50 Each <ArrowRight size={16} />
+            </Link>
+            <p className="mt-4 text-xs text-muted-foreground">Mention this offer when booking · Subject to availability</p>
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL */}
       <section className="py-16 px-6 bg-secondary/30 border-t border-border">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-5">Follow the Journey</p>
@@ -432,75 +502,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
-      <section className="py-28 px-6 bg-background">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Social Proof</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why People Love Montenegro</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {[
-              { stars: 5, text: 'One of the most beautiful trips I have ever taken. The mountains, the lake, the people — nothing like a package holiday.', name: 'Sarah M.', from: 'London' },
-              { stars: 5, text: 'The perfect mix of mountains, lakes and local culture. Our host knew every hidden spot. We felt like locals within two days.', name: 'James T.', from: 'Manchester' },
-              { stars: 5, text: 'I came alone and left with four new friends. The small group made all the difference. Already planning to come back next summer.', name: 'Emma R.', from: 'Bristol' },
-              { stars: 5, text: 'Better value than anywhere in Spain and ten times more memorable. Montenegro completely blew our expectations.', name: 'Tom & Lucy', from: 'Edinburgh' },
-              { stars: 5, text: 'The host arranged everything perfectly. Airport pickup, accommodation, local transport — zero stress from start to finish.', name: 'Priya K.', from: 'London' },
-              { stars: 5, text: 'We had been saying we would do something different for years. Montenegro was exactly that. Different, beautiful, and real.', name: 'Michael O.', from: 'Birmingham' },
-            ].map((r, i) => (
-              <div key={i} className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex gap-0.5 mb-3">
-                  {'★★★★★'.split('').map((s, j) => <span key={j} className="text-accent text-lg">{s}</span>)}
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4 italic">&ldquo;{r.text}&rdquo;</p>
-                <div>
-                  <p className="font-semibold text-sm text-foreground">{r.name}</p>
-                  <p className="text-xs text-muted-foreground">{r.from}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── BRING A FRIEND ── */}
-      <section className="py-20 px-6 bg-secondary/30">
-        <div className="max-w-4xl mx-auto">
-          <div className="rounded-3xl bg-card border-2 border-accent/30 p-8 md:p-12 text-center shadow-lg relative overflow-hidden">
-            <div className="absolute top-4 right-4">
-              <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Limited Offer</span>
-            </div>
-            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Travel Together</p>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
-              Bring a Friend &amp; Save
-            </h2>
-            <p className="text-muted-foreground text-lg mb-6 max-w-lg mx-auto">
-              Book 2 places together and save <strong className="text-foreground">£50 each</strong>. That is £100 total back in your pocket — towards flights or adventures.
-            </p>
-            <div className="grid sm:grid-cols-3 gap-4 mb-8 max-w-xl mx-auto">
-              <div className="rounded-2xl bg-secondary p-4 text-center">
-                <p className="font-heading text-2xl font-bold text-foreground">2+</p>
-                <p className="text-xs text-muted-foreground">People booking together</p>
-              </div>
-              <div className="rounded-2xl bg-secondary p-4 text-center">
-                <p className="font-heading text-2xl font-bold text-foreground">£50</p>
-                <p className="text-xs text-muted-foreground">Saved per person</p>
-              </div>
-              <div className="rounded-2xl bg-secondary p-4 text-center">
-                <p className="font-heading text-2xl font-bold text-foreground">£100</p>
-                <p className="text-xs text-muted-foreground">Total saved together</p>
-              </div>
-            </div>
-            <Link to="/book"
-              className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-lg">
-              Book as a Pair &amp; Save £50 Each <ArrowRight size={16} />
-            </Link>
-            <p className="mt-4 text-xs text-muted-foreground">Mention this offer when booking · Subject to availability</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── BOTTOM CTA ── */}
+      {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
@@ -508,8 +510,7 @@ export default function Home() {
           </h2>
           <p className="text-white/50 mb-10 text-lg">Small-group Friday departures available throughout Summer 2026.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/book"
-              className="px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-xl text-base">
+            <Link to="/book" className="px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-xl text-base">
               Reserve Your Spot
             </Link>
             <a href="https://wa.me/447758162004?text=Hi%20%E2%80%94%20I%27d%20love%20to%20know%20more%20about%20Summer%20in%20Montenegro!"

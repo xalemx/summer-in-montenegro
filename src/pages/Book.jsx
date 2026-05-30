@@ -92,6 +92,28 @@ export default function Book() {
   return (
     <div className="py-16 md:py-24 px-4">
       <div className="max-w-2xl mx-auto">
+        {/* What happens next */}
+        <div className="mb-10 bg-card rounded-2xl border border-border p-6 shadow-sm">
+          <h3 className="font-heading text-lg font-semibold text-center mb-5">What Happens After You Submit?</h3>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-0">
+            {[
+              { n: '1', label: 'Submit your enquiry', sub: 'Takes 2 minutes' },
+              { n: '2', label: 'We confirm availability', sub: 'Within 24 hours' },
+              { n: '3', label: 'Book your flight', sub: 'Friday London → Podgorica' },
+              { n: '4', label: 'Receive trip info', sub: 'Full details & packing list' },
+              { n: '5', label: 'Meet your group', sub: 'At the airport in Montenegro' },
+            ].map((step, i, arr) => (
+              <div key={i} className="flex sm:flex-col items-center sm:items-center flex-1 gap-3 sm:gap-2">
+                <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center flex-shrink-0">{step.n}</div>
+                <div className="sm:text-center">
+                  <p className="font-semibold text-xs text-foreground leading-tight">{step.label}</p>
+                  <p className="text-xs text-muted-foreground">{step.sub}</p>
+                </div>
+                {i < arr.length - 1 && <div className="hidden sm:block w-full h-px bg-border flex-1" />}
+              </div>
+            ))}
+          </div>
+        </div>
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-center mb-2">Reserve Your Spot</h1>
         <p className="text-center text-muted-foreground text-sm mb-4">Summer 2026 · Montenegro · 7-day hosted adventure</p>
         <div className="flex items-center justify-center gap-2 mb-8">
