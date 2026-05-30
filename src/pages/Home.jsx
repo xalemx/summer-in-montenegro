@@ -418,7 +418,7 @@ export default function Home() {
             <div className="rounded-3xl overflow-hidden border border-border shadow-lg bg-card flex flex-col">
               <div className="px-8 py-8 border-b border-border">
                 <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-2">Summer 2026</p>
-                <h3 className="font-heading text-3xl font-bold text-foreground mb-1">Founder Experience</h3>
+                <h3 className="font-heading text-3xl font-bold text-foreground mb-1">Summer 2026</h3>
                 <p className="text-muted-foreground text-sm mt-1">4 Nights Mountains · 3 Nights Adriatic Coast</p>
               <div className="flex items-end gap-2 mt-4">
                   <span className="font-heading text-5xl font-bold text-foreground">£999</span>
