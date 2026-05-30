@@ -502,6 +502,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHAT HAPPENS NEXT */}
+      <section className="py-28 px-6 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Simple Process</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">What Happens Next?</h2>
+          </div>
+          <div className="relative">
+            <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-6 bottom-6 w-px bg-border" />
+            <div className="space-y-6">
+              {[
+                { n: 1, title: 'Submit enquiry', desc: 'Fill in the short booking form — takes under 2 minutes.' },
+                { n: 2, title: 'We confirm availability', desc: 'We\'ll contact you on WhatsApp within 24 hours to confirm your date and arrange next steps.' },
+                { n: 3, title: 'Book your flight', desc: 'We\'ll share the recommended Friday Ryanair route from London to Podgorica (TGD).' },
+                { n: 4, title: 'Receive trip information', desc: 'Full trip details, packing list and everything you need before you travel.' },
+                { n: 5, title: 'Meet your group in Montenegro', desc: 'We pick you up from the airport and the adventure begins.' },
+              ].map((step, i) => (
+                <div key={i} className={`flex items-start gap-6 md:gap-10 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                  <div className={`flex-1 ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
+                    <div className={`bg-card border border-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow inline-block w-full`}>
+                      <p className="text-xs text-muted-foreground font-semibold tracking-widest uppercase mb-1">Step {step.n}</p>
+                      <h3 className="font-heading text-lg font-bold text-foreground mb-1">{step.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center shadow-md z-10">
+                    {step.n}
+                  </div>
+                  <div className="flex-1 hidden md:block" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
