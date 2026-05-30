@@ -161,20 +161,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LAKE FULL BLEED */}
-      <section className="relative h-[70vh] md:h-[85vh] overflow-hidden">
-        <img
-          src={LAKE_IMG}
-          alt="Plav Lake"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: 'brightness(0.8)' }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50" />
-        <div className="absolute bottom-0 left-0 right-0 text-center pb-12 px-6">
-          <p className="text-white/50 text-xs tracking-[0.3em] uppercase mb-2">Day 4</p>
-          <h3 className="font-heading text-3xl md:text-4xl font-bold text-white">Plav Lake, 900m above sea level</h3>
-        </div>
-      </section>
 
       {/* WHAT MAKES IT DIFFERENT */}
       <section className="py-36 md:py-44 px-6 bg-background">
