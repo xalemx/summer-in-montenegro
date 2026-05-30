@@ -25,6 +25,11 @@
       "type": "number",
       "title": "Spots Remaining",
       "default": 8
+    },
+    "guaranteed_departure": {
+      "type": "boolean",
+      "title": "Guaranteed Departure",
+      "default": false
     }
   },
   "required": [

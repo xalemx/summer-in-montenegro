@@ -48,7 +48,7 @@ export default function Summer2027() {
             <span className="text-white/90 text-xs font-semibold tracking-wide">Early Access — Summer 2027</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-[1.02] mb-6">
-            The trip you've<br /><em>been putting off.</em>
+            Reserve Next Summer<br /><em>Before It's Sold Out.</em>
           </h1>
           <p className="text-white/70 text-lg max-w-lg mx-auto leading-relaxed mb-8">
             Reserve your 2027 Montenegro escape early and spread the cost with flexible monthly payments.

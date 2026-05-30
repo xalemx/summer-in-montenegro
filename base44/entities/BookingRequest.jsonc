@@ -47,6 +47,18 @@
       "type": "string",
       "title": "Additional Notes"
     },
+    "source": {
+      "type": "string",
+      "title": "How Did You Hear About Us",
+      "enum": [
+        "TikTok",
+        "Instagram",
+        "Facebook",
+        "Google",
+        "Friend",
+        "Other"
+      ]
+    },
     "status": {
       "type": "string",
       "title": "Status",

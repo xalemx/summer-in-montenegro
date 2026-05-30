@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowDown, Check } from 'lucide-react';
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3d38f555d_videoplayback.mp4';
-const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c57a4140f_generated_image.png';
-const SILHOUETTE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/404e10428_generated_image.png';
-const LAKE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/d2e76465c_generated_image.png';
-const MOUNTAIN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
-const COAST_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c477aa20c_generated_5ab95a92.png';
-const FOOD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/f1c34b4b6_generated_0a69661e.png';
-const HORSE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/8d8db3a11_generated_948706a3.png';
+const HERO_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80';
+const SILHOUETTE_IMG = 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1400&q=80';
+const LAKE_IMG = 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=1400&q=80';
+const MOUNTAIN_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80';
+const COAST_IMG = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80';
+const FOOD_IMG = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80';
+const HORSE_IMG = 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&q=80';
+const HOST_IMG = 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1400&q=80';
 
 const QUICK_FACTS = [
   { icon: '💷', label: 'From £899', sub: 'Founder Pricing' },
@@ -343,7 +344,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4/5' }}>
-              <img src={MOUNTAIN_IMG} alt="Your host in Montenegro" className="w-full h-full object-cover" />
+              <img src={HOST_IMG} alt="Your host in Montenegro" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="text-white/60 text-xs tracking-widest uppercase mb-1">Your Host</p>
@@ -427,6 +428,74 @@ export default function Home() {
               className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-border bg-card hover:border-primary hover:bg-secondary transition-all font-semibold text-sm">
               <span className="text-2xl">🎵</span> @summerinmontenegro.com
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ── */}
+      <section className="py-28 px-6 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Social Proof</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why People Love Montenegro</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              { stars: 5, text: 'One of the most beautiful trips I have ever taken. The mountains, the lake, the people — nothing like a package holiday.', name: 'Sarah M.', from: 'London' },
+              { stars: 5, text: 'The perfect mix of mountains, lakes and local culture. Our host knew every hidden spot. We felt like locals within two days.', name: 'James T.', from: 'Manchester' },
+              { stars: 5, text: 'I came alone and left with four new friends. The small group made all the difference. Already planning to come back next summer.', name: 'Emma R.', from: 'Bristol' },
+              { stars: 5, text: 'Better value than anywhere in Spain and ten times more memorable. Montenegro completely blew our expectations.', name: 'Tom & Lucy', from: 'Edinburgh' },
+              { stars: 5, text: 'The host arranged everything perfectly. Airport pickup, accommodation, local transport — zero stress from start to finish.', name: 'Priya K.', from: 'London' },
+              { stars: 5, text: 'We had been saying we would do something different for years. Montenegro was exactly that. Different, beautiful, and real.', name: 'Michael O.', from: 'Birmingham' },
+            ].map((r, i) => (
+              <div key={i} className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex gap-0.5 mb-3">
+                  {'★★★★★'.split('').map((s, j) => <span key={j} className="text-accent text-lg">{s}</span>)}
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4 italic">&ldquo;{r.text}&rdquo;</p>
+                <div>
+                  <p className="font-semibold text-sm text-foreground">{r.name}</p>
+                  <p className="text-xs text-muted-foreground">{r.from}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── BRING A FRIEND ── */}
+      <section className="py-20 px-6 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-3xl bg-card border-2 border-accent/30 p-8 md:p-12 text-center shadow-lg relative overflow-hidden">
+            <div className="absolute top-4 right-4">
+              <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Limited Offer</span>
+            </div>
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Travel Together</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
+              Bring a Friend &amp; Save
+            </h2>
+            <p className="text-muted-foreground text-lg mb-6 max-w-lg mx-auto">
+              Book 2 places together and save <strong className="text-foreground">£50 each</strong>. That is £100 total back in your pocket — towards flights or adventures.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 mb-8 max-w-xl mx-auto">
+              <div className="rounded-2xl bg-secondary p-4 text-center">
+                <p className="font-heading text-2xl font-bold text-foreground">2+</p>
+                <p className="text-xs text-muted-foreground">People booking together</p>
+              </div>
+              <div className="rounded-2xl bg-secondary p-4 text-center">
+                <p className="font-heading text-2xl font-bold text-foreground">£50</p>
+                <p className="text-xs text-muted-foreground">Saved per person</p>
+              </div>
+              <div className="rounded-2xl bg-secondary p-4 text-center">
+                <p className="font-heading text-2xl font-bold text-foreground">£100</p>
+                <p className="text-xs text-muted-foreground">Total saved together</p>
+              </div>
+            </div>
+            <Link to="/book"
+              className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-lg">
+              Book as a Pair &amp; Save £50 Each <ArrowRight size={16} />
+            </Link>
+            <p className="mt-4 text-xs text-muted-foreground">Mention this offer when booking · Subject to availability</p>
           </div>
         </div>
       </section>
