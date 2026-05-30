@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 
 const NAV = [
   { label: 'Experience', to: '/experience' },
-  { label: 'Dates', to: '/dates' },
+  { label: '2026 Dates', to: '/dates' },
   { label: 'Pricing', to: '/pricing' },
   { label: 'Accommodation', to: '/accommodation' },
   { label: 'Activities', to: '/activities' },
