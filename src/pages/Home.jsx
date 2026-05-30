@@ -178,19 +178,23 @@ export default function Home() {
       </section>
 
       {/* TRUST BADGE STRIP */}
-      <section className="py-5 px-4 bg-card border-b border-border">
+      <section className="py-10 px-4 bg-card border-b border-border">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {[
-              { icon: Car, label: 'Airport Transfers Included' },
-              { icon: Plane, label: 'Weekly Friday Departures' },
-              { icon: Users, label: 'Small Groups Only' },
-              { icon: User, label: 'Local Host' },
-              { icon: Check, label: 'Accommodation Included' },
-            ].map(({ icon: Icon, label }, i) => (
-              <div key={i} className="flex items-center gap-2 text-foreground/70">
-                <Icon size={15} className="text-primary flex-shrink-0" />
-                <span className="text-xs font-semibold tracking-wide">{label}</span>
+              { icon: '✈️', label: 'Weekly Friday Departures', sub: 'From London to Montenegro' },
+              { icon: '👥', label: 'Small Groups Only', sub: 'Maximum 8 guests per departure' },
+              { icon: '🚐', label: 'Airport Transfers Included', sub: 'Pickup and drop-off both ways' },
+              { icon: '🏠', label: 'Accommodation Included', sub: '7 nights, every departure' },
+              { icon: '🧭', label: 'Local Host', sub: 'Personally with you throughout' },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center text-center gap-2.5 p-5 rounded-2xl bg-secondary/50 border border-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                <span className="text-2xl">{item.icon}</span>
+                <div>
+                  <p className="font-semibold text-xs text-foreground leading-snug">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
+                </div>
+                <span className="text-green-600 font-bold text-xs">✓</span>
               </div>
             ))}
           </div>
