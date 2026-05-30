@@ -5,15 +5,17 @@ const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97c
 const MOUNTAIN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
 
 const INCLUDED = [
-  '7 nights boutique accommodation',
-  'Breakfast & dinner every day',
-  'All in-country transport',
-  'Airport pickup & drop-off',
+  '7 nights accommodation',
+  'Daily breakfast',
+  'Airport pickup from Podgorica',
+  'Airport drop-off to Podgorica',
+  'All local transport',
   'Expert local host throughout',
-  'Guided hikes & activities',
   'Hidden locations, no tourist map',
   'Small group — 4 to 8 people only',
 ];
+
+const NOT_INCLUDED_2027 = ['Flights', 'Lunch and dinner', 'Optional activities', 'Personal expenses'];
 
 const INSTALMENTS = [
   { step: '01', label: 'Today', amount: '£199', sub: 'Reserve your place' },
@@ -22,10 +24,10 @@ const INSTALMENTS = [
 ];
 
 const PRICING_ROWS = [
-  { label: 'Total package price', value: 'from £1,199 pp' },
-  { label: 'Deposit to secure', value: '£199' },
-  { label: 'Remaining balance', value: '£1,000' },
-  { label: 'Monthly from', value: '£100 / month' },
+  { label: 'Pay in full', value: '£999 pp' },
+  { label: 'Flexible payment plan', value: '£1,199 pp' },
+  { label: 'Deposit to secure', value: '£199 non-refundable' },
+  { label: 'Monthly from', value: '£84 / month' },
 ];
 
 export default function Summer2027() {
@@ -55,8 +57,7 @@ export default function Summer2027() {
             <em className="text-amber-300">putting off.</em>
           </h1>
           <p className="text-white/40 text-xl max-w-lg leading-relaxed mb-10">
-            Fly from London. Seven days in Montenegro. From{' '}
-            <strong className="text-white/70">£100 a month</strong>.
+            Reserve your 2027 Montenegro escape early and spread the cost with flexible monthly payments.
           </p>
           <Link
             to="/contact"
@@ -65,7 +66,7 @@ export default function Summer2027() {
           >
             Join 2027 Early Access <ArrowRight size={18} />
           </Link>
-          <p className="mt-5 text-white/20 text-xs">£199 deposit · balance spread monthly · no big upfront cost</p>
+          <p className="mt-5 text-white/20 text-xs">£199 deposit · all balances fully paid before travel confirmation · flights not included</p>
         </div>
 
         {/* Horizontal divider line */}
@@ -153,7 +154,7 @@ export default function Summer2027() {
             >
               Lock In 2027 — £199 Deposit <ArrowRight size={18} />
             </Link>
-            <p className="mt-4 text-white/20 text-xs">Flights not included · Balance due before departure · Plans flexible</p>
+            <p className="mt-4 text-white/20 text-xs">Flights and optional activities not included · All balances must be fully paid before travel confirmation</p>
           </div>
         </div>
       </section>
@@ -163,8 +164,8 @@ export default function Summer2027() {
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <p className="text-amber-400/50 text-xs tracking-[0.4em] uppercase mb-6">Nothing Hidden</p>
-            <h3 className="font-heading text-4xl font-light text-white mb-10 leading-tight">
-              Everything<br />
+            <h3 className="font-heading text-4xl font-light text-white mb-6 leading-tight">
+              What&apos;s<br />
               <em className="text-amber-300">included.</em>
             </h3>
             <div className="space-y-3">

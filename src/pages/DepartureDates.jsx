@@ -4,16 +4,16 @@ import CTAButton from '../components/CTAButton';
 import { Plane, Users, Calendar, Info } from 'lucide-react';
 
 const DATES = [
-  { dep: '19 July 2026', ret: '26 July 2026', spots: 2 },
-  { dep: '26 July 2026', ret: '2 August 2026', spots: 3 },
-  { dep: '2 August 2026', ret: '9 August 2026', spots: 6 },
-  { dep: '9 August 2026', ret: '16 August 2026', spots: 8 },
-  { dep: '16 August 2026', ret: '23 August 2026', spots: 8 },
-  { dep: '23 August 2026', ret: '30 August 2026', spots: 8 },
-  { dep: '30 August 2026', ret: '6 September 2026', spots: 7 },
-  { dep: '6 September 2026', ret: '13 September 2026', spots: 8 },
-  { dep: '13 September 2026', ret: '20 September 2026', spots: 8 },
-  { dep: '20 September 2026', ret: '27 September 2026', spots: 8 },
+  { dep: '17 July 2026', ret: '24 July 2026', spots: 2 },
+  { dep: '24 July 2026', ret: '31 July 2026', spots: 3 },
+  { dep: '31 July 2026', ret: '7 August 2026', spots: 6 },
+  { dep: '7 August 2026', ret: '14 August 2026', spots: 8 },
+  { dep: '14 August 2026', ret: '21 August 2026', spots: 8 },
+  { dep: '21 August 2026', ret: '28 August 2026', spots: 8 },
+  { dep: '28 August 2026', ret: '4 September 2026', spots: 7 },
+  { dep: '4 September 2026', ret: '11 September 2026', spots: 8 },
+  { dep: '11 September 2026', ret: '18 September 2026', spots: 8 },
+  { dep: '18 September 2026', ret: '25 September 2026', spots: 8 },
 ];
 
 function getStatus(spots) {
@@ -24,10 +24,10 @@ function getStatus(spots) {
 }
 
 const NOTES = [
-  { icon: Plane, text: 'Direct flights from London to Tivat or Podgorica — available Tuesday, Wednesday, Friday and Sunday' },
-  { icon: Calendar, text: 'Sunday-to-Sunday is the main group structure' },
-  { icon: Users, text: 'Minimum 4 guests required • Groups organised in 4-person blocks' },
-  { icon: Plane, text: 'Flights not included — fly from London Gatwick, Luton or Stansted · Airport pickup included on arrival' },
+  { icon: Plane, text: 'Weekly Friday Ryanair flights from London to Podgorica (TGD) — the recommended route' },
+  { icon: Calendar, text: 'Friday-to-Friday structure — 8 days total including travel days' },
+  { icon: Users, text: 'Minimum 4 guests required to run a departure · Maximum 8 guests per week' },
+  { icon: Info, text: 'Flights not included — guests book independently · Airport pickup included on arrival' },
 ];
 
 export default function DepartureDates() {
@@ -44,7 +44,7 @@ export default function DepartureDates() {
         <p className="text-center text-xs tracking-[0.25em] uppercase text-primary font-semibold mb-3">Flying from London</p>
         <h1 className="font-heading text-3xl md:text-5xl font-bold text-center mb-4">Summer 2026 Departures</h1>
         <p className="text-center text-muted-foreground mb-12 max-w-lg mx-auto">
-          Weekly Sunday-to-Sunday departures from London, 19 July until late September 2026.
+          Weekly Friday-to-Friday departures from London, from 17 July until late September 2026.
         </p>
 
         <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden mb-10">
@@ -72,9 +72,9 @@ export default function DepartureDates() {
             );
           })}
         </div>
-        <div className="mt-4 flex items-center justify-center gap-2 py-3 px-4 bg-amber-50 border border-amber-200 rounded-xl">
+        <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 py-3 px-4 bg-amber-50 border border-amber-200 rounded-xl">
           <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-          <p className="text-amber-800 text-sm font-semibold">Maximum 8 guests per departure. Once full, that week is closed.</p>
+          <p className="text-amber-800 text-sm font-semibold">Each departure requires a minimum of 4 guests and is limited to a maximum of 8 guests.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-12">

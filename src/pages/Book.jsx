@@ -7,16 +7,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 const DATES = [
-  { label: '19 Jul 2026', sub: 'Sunday departure', spots: 2 },
-  { label: '26 Jul 2026', sub: 'Sunday departure', spots: 3 },
-  { label: '2 Aug 2026', sub: 'Sunday departure', spots: 6 },
-  { label: '9 Aug 2026', sub: 'Sunday departure', spots: 8 },
-  { label: '16 Aug 2026', sub: 'Sunday departure', spots: 8 },
-  { label: '23 Aug 2026', sub: 'Sunday departure', spots: 8 },
-  { label: '30 Aug 2026', sub: 'Sunday departure', spots: 7 },
-  { label: '6 Sep 2026', sub: 'Sunday departure', spots: 8 },
-  { label: '13 Sep 2026', sub: 'Sunday departure', spots: 8 },
-  { label: '20 Sep 2026', sub: 'Sunday departure', spots: 8 },
+  { label: '17 Jul 2026', sub: 'Friday departure', spots: 2 },
+  { label: '24 Jul 2026', sub: 'Friday departure', spots: 3 },
+  { label: '31 Jul 2026', sub: 'Friday departure', spots: 6 },
+  { label: '7 Aug 2026', sub: 'Friday departure', spots: 8 },
+  { label: '14 Aug 2026', sub: 'Friday departure', spots: 8 },
+  { label: '21 Aug 2026', sub: 'Friday departure', spots: 8 },
+  { label: '28 Aug 2026', sub: 'Friday departure', spots: 7 },
+  { label: '4 Sep 2026', sub: 'Friday departure', spots: 8 },
+  { label: '11 Sep 2026', sub: 'Friday departure', spots: 8 },
+  { label: '18 Sep 2026', sub: 'Friday departure', spots: 8 },
 ];
 
 function getStatusLabel(spots) {
@@ -43,9 +43,11 @@ export default function Book() {
     full_name: '',
     email: '',
     whatsapp: '',
+    country: '',
     airport: '',
-    activity_level: 'moderate',
+    activity_level: 'balanced',
     dietary: '',
+    medical_notes: '',
     notes: '',
   });
 
@@ -67,9 +69,10 @@ export default function Book() {
           </div>
           <h2 className="font-heading text-3xl font-bold mb-3">{"You're on the list."}</h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
-            {"We've received your reservation request for "}
-            <strong>{form.departure_date}</strong>
-            {". We'll reach out on WhatsApp within 24 hours with availability and next steps."}
+            Thank you for your reservation request. We have received your enquiry and will contact you shortly with availability, recommended flight information and next steps.
+          </p>
+          <p className="text-muted-foreground text-sm mb-2">
+            Requested: <strong>{form.departure_date}</strong> &nbsp;&middot;&nbsp; Guests: <strong>{form.guests}</strong>
           </p>
           <a
             href={`https://wa.me/447758162004?text=Hi! I just submitted a booking request for ${encodeURIComponent(form.departure_date)} for ${form.guests} guest(s).`}
@@ -165,9 +168,9 @@ export default function Book() {
                 <p className="text-xs mt-1">Deposit secures your spot. Balance due before departure.</p>
               </div>
               <div className="mt-6 space-y-2">
-                <Label className="text-sm">Activity level</Label>
+                <Label className="text-sm">Activity preference</Label>
                 <div className="flex gap-3">
-                  {['easy','moderate','active'].map(l => (
+                  {['relaxed','balanced','active'].map(l => (
                     <button
                       key={l}
                       onClick={() => set('activity_level', l)}
@@ -205,13 +208,27 @@ export default function Book() {
                   <Input required value={form.whatsapp} onChange={e => set('whatsapp', e.target.value)} placeholder="+44..." />
                 </div>
                 <div className="space-y-1.5">
-                  <Label>Flying from</Label>
-                  <Input value={form.airport} onChange={e => set('airport', e.target.value)} placeholder="e.g. London Luton" />
+                  <Label>Country</Label>
+                  <Input value={form.country} onChange={e => set('country', e.target.value)} placeholder="e.g. United Kingdom" />
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <Label>Are you travelling from London?</Label>
+                  <Input value={form.from_london} onChange={e => set('from_london', e.target.value)} placeholder="Yes / No" />
+                </div>
+                <div className="space-y-1.5">
+                  <Label>Which London airport?</Label>
+                  <Input value={form.airport} onChange={e => set('airport', e.target.value)} placeholder="e.g. Luton, Stansted, Gatwick" />
                 </div>
               </div>
               <div className="space-y-1.5">
-                <Label>Dietary requirements or medical notes</Label>
+                <Label>Dietary requirements</Label>
                 <Input value={form.dietary} onChange={e => set('dietary', e.target.value)} placeholder="e.g. vegetarian, nut allergy" />
+              </div>
+              <div className="space-y-1.5">
+                <Label>Medical notes or accessibility needs</Label>
+                <Input value={form.medical_notes} onChange={e => set('medical_notes', e.target.value)} placeholder="Any relevant medical or accessibility information" />
               </div>
               <div className="space-y-1.5">
                 <Label>Anything else we should know?</Label>
@@ -230,12 +247,15 @@ export default function Book() {
                 {[
                   ['Departure', form.departure_date],
                   ['Guests', `${form.guests} ${form.guests === 1 ? 'person' : 'people'}`],
-                  ['Activity level', form.activity_level],
+                  ['Activity preference', form.activity_level],
+                  ['Country', form.country || '—'],
+                  ['From London?', form.from_london || '—'],
+                  ['London airport', form.airport || '—'],
                   ['Name', form.full_name],
                   ['Email', form.email],
                   ['WhatsApp', form.whatsapp],
-                  ['Airport', form.airport || '—'],
-                  ['Dietary / Medical', form.dietary || '—'],
+                  ['Dietary', form.dietary || '—'],
+                  ['Medical / Accessibility', form.medical_notes || '—'],
                 ].map(([k, v]) => (
                   <div key={k} className="flex justify-between py-2 border-b border-border text-sm">
                     <span className="text-muted-foreground">{k}</span>

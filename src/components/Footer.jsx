@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom';
 
 const LINKS = [
   { label: 'Home', to: '/' },
-  { label: 'The Experience', to: '/experience' },
-  { label: 'Departure Dates', to: '/dates' },
+  { label: 'Experience', to: '/experience' },
+  { label: 'Dates', to: '/dates' },
+  { label: 'Pricing', to: '/pricing' },
+  { label: 'Accommodation', to: '/accommodation' },
+  { label: 'Activities', to: '/activities' },
+  { label: 'Gallery', to: '/gallery' },
   { label: 'Summer 2027', to: '/summer-2027' },
-  { label: 'Partner Offers', to: '/partners' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
 ];

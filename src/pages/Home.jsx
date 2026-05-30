@@ -1,21 +1,13 @@
 import { Link } from 'react-router-dom';
-import TestimonialsSection from '../components/TestimonialsSection';
-import { ArrowDown, ArrowRight, Play } from 'lucide-react';
+import { ArrowDown, ArrowRight, Play, Check, Plane, Users, MapPin, Coffee, Car } from 'lucide-react';
 
 const SOCIAL_POSTS = [
   { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/ddc6cbee6_generated_image.png', caption: 'Top of the world 🏔️ #Montenegro #hiking', likes: '2.4k', type: 'reel' },
   { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/69e8ce240_generated_image.png', caption: 'Day 3 in the mountains ✨ #travel #adventure', likes: '1.8k', type: 'reel' },
-  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/e5d7ebd76_generated_image.png', caption: 'Dinner with the group 🍽️ pure magic #foodie', likes: '3.1k', type: 'photo' },
+  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/e5d7ebd76_generated_image.png', caption: 'Local breakfast 🥐 pure magic #foodie', likes: '3.1k', type: 'photo' },
   { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/a7e672def_generated_image.png', caption: 'Plav Lake 💙 words cannot describe it', likes: '5.2k', type: 'reel' },
   { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/4fefc5042_generated_image.png', caption: 'This road 😭 #coast #roadtrip #Montenegro', likes: '4.7k', type: 'reel' },
   { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/6ec2ad059_generated_image.png', caption: 'Local breakfast 🧀 never eating at a hotel again', likes: '2.9k', type: 'photo' },
-];
-
-const TRUST_STATS = [
-  { value: '4–8', label: 'Guests per group', sub: 'Intentionally small' },
-  { value: '7', label: 'Days fully hosted', sub: 'From landing to farewell' },
-  { value: '100%', label: 'Airport pickup included', sub: 'No logistics stress' },
-  { value: '0', label: 'Tourist traps', sub: 'Hidden locations only' },
 ];
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/50ede03d7_MontenegroDrone4K_BreathtakingLandscapesfromMountainstotheBay_720p.MP4';
@@ -35,6 +27,14 @@ const SCENES = [
   { img: HORSE_IMG, label: 'Adventures' },
 ];
 
+const QUICK_FACTS = [
+  { icon: '£', label: 'From £899 pp', sub: '2026 Founder Price' },
+  { icon: '✈️', label: 'Friday departures', sub: 'From London' },
+  { icon: '👥', label: '4–8 guests only', sub: 'Intentionally small' },
+  { icon: '🏠', label: 'Accommodation + breakfast', sub: 'Included' },
+  { icon: '🚐', label: 'Airport transfers', sub: 'Included' },
+];
+
 export default function Home() {
   return (
     <div className="bg-background">
@@ -50,71 +50,75 @@ export default function Home() {
           className="absolute inset-0 w-full h-full object-cover scale-105"
           poster={HERO_IMG}
         />
-        {/* Vignette */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-8">
             <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
-            <span className="text-white/90 text-xs font-semibold tracking-wide">Summer 2026 · Only 8 spots per departure</span>
+            <span className="text-white/90 text-xs font-semibold tracking-wide">Summer 2026 · Friday departures · Only 8 spots per week</span>
           </div>
-          <p className="text-white/55 tracking-[0.4em] text-xs uppercase mb-6 font-light">A Summer You Won’t Forget · From London</p>
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold text-white leading-[1.02] mb-6 md:mb-8">
-            Escape London<br />this<br /><em>summer.</em>
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.02] mb-6 md:mb-8">
+            Escape London.<br /><em>Discover Montenegro.</em>
           </h1>
-          <p className="text-white/75 text-base md:text-xl max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed">
-            Trade London stress for mountain air. 8 people. 7 days. One local host. Europe beyond the crowds.
+          <p className="text-white/75 text-base md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed">
+            A 7-day hosted small-group adventure from London to Montenegro, combining coastline, mountains, lakes and hidden local experiences.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 justify-center w-full sm:w-auto px-2 sm:px-0">
+          <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 justify-center w-full sm:w-auto px-2 sm:px-0 mb-6">
             <Link
               to="/book"
               className="w-full sm:w-auto px-10 py-5 bg-accent text-accent-foreground font-bold rounded-full text-base hover:brightness-105 transition-all shadow-2xl"
             >
-              I’m In
+              Reserve Your Spot
             </Link>
             <Link
-              to="/experience"
+              to="/dates"
               className="w-full sm:w-auto px-10 py-4 border border-white/40 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-all backdrop-blur-sm"
             >
-              See the Experience
+              View 2026 Dates
             </Link>
           </div>
+          <p className="text-white/50 text-xs tracking-wide">Friday departures &nbsp;·&nbsp; 4–8 guests only &nbsp;·&nbsp; From £899 pp</p>
         </div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
           <span className="text-xs tracking-widest uppercase">Scroll</span>
           <ArrowDown size={16} className="animate-bounce" />
         </div>
+      </section>
 
-        {/* Trust bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md border-t border-white/10 py-3 px-4 hidden sm:block">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-1">
-            <span className="text-white/50 text-xs tracking-wider">Not a holiday. A properly good summer.</span>
-            <span className="text-white/30 text-xs">·</span>
-            <span className="text-white/50 text-xs tracking-wider">Only 8 people.</span>
-            <span className="text-white/30 text-xs">·</span>
-            <span className="text-amber-400/80 text-xs tracking-wider font-medium">From London. Summer 2026.</span>
+      {/* QUICK FACTS BAR */}
+      <section className="py-8 px-4 bg-card border-b border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {QUICK_FACTS.map((f, i) => (
+              <div key={i} className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/50 border border-border">
+                <span className="text-xl flex-shrink-0">{f.icon}</span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground leading-tight">{f.label}</p>
+                  <p className="text-xs text-muted-foreground">{f.sub}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* STATEMENT — cinematic pull quote */}
+      {/* STATEMENT */}
       <section className="py-36 md:py-48 px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-heading text-4xl md:text-6xl lg:text-7xl font-light text-foreground leading-[1.08] italic">
-            The mountains don’t care
+            The mountains don't care
             <br />
             <span className="text-primary/70 not-italic font-semibold">how busy you are.</span>
           </p>
           <div className="mt-14 w-16 h-px bg-primary/20 mx-auto" />
           <p className="mt-10 text-muted-foreground text-xl max-w-xl mx-auto leading-[1.7]">
-            Summer in Montenegro is a week with strangers who become friends, in places your Instagram algorithm will never find. Hosted, unhurried, and completely real.
+            Summer in Montenegro is a week in places your Instagram algorithm will never find. Hosted, unhurried, and completely real.
           </p>
         </div>
       </section>
 
-      {/* CINEMATIC SPLIT — silhouette landscape */}
+      {/* CINEMATIC SPLIT */}
       <section className="relative h-[80vh] md:h-[95vh] overflow-hidden">
         <img
           src={SILHOUETTE_IMG}
@@ -130,7 +134,7 @@ export default function Home() {
               Prokletije.<br />Where the world ends.
             </h2>
             <Link to="/experience" className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-medium transition-colors">
-              See the full itinerary <ArrowRight size={16} />
+              See the 8-day itinerary <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -156,26 +160,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING — dark cinematic */}
+      {/* PRICING */}
       <section
         className="relative py-40 px-6 text-center overflow-hidden"
         style={{ background: 'hsl(158 45% 12%)' }}
       >
         <div className="relative z-10 max-w-xl mx-auto">
-          <p className="text-white/40 tracking-[0.4em] text-xs uppercase mb-8">Flying from London · Summer 2026</p>
+          <p className="text-white/40 tracking-[0.4em] text-xs uppercase mb-8">Friday Departures · Summer 2026</p>
           <div className="inline-flex items-center gap-2 bg-red-500/20 border border-red-400/30 rounded-full px-4 py-1.5 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
             <span className="text-red-300 text-xs font-semibold tracking-wide">Filling fast — weekly departures from July</span>
           </div>
+          <p className="text-white/50 text-sm mb-2 tracking-widest uppercase">2026 Founder Price</p>
           <h2 className="font-heading text-6xl md:text-7xl font-bold text-white mb-4">From £899</h2>
-          <p className="text-white/45 text-sm mb-8">per person · fly from London · 7 days · all-inclusive except flights</p>
+          <p className="text-white/50 text-sm mb-3">per person</p>
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-5 mb-8 text-left text-sm space-y-2">
+            <p className="text-white/70">Includes: accommodation, daily breakfast, airport pickup &amp; drop-off, local transport and hosted Montenegro experience.</p>
+            <p className="text-white/40 text-xs">Not included: flights, lunch, dinner and optional activities.</p>
+          </div>
           <Link
             to="/book"
             className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-semibold rounded-full hover:brightness-105 transition-all shadow-xl"
           >
             Reserve Your Spot <ArrowRight size={16} />
           </Link>
-          <p className="mt-6 text-white/30 text-xs">Maximum 8 guests per departure · Spaces go fast · Minimum 4 to run</p>
+          <p className="mt-6 text-white/30 text-xs">Minimum 4 guests · Maximum 8 guests per departure</p>
         </div>
       </section>
 
@@ -194,7 +203,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOCIAL PROOF */}
+      {/* WHAT MAKES IT DIFFERENT */}
       <section className="py-36 md:py-44 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
@@ -202,12 +211,11 @@ export default function Home() {
             <h2 className="font-heading text-5xl md:text-6xl font-bold text-foreground leading-tight">Not a tour company.<br /><em>A mindset.</em></h2>
           </div>
 
-          {/* Stats row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {[
               { value: '4–8', label: 'Guests per group', sub: 'Never a crowd' },
-              { value: '100%', label: 'Local partners', sub: 'Authentic experiences' },
-              { value: '7', label: 'Days, all-inclusive', sub: 'Except flights' },
+              { value: '100%', label: 'Airport pickup', sub: 'Both ways, included' },
+              { value: '7', label: 'Days, fully hosted', sub: 'Accommodation included' },
               { value: '1', label: 'Dedicated host', sub: 'With you throughout' },
             ].map((s, i) => (
               <div key={i} className="text-center py-8 px-4 rounded-2xl bg-card border border-border shadow-sm">
@@ -218,15 +226,14 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Trust checklist */}
           <div className="grid md:grid-cols-2 gap-4">
             {[
-              { icon: '🏔', title: 'Places people don’t go', desc: 'No tour buses. No Tripadvisor badges. Just the real Montenegro.' },
-              { icon: '👥', title: 'A group you’ll actually like', desc: 'Max 8 people. Carefully designed to feel like you picked them yourself.' },
-              { icon: '🍽️', title: 'Food that changes you', desc: 'Family tables, local ingredients, no menus. The kind of meal you remember forever.' },
-              { icon: '🚐', title: 'Zero logistics stress', desc: 'We pick you up. We drop you off. Every night is sorted. You just show up.' },
-              { icon: '📵', title: 'A week without your phone', desc: 'Not literally. But you won’t want it. The mountains will outcompete the feed.' },
-              { icon: '⚡', title: 'Something changes', desc: 'People come back different. Lighter. People say: I didn’t know I needed this.' },
+              { icon: '🏔', title: 'Places people don\'t go', desc: 'No tour buses. No Tripadvisor badges. Just the real Montenegro.' },
+              { icon: '👥', title: 'A group you\'ll actually like', desc: 'Max 8 people. Intentionally small so it feels like you chose each other.' },
+              { icon: '🏠', title: 'Accommodation sorted', desc: 'Every night is arranged. You show up — we handle the logistics.' },
+              { icon: '🚐', title: 'Zero logistics stress', desc: 'We pick you up. We drop you off. Local transport throughout.' },
+              { icon: '🥾', title: 'Optional adventures', desc: 'Rafting, hiking, horse riding, kayaking — your choice, your pace.' },
+              { icon: '⚡', title: 'Something changes', desc: 'People come back different. Lighter. "I didn\'t know I needed this."' },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 p-5 rounded-2xl bg-secondary/40 border border-border">
                 <span className="text-2xl mt-0.5">{item.icon}</span>
@@ -238,16 +245,14 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Future testimonials placeholder */}
           <div className="mt-16 p-8 rounded-3xl bg-primary/5 border border-primary/10 text-center">
-            <p className="font-heading text-2xl italic text-primary/80 mb-2">“I didn’t book a holiday. I joined a summer.”</p>
+            <p className="font-heading text-2xl italic text-primary/80 mb-2">&ldquo;I didn&apos;t book a holiday. I joined a summer.&rdquo;</p>
             <p className="text-muted-foreground text-sm">First reviews publishing after July 2026</p>
           </div>
         </div>
       </section>
 
-
-      {/* INSTAGRAM / TIKTOK FEED */}
+      {/* SOCIAL FEED */}
       <section className="py-32 px-6 bg-secondary/20">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
@@ -256,26 +261,16 @@ export default function Home() {
               <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">Real Moments, Real Places</h2>
             </div>
             <div className="flex gap-3">
-              <a
-                href="https://www.instagram.com/summerinmontenegro_com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium"
-              >
+              <a href="https://www.instagram.com/summerinmontenegro_com" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium">
                 <span className="text-lg">📸</span> Instagram
               </a>
-              <a
-                href="https://www.tiktok.com/@summerinmontenegro.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium"
-              >
+              <a href="https://www.tiktok.com/@summerinmontenegro.com" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium">
                 <span className="text-lg">🎵</span> TikTok
               </a>
             </div>
           </div>
-
-          {/* Feed — infinite auto-scroll */}
           <div className="overflow-hidden">
             <div
               className="flex gap-3"
@@ -285,7 +280,7 @@ export default function Home() {
             >
               {[...SOCIAL_POSTS, ...SOCIAL_POSTS].map((post, i) => (
                 <div key={i} className="group relative rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-all duration-300 hover:scale-105" style={{ aspectRatio: '9/16', width: '160px' }}>
-                  <img src={post.img} alt={post.caption} className="w-full h-full object-cover transition-transform duration-700" />
+                  <img src={post.img} alt={post.caption} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   {post.type === 'reel' && (
                     <div className="absolute top-3 right-3"><div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"><Play size={12} className="text-white fill-white" /></div></div>
@@ -298,40 +293,84 @@ export default function Home() {
               ))}
             </div>
           </div>
-
           <p className="text-center text-muted-foreground text-xs mt-8">
-            Follow <strong>@summerinmontenegro_com</strong> on Instagram and <strong>@summerinmontenegro.com</strong> on TikTok for daily content
+            Follow <strong>@summerinmontenegro_com</strong> on Instagram and <strong>@summerinmontenegro.com</strong> on TikTok
           </p>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* WHO THIS IS FOR */}
       <section className="py-28 px-6 bg-background">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-center text-primary/60 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Why Guests Choose This Summer</p>
-          <h2 className="font-heading text-center text-4xl md:text-5xl font-bold text-foreground mb-14">What you come back with.</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-primary/60 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Is This For You?</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">Who This Is For</h2>
+            <p className="text-muted-foreground max-w-lg mx-auto">Summer in Montenegro is designed for people who want something real — not a resort, not a package tour.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {[
-              { quote: "I didn't book a holiday. I joined a summer.", name: 'The Promise', sub: 'What every guest walks away saying', icon: '\u2726' },
-              { quote: "The food alone was worth the trip. Every single meal.", name: 'The Food', sub: 'Home-cooked, family-table, no menus', icon: '\ud83c\udf7d\ufe0f' },
-              { quote: "I came solo. Left with 7 friends I'll have forever.", name: 'The People', sub: 'Small groups create real connections', icon: '\ud83d\udc65' },
-            ].map((t, i) => (
-              <div key={i} className="p-8 rounded-3xl bg-card border border-border shadow-sm flex flex-col">
-                <span className="text-2xl mb-6">{t.icon}</span>
-                <p className="font-heading text-xl italic text-foreground leading-snug mb-auto">&ldquo;{t.quote}&rdquo;</p>
-                <div className="mt-8 pt-6 border-t border-border">
-                  <p className="text-xs font-bold text-primary uppercase tracking-[0.15em] mb-1">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.sub}</p>
+              { icon: '🧍', label: 'Solo travellers', desc: 'Come alone, leave with friends' },
+              { icon: '💑', label: 'Couples', desc: 'An adventure to share together' },
+              { icon: '👫', label: 'Friends groups', desc: 'The trip you keep saying you\'ll take' },
+              { icon: '🌿', label: 'Nature lovers', desc: 'Mountains, lakes and wild landscapes' },
+              { icon: '🧗', label: 'Adventure seekers', desc: 'Optional activities for every level' },
+              { icon: '🌍', label: 'Curious travellers', desc: 'Somewhere beyond Spain and Portugal' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 p-5 rounded-2xl bg-card border border-border shadow-sm">
+                <span className="text-3xl">{item.icon}</span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-center text-muted-foreground/40 text-xs mt-10 italic">Video testimonials publishing after July 2026</p>
+          <div className="text-center">
+            <p className="font-heading text-2xl md:text-3xl text-foreground mb-6">This is your sign to discover Montenegro.</p>
+            <Link to="/book" className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-105 transition-all shadow-lg">
+              Reserve Your Spot <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* MEET YOUR HOST */}
+      <section className="py-28 px-6 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-primary/60 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Behind the Experience</p>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">Meet Your Host</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Summer in Montenegro was created to help UK travellers discover the real Montenegro — beyond crowded resorts and typical tourist routes.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                As your local host, we help coordinate your stay, airport transfers, accommodation, route, local guidance and optional experiences so you can enjoy Montenegro with confidence and comfort.
+              </p>
+              <a
+                href="https://wa.me/447758162004?text=Hi%20%E2%80%94%20I%27d%20love%20to%20know%20more%20about%20Summer%20in%20Montenegro!"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#25D366] text-white font-semibold rounded-full hover:brightness-105 transition-all shadow-md text-sm"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.543 4.071 1.49 5.787L0 24l6.385-1.673A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.733.979 1.003-3.627-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+                Chat With Us on WhatsApp
+              </a>
+            </div>
+            <div className="relative rounded-3xl overflow-hidden bg-muted flex items-center justify-center" style={{ aspectRatio: '4/5' }}>
+              <img src={MOUNTAIN_IMG} alt="Your host in Montenegro" className="w-full h-full object-cover opacity-80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <p className="text-xs tracking-widest uppercase text-white/60 mb-1">Your Host</p>
+                <p className="font-heading text-xl font-semibold">Summer in Montenegro</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* SMALL GROUP ETHOS */}
-      <section className="py-36 px-6 bg-secondary/20">
+      <section className="py-36 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-20 items-center">
             <div>
@@ -340,24 +379,55 @@ export default function Home() {
                 Small enough<br />to be real.
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Eight people is a dinner party. It’s a group that moves together, eats together, gets lost together. It’s the reason people come home and say: “that changed me.”
+                Eight people is a dinner party. It's a group that moves together, gets lost together. It's the reason people come home and say: "that changed me."
               </p>
               <Link to="/experience" className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all text-sm">
-                See the 7-day journey <ArrowRight size={16} />
+                See the 8-day journey <ArrowRight size={16} />
               </Link>
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              {['4', '8', '12+'].map(n => (
-                <div key={n} className="aspect-square rounded-2xl bg-card shadow-sm border border-border flex flex-col items-center justify-center">
-                  <span className="text-4xl font-heading font-bold text-primary">{n}</span>
-                  <span className="text-xs text-muted-foreground mt-1">guests</span>
+            <div className="space-y-3">
+              {[
+                { number: '4', label: 'Minimum guests', sub: 'Every departure is guaranteed' },
+                { number: '8', label: 'Maximum guests', sub: 'Never more than 8 per week' },
+                { number: '1', label: 'Dedicated host', sub: 'With you from arrival to departure' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-6 p-5 rounded-2xl bg-card border border-border shadow-sm">
+                  <span className="font-heading text-4xl font-bold text-primary flex-shrink-0 w-12 text-center">{item.number}</span>
+                  <div>
+                    <p className="font-semibold text-foreground text-sm">{item.label}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
+                  </div>
                 </div>
               ))}
-              <div className="col-span-3 bg-primary/5 border border-primary/10 rounded-2xl p-4 text-center">
-                <p className="text-sm text-muted-foreground">Every experience includes a <strong className="text-foreground">dedicated local host</strong> for the full 7 days</p>
-              </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* BOTTOM CTA */}
+      <section className="py-28 px-6" style={{ background: 'hsl(158 45% 12%)' }}>
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            Ready to escape London and discover Montenegro?
+          </h2>
+          <p className="text-white/50 mb-10 text-lg">
+            Small-group Friday departures available throughout Summer 2026.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/book"
+              className="px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-105 transition-all shadow-xl text-base">
+              Reserve Your Spot
+            </Link>
+            <a
+              href="https://wa.me/447758162004?text=Hi%20%E2%80%94%20I%27d%20love%20to%20know%20more%20about%20Summer%20in%20Montenegro!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-10 py-4 bg-[#25D366] text-white font-semibold rounded-full hover:brightness-105 transition-all text-base flex items-center justify-center gap-2"
+            >
+              Chat on WhatsApp
+            </a>
+          </div>
+          <p className="mt-8 text-white/25 text-xs">Friday departures · 4–8 guests only · From £899 pp · Accommodation included</p>
         </div>
       </section>
 
