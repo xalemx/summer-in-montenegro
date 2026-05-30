@@ -18,18 +18,7 @@ const INCLUDED = [
 
 const NOT_INCLUDED = ['Flights', 'Lunch and dinner', 'Optional activities', 'Personal expenses'];
 
-const INSTALMENTS = [
-  { step: '01', label: 'Today', amount: '£199', sub: 'Reserve your place' },
-  { step: '02', label: 'Monthly', amount: 'From £75', sub: 'Pay at your own pace' },
-  { step: '03', label: 'Departure', amount: '£0 due', sub: 'You arrive fully paid' },
-];
 
-const PRICING_ROWS = [
-  { label: 'Pay in full', value: '£999 pp' },
-  { label: 'Flexible payment plan', value: '£1,099 pp' },
-  { label: 'Deposit to secure', value: '£199 non-refundable' },
-  { label: 'Monthly from', value: '£75 / month' },
-];
 
 export default function Summer2027() {
   return (
@@ -119,45 +108,32 @@ export default function Summer2027() {
           </div>
 
           {/* Pricing options */}
-          <div className="grid md:grid-cols-2 gap-4 mb-12">
-            <div className="rounded-2xl p-8 bg-card border border-border text-center">
-              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-2">Pay in Full</p>
-              <p className="font-heading text-5xl font-bold text-foreground mb-1">£999</p>
-              <p className="text-muted-foreground text-sm mb-4">per person</p>
-              <p className="text-xs text-muted-foreground">Best value — pay once and you're done</p>
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
+            {/* Option 1 */}
+            <div className="rounded-3xl p-10 bg-card border border-border text-center shadow-sm">
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-4">Option 1</p>
+              <p className="font-heading text-2xl font-semibold text-foreground mb-2">Pay in Full</p>
+              <p className="font-heading text-6xl font-bold text-foreground mb-1">£999</p>
+              <p className="text-muted-foreground text-sm">per person</p>
             </div>
-            <div className="rounded-2xl p-8 bg-primary text-primary-foreground border border-primary text-center">
-              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-primary-foreground/60 mb-2">Flexible Monthly Plan</p>
-              <p className="font-heading text-5xl font-bold text-primary-foreground mb-1">£1,099</p>
-              <p className="text-primary-foreground/70 text-sm mb-4">per person</p>
-              <p className="text-xs text-primary-foreground/60">£199 deposit today, then from £75/month</p>
-              <span className="mt-3 inline-block text-xs font-semibold text-primary-foreground/60 border border-primary-foreground/20 rounded-full px-3 py-0.5">Most popular</span>
+
+            {/* Option 2 */}
+            <div className="rounded-3xl p-10 border-2 border-primary text-center shadow-xl" style={{ background: 'hsl(155 43% 18%)' }}>
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-4">Option 2</p>
+              <p className="font-heading text-2xl font-semibold text-white mb-2">Flexible Payment Plan</p>
+              <p className="font-heading text-6xl font-bold text-white mb-1">£1,099</p>
+              <p className="text-white/60 text-sm mb-6">per person</p>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between bg-white/10 rounded-xl px-5 py-3">
+                  <span className="text-white/70 text-sm">Reserve with</span>
+                  <span className="font-bold text-white text-sm">£199 deposit</span>
+                </div>
+                <div className="flex items-center justify-between bg-white/10 rounded-xl px-5 py-3">
+                  <span className="text-white/70 text-sm">Then from</span>
+                  <span className="font-bold text-white text-sm">£75 per month</span>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-4 mb-12">
-            {INSTALMENTS.map((s, i) => (
-              <div
-                key={i}
-                className={`rounded-2xl p-8 border ${i === 1 ? 'bg-primary text-primary-foreground border-primary' : 'bg-card border-border'}`}
-              >
-                <p className={`text-xs tracking-[0.3em] uppercase font-semibold mb-1 ${i === 1 ? 'text-primary-foreground/50' : 'text-muted-foreground'}`}>{s.step}</p>
-                <p className={`text-xs tracking-widest uppercase mb-3 ${i === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'}`}>{s.label}</p>
-                <p className={`font-heading text-4xl font-bold mb-1 ${i === 1 ? 'text-primary-foreground' : 'text-foreground'}`}>{s.amount}</p>
-                <p className={`text-sm ${i === 1 ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>{s.sub}</p>
-                {i === 1 && <span className="mt-3 inline-block text-xs font-semibold text-primary-foreground/60 border border-primary-foreground/20 rounded-full px-3 py-0.5">Most popular</span>}
-              </div>
-            ))}
-          </div>
-
-          {/* Pricing table */}
-          <div className="max-w-md mx-auto bg-card border border-border rounded-2xl overflow-hidden mb-10">
-            {PRICING_ROWS.map((row, i) => (
-              <div key={i} className={`flex justify-between px-6 py-4 text-sm ${i < PRICING_ROWS.length - 1 ? 'border-b border-border' : ''}`}>
-                <span className="text-muted-foreground">{row.label}</span>
-                <span className="font-semibold text-foreground">{row.value}</span>
-              </div>
-            ))}
           </div>
 
           <div className="text-center">
