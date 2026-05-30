@@ -594,6 +594,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* EXAMPLE ACCOMMODATION */}
+      <section className="py-24 px-6 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Where You'll Stay</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Example Accommodation</h2>
+            <p className="text-muted-foreground mt-4 max-w-lg mx-auto">Local guesthouses and boutique properties selected for character, location and comfort.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            {[
+              { img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80', label: 'Mountain Guesthouse', loc: 'Prokletije Region' },
+              { img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80', label: 'Lakeside Lodge', loc: 'Plav, North Montenegro' },
+              { img: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80', label: 'Coastal Retreat', loc: 'South Montenegro' },
+            ].map((item, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden border border-border shadow-sm group">
+                <div className="relative h-52 overflow-hidden">
+                  <img src={item.img} alt={item.label} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                </div>
+                <div className="p-4 bg-card">
+                  <p className="font-semibold text-sm text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.loc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl max-w-2xl mx-auto">
+            <span className="text-amber-500 text-base flex-shrink-0 mt-0.5">ⓘ</span>
+            <p className="text-sm text-amber-800">Accommodation shown is for illustration. Specific properties may vary depending on departure date and group size — all are carefully selected local stays.</p>
+          </div>
+        </div>
+      </section>
+
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
