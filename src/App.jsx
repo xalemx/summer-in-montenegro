@@ -17,7 +17,7 @@ import PartnerAccess from './pages/PartnerAccess';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Book from './pages/Book';
-import Gallery from './pages/Gallery';
+
 import Pricing from './pages/Pricing';
 
 const AuthenticatedApp = () => {
@@ -57,7 +57,7 @@ const AuthenticatedApp = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
-        <Route path="/gallery" element={<Gallery />} />
+
         <Route path="/pricing" element={<Pricing />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
