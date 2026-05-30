@@ -19,8 +19,8 @@ const DATES = [
 function getStatus(spots) {
   if (spots === 0) return { label: 'Sold Out', classes: 'bg-red-100 text-red-700 border border-red-200', dot: 'bg-red-500', pulse: false, disabled: true };
   if (spots <= 2) return { label: `Only ${spots} spot${spots !== 1 ? 's' : ''} remaining`, classes: 'bg-red-50 text-red-600 border border-red-200', dot: 'bg-red-500', pulse: true, disabled: false };
-  if (spots <= 4) return { label: `Only ${spots} of 8 places remaining`, classes: 'bg-amber-50 text-amber-700 border border-amber-200', dot: 'bg-amber-500', pulse: true, disabled: false };
-  return { label: `${spots} of 8 places remaining`, classes: 'bg-green-50 text-green-700 border border-green-200', dot: 'bg-green-500', pulse: false, disabled: false };
+  if (spots <= 4) return { label: `Only ${spots} spots remaining`, classes: 'bg-amber-50 text-amber-700 border border-amber-200', dot: 'bg-amber-500', pulse: true, disabled: false };
+  return { label: `${spots} spots remaining`, classes: 'bg-green-50 text-green-700 border border-green-200', dot: 'bg-green-500', pulse: false, disabled: false };
 }
 
 const NOTES = [
@@ -106,16 +106,16 @@ export default function DepartureDates() {
                               {s.label}
                             </span>
                           </div>
-                          <div className="flex flex-wrap items-center gap-3 text-foreground">
+                          <div className="flex flex-wrap items-center gap-3 text-foreground mb-2">
                             <span className="font-heading text-xl font-bold">{d.dep}</span>
                             <span className="text-muted-foreground text-sm">→</span>
                             <span className="text-muted-foreground font-medium">{d.ret}</span>
                           </div>
-                          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
-                              <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">&#10003;</span> 4 Nights Mountains</span>
-                              <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">&#10003;</span> 3 Nights Coast</span>
-                              <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">&#10003;</span> Private Room Included</span>
-                            </div>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1">
+                            <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">✓</span> 4 Nights Mountains</span>
+                            <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">✓</span> 3 Nights Coast</span>
+                            <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">✓</span> Private Room Included</span>
+                          </div>
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-right hidden sm:block">
