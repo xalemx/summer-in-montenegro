@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import GuestMemories from '../components/GuestMemories';
+import RouteTimeline from '../components/RouteTimeline';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { ArrowRight, ArrowDown, Check, Plane, Car, Users, Calendar, User } from 'lucide-react';
@@ -760,6 +761,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <RouteTimeline />
 
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
