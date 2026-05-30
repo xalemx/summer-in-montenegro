@@ -596,7 +596,10 @@ export default function Home() {
                   <span className="font-heading text-5xl font-bold text-white">£999</span>
                   <span className="text-white/50 text-sm mb-1.5">per person</span>
                 </div>
-                <p className="text-white/50 text-xs mt-4">Flexible payment options such as Klarna may be available at checkout depending on eligibility.</p>
+                <div className="mt-4 text-white/50 text-xs space-y-1">
+                  <p>Flexible payment options available. Pay securely using card, Apple Pay, Google Pay or Klarna (subject to eligibility and availability).</p>
+                  <p>Monthly payment options may be available through Klarna at checkout. Summer in Montenegro does not provide finance directly.</p>
+                </div>
               </div>
               <div className="px-8 py-6 flex-1">
                 <div className="space-y-3">
