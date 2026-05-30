@@ -66,6 +66,18 @@ export default function Accommodation() {
 
       {/* PARTNER CARDS */}
       <section className="pb-20 px-6">
+        <div className="max-w-5xl mx-auto mb-8">
+          <div className="flex gap-4 p-5 rounded-2xl bg-card border border-border/60 shadow-sm">
+            <div className="flex-shrink-0 w-1 rounded-full bg-primary/30 self-stretch" />
+            <div>
+              <p className="text-sm font-semibold text-foreground mb-1">Example accommodation shown.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Accommodation may vary depending on departure date, group size and availability.
+                We only work with trusted local accommodation partners.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6">
           {PARTNERS.map((p, i) => (
             <div key={i} className="group bg-card rounded-3xl overflow-hidden shadow-sm border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
