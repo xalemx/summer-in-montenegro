@@ -182,8 +182,13 @@ export default function Book() {
                         </span>
                       )}
                       <p className="font-semibold text-sm">{d.label}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{d.sub}</p>
-                      <p className={`text-xs mt-1.5 font-medium ${status.color}`}>{status.text}</p>
+                      <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1.5">
+                        <span className="text-xs text-muted-foreground">&#10003; 4 Nights Mountains</span>
+                        <span className="text-xs text-muted-foreground">&#10003; 3 Nights Coast</span>
+                        <span className="text-xs text-muted-foreground">&#10003; Private Room</span>
+                      </div>
+                      <p className="text-xs font-semibold text-foreground mt-1.5">£999 per person</p>
+                      <p className={`text-xs mt-1 font-medium ${status.color}`}>{status.text}</p>
                     </button>
                   );
                 })}

@@ -111,7 +111,11 @@ export default function DepartureDates() {
                             <span className="text-muted-foreground text-sm">→</span>
                             <span className="text-muted-foreground font-medium">{d.ret}</span>
                           </div>
-                          <p className="text-xs text-muted-foreground mt-1">7 nights · 4 Mountains + 3 Coast · Max 8 guests</p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+                              <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">&#10003;</span> 4 Nights Mountains</span>
+                              <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">&#10003;</span> 3 Nights Coast</span>
+                              <span className="text-xs text-muted-foreground flex items-center gap-1"><span className="text-primary font-bold">&#10003;</span> Private Room Included</span>
+                            </div>
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-right hidden sm:block">
