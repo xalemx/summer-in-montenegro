@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PrivateRoomBadge from '../components/PrivateRoomBadge';
 import { base44 } from '@/api/base44Client';
 import { CheckCircle, ChevronRight, ChevronLeft, Calendar, Users, User, MessageCircle } from 'lucide-react';
@@ -39,6 +39,13 @@ export default function Book() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(null); // 'success' | 'cancelled'
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true') setPaymentStatus('success');
+    if (params.get('cancelled') === 'true') setPaymentStatus('cancelled');
+  }, []);
   const [form, setForm] = useState({
     departure_date: '',
     guests: 1,
@@ -59,10 +66,69 @@ export default function Book() {
 
   const submit = async () => {
     setLoading(true);
-    await base44.entities.BookingRequest.create({ ...form, status: 'new' });
-    setDone(true);
+    // Check if running inside an iframe (preview)
+    if (window.self !== window.top) {
+      alert('Checkout is only available from the published app, not the editor preview.');
+      setLoading(false);
+      return;
+    }
+    const booking = await base44.entities.BookingRequest.create({ ...form, status: 'new' });
+    const res = await base44.functions.invoke('createCheckoutSession', {
+      departure_date: form.departure_date,
+      guests: form.guests,
+      full_name: form.full_name,
+      email: form.email,
+      booking_id: booking.id,
+    });
+    if (res.data?.url) {
+      window.location.href = res.data.url;
+    } else {
+      setDone(true);
+    }
     setLoading(false);
   };
+
+  if (paymentStatus === 'success') {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center px-4">
+        <div className="max-w-md w-full text-center">
+          <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle size={36} className="text-green-600" />
+          </div>
+          <h2 className="font-heading text-3xl font-bold mb-3">Deposit Paid!</h2>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Your £199 deposit has been received. We will contact you on WhatsApp within 24 hours to confirm your spot and send full trip details.
+          </p>
+          <a
+            href="https://wa.me/447758162004"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#25D366] text-white font-semibold rounded-full text-sm hover:brightness-105 transition-all shadow-md"
+          >
+            <MessageCircle size={18} />
+            Message us on WhatsApp
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  if (paymentStatus === 'cancelled') {
+    return (
+      <div className="min-h-[70vh] flex items-center justify-center px-4">
+        <div className="max-w-md w-full text-center">
+          <h2 className="font-heading text-2xl font-bold mb-3">Payment cancelled</h2>
+          <p className="text-muted-foreground mb-6">No charge was made. You can try again below.</p>
+          <button
+            onClick={() => setPaymentStatus(null)}
+            className="px-8 py-3 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (done) {
     return (
@@ -366,7 +432,7 @@ export default function Book() {
               disabled={loading || !form.full_name || !form.email || !form.whatsapp}
               className="bg-accent text-accent-foreground hover:brightness-105 rounded-full px-8"
             >
-              {loading ? 'Submitting...' : 'Send Reservation Request'}
+              {loading ? 'Processing...' : 'Pay £199 Deposit & Reserve Spot'}
             </Button>
           )}
         </div>
