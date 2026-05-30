@@ -71,6 +71,29 @@ export default function Summer2027() {
         </div>
       </section>
 
+      {/* QUICK FACTS BAR */}
+      <section className="py-8 px-4 bg-card border-b border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {[
+              { icon: '£', label: 'From £899 pp', sub: '2027 Founder Price' },
+              { icon: '✈️', label: 'Friday departures', sub: 'From London' },
+              { icon: '👥', label: '4–8 guests only', sub: 'Intentionally small' },
+              { icon: '🍳', label: 'Breakfast included', sub: 'Every morning' },
+              { icon: '🚐', label: 'Airport transfers', sub: 'Both ways, included' },
+            ].map((f, i) => (
+              <div key={i} className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/50 border border-border">
+                <span className="text-xl flex-shrink-0">{f.icon}</span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground leading-tight">{f.label}</p>
+                  <p className="text-xs text-muted-foreground">{f.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* MANIFESTO */}
       <section className="py-36 md:py-44 px-6 bg-background">
         <div className="max-w-3xl mx-auto text-center">
