@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import GuestMemories from '../components/GuestMemories';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { ArrowRight, ArrowDown, Check, Plane, Car, Users, Calendar, User } from 'lucide-react';
@@ -717,6 +718,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* GUEST MEMORIES */}
+      <GuestMemories />
 
       {/* TRAVELLING SOLO */}
       <section className="py-24 px-6 bg-background">
