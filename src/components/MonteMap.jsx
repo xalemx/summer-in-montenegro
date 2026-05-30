@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -35,7 +35,6 @@ const STOPS = [
   { num: 8, name: 'Kolašin', desc: 'Day 7 · Return south via this charming mountain town.', lat: 42.823, lng: 19.524 },
 ];
 
-const ROUTE = STOPS.map(s => [s.lat, s.lng]);
 
 export default function MonteMap() {
   return (
@@ -63,10 +62,7 @@ export default function MonteMap() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
               url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
             />
-            <Polyline
-              positions={ROUTE}
-              pathOptions={{ color: 'hsl(43,90%,50%)', weight: 3, dashArray: '8 6', opacity: 0.85 }}
-            />
+
             {STOPS.map(stop => (
               <Marker key={stop.num} position={[stop.lat, stop.lng]} icon={makeIcon(stop.num)}>
                 <Popup>
