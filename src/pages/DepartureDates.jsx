@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
-import { Plane, Users, Calendar, Info, ArrowRight, Shield } from 'lucide-react';
+import { Plane, Users, Calendar, Info, ArrowRight } from 'lucide-react';
 
 const DATES = [
   { dep: '17 July 2026', ret: '24 July 2026', spots: 2, guaranteed: false },
@@ -84,8 +84,8 @@ export default function DepartureDates() {
                         <div className="flex-1">
                           <div className="flex flex-wrap items-center gap-2 mb-2">
                             {d.guaranteed && (
-                              <span className="inline-flex items-center gap-1 bg-primary/10 text-primary text-xs font-bold px-2.5 py-1 rounded-full border border-primary/20">
-                                <Shield size={10} /> Guaranteed Departure
+                              <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full border border-green-200">
+                                ✓ Guaranteed Departure
                               </span>
                             )}
                             <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${s.classes}`}>

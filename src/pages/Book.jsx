@@ -8,16 +8,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 const DATES = [
-  { label: '17 Jul 2026', sub: 'Friday departure', spots: 2 },
-  { label: '24 Jul 2026', sub: 'Friday departure', spots: 3 },
-  { label: '31 Jul 2026', sub: 'Friday departure', spots: 6 },
-  { label: '7 Aug 2026', sub: 'Friday departure', spots: 8 },
-  { label: '14 Aug 2026', sub: 'Friday departure', spots: 8 },
-  { label: '21 Aug 2026', sub: 'Friday departure', spots: 8 },
-  { label: '28 Aug 2026', sub: 'Friday departure', spots: 7 },
-  { label: '4 Sep 2026', sub: 'Friday departure', spots: 8 },
-  { label: '11 Sep 2026', sub: 'Friday departure', spots: 8 },
-  { label: '18 Sep 2026', sub: 'Friday departure', spots: 8 },
+  { label: '17 Jul 2026', sub: 'Friday departure', spots: 2, guaranteed: false },
+  { label: '24 Jul 2026', sub: 'Friday departure', spots: 3, guaranteed: false },
+  { label: '31 Jul 2026', sub: 'Friday departure', spots: 6, guaranteed: false },
+  { label: '7 Aug 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
+  { label: '14 Aug 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
+  { label: '21 Aug 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
+  { label: '28 Aug 2026', sub: 'Friday departure', spots: 7, guaranteed: false },
+  { label: '4 Sep 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
+  { label: '11 Sep 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
+  { label: '18 Sep 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
 ];
 
 function getStatusLabel(spots) {
@@ -158,6 +158,11 @@ export default function Book() {
                         : 'border-border hover:border-primary/40'
                     }`}
                   >
+                    {d.guaranteed && (
+                      <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full border border-green-200 mb-1">
+                        ✓ Guaranteed Departure
+                      </span>
+                    )}
                     <p className="font-semibold text-sm">{d.label}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">{d.sub}</p>
                     {(() => { const s = getStatusLabel(d.spots); return <p className={`text-xs mt-1.5 font-medium ${s.color}`}>{s.text}</p>; })()}
