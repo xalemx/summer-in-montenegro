@@ -20,6 +20,13 @@ const PARTNERS = [
     img: 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAH54ZrbWqqF0_fFU_vaHQVzX2DdxA-nGzCSk3jqLrLo2TPEShvZyBeXyB7jgN3ZwIMEbOQLnfO2rLf3Zxn0hHrX7J196oVmzVSGpDhlyJUf2rWPxdqXHuxQNnZe_uvX0iOMiAKCkEkTbvzh=w800-h600-k-no',
     mapsUrl: 'https://maps.app.goo.gl/cwLUfVLbh1exaAXZ7',
   },
+  {
+    name: 'Eko Katun ROSI - Old Tower Agritourism',
+    location: 'Vusanje, Gusinje area',
+    desc: 'Authentic mountain agritourism stay in a historic old tower setting. Rated 4.7 on Google.',
+    img: 'https://lh3.googleusercontent.com/gps-cs-s/APNQkAEt3kT2NIHhokUjGfwzj4tP7Yn7xHptLTHkjHc8PLrPd_upfmVeEunZKuWYd_V593Fqq8OtPUKMJoAB37hoCHPXDkQopVYgXJGwXjRcBM19lYdU0y1YztYdNER-Vd-KhQJ0j3M=w800-h534-k-no',
+    mapsUrl: 'https://maps.app.goo.gl/PV3CUZhUmjiV2mdR9',
+  },
 ];
 
 export default function Accommodation() {
@@ -31,7 +38,7 @@ export default function Accommodation() {
           We work with trusted local accommodation partners in Gusinje and northern Montenegro, combining mountain views, local hospitality and authentic atmosphere.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {PARTNERS.map((p, i) => (
             <div key={i} className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border">
               <div className="aspect-[4/3] overflow-hidden">
