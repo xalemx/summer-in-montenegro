@@ -151,6 +151,26 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRUST STRIP ICONS */}
+      <section className="py-5 px-4 bg-card border-b border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+            {[
+              { icon: '🚕', label: 'Airport Transfers Included' },
+              { icon: '🏠', label: 'Accommodation Included' },
+              { icon: '✈️', label: 'Weekly Friday Departures' },
+              { icon: '👥', label: 'Small Groups Only' },
+              { icon: '🧑\u200d🌍', label: 'Local Host' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2.5">
+                <span className="text-xl">{item.icon}</span>
+                <span className="text-sm font-semibold text-foreground">{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* TRUST CARDS */}
       <section className="py-8 px-4 bg-card border-b border-border">
         <div className="max-w-5xl mx-auto">
