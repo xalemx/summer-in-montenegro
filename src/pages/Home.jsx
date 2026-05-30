@@ -767,6 +767,49 @@ export default function Home() {
 
       <JourneyTimeline />
 
+      {/* RESERVE PRICING */}
+      <section className="py-28 px-6 bg-background">
+        <div className="max-w-xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Simple &amp; Transparent</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Reserve Your Place</h2>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden shadow-2xl border border-border">
+            {/* Card header */}
+            <div className="px-10 py-10 text-center" style={{ background: 'hsl(155 43% 18%)' }}>
+              <p className="text-white/50 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Summer 2026</p>
+              <p className="font-heading text-7xl font-bold text-white leading-none mb-2">£199</p>
+              <p className="text-white/60 text-base">Deposit to secure your place</p>
+              <p className="text-white/40 text-sm mt-2">Remaining balance due before departure</p>
+            </div>
+
+            {/* Card body */}
+            <div className="bg-card px-10 py-8 space-y-4">
+              {[
+                { icon: '✓', text: 'Your departure date held for you' },
+                { icon: '✓', text: 'Private room guaranteed' },
+                { icon: '✓', text: 'Airport transfers included' },
+                { icon: '✓', text: 'Full trip details sent on confirmation' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs flex-shrink-0">{item.icon}</span>
+                  <span className="text-sm text-foreground">{item.text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Card footer */}
+            <div className="bg-card border-t border-border px-10 pb-10">
+              <Link to="/book" className="flex items-center justify-center gap-2 w-full py-5 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-lg text-base">
+                Reserve Your Spot &mdash; £199 Deposit <ArrowRight size={16} />
+              </Link>
+              <p className="text-xs text-muted-foreground text-center mt-4">Weekly Friday departures &nbsp;&middot;&nbsp; From £999 per person &nbsp;&middot;&nbsp; Private room included</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
