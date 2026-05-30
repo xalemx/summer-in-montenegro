@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
@@ -8,7 +8,6 @@ const NAV = [
   { label: 'Pricing', to: '/pricing' },
   { label: 'Accommodation', to: '/accommodation' },
   { label: 'Activities', to: '/activities' },
-
   { label: 'Summer 2027', to: '/summer-2027' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
@@ -16,10 +15,21 @@ const NAV = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const { pathname } = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border/40">
+    <header className={`sticky top-0 z-50 border-b transition-all duration-300 ${
+      scrolled
+        ? 'bg-background/90 backdrop-blur-2xl border-border/60 shadow-md h-16'
+        : 'bg-background/85 backdrop-blur-xl border-border/30 h-[72px]'
+    }`}>
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link to="/" className="font-heading text-lg font-medium text-primary tracking-[0.04em] hover:opacity-75 transition-opacity">
           Summer in Montenegro

@@ -18,9 +18,9 @@ const DATES = [
 
 function getStatus(spots) {
   if (spots === 0) return { label: 'Sold Out', classes: 'bg-red-100 text-red-700', dot: 'bg-red-500', pulse: false };
-  if (spots <= 2) return { label: 'Almost Full', classes: 'bg-red-50 text-red-600', dot: 'bg-red-500', pulse: true };
-  if (spots <= 4) return { label: 'Limited Availability', classes: 'bg-amber-50 text-amber-700', dot: 'bg-amber-500', pulse: true };
-  return { label: 'Open', classes: 'bg-green-50 text-green-700', dot: 'bg-green-500', pulse: false };
+  if (spots <= 2) return { label: `${spots} Spot${spots !== 1 ? 's' : ''} Left`, classes: 'bg-red-50 text-red-600 border border-red-200', dot: 'bg-red-500', pulse: true };
+  if (spots <= 4) return { label: `${spots} Spots Left`, classes: 'bg-amber-50 text-amber-700 border border-amber-200', dot: 'bg-amber-500', pulse: true };
+  return { label: `${spots} Spots Left`, classes: 'bg-green-50 text-green-700 border border-green-200', dot: 'bg-green-500', pulse: false };
 }
 
 const NOTES = [
@@ -62,7 +62,7 @@ export default function DepartureDates() {
               <div className="p-4 text-center">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${s.classes}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${s.dot} ${s.pulse ? 'animate-pulse' : ''}`}></span>
-                  {s.label}{d.spots > 0 && d.spots < 8 ? ` • ${d.spots} spot${d.spots !== 1 ? 's' : ''} left` : ''}
+                  {s.label}
                 </span>
               </div>
             </div>
