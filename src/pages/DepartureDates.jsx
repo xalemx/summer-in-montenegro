@@ -82,6 +82,19 @@ export default function DepartureDates() {
                     <div className="p-5 md:p-6">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div className="flex-1">
+                          {/* Booking progress bar */}
+                          <div className="mb-3">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs text-muted-foreground font-medium">{8 - d.spots} / 8 booked</span>
+                              <span className="text-xs text-muted-foreground">{d.spots} left</span>
+                            </div>
+                            <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full bg-green-500 transition-all"
+                                style={{ width: `${((8 - d.spots) / 8) * 100}%` }}
+                              />
+                            </div>
+                          </div>
                           <div className="flex flex-wrap items-center gap-2 mb-2">
                             {d.guaranteed && (
                               <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full border border-green-200">

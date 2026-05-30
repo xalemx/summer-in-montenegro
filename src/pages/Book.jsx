@@ -158,6 +158,19 @@ export default function Book() {
                         : 'border-border hover:border-primary/40'
                     }`}
                   >
+                    {/* Booking progress bar */}
+                    <div className="mb-2">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs text-muted-foreground font-medium">{8 - d.spots} / 8 booked</span>
+                        <span className="text-xs text-muted-foreground">{d.spots} left</span>
+                      </div>
+                      <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-green-500 transition-all"
+                          style={{ width: `${((8 - d.spots) / 8) * 100}%` }}
+                        />
+                      </div>
+                    </div>
                     {d.guaranteed && (
                       <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full border border-green-200 mb-1">
                         ✓ Guaranteed Departure
