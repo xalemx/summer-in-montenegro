@@ -11,10 +11,10 @@ const FOOD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97c
 const ACTIVITIES = [
   { title: 'Horse Riding', desc: 'Mountain horse riding experiences through the Prokletije foothills and alpine meadows.', img: HORSE_IMG },
   { title: 'Kayaking', desc: 'Kayaking on Plav Lake with spectacular mountain views and crystal-clear water.', img: LAKE_IMG },
-  { title: '4x4 Scenic Tours', desc: 'Off-road exploration through remote mountain villages and hidden landscapes.', img: COAST_IMG },
   { title: 'Guided Hiking', desc: 'Guided routes in Prokletije National Park — from easy scenic walks to more demanding trails.', img: MTN_IMG },
-  { title: 'Local Food Experiences', desc: 'Traditional Montenegrin cuisine, home cooking and local food culture.', img: FOOD_IMG },
+  { title: '4x4 Scenic Tours', desc: 'Off-road exploration through remote mountain villages and hidden landscapes.', img: COAST_IMG },
   { title: 'Lake Experiences', desc: 'Swimming, relaxing and exploring the shores of Plav Lake at 900m altitude.', img: LAKE_IMG },
+  { title: 'Local Food Experiences', desc: 'Traditional Montenegrin cuisine, home cooking and local food culture.', img: FOOD_IMG },
 ];
 
 export default function Activities() {
