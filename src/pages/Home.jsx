@@ -108,21 +108,28 @@ export default function Home() {
           </div>
 
           <h1 className="font-heading text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[1.02] mb-5">
-            Escape London.<br /><em>Mountains. Lakes. Coast.</em>
+            Mountains. Lakes. Coast.
           </h1>
 
           <p className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-            One unforgettable week from London combining North Montenegro, Lake Skadar and the Adriatic Coast.
+            4 nights in Gusinje. 3 nights in Bar.<br />
+            Private room included.<br />
+            Weekly Friday departures from London.
           </p>
 
-          <div className="inline-flex flex-wrap items-center justify-center gap-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 mb-10">
-            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">✈️</span><span className="text-sm font-semibold">Friday Departures</span></div>
-            <div className="w-px h-5 bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">👥</span><span className="text-sm font-semibold">4–8 Guests Only</span></div>
-            <div className="w-px h-5 bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">💷</span><span className="text-sm font-semibold">From £899 pp</span></div>
-            <div className="w-px h-5 bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-2 text-white/90"><span className="text-lg">🏔</span><span className="text-sm font-semibold">Coast + Mountains</span></div>
+          <div className="inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 mb-10">
+            {[
+              'Private Room Included',
+              'Small Groups (4–8 Guests)',
+              'Airport Transfers Included',
+              'Breakfast Included',
+              'Weekly Friday Departures',
+            ].map((badge, i) => (
+              <div key={i} className="flex items-center gap-2 text-white/90">
+                <span className="text-green-400 font-bold text-sm">✓</span>
+                <span className="text-sm font-semibold">{badge}</span>
+              </div>
+            ))}
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 justify-center px-2 sm:px-0">
