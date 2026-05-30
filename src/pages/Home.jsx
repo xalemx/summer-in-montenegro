@@ -751,7 +751,8 @@ export default function Home() {
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
             Ready to escape London and discover Montenegro?
           </h2>
-          <p className="text-white/50 mb-10 text-lg">Small-group Friday departures available throughout Summer 2026.</p>
+          <p className="text-white/50 mb-3 text-lg">Small-group Friday departures available throughout Summer 2026.</p>
+          <p className="text-white/35 mb-10 text-sm">Only 10 departures available for Summer 2026 &nbsp;·&nbsp; Friday departures from London.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/book" className="px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-xl text-base">
               Reserve Your Spot
