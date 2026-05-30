@@ -376,6 +376,62 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COMPARISON SECTION */}
+      <section className="py-28 px-6 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">There's a Difference</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why Not a Typical<br />Package Holiday?</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {/* Column 1 — Typical */}
+            <div className="rounded-3xl bg-card border border-border p-8 md:p-10">
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-6">Typical Resort Holiday</p>
+              <div className="space-y-4">
+                {[
+                  'Crowded beaches',
+                  'Large groups',
+                  'Tourist zones',
+                  'Generic experience',
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 py-3 border-b border-border last:border-0">
+                    <span className="w-7 h-7 rounded-full bg-red-50 border border-red-100 flex items-center justify-center flex-shrink-0">
+                      <span className="text-red-400 font-bold text-xs">✕</span>
+                    </span>
+                    <span className="text-muted-foreground text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 2 — Montenegro */}
+            <div className="rounded-3xl border-2 border-primary/30 p-8 md:p-10 shadow-xl relative overflow-hidden" style={{ background: 'hsl(155 43% 17%)' }}>
+              <div className="absolute top-5 right-5">
+                <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Our pick</span>
+              </div>
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-6">Summer in Montenegro</p>
+              <div className="space-y-4">
+                {[
+                  'Small groups',
+                  'Private rooms',
+                  'Mountains, lakes and coast',
+                  'Local host',
+                  'Authentic experiences',
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 py-3 border-b border-white/10 last:border-0">
+                    <span className="w-7 h-7 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center flex-shrink-0">
+                      <span className="text-green-400 font-bold text-xs">✓</span>
+                    </span>
+                    <span className="text-white/80 text-sm font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* WHY MONTENEGRO — 6 CARDS */}
       <section className="py-28 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
