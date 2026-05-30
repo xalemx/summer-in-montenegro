@@ -380,6 +380,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* WHAT MAKES IT DIFFERENT */}
+      <section className="py-28 px-6 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">The Summer in Montenegro Experience</p>
+            <h2 className="font-heading text-4xl md:text-6xl font-bold text-foreground leading-tight">
+              What Makes Summer in<br /><em>Montenegro Different?</em>
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {[
+              { icon: '🛏', title: 'Private Room Included', desc: 'Your own room every single night — no shared dorms, no compromises.' },
+              { icon: '🏔', title: '4 Nights Mountains', desc: 'Deep in the Prokletije range. Gusinje, alpine valleys, zero tourists.' },
+              { icon: '🌊', title: '3 Nights Coast', desc: 'The Adriatic at Bar. Clear water, dramatic coastline, warm evenings.' },
+              { icon: '👥', title: 'Small Groups', desc: 'Maximum 8 guests per departure. It feels like you chose each other.' },
+              { icon: '🧭', title: 'Local Host', desc: 'Born in Montenegro. Every place is personally known, not Googled.' },
+              { icon: '✈️', title: 'Airport Transfers Included', desc: 'We pick you up at Podgorica. We drop you back. Zero logistics stress.' },
+              { icon: '📅', title: 'Weekly Friday Departures', desc: 'Friday to Friday from London. Direct Ryanair route to Podgorica.' },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="group relative rounded-3xl p-7 bg-card border border-border shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none" />
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 text-2xl group-hover:scale-110 transition-transform duration-300">
+                  {item.icon}
+                </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-green-600 font-bold text-xs">✓</span>
+                  <h3 className="font-semibold text-sm text-foreground leading-snug">{item.title}</h3>
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* COMPARISON SECTION */}
       <section className="py-28 px-6 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
