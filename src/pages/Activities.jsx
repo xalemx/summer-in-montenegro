@@ -9,7 +9,6 @@ const SPRINGS_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee
 const FOOD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/f1c34b4b6_generated_0a69661e.png';
 
 const ACTIVITIES = [
-  { title: 'Rafting', desc: 'White water rafting on Montenegro\'s stunning rivers. Suitable for most fitness levels.', img: MTN_IMG },
   { title: 'Horse Riding', desc: 'Mountain horse riding experiences through the Prokletije foothills and alpine meadows.', img: HORSE_IMG },
   { title: 'Kayaking', desc: 'Kayaking on Plav Lake with spectacular mountain views and crystal-clear water.', img: LAKE_IMG },
   { title: '4x4 Scenic Tours', desc: 'Off-road exploration through remote mountain villages and hidden landscapes.', img: COAST_IMG },
