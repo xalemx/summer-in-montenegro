@@ -1,8 +1,10 @@
 const FEATURE_CARDS = [
-  { icon: '👥', heading: 'Small Groups', body: 'Maximum 8 guests per departure.' },
-  { icon: '🧭', heading: 'Local Host', body: 'Guidance throughout the journey.' },
-  { icon: '🏔️', heading: 'Authentic Montenegro', body: 'Beyond crowded tourist areas.' },
-  { icon: '🥾', heading: 'Flexible Experiences', body: 'Choose activities that suit your interests.' },
+  { icon: '🏔', heading: 'Mountains and Coast in One Trip', body: 'Swim in the Adriatic in the morning. Be in the mountains by afternoon. No other destination does this.' },
+  { icon: '🙌', heading: 'Less Crowded Than Spain', body: 'Fewer tourists, shorter queues, lower prices. The experience Spain had 30 years ago.' },
+  { icon: '🤝', heading: 'Authentic Local Experiences', body: 'Local cafés, real villages, genuine hospitality. Not a curated version of culture — the actual thing.' },
+  { icon: '🗺️', heading: 'Hidden Locations', body: 'We go to places that don\'t appear on mainstream travel lists. No tour buses, no crowds.' },
+  { icon: '👥', heading: 'Small Groups', body: 'Maximum 8 guests per departure. Intentionally small so it feels personal, not like a package tour.' },
+  { icon: '🧑‍🌍', heading: 'Local Host', body: 'Alem grew up between the UK and Montenegro. He knows the country, the people and the places most visitors never find.' },
 ];
 
 export default function TestimonialsSection() {
@@ -13,11 +15,11 @@ export default function TestimonialsSection() {
         <div className="text-center mb-20">
           <p className="text-primary/60 text-xs tracking-[0.4em] uppercase font-medium mb-4">Why Guests Choose Montenegro</p>
           <h2 className="font-heading text-5xl md:text-6xl font-light text-foreground leading-tight italic">
-            Why Small-Group Travel Works.
+            Why People Are Choosing Montenegro.
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
           {FEATURE_CARDS.map((card, i) => (
             <div key={i} className="bg-card border border-border rounded-2xl p-7 flex flex-col gap-4 text-center items-center">
               <span className="text-4xl">{card.icon}</span>
