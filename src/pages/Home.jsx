@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { ArrowRight, ArrowDown, Check } from 'lucide-react';
+import { ArrowRight, ArrowDown, Check, Plane, Car, Users, Calendar, User } from 'lucide-react';
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3d38f555d_videoplayback.mp4';
 const HERO_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80';
@@ -151,20 +151,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUST STRIP ICONS */}
+      {/* TRUST BADGE STRIP */}
       <section className="py-5 px-4 bg-card border-b border-border">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
             {[
-              { icon: '🚕', label: 'Airport Transfers Included' },
-              { icon: '🏠', label: 'Accommodation Included' },
-              { icon: '✈️', label: 'Weekly Friday Departures' },
-              { icon: '👥', label: 'Small Groups Only' },
-              { icon: '🧑\u200d🌍', label: 'Local Host' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2.5">
-                <span className="text-xl">{item.icon}</span>
-                <span className="text-sm font-semibold text-foreground">{item.label}</span>
+              { icon: Car, label: 'Airport Transfers Included' },
+              { icon: Plane, label: 'Weekly Friday Departures' },
+              { icon: Users, label: 'Small Groups Only' },
+              { icon: User, label: 'Local Host' },
+              { icon: Check, label: 'Accommodation Included' },
+            ].map(({ icon: Icon, label }, i) => (
+              <div key={i} className="flex items-center gap-2 text-foreground/70">
+                <Icon size={15} className="text-primary flex-shrink-0" />
+                <span className="text-xs font-semibold tracking-wide">{label}</span>
               </div>
             ))}
           </div>
@@ -656,6 +656,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/book" className="px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-xl text-base">
               Reserve Your Spot
+            </Link>
+            <Link to="/dates" className="px-10 py-4 border border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all text-base">
+              View 2026 Dates
             </Link>
             <a href="https://wa.me/447758162004?text=Hi%20%E2%80%94%20I%27d%20love%20to%20know%20more%20about%20Summer%20in%20Montenegro!"
               target="_blank" rel="noopener noreferrer"
