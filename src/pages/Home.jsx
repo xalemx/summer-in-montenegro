@@ -691,6 +691,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SOLO TRAVELLERS */}
+      <section className="py-24 px-6 bg-card border-y border-border">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">You Don't Need a Travel Buddy</p>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-5 leading-tight">Travelling Solo?</h2>
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-3 leading-relaxed">
+            Many guests travel solo and join small groups of like-minded travellers.
+          </p>
+          <p className="text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed">
+            Summer in Montenegro is designed to be welcoming for solo travellers, couples and friends.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+            {[
+              { icon: '🧍', label: 'Solo Travellers', desc: 'Come alone, leave with a group of friends you\'ll actually keep.' },
+              { icon: '💑', label: 'Couples', desc: 'A shared adventure with a ready-made social group around you.' },
+              { icon: '👫', label: 'Friends', desc: 'The trip you\'ve been saying you\'ll book together for years.' },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-secondary/50 border border-border">
+                <span className="text-4xl">{item.icon}</span>
+                <p className="font-semibold text-foreground text-sm">{item.label}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
