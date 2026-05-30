@@ -31,7 +31,7 @@ export default function Activities() {
           Optional activities are arranged locally and paid separately by guests. They are not included in the base trip price.
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {ACTIVITIES.map((a, i) => (
             <div key={i} className="group bg-card rounded-2xl overflow-hidden shadow-sm border border-border">
               <div className="aspect-[4/3] overflow-hidden">
