@@ -19,6 +19,7 @@ import Contact from './pages/Contact';
 import Book from './pages/Book';
 
 import Pricing from './pages/Pricing';
+import AboutMontenegro from './pages/AboutMontenegro';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -59,6 +60,7 @@ const AuthenticatedApp = () => {
         <Route path="/book" element={<Book />} />
 
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about-montenegro" element={<AboutMontenegro />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
