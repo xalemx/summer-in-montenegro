@@ -250,34 +250,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY MONTENEGRO */}
+      {/* COMPARISON */}
       <section className="py-28 px-6 bg-secondary/30">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Europe's Hidden Gem</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why Montenegro?</h2>
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">A Different Kind of Trip</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why Not a Typical<br /><em>Package Holiday?</em></h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-5">
+            {/* Col 1 — Typical */}
             <div className="rounded-3xl bg-card border border-border p-8 shadow-sm">
-              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-5">Spain &amp; Portugal</p>
-              <div className="space-y-3">
-                {SPAIN_CONS.map((item, i) => (
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-6">Typical Resort Holiday</p>
+              <div className="space-y-4">
+                {['Crowded beaches', 'Large groups', 'Tourist zones', 'Generic experience'].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="text-red-400 font-bold text-sm flex-shrink-0">✕</span>
+                    <span className="w-5 h-5 rounded-full bg-red-50 border border-red-200 flex items-center justify-center flex-shrink-0">
+                      <span className="text-red-400 font-bold text-xs">✕</span>
+                    </span>
                     <span className="text-muted-foreground text-sm">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
+            {/* Col 2 — Montenegro */}
             <div className="rounded-3xl border-2 border-primary/30 p-8 shadow-xl relative overflow-hidden" style={{ background: 'hsl(155 43% 18%)' }}>
               <div className="absolute top-4 right-4">
-                <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Our Pick</span>
+                <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Our Experience</span>
               </div>
-              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-5">Montenegro</p>
-              <div className="space-y-3">
-                {MONTENEGRO_PROS.map((item, i) => (
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-6">Summer in Montenegro</p>
+              <div className="space-y-4">
+                {['Small groups', 'Private rooms', 'Mountains, lakes and coast', 'Local host', 'Authentic experiences'].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="text-green-400 font-bold text-sm flex-shrink-0">✓</span>
+                    <span className="w-5 h-5 rounded-full bg-green-500/20 border border-green-400/30 flex items-center justify-center flex-shrink-0">
+                      <span className="text-green-400 font-bold text-xs">✓</span>
+                    </span>
                     <span className="text-white/80 text-sm">{item}</span>
                   </div>
                 ))}
@@ -912,15 +918,15 @@ export default function Home() {
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
             Ready for Mountains,<br />Lakes and Coast?
           </h2>
-          <p className="text-white/60 text-lg mb-3 max-w-xl mx-auto">
-            Join a small group and discover Montenegro beyond the tourist crowds.
-          </p>
-          <div className="text-white/50 text-sm mb-2">4 nights in Gusinje. &nbsp;3 nights in Bar.</div>
-          <div className="text-white/50 text-sm mb-2">Private room included.</div>
-          <div className="text-white/70 font-semibold text-base mb-10">From £999 per person.</div>
+          <div className="space-y-1 mb-3">
+            <p className="text-white/60">4 nights in Gusinje. &nbsp;3 nights in Bar.</p>
+            <p className="text-white/60">Private room included.</p>
+            <p className="text-white/60">Small groups.</p>
+          </div>
+          <p className="text-white/80 font-semibold text-lg mb-10">£999 per person.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/book" className="px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-xl text-base">
               Reserve Your Spot
