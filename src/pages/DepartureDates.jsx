@@ -55,7 +55,7 @@ export default function DepartureDates() {
         <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Flying from London</p>
         <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4 leading-tight">Summer 2026 Departures</h1>
         <p className="text-muted-foreground text-lg max-w-lg mx-auto mb-6">
-          Weekly Friday-to-Friday departures from London. From 17 July until late September 2026.
+          Weekly Friday-to-Friday departures from London. 4 nights mountains, 3 nights Adriatic coast. Private room included. From 17 July until late September 2026.
         </p>
         <div className="flex items-center justify-center gap-2">
           <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
@@ -111,7 +111,7 @@ export default function DepartureDates() {
                             <span className="text-muted-foreground text-sm">→</span>
                             <span className="text-muted-foreground font-medium">{d.ret}</span>
                           </div>
-                          <p className="text-xs text-muted-foreground mt-1">8 days · Friday departure · Max 8 guests</p>
+                          <p className="text-xs text-muted-foreground mt-1">7 nights · 4 Mountains + 3 Coast · Max 8 guests</p>
                         </div>
                         <div className="flex items-center gap-3">
                           <div className="text-right hidden sm:block">

@@ -19,7 +19,8 @@ const QUICK_FACTS = [
   { icon: '💷', label: 'From £899', sub: 'Founder Pricing' },
   { icon: '✈️', label: 'Friday Flights', sub: 'London → Podgorica' },
   { icon: '👥', label: '4–8 Guests', sub: 'Small Groups Only' },
-  { icon: '🗓', label: '7 Days', sub: 'Fully Hosted' },
+  { icon: '🗓', label: '7 Nights', sub: '4 Mountains · 3 Coast' },
+  { icon: '🛏', label: 'Private Room', sub: 'Included Every Night' },
   { icon: '🍳', label: 'Breakfast Included', sub: 'Every Morning' },
 ];
 
@@ -45,7 +46,7 @@ const WHO_FOR = [
   { icon: '🌍', label: 'Beyond Spain', desc: 'Somewhere different. Somewhere real.' },
 ];
 
-const INCLUDED_2026 = ['Accommodation', 'Daily Breakfast', 'Airport Transfers', 'Local Transport'];
+const INCLUDED_2026 = ['Private Room (7 Nights)', 'Daily Breakfast', 'Airport Transfers', 'Local Transport'];
 const INCLUDED_2027 = ['Everything in 2026', 'Monthly payment plan', 'Founder discount', 'Priority access'];
 
 const HOST_POINTS = [
@@ -107,11 +108,11 @@ export default function Home() {
           </div>
 
           <h1 className="font-heading text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[1.02] mb-5">
-            Escape London.<br /><em>Discover Montenegro.</em>
+            Escape London.<br /><em>Mountains. Lakes. Coast.</em>
           </h1>
 
           <p className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-            A 7-day hosted small-group adventure from London to Montenegro, combining coastline, mountains, lakes and hidden local experiences.
+            One unforgettable week from London combining North Montenegro, Lake Skadar and the Adriatic Coast.
           </p>
 
           <div className="inline-flex flex-wrap items-center justify-center gap-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 mb-10">
@@ -411,7 +412,8 @@ export default function Home() {
               <div className="px-8 py-8 border-b border-border">
                 <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-2">Summer 2026</p>
                 <h3 className="font-heading text-3xl font-bold text-foreground mb-1">Founder Experience</h3>
-                <div className="flex items-end gap-2 mt-4">
+                <p className="text-muted-foreground text-sm mt-1">4 Nights Mountains · 3 Nights Adriatic Coast</p>
+              <div className="flex items-end gap-2 mt-4">
                   <span className="font-heading text-5xl font-bold text-foreground">£899</span>
                   <span className="text-muted-foreground text-sm mb-1.5">per person</span>
                 </div>
@@ -753,7 +755,7 @@ export default function Home() {
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Ready to escape London and discover Montenegro?
+            Mountains. Lakes. Coast.<br /><em>One week from London.</em>
           </h2>
           <p className="text-white/50 mb-3 text-lg">Small-group Friday departures available throughout Summer 2026.</p>
           <p className="text-white/35 mb-10 text-sm">Only 10 departures available for Summer 2026 &nbsp;·&nbsp; Friday departures from London.</p>

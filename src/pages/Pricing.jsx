@@ -5,7 +5,7 @@ const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97c
 const MOUNTAIN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
 
 const INCLUDED = [
-  { icon: '🏠', label: 'Accommodation', sub: '7 nights included' },
+  { icon: '🛏', label: 'Private Room', sub: '7 nights included' },
   { icon: '🍳', label: 'Daily breakfast', sub: 'Every morning' },
   { icon: '✈️', label: 'Airport pickup', sub: 'From Podgorica (TGD)' },
   { icon: '✈️', label: 'Airport drop-off', sub: 'To Podgorica (TGD)' },
@@ -60,7 +60,7 @@ export default function Pricing() {
             Everything you need.<br /><em>Nothing you don't.</em>
           </h1>
           <p className="text-white/60 text-lg max-w-xl">
-            Simple, transparent pricing for a hosted 7-day Montenegro experience.
+            One unforgettable week from London combining North Montenegro, Lake Skadar and the Adriatic Coast. 4 nights mountains, 3 nights coast. Private room every night.
           </p>
         </div>
       </section>
@@ -74,7 +74,7 @@ export default function Pricing() {
             <div className="px-10 py-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6" style={{ background: 'hsl(158 45% 12%)' }}>
               <div>
                 <span className="inline-block text-xs tracking-[0.3em] uppercase font-semibold text-white/40 mb-2">Summer 2026 · Founder Price</span>
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-white leading-tight">Montenegro<br />7-Day Experience</h2>
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-white leading-tight">Mountains. Lakes. Coast.<br /><em>One Week from London.</em></h2>
                 <p className="text-white/50 mt-2 text-sm">Friday to Friday · From London</p>
               </div>
               <div className="sm:text-right flex-shrink-0">
@@ -248,7 +248,7 @@ export default function Pricing() {
             <span className="text-red-300 text-xs font-semibold tracking-wide">Filling fast — 8 spots per departure</span>
           </div>
           <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Ready to discover<br /><em>Montenegro?</em>
+            Mountains. Lakes. Coast.<br /><em>One week from London.</em>
           </h2>
           <p className="text-white/50 mb-10 text-lg">From £199 deposit. Spaces are limited.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

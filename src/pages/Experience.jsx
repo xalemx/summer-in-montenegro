@@ -20,7 +20,8 @@ const DAYS = [
 ];
 
 const INCLUDED = [
-  '7 nights accommodation',
+  '7 nights accommodation (private room)',
+  '4 nights mountains · 3 nights Adriatic coast',
   'Daily breakfast',
   'Airport pickup from Podgorica',
   'Airport drop-off to Podgorica',
@@ -41,7 +42,7 @@ export default function Experience() {
           <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight mb-3">
             8 Days in Montenegro
           </h1>
-          <p className="text-white/60 text-lg">Coast, Mountains &amp; Hidden Places</p>
+          <p className="text-white/60 text-lg">4 Nights Mountains · 3 Nights Adriatic Coast · Private Room Included</p>
         </div>
       </section>
 
@@ -49,7 +50,7 @@ export default function Experience() {
       <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-            A hosted journey combining Montenegro's southern charm with the wild beauty of the north. Friday flights from London — Friday return.
+            One unforgettable week from London combining North Montenegro, Lake Skadar and the Adriatic Coast. 4 nights in the mountains, 3 nights on the Adriatic. Private room every night. Friday to Friday.
           </p>
           <div className="inline-flex items-center gap-2 py-3 px-5 bg-amber-50 border border-amber-200 rounded-xl text-sm text-amber-800">
             <span className="font-semibold">Note:</span> Optional activities on Day 5 are arranged locally and paid separately. Accommodation and daily breakfast are included throughout.
