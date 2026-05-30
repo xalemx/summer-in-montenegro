@@ -207,6 +207,35 @@ export default function Summer2027() {
         </div>
       </section>
 
+      {/* WHO THIS IS FOR */}
+      <section className="py-24 px-6 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Is This For You?</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Perfect For</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
+            {[
+              { icon: '🧍', label: 'Solo travellers', desc: 'Come alone, leave with friends' },
+              { icon: '💑', label: 'Couples', desc: 'An adventure to share together' },
+              { icon: '👫', label: 'Friends', desc: 'The trip you keep saying you\'ll take' },
+              { icon: '🌿', label: 'Nature lovers', desc: 'Mountains, lakes and wild landscapes' },
+              { icon: '🧗', label: 'Adventure seekers', desc: 'Optional activities for every level' },
+              { icon: '🙅', label: 'Tired of crowded resorts', desc: 'Real places, real people, no queues' },
+              { icon: '🌍', label: 'Beyond Spain or Portugal', desc: 'Somewhere different, somewhere real' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 p-5 rounded-2xl bg-card border border-border shadow-sm">
+                <span className="text-3xl">{item.icon}</span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(158 45% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
