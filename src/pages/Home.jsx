@@ -375,26 +375,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY MONTENEGRO */}
+      {/* WHY MONTENEGRO — 6 CARDS */}
       <section className="py-28 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">The Real Difference</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why People Are Choosing Montenegro</h2>
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Europe's Hidden Gem</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why Montenegro?</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { icon: '🔝', title: 'Mountains and coast in one trip', desc: 'Swim in the Adriatic in the morning. Be in the mountains by afternoon. No other destination does this.' },
+              { icon: '🏔', title: 'Mountains and coast in one trip', desc: 'Swim in the Adriatic in the morning. Be in the mountains by afternoon. No other destination does this.' },
               { icon: '🙌', title: 'Less crowded than Spain and Portugal', desc: 'Fewer tourists, shorter queues, lower prices. The experience Spain had 30 years ago.' },
-              { icon: '🗺️', title: 'Hidden locations', desc: 'We go to places that don\'t appear on mainstream travel lists. No tour buses, no crowds.' },
               { icon: '🤝', title: 'Authentic local experiences', desc: 'Local cafés, real villages, genuine hospitality. Not a curated version of culture — the actual thing.' },
-              { icon: '👥', title: 'Small groups', desc: 'Maximum 8 guests per departure. Intentionally small so it feels personal, not like a package tour.' },
-              { icon: '🧑\u200d🌍', title: 'Local host', desc: 'Alem grew up between the UK and Montenegro. He knows the country, the people and the places most visitors never find.' },
+              { icon: '💎', title: "Europe's hidden gem", desc: 'Pristine national parks, glacial lakes and a dramatic coastline — almost entirely undiscovered by mass tourism.' },
+              { icon: '🛏', title: 'Private room included', desc: 'Every guest gets their own private room for all 7 nights. No dorms, no sharing unless you choose to.' },
+              { icon: '👥', title: 'Small groups only', desc: 'Maximum 8 guests per departure. Intentionally small so it feels personal, not like a package tour.' },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 p-6 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                <span className="text-2xl mt-0.5 flex-shrink-0">{item.icon}</span>
+                <span className="text-3xl mt-0.5 flex-shrink-0">{item.icon}</span>
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-2">
                     <span className="text-green-600 font-bold text-sm">✓</span>
                     <p className="font-semibold text-sm text-foreground">{item.title}</p>
                   </div>

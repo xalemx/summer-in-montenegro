@@ -34,6 +34,14 @@ const STEPS = [
   { icon: CheckCircle, label: 'Confirm' },
 ];
 
+const PROCESS_STEPS = [
+  { n: '1', label: 'Submit enquiry', sub: 'Takes under 2 minutes' },
+  { n: '2', label: 'We confirm availability', sub: 'Within 24 hours on WhatsApp' },
+  { n: '3', label: 'Book your flight', sub: 'Friday London \u2192 Podgorica (TGD)' },
+  { n: '4', label: 'Receive trip information', sub: 'Full details, packing list & everything you need' },
+  { n: '5', label: 'Meet your group in Montenegro', sub: 'Airport pickup included' },
+];
+
 export default function Book() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
@@ -92,28 +100,26 @@ export default function Book() {
   return (
     <div className="py-16 md:py-24 px-4">
       <div className="max-w-2xl mx-auto">
-        {/* What happens next */}
-        <div className="mb-10 bg-card rounded-2xl border border-border p-6 shadow-sm">
-          <h3 className="font-heading text-lg font-semibold text-center mb-5">What Happens After You Submit?</h3>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-0">
-            {[
-              { n: '1', label: 'Submit your enquiry', sub: 'Takes 2 minutes' },
-              { n: '2', label: 'We confirm availability', sub: 'Within 24 hours' },
-              { n: '3', label: 'Book your flight', sub: 'Friday London → Podgorica' },
-              { n: '4', label: 'Receive trip info', sub: 'Full details & packing list' },
-              { n: '5', label: 'Meet your group', sub: 'At the airport in Montenegro' },
-            ].map((step, i, arr) => (
-              <div key={i} className="flex sm:flex-col items-center sm:items-center flex-1 gap-3 sm:gap-2">
-                <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center flex-shrink-0">{step.n}</div>
-                <div className="sm:text-center">
-                  <p className="font-semibold text-xs text-foreground leading-tight">{step.label}</p>
-                  <p className="text-xs text-muted-foreground">{step.sub}</p>
+
+        {/* What Happens Next */}
+        <div className="mb-10">
+          <div className="text-center mb-6">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-2">Simple Process</p>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">What Happens Next?</h2>
+          </div>
+          <div className="flex flex-col gap-3">
+            {PROCESS_STEPS.map((s, i) => (
+              <div key={i} className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border shadow-sm">
+                <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center flex-shrink-0">{s.n}</div>
+                <div>
+                  <p className="font-semibold text-sm text-foreground leading-tight">{s.label}</p>
+                  <p className="text-xs text-muted-foreground">{s.sub}</p>
                 </div>
-                {i < arr.length - 1 && <div className="hidden sm:block w-full h-px bg-border flex-1" />}
               </div>
             ))}
           </div>
         </div>
+
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-center mb-2">Reserve Your Spot</h1>
         <p className="text-center text-muted-foreground text-sm mb-4">Summer 2026 · 4 Nights Mountains · 3 Nights Adriatic Coast · Private Room Included</p>
         <div className="flex items-center justify-center gap-2 mb-8">
@@ -158,7 +164,6 @@ export default function Book() {
                         : 'border-border hover:border-primary/40'
                     }`}
                   >
-                    {/* Booking progress bar */}
                     <div className="mb-2">
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-xs text-muted-foreground font-medium">{8 - d.spots} / 8 booked</span>

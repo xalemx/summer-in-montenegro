@@ -3,8 +3,26 @@ import { ArrowRight, MapPin } from 'lucide-react';
 
 const HERO_IMG = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1400&q=80';
 
-const PARTNERS = [
+const BASES = [
   {
+    title: 'North Montenegro Base',
+    location: 'Gusinje',
+    nights: 4,
+    desc: 'Your mountain base for the first half of the trip. Set at the foot of the Prokletije range, Gusinje is one of the most dramatic and unspoiled valleys in the Balkans.',
+    img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/4b9c461a7_kenneth-sonntag-_fnQwAsQ28A-unsplash.jpg',
+    tag: 'Mountains',
+  },
+  {
+    title: 'South Montenegro Base',
+    location: 'Bar',
+    nights: 3,
+    desc: 'Your coastal base for the second half of the trip. Bar sits on the Adriatic coast — a gateway to Old Bar, Ulcinj and Ada Bojana.',
+    img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/62be0a92d_maria-ivanova-uf_VKwoqAJQ-unsplash.jpg',
+    tag: 'Coast',
+  },
+];
+
+const PARTNERS = [{
     name: 'MountainView Resort',
     location: 'Gusinje',
     desc: 'Modern mountain resort hotel with scenic views of the surrounding peaks. Rated 4.6 on Google.',
@@ -55,34 +73,46 @@ export default function Accommodation() {
         </div>
       </section>
 
-      {/* BASES */}
+      {/* INTRO */}
       <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid sm:grid-cols-2 gap-5 mb-10">
-            <div className="flex items-start gap-5 p-6 rounded-2xl bg-card border border-border shadow-sm">
-              <span className="text-3xl flex-shrink-0">🏔</span>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold mb-1">North Montenegro Base</p>
-                <h3 className="font-heading text-2xl font-bold text-foreground mb-1">Gusinje</h3>
-                <p className="text-sm text-muted-foreground">4 nights</p>
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
+            From coastal arrivals on the Adriatic to mountain guesthouses in the north, every night is arranged in carefully selected local stays.
+          </p>
+        </div>
+      </section>
+
+      {/* TWO BASES */}
+      <section className="pb-12 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {BASES.map((b, i) => (
+              <div key={i} className="group rounded-3xl overflow-hidden shadow-sm border border-border bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="relative overflow-hidden" style={{ aspectRatio: '16/10' }}>
+                  <img src={b.img} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                    <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">{b.tag}</span>
+                    <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20">{b.nights} nights</span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="font-heading text-xl font-bold text-foreground mb-1">{b.title}</h3>
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <MapPin size={12} className="text-primary flex-shrink-0" />
+                    <p className="text-xs text-muted-foreground font-medium">{b.location}</p>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{b.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-5 p-6 rounded-2xl bg-card border border-border shadow-sm">
-              <span className="text-3xl flex-shrink-0">🌊</span>
-              <div>
-                <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold mb-1">South Montenegro Base</p>
-                <h3 className="font-heading text-2xl font-bold text-foreground mb-1">Bar</h3>
-                <p className="text-sm text-muted-foreground">3 nights</p>
-              </div>
-            </div>
+            ))}
           </div>
-          <div className="flex gap-4 p-5 rounded-2xl bg-primary/5 border border-primary/15">
+          <div className="flex gap-4 p-6 rounded-2xl bg-card border border-border shadow-sm">
             <div className="flex-shrink-0 w-1 rounded-full bg-primary/30 self-stretch" />
             <div>
-              <p className="text-sm font-semibold text-foreground mb-1">Private room, every night.</p>
+              <p className="text-sm font-semibold text-foreground mb-1">Private room included every night.</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Accommodation may vary depending on availability, but all guests receive a private room.
-                We work with carefully selected local accommodation partners.
+                Accommodation may vary depending on availability, but all guests receive a private room. We work with carefully selected local accommodation partners.
               </p>
             </div>
           </div>
@@ -91,7 +121,18 @@ export default function Accommodation() {
 
       {/* PARTNER CARDS */}
       <section className="pb-20 px-6">
-
+        <div className="max-w-5xl mx-auto mb-8">
+          <div className="flex gap-4 p-5 rounded-2xl bg-card border border-border/60 shadow-sm">
+            <div className="flex-shrink-0 w-1 rounded-full bg-primary/30 self-stretch" />
+            <div>
+              <p className="text-sm font-semibold text-foreground mb-1">Example accommodation shown.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Accommodation may vary depending on departure date, group size and availability.
+                We only work with trusted local accommodation partners.
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6">
           {PARTNERS.map((p, i) => (
             <div key={i} className="group bg-card rounded-3xl overflow-hidden shadow-sm border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
@@ -121,11 +162,6 @@ export default function Accommodation() {
           ))}
         </div>
 
-        <div className="max-w-5xl mx-auto mt-8">
-          <p className="text-center text-sm text-muted-foreground">
-            Accommodation may vary depending on group size, departure date and availability.
-          </p>
-        </div>
       </section>
 
       {/* CTA */}
