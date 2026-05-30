@@ -118,6 +118,12 @@ export default function Book() {
           </div>
         </div>
 
+        <div className="flex justify-center mb-4">
+          <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2">
+            <span className="text-primary text-sm">🔒</span>
+            <span className="text-sm font-medium text-primary">Reserve your place with only a £199 deposit.</span>
+          </div>
+        </div>
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-center mb-2">Reserve Your Spot</h1>
         <p className="text-center text-muted-foreground text-sm mb-4">Summer 2026 · 4 Nights Mountains · 3 Nights Adriatic Coast · Private Room Included</p>
         <div className="flex items-center justify-center gap-2 mb-8">

@@ -137,6 +137,11 @@ export default function Summer2027() {
           </div>
 
           <div className="text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2 mb-6">
+              <span className="text-primary text-sm">🔒</span>
+              <span className="text-sm font-medium text-primary">Reserve your place with only a £199 deposit.</span>
+            </div>
+            <br />
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-105 transition-all shadow-lg"

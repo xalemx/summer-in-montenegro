@@ -67,6 +67,12 @@ export default function Pricing() {
       {/* MAIN PRICE CARD */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-5 py-2">
+              <span className="text-primary text-sm">🔒</span>
+              <span className="text-sm font-medium text-primary">Reserve your place with only a £199 deposit.</span>
+            </div>
+          </div>
           <div className="rounded-3xl overflow-hidden shadow-2xl border border-border">
 
             {/* Header */}
