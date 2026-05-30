@@ -8,7 +8,7 @@ const DAYS = [
   { day: 2, weekday: 'Saturday', title: 'Scenic Road Trip North', text: 'Travel towards Plav and Gusinje with scenic stops, mountain views and local atmosphere.', note: null },
   { day: 3, weekday: 'Sunday', title: 'Prokletije National Park', text: 'Explore the wild beauty of Prokletije with scenic nature routes and optional guided walking/hiking depending on group level.', note: null },
   { day: 4, weekday: 'Monday', title: 'Plav Lake & Slow Travel', text: 'Relax around Plav Lake, enjoy cafés, views, swimming or optional local experiences.', note: null },
-  { day: 5, weekday: 'Tuesday', title: 'Optional Adventure Day', text: 'Guests can choose optional activities such as horse riding, 4x4 tours or guided hiking.', note: 'Optional activities are arranged locally and paid separately by guests.' },
+  { day: 5, weekday: 'Tuesday', title: 'Optional Adventure Day', text: 'Guests can choose optional activities such as rafting, horse riding, kayaking, 4x4 tours or guided hiking.', note: 'Optional activities are arranged locally and paid separately by guests.' },
   { day: 6, weekday: 'Wednesday', title: 'Authentic Montenegro', text: 'Local villages, viewpoints, traditional food options and cultural experiences.', note: null },
   { day: 7, weekday: 'Thursday', title: 'Return South', text: 'Scenic return towards South Montenegro with a relaxed final evening.', note: null },
   { day: 8, weekday: 'Friday', title: 'Airport Drop-Off', text: 'Transfer to Podgorica Airport for departure. Safe travels home.', note: null },
