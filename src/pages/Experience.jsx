@@ -9,14 +9,14 @@ const ROAD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97c
 const LAKESIDE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/9c815610c_laurynas-zizys-lZ7ra80csh4-unsplash.jpg';
 
 const DAYS = [
-  { day: 1, weekday: 'Friday', title: 'Arrival & South Montenegro', text: 'Guests arrive at Podgorica Airport. Airport pickup and transfer to South Montenegro. Relaxed welcome evening by the coast or scenic southern location.', note: null },
-  { day: 2, weekday: 'Saturday', title: 'Scenic Road Trip North', text: 'Travel towards Plav and Gusinje with scenic stops, mountain views and local atmosphere.', note: null },
-  { day: 3, weekday: 'Sunday', title: 'Prokletije National Park', text: 'Explore the wild beauty of Prokletije with scenic nature routes and optional guided walking/hiking depending on group level.', note: null },
-  { day: 4, weekday: 'Monday', title: 'Plav Lake & Slow Travel', text: 'Relax around Plav Lake, enjoy cafés, views, swimming or optional local experiences.', note: null },
-  { day: 5, weekday: 'Tuesday', title: 'Optional Adventure Day', text: 'Guests can choose optional activities such as horse riding, kayaking, 4x4 tours or guided hiking.', note: 'Optional activities are arranged locally and paid separately by guests.' },
-  { day: 6, weekday: 'Wednesday', title: 'Authentic Montenegro', text: 'Local villages, viewpoints, traditional food options and cultural experiences.', note: null },
-  { day: 7, weekday: 'Thursday', title: 'Return South', text: 'Scenic return towards South Montenegro with a relaxed final evening.', note: null },
-  { day: 8, weekday: 'Friday', title: 'Airport Drop-Off', text: 'Transfer to Podgorica Airport for departure. Safe travels home.', note: null },
+  { day: 1, weekday: 'Friday', title: 'Arrival — Podgorica to Gusinje', text: 'Arrive at Podgorica Airport. Airport pickup and a scenic stop at Biogradska Gora National Park en route north. Transfer to Gusinje. Check in and settle in for the week.', note: null },
+  { day: 2, weekday: 'Saturday', title: 'Ali Pasha Springs & Grlja Waterfall', text: 'Morning visit to the famous Ali Pasha Springs — crystal-clear glacial waters at the foot of the Prokletije range. Continue to Grlja Waterfall and explore the village of Vusanje.', note: null },
+  { day: 3, weekday: 'Sunday', title: 'Prokletije National Park', text: 'A full day in Prokletije National Park. Explore Grebaje Valley — one of the most dramatic alpine landscapes in the Balkans. Optional guided hiking available depending on group preference.', note: 'Optional hiking is arranged locally and paid separately by guests.' },
+  { day: 4, weekday: 'Monday', title: 'Plav Lake — Relaxed Day', text: 'A slower day around beautiful Plav Lake. Optional horse riding and rafting available for those who want activity. Otherwise, relax, swim, and take in the views at your own pace.', note: 'Optional activities are arranged locally and paid separately.' },
+  { day: 5, weekday: 'Tuesday', title: 'Scenic Transfer South — Lake Skadar', text: 'Leave the north and head south on a scenic road trip. Stop at Lake Skadar — one of the largest lakes in Europe, surrounded by wildlife and mountain scenery. Arrive in Bar for the second half of the week.', note: null },
+  { day: 6, weekday: 'Wednesday', title: 'Old Bar & The Coast', text: 'Morning in the ancient ruins of Old Bar, one of the most atmospheric historic sites in Montenegro. Afternoon on the beach — time to swim, relax and enjoy the Adriatic.', note: null },
+  { day: 7, weekday: 'Thursday', title: 'Ulcinj & Ada Bojana', text: 'Day trip to Ulcinj, Montenegro\'s most southerly town. Visit Ada Bojana — a river island with a unique beach. Free time to explore, swim and watch the sunset over the Adriatic.', note: null },
+  { day: 8, weekday: 'Friday', title: 'Airport Transfer — Departure', text: 'Transfer back to Podgorica Airport for departure. Safe travels home.', note: null },
 ];
 
 const INCLUDED = [
