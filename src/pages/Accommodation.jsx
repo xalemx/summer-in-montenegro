@@ -55,29 +55,43 @@ export default function Accommodation() {
         </div>
       </section>
 
-      {/* INTRO */}
+      {/* BASES */}
       <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
-            From coastal arrivals on the Adriatic to mountain guesthouses in the north, every night is arranged in carefully selected local stays.
-          </p>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-5 mb-10">
+            <div className="flex items-start gap-5 p-6 rounded-2xl bg-card border border-border shadow-sm">
+              <span className="text-3xl flex-shrink-0">🏔</span>
+              <div>
+                <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold mb-1">North Montenegro Base</p>
+                <h3 className="font-heading text-2xl font-bold text-foreground mb-1">Gusinje</h3>
+                <p className="text-sm text-muted-foreground">4 nights</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-5 p-6 rounded-2xl bg-card border border-border shadow-sm">
+              <span className="text-3xl flex-shrink-0">🌊</span>
+              <div>
+                <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold mb-1">South Montenegro Base</p>
+                <h3 className="font-heading text-2xl font-bold text-foreground mb-1">Bar</h3>
+                <p className="text-sm text-muted-foreground">3 nights</p>
+              </div>
+            </div>
+          </div>
+          <div className="flex gap-4 p-5 rounded-2xl bg-primary/5 border border-primary/15">
+            <div className="flex-shrink-0 w-1 rounded-full bg-primary/30 self-stretch" />
+            <div>
+              <p className="text-sm font-semibold text-foreground mb-1">Private room, every night.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Accommodation may vary depending on availability, but all guests receive a private room.
+                We work with carefully selected local accommodation partners.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* PARTNER CARDS */}
       <section className="pb-20 px-6">
-        <div className="max-w-5xl mx-auto mb-8">
-          <div className="flex gap-4 p-5 rounded-2xl bg-card border border-border/60 shadow-sm">
-            <div className="flex-shrink-0 w-1 rounded-full bg-primary/30 self-stretch" />
-            <div>
-              <p className="text-sm font-semibold text-foreground mb-1">Example accommodation shown.</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Accommodation may vary depending on departure date, group size and availability.
-                We only work with trusted local accommodation partners.
-              </p>
-            </div>
-          </div>
-        </div>
+
         <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6">
           {PARTNERS.map((p, i) => (
             <div key={i} className="group bg-card rounded-3xl overflow-hidden shadow-sm border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
