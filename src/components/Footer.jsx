@@ -7,7 +7,7 @@ const LINKS = [
   { label: 'Pricing', to: '/pricing' },
   { label: 'Accommodation', to: '/accommodation' },
   { label: 'Activities', to: '/activities' },
-  { label: 'Gallery', to: '/gallery' },
+
   { label: 'Summer 2027', to: '/summer-2027' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
