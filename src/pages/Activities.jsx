@@ -10,12 +10,12 @@ const SPRINGS_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee
 const FOOD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/f1c34b4b6_generated_0a69661e.png';
 
 const ACTIVITIES = [
-  { title: 'Horse Riding', desc: 'Mountain horse riding experiences through the Prokletije foothills and alpine meadows.', img: HORSE_IMG, level: 'Moderate' },
-  { title: 'Kayaking', desc: 'Kayaking on Plav Lake with spectacular mountain views and crystal-clear water.', img: LAKE_IMG, level: 'Easy' },
-  { title: 'Guided Hiking', desc: 'Guided routes in Prokletije National Park — from easy scenic walks to more demanding trails.', img: MTN_IMG, level: 'All levels' },
-  { title: '4x4 Scenic Tours', desc: 'Off-road exploration through remote mountain villages and hidden landscapes.', img: COAST_IMG, level: 'Easy' },
-  { title: 'Lake Experiences', desc: 'Swimming, relaxing and exploring the shores of Plav Lake at 900m altitude.', img: SPRINGS_IMG, level: 'Easy' },
-  { title: 'Local Food Experiences', desc: 'Traditional Montenegrin cuisine, home cooking and local food culture.', img: FOOD_IMG, level: 'All levels' },
+  { title: 'Rafting', desc: 'White-water rafting through Montenegro\'s dramatic river canyons.', img: HORSE_IMG, level: 'Moderate', price: '€35–€50' },
+  { title: 'Horse Riding', desc: 'Mountain horse riding through the Prokletije foothills and alpine meadows.', img: HORSE_IMG, level: 'Easy', price: '€20–€40' },
+  { title: 'Kayaking', desc: 'Kayaking on Plav Lake with spectacular mountain views and crystal-clear water.', img: LAKE_IMG, level: 'Easy', price: '€10–€20' },
+  { title: '4x4 Scenic Tours', desc: 'Off-road exploration through remote mountain villages and hidden landscapes.', img: COAST_IMG, level: 'Easy', price: '€40–€70' },
+  { title: 'Guided Hiking', desc: 'Guided routes in Prokletije National Park — from easy scenic walks to more demanding trails.', img: MTN_IMG, level: 'All levels', price: 'Varies' },
+  { title: 'Local Food Experiences', desc: 'Traditional Montenegrin cuisine, home cooking and local food culture.', img: FOOD_IMG, level: 'All levels', price: 'Varies' },
 ];
 
 export default function Activities() {
@@ -65,7 +65,10 @@ export default function Activities() {
               </div>
               <div className="p-5">
                 <p className="text-sm text-muted-foreground leading-relaxed mb-3">{a.desc}</p>
-                <span className="text-xs text-amber-700 font-semibold bg-amber-50 border border-amber-200 rounded-full px-3 py-1">Paid separately · Arranged locally</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-amber-700 font-semibold bg-amber-50 border border-amber-200 rounded-full px-3 py-1">Paid separately · Locally arranged</span>
+                  <span className="text-sm font-bold text-foreground">{a.price}</span>
+                </div>
               </div>
             </div>
           ))}

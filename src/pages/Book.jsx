@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { CheckCircle, ChevronRight, ChevronLeft, Calendar, Users, User, MessageCircle } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -229,6 +230,17 @@ export default function Book() {
               <div className="space-y-1.5">
                 <Label>Medical notes or accessibility needs</Label>
                 <Input value={form.medical_notes} onChange={e => set('medical_notes', e.target.value)} placeholder="Any relevant medical or accessibility information" />
+              </div>
+              <div className="space-y-1.5">
+                <Label>How did you hear about us?</Label>
+                <Select onValueChange={v => set('referral', v)}>
+                  <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                  <SelectContent>
+                    {['TikTok','Instagram','Facebook','Google','Friend','Other'].map(s => (
+                      <SelectItem key={s} value={s}>{s}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div className="space-y-1.5">
                 <Label>Anything else we should know?</Label>

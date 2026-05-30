@@ -18,6 +18,20 @@ const QUICK_FACTS = [
   { icon: '🍳', label: 'Breakfast Included', sub: 'Every Morning' },
 ];
 
+const SPAIN_CONS = ['Crowded resorts', 'Busy beaches', 'Mass tourism', 'Same experience as everyone else', 'Overpriced summer hotspots'];
+const MONTENEGRO_PROS = ['Hidden locations off every map', 'Mountains and coastline in one trip', 'Authentic local experiences', 'Fewer crowds, untouched nature', "Europe's best-kept secret"];
+
+const WHO_FOR = [
+  { icon: '🧍', label: 'Solo Travellers', desc: 'Come alone, leave with friends' },
+  { icon: '💑', label: 'Couples', desc: 'Share an adventure together' },
+  { icon: '👫', label: 'Friends', desc: "The trip you keep saying you'll book" },
+  { icon: '🌿', label: 'Nature Lovers', desc: 'Mountains, lakes and wild landscapes' },
+  { icon: '🧗', label: 'Adventure Seekers', desc: 'Optional activities for every level' },
+  { icon: '📵', label: 'Digital Detox', desc: 'Disconnect and be present' },
+  { icon: '🙅', label: 'Resort Escapers', desc: 'Real places, real people, no queues' },
+  { icon: '🌍', label: 'Beyond Spain', desc: 'Somewhere different. Somewhere real.' },
+];
+
 const INCLUDED_2026 = ['Accommodation', 'Daily Breakfast', 'Airport Transfers', 'Local Transport'];
 const INCLUDED_2027 = ['Everything in 2026', 'Monthly payment plan', 'Founder discount', 'Priority access'];
 
@@ -25,6 +39,22 @@ const HOST_POINTS = [
   'Small group — 4 to 8 people only',
   'Real places, not tourist routes',
   'Personally coordinated throughout',
+];
+
+const DIFFERENT = [
+  { icon: '🏔', title: "Places people don't go", desc: 'No tour buses. No Tripadvisor badges. Just the real Montenegro.' },
+  { icon: '👥', title: "A group you'll actually like", desc: 'Max 8 people. Intentionally small so it feels like you chose each other.' },
+  { icon: '🏠', title: 'Accommodation sorted', desc: 'Every night is arranged. You show up — we handle the logistics.' },
+  { icon: '🚐', title: 'Zero logistics stress', desc: 'We pick you up. We drop you off. Local transport throughout.' },
+  { icon: '🥾', title: 'Optional adventures', desc: 'Rafting, hiking, horse riding, kayaking — your choice, your pace.' },
+  { icon: '⚡', title: 'Something changes', desc: 'People come back different. Lighter. "I didn\'t know I needed this."' },
+];
+
+const STATS = [
+  { value: '4–8', label: 'Guests per group', sub: 'Never a crowd' },
+  { value: '100%', label: 'Airport pickup', sub: 'Both ways, included' },
+  { value: '7', label: 'Days, fully hosted', sub: 'Accommodation included' },
+  { value: '1', label: 'Dedicated host', sub: 'With you throughout' },
 ];
 
 export default function Home() {
@@ -47,11 +77,15 @@ export default function Home() {
             <span className="text-white/90 text-xs font-semibold tracking-wide">Summer 2026 · Friday departures from London</span>
           </div>
 
-          <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.02] mb-8">
+          <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.02] mb-5">
             Escape London.<br /><em>Discover Montenegro.</em>
           </h1>
 
-          {/* Glass card */}
+          <p className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
+            A 7-day hosted small-group adventure from London to Montenegro, combining coastline, mountains, lakes and hidden local experiences.
+          </p>
+
+          {/* Glass trust strip */}
           <div className="inline-flex flex-wrap items-center justify-center gap-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 mb-10">
             <div className="flex items-center gap-2 text-white/90">
               <span className="text-lg">✈️</span>
@@ -60,17 +94,17 @@ export default function Home() {
             <div className="w-px h-5 bg-white/20 hidden sm:block" />
             <div className="flex items-center gap-2 text-white/90">
               <span className="text-lg">👥</span>
-              <span className="text-sm font-semibold">Small Groups</span>
+              <span className="text-sm font-semibold">4–8 Guests Only</span>
+            </div>
+            <div className="w-px h-5 bg-white/20 hidden sm:block" />
+            <div className="flex items-center gap-2 text-white/90">
+              <span className="text-lg">💷</span>
+              <span className="text-sm font-semibold">From £899 pp</span>
             </div>
             <div className="w-px h-5 bg-white/20 hidden sm:block" />
             <div className="flex items-center gap-2 text-white/90">
               <span className="text-lg">🏔</span>
               <span className="text-sm font-semibold">Coast + Mountains</span>
-            </div>
-            <div className="w-px h-5 bg-white/20 hidden sm:block" />
-            <div className="flex items-center gap-2 text-white/90">
-              <span className="text-lg">💷</span>
-              <span className="text-sm font-semibold">From £899</span>
             </div>
           </div>
 
@@ -81,7 +115,7 @@ export default function Home() {
             </Link>
             <Link to="/dates"
               className="px-10 py-4 border border-white/40 text-white font-medium rounded-full text-sm hover:bg-white/10 transition-all backdrop-blur-sm">
-              View Dates
+              View 2026 Dates
             </Link>
           </div>
         </div>
@@ -97,7 +131,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {QUICK_FACTS.map((f, i) => (
-              <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-secondary/50 border border-border">
+              <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-secondary/50 border border-border shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-2xl flex-shrink-0">{f.icon}</span>
                 <div>
                   <p className="font-bold text-sm text-foreground leading-tight">{f.label}</p>
@@ -105,6 +139,43 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── WHY MONTENEGRO ── */}
+      <section className="py-28 px-6 bg-secondary/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Europe's Hidden Gem</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Why Montenegro?</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="rounded-3xl bg-card border border-border p-8 shadow-sm">
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-5">Spain &amp; Portugal</p>
+              <div className="space-y-3">
+                {SPAIN_CONS.map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <span className="text-red-400 font-bold text-sm flex-shrink-0">✕</span>
+                    <span className="text-muted-foreground text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-3xl border-2 border-primary/30 p-8 shadow-xl relative overflow-hidden" style={{ background: 'hsl(155 43% 18%)' }}>
+              <div className="absolute top-4 right-4">
+                <span className="bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full">Our Pick</span>
+              </div>
+              <p className="text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-5">Montenegro</p>
+              <div className="space-y-3">
+                {MONTENEGRO_PROS.map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <span className="text-green-400 font-bold text-sm flex-shrink-0">✓</span>
+                    <span className="text-white/80 text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -165,8 +236,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── PRICING CARDS ── */}
+      {/* ── WHO IS THIS FOR ── */}
       <section className="py-28 px-6 bg-secondary/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Is This Trip For You?</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight">Who Is This Trip For?</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {WHO_FOR.map((item, i) => (
+              <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-card border border-border shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                <span className="text-2xl">{item.icon}</span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-snug">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRICING CARDS ── */}
+      <section className="py-28 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Choose Your Year</p>
@@ -247,7 +339,7 @@ export default function Home() {
       </section>
 
       {/* ── MEET YOUR HOST ── */}
-      <section className="py-28 px-6 bg-background">
+      <section className="py-28 px-6 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4/5' }}>
@@ -264,10 +356,10 @@ export default function Home() {
                 Meet Your<br /><em>Host.</em>
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4 text-lg">
-                I'm helping travellers discover the real Montenegro — beyond crowded resorts and tourist routes.
+                Summer in Montenegro was created to help UK travellers discover the real Montenegro — beyond crowded resorts and tourist routes.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Every trip is personally coordinated to create an authentic small-group experience through Montenegro's coast, mountains and hidden places.
+                Each trip is personally coordinated to provide an authentic small-group experience through Montenegro's coastline, mountains, lakes and hidden places.
               </p>
               <div className="space-y-3 mb-10">
                 {HOST_POINTS.map((item, i) => (
@@ -283,7 +375,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#25D366] text-white font-bold rounded-full hover:brightness-105 transition-all shadow-lg text-sm"
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.099.543 4.071 1.49 5.787L0 24l6.385-1.673A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.213-3.733.979 1.003-3.627-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
-                Chat on WhatsApp
+                Chat With Your Host
               </a>
             </div>
           </div>
@@ -291,7 +383,7 @@ export default function Home() {
       </section>
 
       {/* ── WHAT MAKES IT DIFFERENT ── */}
-      <section className="py-28 px-6 bg-secondary/30">
+      <section className="py-28 px-6 bg-background">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-20">
             <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">What Makes It Different</p>
@@ -299,12 +391,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {[
-              { value: '4–8', label: 'Guests per group', sub: 'Never a crowd' },
-              { value: '100%', label: 'Airport pickup', sub: 'Both ways, included' },
-              { value: '7', label: 'Days, fully hosted', sub: 'Accommodation included' },
-              { value: '1', label: 'Dedicated host', sub: 'With you throughout' },
-            ].map((s, i) => (
+            {STATS.map((s, i) => (
               <div key={i} className="text-center py-8 px-4 rounded-2xl bg-card border border-border shadow-sm">
                 <p className="font-heading text-4xl md:text-5xl font-bold text-primary mb-1">{s.value}</p>
                 <p className="font-semibold text-foreground text-sm mb-1">{s.label}</p>
@@ -314,15 +401,8 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
-            {[
-              { icon: '🏔', title: "Places people don't go", desc: 'No tour buses. No Tripadvisor badges. Just the real Montenegro.' },
-              { icon: '👥', title: "A group you'll actually like", desc: 'Max 8 people. Intentionally small so it feels like you chose each other.' },
-              { icon: '🏠', title: 'Accommodation sorted', desc: 'Every night is arranged. You show up — we handle the logistics.' },
-              { icon: '🚐', title: 'Zero logistics stress', desc: 'We pick you up. We drop you off. Local transport throughout.' },
-              { icon: '🥾', title: 'Optional adventures', desc: 'Rafting, hiking, horse riding, kayaking — your choice, your pace.' },
-              { icon: '⚡', title: 'Something changes', desc: "People come back different. Lighter. \"I didn't know I needed this.\"" },
-            ].map((item, i) => (
-              <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border">
+            {DIFFERENT.map((item, i) => (
+              <div key={i} className="flex gap-4 p-6 rounded-2xl bg-card border border-border hover:shadow-md transition-shadow">
                 <span className="text-2xl mt-0.5">{item.icon}</span>
                 <div>
                   <p className="font-semibold text-foreground text-sm mb-1">{item.title}</p>
@@ -335,7 +415,7 @@ export default function Home() {
       </section>
 
       {/* ── SOCIAL ── */}
-      <section className="py-16 px-6 bg-background border-t border-border">
+      <section className="py-16 px-6 bg-secondary/30 border-t border-border">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-5">Follow the Journey</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -373,7 +453,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mobile padding for sticky bar */}
       <div className="md:hidden h-20" />
     </div>
   );
