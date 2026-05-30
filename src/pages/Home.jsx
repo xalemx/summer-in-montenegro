@@ -113,8 +113,8 @@ export default function Home() {
 
           <p className="text-white/65 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
             4 nights in Gusinje. 3 nights in Bar.<br />
-            Private room included.<br />
-            Weekly Friday departures from London.
+            One unforgettable week from London.<br />
+            Private room included.
           </p>
 
           <div className="inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 mb-10">
