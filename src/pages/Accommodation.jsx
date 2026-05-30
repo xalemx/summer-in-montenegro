@@ -65,6 +65,10 @@ export default function Accommodation() {
         <img src={HERO_IMG} alt="Montenegro accommodation" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
         <div className="relative z-10 px-6 pb-14 max-w-4xl mx-auto w-full">
+          <div className="inline-flex items-center gap-2 bg-green-500/20 border border-green-400/30 rounded-full px-4 py-1.5 mb-5">
+            <span className="text-green-300 font-bold text-sm">✓</span>
+            <span className="text-green-200 text-xs font-semibold tracking-wide">Private Room Included</span>
+          </div>
           <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-3">Where You'll Stay</p>
           <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight mb-3">
             Authentic Montenegro
@@ -110,9 +114,9 @@ export default function Accommodation() {
           <div className="flex gap-4 p-6 rounded-2xl bg-card border border-border shadow-sm">
             <div className="flex-shrink-0 w-1 rounded-full bg-primary/30 self-stretch" />
             <div>
-              <p className="text-sm font-semibold text-foreground mb-1">Private room included every night.</p>
+              <p className="text-sm font-semibold text-foreground mb-1">✓ Private Room Included</p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Accommodation may vary depending on availability, but all guests receive a private room. We work with carefully selected local accommodation partners.
+                Accommodation may vary depending on availability but every guest receives a private room.
               </p>
             </div>
           </div>

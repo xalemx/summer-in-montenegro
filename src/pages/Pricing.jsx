@@ -5,8 +5,8 @@ const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97c
 const MOUNTAIN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
 
 const INCLUDED = [
-  { icon: '🏠', label: 'Accommodation', sub: '7 nights included' },
   { icon: '🛏', label: 'Private room', sub: 'Every night' },
+  { icon: '🏠', label: 'Accommodation', sub: '7 nights included' },
   { icon: '🍳', label: 'Daily breakfast', sub: 'Every morning' },
   { icon: '✈️', label: 'Airport transfers', sub: 'From/to Podgorica (TGD)' },
   { icon: '🚐', label: 'Local transport', sub: 'Throughout the trip' },
@@ -79,7 +79,7 @@ export default function Pricing() {
               <div className="sm:text-right flex-shrink-0">
                 <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Per person</p>
                 <p className="font-heading text-6xl font-bold text-white leading-none">£999</p>
-                <p className="text-white/40 text-sm mt-2">Deposit from £199</p>
+                <p className="text-white/40 text-sm mt-2">Reserve with £199 deposit.</p>
               </div>
             </div>
 
