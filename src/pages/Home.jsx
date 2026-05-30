@@ -597,10 +597,14 @@ export default function Home() {
                   <span className="text-white/50 text-sm mb-1.5">per person</span>
                 </div>
                 <div className="mt-4 pt-4 border-t border-white/10">
-                  <p className="text-white/60 text-xs mb-1">Or choose flexible payments:</p>
+                  <p className="text-white/60 text-xs mb-2">Or pay monthly:</p>
                   <div className="flex items-end gap-2">
-                    <span className="font-heading text-3xl font-bold text-white">£1,199</span>
-                    <span className="text-white/50 text-sm mb-1">from £84/month</span>
+                    <span className="font-heading text-3xl font-bold text-white">10 × £99.90</span>
+                  </div>
+                  <div className="flex flex-wrap gap-x-4 gap-y-0.5 mt-2">
+                    {['No interest', 'No hidden fees', 'No finance agreement'].map((t, i) => (
+                      <span key={i} className="text-white/50 text-xs flex items-center gap-1"><span className="text-green-400">✓</span>{t}</span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -620,7 +624,7 @@ export default function Home() {
                 <Link to="/summer-2027" className="flex items-center justify-center gap-2 w-full py-4 bg-accent text-accent-foreground font-bold rounded-2xl hover:brightness-110 transition-all shadow-md">
                   Reserve 2027 <ArrowRight size={16} />
                 </Link>
-                <p className="text-xs text-white/30 text-center mt-3">£199 deposit · Pay monthly · 8 spots per week</p>
+                <p className="text-xs text-white/30 text-center mt-3">Pay in full · Or 10 × £99.90 · 8 spots per week</p>
               </div>
             </div>
           </div>
