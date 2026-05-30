@@ -20,6 +20,7 @@ import Book from './pages/Book';
 
 import Pricing from './pages/Pricing';
 import AboutMontenegro from './pages/AboutMontenegro';
+import Gallery from './pages/Gallery';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -61,6 +62,7 @@ const AuthenticatedApp = () => {
 
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about-montenegro" element={<AboutMontenegro />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
