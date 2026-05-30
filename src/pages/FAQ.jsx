@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/d2e76465c_generated_image.png';
 
 const FAQS = [
+  { q: 'Can I travel solo?', a: 'Yes. Many guests travel solo and join small groups of like-minded travellers. Solo travellers often find it one of the best ways to meet people.' },
   { q: 'Are flights included?', a: 'No. Guests book their own flights. The trip is designed around weekly Friday Ryanair flights from London to Podgorica. We can suggest the best options once you reserve.' },
   { q: 'What is included in the price?', a: '7 nights accommodation, daily breakfast, airport pickup and drop-off from Podgorica, local transport during the trip and a hosted group experience throughout.' },
   { q: 'Are activities included?', a: 'No. Optional activities such as rafting, horse riding, kayaking, hiking and 4x4 tours are paid separately. They are arranged locally at your own pace and preference.' },
