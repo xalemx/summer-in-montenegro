@@ -5,14 +5,14 @@ import { base44 } from '@/api/base44Client';
 import { ArrowRight, ArrowDown, Check, Plane, Car, Users, Calendar, User } from 'lucide-react';
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/3d38f555d_videoplayback.mp4';
-const HERO_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80';
-const SILHOUETTE_IMG = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1400&q=80';
-const KOTOR_IMG = 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=1400&q=80';
-const LAKE_IMG = 'https://images.unsplash.com/photo-1439405326854-014607f694d7?w=1400&q=80';
-const MOUNTAIN_IMG = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=80';
-const COAST_IMG = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80';
-const FOOD_IMG = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80';
-const HORSE_IMG = 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1400&q=80';
+const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/6884dd21b_anastasiia-malai-vxzJBvWcunU-unsplash.jpg';
+const SILHOUETTE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/825b35dba_hanna-bezsonova-YThvORZGyaU-unsplash.jpg';
+const KOTOR_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/61df8e3be_petar-lazarevic-J6Ij4p87lD8-unsplash1.jpg';
+const LAKE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/b063d61e1_laurynas-zizys-1DLriK6ghy8-unsplash.jpg';
+const MOUNTAIN_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/4b9c461a7_kenneth-sonntag-_fnQwAsQ28A-unsplash.jpg';
+const COAST_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/62be0a92d_maria-ivanova-uf_VKwoqAJQ-unsplash.jpg';
+const FOOD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1772e29aa_jinhui-chen-u1qsVkb8Lb8-unsplash.jpg';
+const HORSE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/423ad25ba_adventure-albania-B2s-_MbHWf8-unsplash.jpg';
 const HOST_IMG_FALLBACK = 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1400&q=80';
 
 const QUICK_FACTS = [
@@ -670,9 +670,9 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-3 gap-4 mb-6">
             {[
-              { img: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80', label: 'Mountain Guesthouse', loc: 'Prokletije Region' },
-              { img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80', label: 'Lakeside Lodge', loc: 'Plav, North Montenegro' },
-              { img: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80', label: 'Coastal Retreat', loc: 'South Montenegro' },
+              { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/5843b046b_rasmus-andersen-b_1IEUOKwnQ-unsplash.jpg', label: 'Mountain Guesthouse', loc: 'Prokletije Region' },
+              { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/9c815610c_laurynas-zizys-lZ7ra80csh4-unsplash.jpg', label: 'Lakeside Lodge', loc: 'Plav, North Montenegro' },
+              { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/e7669dec9_secret-travel-guide-8Dk-eY8RSFU-unsplash.jpg', label: 'Coastal Retreat', loc: 'South Montenegro' },
             ].map((item, i) => (
               <div key={i} className="rounded-2xl overflow-hidden border border-border shadow-sm group">
                 <div className="relative h-52 overflow-hidden">

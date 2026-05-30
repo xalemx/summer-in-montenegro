@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import MonteMap from '../components/MonteMap';
 
-const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1b071a013_generated_06324ee4.png';
-const GROUP_IMG = 'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=1400&q=80';
-const COFFEE_IMG = 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&q=80';
-const ROAD_IMG = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1400&q=80';
-const LAKESIDE_IMG = 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1400&q=80';
+const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/0ef631d34_alexey-malakhov-BEkKjGPmhrU-unsplash.jpg';
+const GROUP_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/423ad25ba_adventure-albania-B2s-_MbHWf8-unsplash.jpg';
+const COFFEE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/1772e29aa_jinhui-chen-u1qsVkb8Lb8-unsplash.jpg';
+const ROAD_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/a11b66f52_damien-checoury-ZhGbAXHq38A-unsplash.jpg';
+const LAKESIDE_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/9c815610c_laurynas-zizys-lZ7ra80csh4-unsplash.jpg';
 
 const DAYS = [
   { day: 1, weekday: 'Friday', title: 'Arrival & South Montenegro', text: 'Guests arrive at Podgorica Airport. Airport pickup and transfer to South Montenegro. Relaxed welcome evening by the coast or scenic southern location.', note: null },
