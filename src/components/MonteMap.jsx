@@ -25,11 +25,12 @@ const makeIcon = (num) => L.divIcon({
 });
 
 const STOPS = [
-  { num: 1, name: 'Podgorica', desc: 'Day 1 · Arrival. Meet your host. South Montenegro welcome.', lat: 42.441, lng: 19.263 },
-  { num: 2, name: 'Kotor', desc: 'Day 1 · Optional coastal stop — UNESCO bay views, old town walls.', lat: 42.424, lng: 18.771 },
-  { num: 3, name: 'Plav', desc: 'Day 2–4 · Glacial lake at 900m. Swimming, kayaking, coffee by the water.', lat: 42.599, lng: 19.945 },
-  { num: 4, name: 'Gusinje', desc: 'Day 2–6 · Your mountain base. Boutique guesthouse, local food, real life.', lat: 42.558, lng: 19.834 },
-  { num: 5, name: 'Prokletije', desc: 'Day 3 · Accursed Mountains. Epic hikes, viewpoints, mountain air.', lat: 42.510, lng: 19.790 },
+  { num: 1, name: 'Podgorica', desc: 'Day 1 · Arrival. Airport pickup. Your Montenegro adventure begins.', lat: 42.441, lng: 19.263 },
+  { num: 2, name: 'Skadar Lake', desc: 'Day 1 · Scenic stop at the Balkans\' largest lake. Stunning views.', lat: 42.167, lng: 19.267 },
+  { num: 3, name: 'Bar', desc: 'Day 1–2 · Sleep. Coastal town, local atmosphere, Adriatic feel.', lat: 42.098, lng: 19.100 },
+  { num: 4, name: 'Biogradska Gora', desc: 'Day 2 · One of Europe\'s last primeval forests. A hidden gem.', lat: 42.887, lng: 19.609 },
+  { num: 5, name: 'Gusinje', desc: 'Day 2–6 · Your mountain base. Boutique guesthouse, local food, wild landscapes.', lat: 42.558, lng: 19.834 },
+  { num: 6, name: 'Kolašin', desc: 'Day 7 · Return south via this charming mountain town.', lat: 42.823, lng: 19.524 },
 ];
 
 const ROUTE = STOPS.map(s => [s.lat, s.lng]);
@@ -41,17 +42,17 @@ export default function MonteMap() {
         <p className="text-center text-primary/60 text-xs tracking-[0.4em] uppercase mb-4">The Route</p>
         <h2 className="font-heading text-4xl md:text-5xl font-bold text-center text-foreground leading-tight mb-4">
           From coast to mountains.<br />
-          <em>Seven days, five places.</em>
+          <em>Eight days, six places.</em>
         </h2>
         <p className="text-center text-muted-foreground max-w-md mx-auto">
-          Fly into Podgorica, head south to the coast, then drive north into wild Montenegro. Each stop more remote than the last.
+          Fly into Podgorica, stop at Skadar Lake, sleep in Bar, then head north through Biogradska Gora to Gusinje. Return via Kolašin.
         </p>
       </div>
 
       <div className="mx-auto max-w-5xl px-4">
         <div className="rounded-3xl overflow-hidden shadow-xl border border-border" style={{ height: '480px' }}>
           <MapContainer
-            center={[42.52, 19.2]}
+            center={[42.5, 19.35]}
             zoom={9}
             style={{ width: '100%', height: '100%' }}
             scrollWheelZoom={false}
