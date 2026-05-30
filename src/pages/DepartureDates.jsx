@@ -62,11 +62,8 @@ export default function DepartureDates() {
               <div className="p-4 text-center">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${s.classes}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${s.dot} ${s.pulse ? 'animate-pulse' : ''}`}></span>
-                  {s.label}
+                  {s.label}{d.spots > 0 && d.spots < 8 ? ` • ${d.spots} spot${d.spots !== 1 ? 's' : ''} left` : ''}
                 </span>
-                {d.spots > 0 && d.spots < 8 && (
-                  <p className="text-xs text-muted-foreground mt-1">{d.spots} spot{d.spots !== 1 ? 's' : ''} left</p>
-                )}
               </div>
             </div>
             );
