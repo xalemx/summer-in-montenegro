@@ -1,14 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowRight, Play, Check, Plane, Users, MapPin, Coffee, Car } from 'lucide-react';
 
-const SOCIAL_POSTS = [
-  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/ddc6cbee6_generated_image.png', caption: 'Top of the world 🏔️ #Montenegro #hiking', likes: '2.4k', type: 'reel' },
-  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/69e8ce240_generated_image.png', caption: 'Day 3 in the mountains ✨ #travel #adventure', likes: '1.8k', type: 'reel' },
-  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/e5d7ebd76_generated_image.png', caption: 'Local breakfast 🥐 pure magic #foodie', likes: '3.1k', type: 'photo' },
-  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/a7e672def_generated_image.png', caption: 'Plav Lake 💙 words cannot describe it', likes: '5.2k', type: 'reel' },
-  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/4fefc5042_generated_image.png', caption: 'This road 😭 #coast #roadtrip #Montenegro', likes: '4.7k', type: 'reel' },
-  { img: 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/6ec2ad059_generated_image.png', caption: 'Local breakfast 🧀 never eating at a hotel again', likes: '2.9k', type: 'photo' },
-];
+
 
 const HERO_VIDEO = 'https://media.base44.com/videos/public/6a14e6049e3182804fee97ce/50ede03d7_MontenegroDrone4K_BreathtakingLandscapesfromMountainstotheBay_720p.MP4';
 const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/c57a4140f_generated_image.png';
@@ -255,47 +248,18 @@ export default function Home() {
       {/* SOCIAL FEED */}
       <section className="py-32 px-6 bg-secondary/20">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-            <div>
-              <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-2">Follow the Journey</p>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">Real Moments, Real Places</h2>
-            </div>
-            <div className="flex gap-3">
-              <a href="https://www.instagram.com/summerinmontenegro_com" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium">
-                <span className="text-lg">📸</span> Instagram
-              </a>
-              <a href="https://www.tiktok.com/@summerinmontenegro.com" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card hover:bg-secondary transition-colors text-sm font-medium">
-                <span className="text-lg">🎵</span> TikTok
-              </a>
-            </div>
+          <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4 text-center">Follow the Journey</p>
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-8">Find us on social media</h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://www.instagram.com/summerinmontenegro_com" target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-border bg-card hover:border-primary hover:bg-secondary transition-all font-semibold text-sm">
+              <span className="text-2xl">📸</span> @summerinmontenegro_com
+            </a>
+            <a href="https://www.tiktok.com/@summerinmontenegro.com" target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-border bg-card hover:border-primary hover:bg-secondary transition-all font-semibold text-sm">
+              <span className="text-2xl">🎵</span> @summerinmontenegro.com
+            </a>
           </div>
-          <div className="overflow-hidden">
-            <div
-              className="flex gap-3"
-              style={{ animation: 'marquee 32s linear infinite', width: 'max-content' }}
-              onMouseEnter={e => e.currentTarget.style.animationPlayState = 'paused'}
-              onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
-            >
-              {[...SOCIAL_POSTS, ...SOCIAL_POSTS].map((post, i) => (
-                <div key={i} className="group relative rounded-2xl overflow-hidden cursor-pointer flex-shrink-0 transition-all duration-300 hover:scale-105" style={{ aspectRatio: '9/16', width: '160px' }}>
-                  <img src={post.img} alt={post.caption} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  {post.type === 'reel' && (
-                    <div className="absolute top-3 right-3"><div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"><Play size={12} className="text-white fill-white" /></div></div>
-                  )}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <p className="text-white text-xs leading-tight line-clamp-2">{post.caption}</p>
-                    <p className="text-white/60 text-xs mt-1">❤️ {post.likes}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <p className="text-center text-muted-foreground text-xs mt-8">
-            Follow <strong>@summerinmontenegro_com</strong> on Instagram and <strong>@summerinmontenegro.com</strong> on TikTok
-          </p>
         </div>
       </section>
 
@@ -400,6 +364,23 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL LINKS ABOVE FOOTER */}
+      <section className="py-16 px-6 bg-secondary/20 border-t border-border">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">Follow the Journey</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://www.instagram.com/summerinmontenegro_com" target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-border bg-card hover:border-primary hover:bg-secondary transition-all font-semibold text-sm">
+              <span className="text-2xl">📸</span> Instagram &mdash; @summerinmontenegro_com
+            </a>
+            <a href="https://www.tiktok.com/@summerinmontenegro.com" target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-border bg-card hover:border-primary hover:bg-secondary transition-all font-semibold text-sm">
+              <span className="text-2xl">🎵</span> TikTok &mdash; @summerinmontenegro.com
+            </a>
           </div>
         </div>
       </section>
