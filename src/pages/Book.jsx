@@ -34,14 +34,6 @@ const STEPS = [
   { icon: CheckCircle, label: 'Confirm' },
 ];
 
-const PROCESS_STEPS = [
-  { n: '1', label: 'Submit enquiry', sub: 'Takes under 2 minutes' },
-  { n: '2', label: 'We confirm availability', sub: 'Within 24 hours on WhatsApp' },
-  { n: '3', label: 'Book your flight', sub: 'Friday London \u2192 Podgorica (TGD)' },
-  { n: '4', label: 'Receive trip information', sub: 'Full details, packing list & everything you need' },
-  { n: '5', label: 'Meet your group in Montenegro', sub: 'Airport pickup included' },
-];
-
 export default function Book() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
@@ -58,6 +50,8 @@ export default function Book() {
     dietary: '',
     medical_notes: '',
     notes: '',
+    from_london: '',
+    source: '',
   });
 
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
@@ -80,7 +74,7 @@ export default function Book() {
           <p className="text-muted-foreground mb-8 leading-relaxed">
             Thank you for your reservation request. We have received your enquiry and will contact you shortly with availability, recommended flight information and next steps.
           </p>
-          <p className="text-muted-foreground text-sm mb-2">
+          <p className="text-muted-foreground text-sm mb-6">
             Requested: <strong>{form.departure_date}</strong> &nbsp;&middot;&nbsp; Guests: <strong>{form.guests}</strong>
           </p>
           <a
@@ -101,20 +95,24 @@ export default function Book() {
     <div className="py-16 md:py-24 px-4">
       <div className="max-w-2xl mx-auto">
 
-        {/* What Happens Next */}
-        <div className="mb-10">
-          <div className="text-center mb-6">
-            <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-2">Simple Process</p>
-            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">What Happens Next?</h2>
-          </div>
-          <div className="flex flex-col gap-3">
-            {PROCESS_STEPS.map((s, i) => (
-              <div key={i} className="flex items-center gap-4 p-4 bg-card rounded-2xl border border-border shadow-sm">
+        {/* What happens next */}
+        <div className="mb-10 bg-card rounded-2xl border border-border p-6 shadow-sm">
+          <h3 className="font-heading text-lg font-semibold text-center mb-5">What Happens After You Submit?</h3>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-0">
+            {[
+              { n: '1', label: 'Submit your enquiry', sub: 'Takes 2 minutes' },
+              { n: '2', label: 'We confirm availability', sub: 'Within 24 hours' },
+              { n: '3', label: 'Book your flight', sub: 'Friday London to Podgorica' },
+              { n: '4', label: 'Receive trip info', sub: 'Full details & packing list' },
+              { n: '5', label: 'Meet your group', sub: 'At the airport in Montenegro' },
+            ].map((s, i, arr) => (
+              <div key={i} className="flex sm:flex-col items-center sm:items-center flex-1 gap-3 sm:gap-2">
                 <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center flex-shrink-0">{s.n}</div>
-                <div>
-                  <p className="font-semibold text-sm text-foreground leading-tight">{s.label}</p>
+                <div className="sm:text-center">
+                  <p className="font-semibold text-xs text-foreground leading-tight">{s.label}</p>
                   <p className="text-xs text-muted-foreground">{s.sub}</p>
                 </div>
+                {i < arr.length - 1 && <div className="hidden sm:block w-full h-px bg-border flex-1" />}
               </div>
             ))}
           </div>
@@ -154,38 +152,41 @@ export default function Book() {
                 <Calendar size={20} className="text-primary" /> Choose Your Departure
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {DATES.map(d => (
-                  <button
-                    key={d.label}
-                    onClick={() => set('departure_date', d.label)}
-                    className={`text-left p-4 rounded-xl border-2 transition-all ${
-                      form.departure_date === d.label
-                        ? 'border-primary bg-primary/5'
-                        : 'border-border hover:border-primary/40'
-                    }`}
-                  >
-                    <div className="mb-2">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs text-muted-foreground font-medium">{8 - d.spots} / 8 booked</span>
-                        <span className="text-xs text-muted-foreground">{d.spots} left</span>
+                {DATES.map(d => {
+                  const status = getStatusLabel(d.spots);
+                  return (
+                    <button
+                      key={d.label}
+                      onClick={() => set('departure_date', d.label)}
+                      className={`text-left p-4 rounded-xl border-2 transition-all ${
+                        form.departure_date === d.label
+                          ? 'border-primary bg-primary/5'
+                          : 'border-border hover:border-primary/40'
+                      }`}
+                    >
+                      <div className="mb-2">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs text-muted-foreground font-medium">{8 - d.spots} / 8 booked</span>
+                          <span className="text-xs text-muted-foreground">{d.spots} left</span>
+                        </div>
+                        <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-green-500 transition-all"
+                            style={{ width: `${((8 - d.spots) / 8) * 100}%` }}
+                          />
+                        </div>
                       </div>
-                      <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full bg-green-500 transition-all"
-                          style={{ width: `${((8 - d.spots) / 8) * 100}%` }}
-                        />
-                      </div>
-                    </div>
-                    {d.guaranteed && (
-                      <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full border border-green-200 mb-1">
-                        ✓ Guaranteed Departure
-                      </span>
-                    )}
-                    <p className="font-semibold text-sm">{d.label}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{d.sub}</p>
-                    {(() => { const s = getStatusLabel(d.spots); return <p className={`text-xs mt-1.5 font-medium ${s.color}`}>{s.text}</p>; })()}
-                  </button>
-                ))}
+                      {d.guaranteed && (
+                        <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full border border-green-200 mb-1">
+                          ✓ Guaranteed Departure
+                        </span>
+                      )}
+                      <p className="font-semibold text-sm">{d.label}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{d.sub}</p>
+                      <p className={`text-xs mt-1.5 font-medium ${status.color}`}>{status.text}</p>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}

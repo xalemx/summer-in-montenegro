@@ -764,11 +764,15 @@ export default function Home() {
       {/* BOTTOM CTA */}
       <section className="py-28 px-6" style={{ background: 'hsl(155 43% 12%)' }}>
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Mountains. Lakes. Coast.<br /><em>One week from London.</em>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+            Ready for Mountains,<br />Lakes and Coast?
           </h2>
-          <p className="text-white/50 mb-3 text-lg">Small-group Friday departures available throughout Summer 2026.</p>
-          <p className="text-white/35 mb-10 text-sm">Only 10 departures available for Summer 2026 &nbsp;·&nbsp; Friday departures from London.</p>
+          <p className="text-white/60 text-lg mb-3 max-w-xl mx-auto">
+            Join a small group and discover Montenegro beyond the tourist crowds.
+          </p>
+          <div className="text-white/50 text-sm mb-2">4 nights in Gusinje. &nbsp;3 nights in Bar.</div>
+          <div className="text-white/50 text-sm mb-2">Private room included.</div>
+          <div className="text-white/70 font-semibold text-base mb-10">From £999 per person.</div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/book" className="px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-xl text-base">
               Reserve Your Spot
@@ -776,13 +780,7 @@ export default function Home() {
             <Link to="/dates" className="px-10 py-4 border border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all text-base">
               View 2026 Dates
             </Link>
-            <a href="https://wa.me/447758162004?text=Hi%20%E2%80%94%20I%27d%20love%20to%20know%20more%20about%20Summer%20in%20Montenegro!"
-              target="_blank" rel="noopener noreferrer"
-              className="px-10 py-4 bg-[#25D366] text-white font-semibold rounded-full hover:brightness-105 transition-all text-base flex items-center justify-center gap-2">
-              Chat on WhatsApp
-            </a>
           </div>
-          <p className="mt-8 text-white/25 text-xs">Friday departures · 4–8 guests only · From £899 pp · Accommodation included</p>
         </div>
       </section>
 
