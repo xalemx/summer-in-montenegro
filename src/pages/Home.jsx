@@ -151,6 +151,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRUST CARDS */}
+      <section className="py-8 px-4 bg-card border-b border-border">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { label: 'Small Groups Only', sub: 'Max 8 guests per departure' },
+              { label: 'Local Host', sub: 'Personally coordinated throughout' },
+              { label: 'Airport Transfers Included', sub: 'Pickup and drop-off both ways' },
+              { label: 'Friday Departures From London', sub: 'Direct to Podgorica (TGD)' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-secondary/40 border border-border">
+                <span className="text-green-600 font-bold text-base mt-0.5 flex-shrink-0">✓</span>
+                <div>
+                  <p className="font-semibold text-sm text-foreground leading-tight">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* QUICK FACTS */}
       <section className="py-10 px-4 bg-card border-b border-border">
         <div className="max-w-5xl mx-auto">
