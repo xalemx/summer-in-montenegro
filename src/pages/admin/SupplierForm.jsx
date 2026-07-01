@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Plus, Trash2, Save, ArrowLeft } from 'lucide-react';
+import MediaLibraryPicker from '@/components/media/MediaLibraryPicker';
 
 const CATEGORIES = ['Hotel', 'Apartment', 'Villa', 'Transfer Company', 'Private Driver', 'Boat Operator', 'Activity Provider', 'Restaurant', 'Tour Guide', 'National Park', 'Other'];
 const STATUSES = ['active', 'inactive', 'preferred', 'needs_review'];
@@ -23,6 +24,7 @@ export default function SupplierForm() {
   });
   const [loading, setLoading] = useState(isEdit);
   const [busy, setBusy] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -169,16 +171,24 @@ export default function SupplierForm() {
           {/* Photos */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <Label>Photos (URLs)</Label>
-              <button onClick={() => addUrl('photos')} className="text-xs text-primary flex items-center gap-1 hover:underline"><Plus size={14} /> Add photo URL</button>
+              <Label>Photos</Label>
+              <button type="button" onClick={() => setShowPicker(true)} className="text-xs text-primary flex items-center gap-1 hover:underline"><Plus size={14} /> Add from Media Library</button>
             </div>
-            {form.photos.map((url, i) => (
-              <div key={i} className="flex gap-2">
-                <Input value={url} onChange={e => setUrl('photos', i, e.target.value)} placeholder="https://..." />
-                <button onClick={() => removeUrl('photos', i)} className="p-2 text-destructive hover:bg-destructive/10 rounded-lg"><Trash2 size={16} /></button>
+            {form.photos.length > 0 ? (
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                {form.photos.map((url, i) => (
+                  <div key={i} className="relative aspect-square rounded-xl overflow-hidden bg-muted group">
+                    <img src={url} className="w-full h-full object-cover" alt="" />
+                    <button type="button" onClick={() => removeUrl('photos', i)} className="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition"><Trash2 size={14} /></button>
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : (
+              <p className="text-xs text-muted-foreground">No photos yet — pick from the shared library.</p>
+            )}
           </div>
+
+          <MediaLibraryPicker open={showPicker} onClose={() => setShowPicker(false)} exclude={form.photos} onSelect={(urls) => set('photos', Array.from(new Set([...form.photos, ...urls])))} />
 
           {/* Documents */}
           <div className="space-y-1.5">

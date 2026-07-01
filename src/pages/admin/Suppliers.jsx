@@ -71,7 +71,10 @@ export default function Suppliers() {
           <Link to="/admin/suppliers/new" className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-semibold rounded-full px-5 py-2.5 text-sm shadow-sm hover:brightness-105">
             <Plus size={16} /> Add Supplier
           </Link>
-          <Link to="/admin/proposal-builder" className="text-sm text-primary underline">Proposal Builder →</Link>
+          <div className="flex gap-4 items-center">
+            <Link to="/admin/media" className="text-sm text-primary underline">Media Library →</Link>
+            <Link to="/admin/proposal-builder" className="text-sm text-primary underline">Proposal Builder →</Link>
+          </div>
         </div>
 
         {loading && <p className="text-muted-foreground text-center py-10">Loading suppliers…</p>}

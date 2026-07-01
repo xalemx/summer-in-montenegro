@@ -1,0 +1,38 @@
+{
+  "name": "MediaAsset",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "title": "URL",
+      "format": "uri"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category",
+      "enum": [
+        "Hotel",
+        "Restaurant",
+        "Boat",
+        "Beach",
+        "Activity",
+        "Room",
+        "Scenery",
+        "Food",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "tags": {
+      "type": "string",
+      "title": "Tags"
+    }
+  },
+  "required": [
+    "url"
+  ]
+}

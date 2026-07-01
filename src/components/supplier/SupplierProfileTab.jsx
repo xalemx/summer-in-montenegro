@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Upload, Trash2, Loader2 } from 'lucide-react';
+import { Upload, Trash2, Loader2, Library } from 'lucide-react';
+import MediaLibraryPicker from '@/components/media/MediaLibraryPicker';
 
 export default function SupplierProfileTab({ supplier, onUpdate }) {
   const [f, setF] = useState({
@@ -19,6 +20,7 @@ export default function SupplierProfileTab({ supplier, onUpdate }) {
   });
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
 
   const save = async () => {
     setSaving(true);
@@ -44,6 +46,15 @@ export default function SupplierProfileTab({ supplier, onUpdate }) {
       const res = await base44.functions.invoke('supplierPortal', { action: 'remove_photo', index: i });
       onUpdate(res.data.supplier);
     } catch (e) { alert('Could not remove'); }
+  };
+
+  const pickFromLibrary = async (urls) => {
+    for (const url of urls) {
+      try {
+        const res = await base44.functions.invoke('supplierPortal', { action: 'upload_photo', photo_url: url });
+        onUpdate(res.data.supplier);
+      } catch (e) { /* ignore */ }
+    }
   };
 
   return (
@@ -73,12 +84,19 @@ export default function SupplierProfileTab({ supplier, onUpdate }) {
             </div>
           ))}
         </div>
-        <label className="inline-flex items-center gap-2 text-sm bg-secondary text-secondary-foreground rounded-full px-4 py-2 cursor-pointer hover:opacity-90">
-          {uploading ? <Loader2 className="animate-spin" size={16} /> : <Upload size={16} />}
-          Upload photo
-          <input type="file" accept="image/*" className="hidden" onChange={onFile} />
-        </label>
+        <div className="flex flex-wrap gap-3">
+          <label className="inline-flex items-center gap-2 text-sm bg-secondary text-secondary-foreground rounded-full px-4 py-2 cursor-pointer hover:opacity-90">
+            {uploading ? <Loader2 className="animate-spin" size={16} /> : <Upload size={16} />}
+            Upload photo
+            <input type="file" accept="image/*" className="hidden" onChange={onFile} />
+          </label>
+          <button onClick={() => setShowPicker(true)} className="inline-flex items-center gap-2 text-sm bg-primary text-primary-foreground rounded-full px-4 py-2 hover:bg-primary/90">
+            <Library size={16} /> Pick from Media Library
+          </button>
+        </div>
       </div>
+
+      <MediaLibraryPicker open={showPicker} onClose={() => setShowPicker(false)} exclude={supplier.photos || []} onSelect={(urls) => pickFromLibrary(urls)} />
     </div>
   );
 }
