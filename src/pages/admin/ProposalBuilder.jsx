@@ -149,10 +149,55 @@ export default function ProposalBuilder() {
     if (!confirm('Send this proposal to the customer? Status will change to Sent.')) return;
     setBusy(true);
     try {
-      await base44.entities.Proposal.update(proposal.id, { status: 'sent' });
-      setProposal({ ...proposal, status: 'sent' });
+      const sentDate = new Date().toISOString();
+      await base44.entities.Proposal.update(proposal.id, { status: 'sent', sent_date: sentDate });
+      setProposal({ ...proposal, status: 'sent', sent_date: sentDate });
       alert('Proposal sent! Customer view link: ' + window.location.origin + '/proposal/' + proposal.id);
     } catch (e) { alert('Could not send'); } finally { setBusy(false); }
+  };
+
+  const createNewVersion = async () => {
+    if (!confirm(`Create a new version (v${(proposal.version || 1) + 1})? This copies all current items and keeps the old version as history.`)) return;
+    setBusy(true);
+    try {
+      const newVersion = (proposal.version || 1) + 1;
+      const newProp = await base44.entities.Proposal.create({
+        travel_project_id: selectedProjectId,
+        reference_number: proposal.reference_number,
+        version: newVersion,
+        status: 'draft',
+        title: proposal.title,
+        summary: proposal.summary,
+        total_internal_cost: 0,
+        total_customer_price: 0,
+        margin: 0,
+        customer_notes: proposal.customer_notes || '',
+        internal_notes: proposal.internal_notes || '',
+      });
+      if (items.length > 0) {
+        await base44.entities.ProposalItem.bulkCreate(items.map(i => ({
+          proposal_id: newProp.id,
+          travel_project_id: selectedProjectId,
+          day_number: i.day_number,
+          item_type: i.item_type,
+          title: i.title,
+          description: i.description || '',
+          supplier_id: i.supplier_id || '',
+          location: i.location || '',
+          start_time: i.start_time || '',
+          end_time: i.end_time || '',
+          internal_cost: Number(i.internal_cost) || 0,
+          customer_price: Number(i.customer_price) || 0,
+          notes: i.notes || '',
+          sort_order: i.sort_order || 0,
+        })));
+      }
+      setProposal(newProp);
+      const its = await base44.entities.ProposalItem.filter({ proposal_id: newProp.id }, 'day_number', 500);
+      setItems(its);
+      await base44.entities.TravelProject.update(selectedProjectId, { status: 'proposal' });
+      setProject({ ...project, status: 'proposal' });
+    } catch (e) { alert('Could not create new version'); } finally { setBusy(false); }
   };
 
   const itemsByDay = items.reduce((acc, i) => {
@@ -253,7 +298,12 @@ export default function ProposalBuilder() {
                         <span className="text-xs text-muted-foreground">{proposal.reference_number} · v{proposal.version}</span>
                         <span className={`ml-2 text-xs px-2.5 py-1 rounded-full font-medium ${proposal.status === 'draft' ? 'bg-amber-100 text-amber-700' : proposal.status === 'sent' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100'}`}>{proposal.status}</span>
                       </div>
-                      <Link to={`/proposal/${proposal.id}`} target="_blank" className="text-xs text-primary underline">View customer page ↗</Link>
+                      <div className="flex gap-3 items-center">
+                        {proposal.status !== 'draft' && (
+                          <button onClick={createNewVersion} disabled={busy} className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full font-medium hover:bg-primary/20 disabled:opacity-50">+ New Version</button>
+                        )}
+                        <Link to={`/proposal/${proposal.id}`} target="_blank" className="text-xs text-primary underline">View customer page ↗</Link>
+                      </div>
                     </div>
                     <div className="space-y-3">
                       <div className="space-y-1.5">

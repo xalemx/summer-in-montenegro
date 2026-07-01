@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
+import RequestChangesForm from '@/components/proposals/RequestChangesForm';
 import { Button } from '@/components/ui/button';
 import { Check, MessageSquare, XCircle, Calendar, Users, MapPin, Bed, Car, Compass, Utensils } from 'lucide-react';
 
@@ -23,6 +24,7 @@ export default function ProposalView() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [acting, setActing] = useState(false);
+  const [showChangesForm, setShowChangesForm] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -38,11 +40,15 @@ export default function ProposalView() {
     })();
   }, [id]);
 
-  const act = async (status) => {
+  const act = async (action, payload = {}) => {
     setActing(true);
     try {
-      await base44.entities.Proposal.update(id, { status });
-      setProposal({ ...proposal, status });
+      await base44.functions.invoke('respondToProposal', { proposal_id: id, action, ...payload });
+      const updated = await base44.entities.Proposal.get(id);
+      setProposal(updated);
+      if (updated.travel_project_id) {
+        try { setProject(await base44.entities.TravelProject.get(updated.travel_project_id)); } catch {}
+      }
     } catch (e) { alert('Something went wrong'); } finally { setActing(false); }
   };
 
@@ -195,23 +201,43 @@ export default function ProposalView() {
               <h3 className="font-heading text-xl font-bold mb-2">How does this look?</h3>
               <p className="text-muted-foreground text-sm mb-6">Let us know — we're happy to adjust anything.</p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button onClick={() => act('accepted')} disabled={acting} className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8">
+                <Button onClick={() => act('accept')} disabled={acting} className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8">
                   <Check size={18} className="mr-1" /> Accept Proposal
                 </Button>
-                <Button onClick={() => act('changes_requested')} disabled={acting} variant="outline" className="rounded-full px-8">
+                <Button onClick={() => setShowChangesForm(true)} disabled={acting} variant="outline" className="rounded-full px-8">
                   <MessageSquare size={18} className="mr-1" /> Request Changes
                 </Button>
-                <Button onClick={() => { if (confirm('Decline this proposal?')) act('declined'); }} disabled={acting} variant="outline" className="rounded-full px-8 text-destructive border-destructive/40 hover:bg-destructive/10">
+                <Button onClick={() => { const reason = prompt('Optional — tell us why, so we can improve:'); if (reason !== null) act('decline', { decline_reason: reason }); }} disabled={acting} variant="outline" className="rounded-full px-8 text-destructive border-destructive/40 hover:bg-destructive/10">
                   <XCircle size={18} className="mr-1" /> Decline
                 </Button>
               </div>
             </div>
-          ) : proposal.status === 'accepted' && (
-            <div className="text-center bg-green-50 rounded-2xl border border-green-200 p-8">
-              <Check size={28} className="mx-auto text-green-600 mb-2" />
-              <h3 className="font-heading text-xl font-bold text-green-700">Proposal accepted!</h3>
-              <p className="text-muted-foreground text-sm mt-1">We'll be in touch shortly to confirm the details and next steps.</p>
+          ) : (
+            <div className={`text-center rounded-2xl border p-8 ${proposal.status === 'accepted' ? 'bg-green-50 border-green-200' : proposal.status === 'declined' ? 'bg-slate-50 border-slate-200' : 'bg-amber-50 border-amber-200'}`}>
+              {proposal.status === 'accepted' && <Check size={28} className="mx-auto text-green-600 mb-2" />}
+              {proposal.status === 'declined' && <XCircle size={28} className="mx-auto text-slate-500 mb-2" />}
+              {proposal.status === 'changes_requested' && <MessageSquare size={28} className="mx-auto text-amber-600 mb-2" />}
+              <h3 className="font-heading text-xl font-bold mb-1">
+                {proposal.status === 'accepted' && 'Proposal accepted!'}
+                {proposal.status === 'declined' && 'Proposal declined'}
+                {proposal.status === 'changes_requested' && 'Changes requested — thank you'}
+              </h3>
+              <p className="text-muted-foreground text-sm">
+                {proposal.status === 'accepted' && "We'll be in touch shortly to confirm the details and next steps."}
+                {proposal.status === 'declined' && 'Thank you for letting us know. We hope to help plan a future trip.'}
+                {proposal.status === 'changes_requested' && "We've received your feedback and will send an updated proposal soon."}
+              </p>
+              {proposal.customer_response_notes && proposal.status !== 'accepted' && (
+                <p className="text-xs text-muted-foreground mt-3 bg-muted/50 rounded-lg p-3 text-left whitespace-pre-wrap">Your notes: {proposal.customer_response_notes}</p>
+              )}
             </div>
+          )}
+
+          {showChangesForm && (
+            <RequestChangesForm
+              onSubmit={async (areas, notes) => { await act('changes', { change_areas: areas, change_notes: notes }); setShowChangesForm(false); }}
+              onClose={() => setShowChangesForm(false)}
+            />
           )}
         </div>
       </section>

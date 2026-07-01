@@ -58,6 +58,22 @@
     "internal_notes": {
       "type": "string",
       "title": "Internal Notes"
+    },
+    "sent_date": {
+      "type": "string",
+      "title": "Sent Date"
+    },
+    "accepted_date": {
+      "type": "string",
+      "title": "Accepted Date"
+    },
+    "declined_date": {
+      "type": "string",
+      "title": "Declined Date"
+    },
+    "customer_response_notes": {
+      "type": "string",
+      "title": "Customer Response Notes"
     }
   },
   "required": [

@@ -32,7 +32,10 @@
       "enum": [
         "planning",
         "proposal",
+        "changes_requested",
+        "accepted",
         "confirmed",
+        "declined",
         "completed",
         "closed"
       ],
