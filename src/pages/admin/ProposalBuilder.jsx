@@ -146,15 +146,6 @@ export default function ProposalBuilder() {
     } catch (e) { console.error('timeline log failed', e); }
   };
 
-  const itemTypeForCategory = (cat) => {
-    const c = (cat || '').toLowerCase();
-    if (['hotel', 'apartment', 'villa'].includes(c)) return 'Accommodation';
-    if (c === 'restaurant') return 'Restaurant';
-    if (c === 'boat operator') return 'Boat Trip';
-    if (c === 'tour guide') return 'Guide';
-    return 'Activity';
-  };
-
   const generateSuggestions = async () => {
     setGenLoading(true);
     try {
@@ -163,34 +154,84 @@ export default function ProposalBuilder() {
     } catch (e) { alert('Could not generate suggestions'); } finally { setGenLoading(false); }
   };
 
-  const itemTypeForBucket = (bucket, rec) => {
-    if (bucket === 'suppliers') return itemTypeForCategory(rec.category);
+  const itemTypeFromBucket = (bucket, rec) => {
+    if (bucket === 'regions') return 'Experience';
+    if (bucket === 'destinations') return 'Experience';
+    if (bucket === 'routes') return 'Transfer';
+    if (bucket === 'experiences') {
+      const category = (rec.category || '').toLowerCase();
+
+      if (category.includes('boat')) return 'Boat Trip';
+      if (category.includes('food')) return 'Restaurant';
+      if (category.includes('wine')) return 'Experience';
+      if (category.includes('cultural')) return 'Guide';
+      if (category.includes('adventure')) return 'Activity';
+
+      return 'Experience';
+    }
+    if (bucket === 'beaches') return 'Experience';
+    if (bucket === 'national_parks') return 'Activity';
     if (bucket === 'restaurants') return 'Restaurant';
-    if (bucket === 'experiences') return 'Experience';
-    if (['beaches', 'national_parks', 'viewpoints', 'routes'].includes(bucket)) return 'Activity';
-    return 'Other';
+    if (bucket === 'viewpoints') return 'Experience';
+
+    if (bucket === 'suppliers') {
+      const category = (rec.category || '').toLowerCase();
+
+      if (category.includes('hotel') || category.includes('apartment') || category.includes('villa')) {
+        return 'Accommodation';
+      }
+
+      if (category.includes('restaurant')) return 'Restaurant';
+      if (category.includes('boat')) return 'Boat Trip';
+      if (category.includes('guide')) return 'Guide';
+      if (category.includes('driver') || category.includes('transfer')) return 'Transfer';
+
+      return 'Activity';
+    }
+
+    return 'Experience';
   };
 
-  const acceptSuggestion = async (rec, bucket) => {
-    if (!proposal) { alert('Create a proposal first, then accept suggestions.'); return; }
-    const itemType = itemTypeForBucket(bucket, rec);
-    const supplier_id = bucket === 'suppliers' ? rec.id : '';
+  const acceptSuggestion = async (rec, bucket = 'suppliers') => {
+    if (!proposal) {
+      alert('Create a proposal first, then add AI suggestions.');
+      return;
+    }
+
+    const itemType = itemTypeFromBucket(bucket, rec);
+    const dayNumber = Number(rec.suggested_day) || 1;
+
     try {
       await base44.entities.ProposalItem.create({
         proposal_id: proposal.id,
         travel_project_id: selectedProjectId,
-        day_number: rec.suggested_day || 1,
+        day_number: dayNumber,
         item_type: itemType,
         title: rec.name,
-        supplier_id,
-        description: rec.reasons && rec.reasons.length ? 'AI match: ' + rec.reasons.join(' · ') : '',
-        internal_cost: 0, customer_price: 0, sort_order: 0,
+        supplier_id: bucket === 'suppliers' ? rec.id : '',
+        location: rec.region_name || '',
+        description: rec.reasons?.length
+          ? `AI match: ${rec.reasons.join(' · ')}`
+          : `AI suggested ${itemType.toLowerCase()} from ${bucket.replace('_', ' ')} recommendations.`,
+        internal_cost: 0,
+        customer_price: 0,
+        notes: `Added from AI ${bucket} recommendation. Match score: ${rec.match_score || 0}%`,
+        sort_order: 0,
       });
-      const its = await base44.entities.ProposalItem.filter({ proposal_id: proposal.id }, 'day_number', 500);
-      setItems(its);
-      await persistTotals(its);
-      logEvent('item_added', `Added ${itemType}: ${rec.name}`);
-    } catch (e) { alert('Could not add to proposal'); }
+
+      const updatedItems = await base44.entities.ProposalItem.filter(
+        { proposal_id: proposal.id },
+        'day_number',
+        500
+      );
+
+      setItems(updatedItems);
+      await persistTotals(updatedItems);
+      logEvent('item_added', `Added AI suggestion: ${rec.name}`);
+    } catch (error) {
+      console.error(error);
+      alert('Could not add suggestion to proposal');
+    }
   };
 
   const handleItemSave = async (form) => {
