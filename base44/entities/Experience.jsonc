@@ -1,0 +1,93 @@
+{
+  "name": "Experience",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name"
+    },
+    "slug": {
+      "type": "string",
+      "title": "Slug"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category",
+      "enum": [
+        "boat",
+        "food_wine",
+        "adventure",
+        "cultural",
+        "wellness",
+        "nature",
+        "water_sports"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "duration": {
+      "type": "string",
+      "title": "Duration"
+    },
+    "destination_id": {
+      "type": "string",
+      "title": "Destination ID"
+    },
+    "destination_name": {
+      "type": "string",
+      "title": "Destination Name"
+    },
+    "region_id": {
+      "type": "string",
+      "title": "Region ID"
+    },
+    "region_name": {
+      "type": "string",
+      "title": "Region Name"
+    },
+    "best_season": {
+      "type": "string",
+      "title": "Best Season"
+    },
+    "price_range": {
+      "type": "string",
+      "title": "Price Range",
+      "enum": [
+        "budget",
+        "mid_range",
+        "premium",
+        "luxury"
+      ]
+    },
+    "suitable_for": {
+      "type": "string",
+      "title": "Suitable For"
+    },
+    "included": {
+      "type": "string",
+      "title": "What's Included"
+    },
+    "supplier_id": {
+      "type": "string",
+      "title": "Supplier ID"
+    },
+    "photos": {
+      "type": "array",
+      "title": "Photos",
+      "items": {
+        "type": "string"
+      }
+    },
+    "sort_order": {
+      "type": "number",
+      "title": "Sort Order",
+      "default": 0
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ]
+}
