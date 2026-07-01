@@ -1,0 +1,53 @@
+{
+  "name": "TripMessage",
+  "type": "object",
+  "properties": {
+    "travel_project_id": {
+      "type": "string",
+      "title": "Travel Project ID"
+    },
+    "reference_number": {
+      "type": "string",
+      "title": "Reference Number"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "Customer Name"
+    },
+    "message_type": {
+      "type": "string",
+      "title": "Message Type",
+      "enum": [
+        "message",
+        "change_request"
+      ],
+      "default": "message"
+    },
+    "subject": {
+      "type": "string",
+      "title": "Subject"
+    },
+    "message": {
+      "type": "string",
+      "title": "Message"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "new",
+        "read",
+        "actioned"
+      ],
+      "default": "new"
+    },
+    "admin_reply": {
+      "type": "string",
+      "title": "Admin Reply"
+    }
+  },
+  "required": [
+    "travel_project_id",
+    "message"
+  ]
+}

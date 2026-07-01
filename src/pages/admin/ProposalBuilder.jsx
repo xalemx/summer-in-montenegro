@@ -152,7 +152,7 @@ export default function ProposalBuilder() {
       const sentDate = new Date().toISOString();
       await base44.entities.Proposal.update(proposal.id, { status: 'sent', sent_date: sentDate });
       setProposal({ ...proposal, status: 'sent', sent_date: sentDate });
-      alert('Proposal sent! Customer view link: ' + window.location.origin + '/proposal/' + proposal.id);
+      alert('Proposal sent! Customer portal link: ' + window.location.origin + '/trip/' + project.reference_number);
     } catch (e) { alert('Could not send'); } finally { setBusy(false); }
   };
 
