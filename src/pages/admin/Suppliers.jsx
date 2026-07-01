@@ -73,6 +73,7 @@ export default function Suppliers() {
           </Link>
           <div className="flex gap-4 items-center">
             <Link to="/admin/media" className="text-sm text-primary underline">Media Library →</Link>
+            <Link to="/admin/analytics" className="text-sm text-primary underline">Analytics →</Link>
             <Link to="/admin/proposal-builder" className="text-sm text-primary underline">Proposal Builder →</Link>
           </div>
         </div>

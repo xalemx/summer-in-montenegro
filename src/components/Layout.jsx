@@ -1,10 +1,20 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
 import Header from './Header';
 import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
 
 
 export default function Layout() {
+  const location = useLocation();
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.startsWith('/admin') || path.startsWith('/supplier') || path.startsWith('/proposal') || path.startsWith('/trip')) return;
+    let vid = localStorage.getItem('mn_visitor_id');
+    if (!vid) { vid = 'v_' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('mn_visitor_id', vid); }
+    base44.functions.invoke('trackEvent', { event_type: 'page_view', visitor_id: vid, path }).catch(() => {});
+  }, [location.pathname]);
   return (
     <div className="min-h-screen flex flex-col">
 
@@ -16,7 +26,7 @@ export default function Layout() {
       <WhatsAppButton />
 
       {/* Sticky mobile CTA — hidden on /book (has its own nav) */}
-      {useLocation().pathname !== '/book' && (
+      {location.pathname !== '/book' && (
         <div className="fixed bottom-0 inset-x-0 z-50 md:hidden px-4 pb-4 pt-3 bg-background/95 backdrop-blur-lg border-t border-border shadow-2xl">
           <div className="flex gap-3">
             <Link

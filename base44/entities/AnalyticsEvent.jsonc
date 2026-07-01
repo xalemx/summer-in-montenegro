@@ -1,0 +1,23 @@
+{
+  "name": "AnalyticsEvent",
+  "type": "object",
+  "properties": {
+    "event_type": {
+      "type": "string",
+      "title": "Event Type",
+      "default": "page_view"
+    },
+    "visitor_id": {
+      "type": "string",
+      "title": "Visitor ID"
+    },
+    "path": {
+      "type": "string",
+      "title": "Path"
+    }
+  },
+  "required": [
+    "event_type",
+    "visitor_id"
+  ]
+}

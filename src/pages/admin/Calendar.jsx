@@ -99,6 +99,7 @@ export default function Calendar() {
             <h1 className="font-heading text-3xl font-bold">Calendar & Availability</h1>
           </div>
           <div className="flex gap-4 text-sm">
+            <Link to="/admin/analytics" className="text-muted-foreground hover:text-foreground">Analytics →</Link>
             <Link to="/admin/proposal-builder" className="text-muted-foreground hover:text-foreground">← Builder</Link>
             <Link to="/" className="text-muted-foreground hover:text-foreground">← Back to site</Link>
           </div>

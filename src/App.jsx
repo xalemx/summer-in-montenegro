@@ -25,6 +25,7 @@ import Suppliers from './pages/admin/Suppliers';
 import SupplierForm from './pages/admin/SupplierForm';
 import SupplierDetail from './pages/admin/SupplierDetail';
 import MediaLibrary from './pages/admin/MediaLibrary';
+import Analytics from './pages/admin/Analytics';
 
 import Pricing from './pages/Pricing';
 import AboutMontenegro from './pages/AboutMontenegro';
@@ -77,6 +78,7 @@ const AuthenticatedApp = () => {
         <Route path="/admin/suppliers/:id" element={<SupplierDetail />} />
         <Route path="/admin/suppliers/:id/edit" element={<SupplierForm />} />
         <Route path="/admin/media" element={<MediaLibrary />} />
+        <Route path="/admin/analytics" element={<Analytics />} />
         <Route path="/proposal/:id" element={<ProposalView />} />
         <Route path="/trip/:reference_number" element={<TripPortal />} />
 
