@@ -19,7 +19,7 @@ import Contact from './pages/Contact';
 import Book from './pages/Book';
 import ProposalBuilder from './pages/admin/ProposalBuilder';
 import Calendar from './pages/admin/Calendar';
-import ProposalView from './pages/ProposalView';
+import ProposalRedirect from './pages/ProposalRedirect';
 import TripPortal from './pages/TripPortal';
 import Suppliers from './pages/admin/Suppliers';
 import SupplierForm from './pages/admin/SupplierForm';
@@ -79,7 +79,7 @@ const AuthenticatedApp = () => {
         <Route path="/admin/suppliers/:id/edit" element={<SupplierForm />} />
         <Route path="/admin/media" element={<MediaLibrary />} />
         <Route path="/admin/analytics" element={<Analytics />} />
-        <Route path="/proposal/:id" element={<ProposalView />} />
+        <Route path="/proposal/:id" element={<ProposalRedirect />} />
         <Route path="/trip/:reference_number" element={<TripPortal />} />
 
         <Route path="/pricing" element={<Pricing />} />
