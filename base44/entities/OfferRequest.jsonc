@@ -1,0 +1,132 @@
+{
+  "name": "OfferRequest",
+  "type": "object",
+  "properties": {
+    "reference_number": {
+      "type": "string",
+      "title": "Reference Number"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "new",
+        "in_review",
+        "offer_sent",
+        "confirmed",
+        "closed"
+      ],
+      "default": "new"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "Customer Name"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "whatsapp": {
+      "type": "string",
+      "title": "WhatsApp"
+    },
+    "country": {
+      "type": "string",
+      "title": "Country"
+    },
+    "adults": {
+      "type": "number",
+      "title": "Adults",
+      "default": 1
+    },
+    "children": {
+      "type": "number",
+      "title": "Children",
+      "default": 0
+    },
+    "arrival_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Arrival Date"
+    },
+    "departure_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Departure Date"
+    },
+    "flexible_dates": {
+      "type": "boolean",
+      "title": "Flexible Dates",
+      "default": true
+    },
+    "travel_style": {
+      "type": "string",
+      "title": "Travel Style",
+      "enum": [
+        "relaxed",
+        "balanced",
+        "active"
+      ]
+    },
+    "trip_type": {
+      "type": "string",
+      "title": "Trip Type",
+      "enum": [
+        "solo",
+        "couple",
+        "family",
+        "friends",
+        "group"
+      ]
+    },
+    "preferred_regions": {
+      "type": "string",
+      "title": "Preferred Regions"
+    },
+    "accommodation_preferences": {
+      "type": "string",
+      "title": "Accommodation Preferences"
+    },
+    "activities": {
+      "type": "string",
+      "title": "Activities"
+    },
+    "services_required": {
+      "type": "string",
+      "title": "Services Required"
+    },
+    "budget_range": {
+      "type": "string",
+      "title": "Budget Range",
+      "enum": [
+        "budget",
+        "mid_range",
+        "premium",
+        "luxury",
+        "unsure"
+      ]
+    },
+    "special_requests": {
+      "type": "string",
+      "title": "Special Requests"
+    },
+    "preferred_contact_method": {
+      "type": "string",
+      "title": "Preferred Contact Method",
+      "enum": [
+        "whatsapp",
+        "email",
+        "phone"
+      ]
+    },
+    "internal_notes": {
+      "type": "string",
+      "title": "Internal Notes"
+    }
+  },
+  "required": [
+    "customer_name",
+    "email",
+    "whatsapp"
+  ]
+}

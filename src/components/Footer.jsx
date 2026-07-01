@@ -2,13 +2,10 @@ import { Link } from 'react-router-dom';
 
 const LINKS = [
   { label: 'Home', to: '/' },
-  { label: 'Experience', to: '/experience' },
-  { label: 'Dates', to: '/dates' },
-  { label: 'Pricing', to: '/pricing' },
-  { label: 'Accommodation', to: '/accommodation' },
+  { label: 'How It Works', to: '/experience' },
+  { label: 'Explore Montenegro', to: '/about-montenegro' },
+  { label: 'Accommodation Ideas', to: '/accommodation' },
   { label: 'Activities', to: '/activities' },
-
-  { label: 'Summer 2027', to: '/summer-2027' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
 ];
@@ -22,7 +19,7 @@ export default function Footer() {
             <h3 className="font-heading text-2xl font-semibold mb-3">Summer in Montenegro</h3>
             <p className="text-primary-foreground/60 text-xs uppercase tracking-widest mb-3">Based in Montenegro</p>
             <p className="text-primary-foreground/70 text-sm leading-relaxed max-w-xs">
-              Small-group hosted adventures through Montenegro's coast, mountains, lakes and hidden landscapes. Weekly Friday departures from London.
+              Personalised Montenegro travel planning. Tell us what you want and we prepare a bespoke offer for accommodation, transport and experiences.
             </p>
           </div>
           <div>
@@ -74,7 +71,6 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-primary-foreground/10 text-center">
           <p className="text-xs text-primary-foreground/40">© 2026 Summer in Montenegro. All rights reserved.</p>
           <p className="text-xs text-primary-foreground/30 mt-1">WhatsApp · Instagram · Email · We respond within 24 hours</p>
-          © 2026 Summer in Montenegro. All rights reserved.
         </div>
       </div>
     </footer>

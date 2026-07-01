@@ -1,151 +1,75 @@
-import { useState, useEffect } from 'react';
-import PrivateRoomBadge from '../components/PrivateRoomBadge';
+import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
-import { CheckCircle, ChevronRight, ChevronLeft, Calendar, Users, User, MessageCircle } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CheckCircle, Calendar, Users, Compass, MapPin, MessageCircle } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-const DATES = [
-  { label: '17 Jul 2026', sub: 'Friday departure', spots: 2, guaranteed: false },
-  { label: '24 Jul 2026', sub: 'Friday departure', spots: 3, guaranteed: false },
-  { label: '31 Jul 2026', sub: 'Friday departure', spots: 6, guaranteed: false },
-  { label: '7 Aug 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
-  { label: '14 Aug 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
-  { label: '21 Aug 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
-  { label: '28 Aug 2026', sub: 'Friday departure', spots: 7, guaranteed: false },
-  { label: '4 Sep 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
-  { label: '11 Sep 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
-  { label: '18 Sep 2026', sub: 'Friday departure', spots: 8, guaranteed: false },
-];
-
-function getStatusLabel(spots) {
-  if (spots === 0) return { text: 'Sold Out', color: 'text-red-600' };
-  if (spots <= 2) return { text: spots + ' spot' + (spots !== 1 ? 's' : '') + ' left — Almost Full', color: 'text-red-500' };
-  if (spots <= 4) return { text: spots + ' spots — Limited', color: 'text-amber-600' };
-  return { text: spots + ' spots available', color: 'text-primary' };
-}
-
-const STEPS = [
-  { icon: Calendar, label: 'Choose Date' },
-  { icon: Users, label: 'Guests' },
-  { icon: User, label: 'Your Details' },
-  { icon: CheckCircle, label: 'Confirm' },
-];
+const REGIONS = ['Bay of Kotor', 'Budva Riviera', 'Lake Skadar', 'Durmitor', 'Prokletije & Gusinje', 'Bar & Ulcinj', 'Not sure yet'];
+const SERVICES = ['Accommodation', 'Airport transfers', 'Car rental / driver', 'Activities & experiences', 'Full trip planning', 'Just advice'];
 
 export default function Book() {
-  const [step, setStep] = useState(0);
-  const [done, setDone] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState(null); // 'success' | 'cancelled'
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('success') === 'true') setPaymentStatus('success');
-    if (params.get('cancelled') === 'true') setPaymentStatus('cancelled');
-  }, []);
   const [form, setForm] = useState({
-    departure_date: '',
-    guests: 1,
-    full_name: '',
+    customer_name: '',
     email: '',
     whatsapp: '',
     country: '',
-    airport: '',
-    activity_level: 'balanced',
-    dietary: '',
-    medical_notes: '',
-    notes: '',
-    from_london: '',
-    source: '',
+    adults: 1,
+    children: 0,
+    arrival_date: '',
+    departure_date: '',
+    flexible_dates: true,
+    travel_style: 'balanced',
+    trip_type: 'couple',
+    preferred_regions: [],
+    accommodation_preferences: '',
+    activities: '',
+    services_required: [],
+    budget_range: 'mid_range',
+    special_requests: '',
+    preferred_contact_method: 'whatsapp',
   });
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
 
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
+  const toggleArray = (k, v) => setForm(p => {
+    const arr = p[k] || [];
+    return { ...p, [k]: arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v] };
+  });
 
   const submit = async () => {
     setLoading(true);
-    // Check if running inside an iframe (preview)
-    if (window.self !== window.top) {
-      alert('Checkout is only available from the published app, not the editor preview.');
-      setLoading(false);
-      return;
-    }
-    const booking = await base44.entities.BookingRequest.create({ ...form, status: 'new' });
-    const res = await base44.functions.invoke('createCheckoutSession', {
-      departure_date: form.departure_date,
-      guests: form.guests,
-      full_name: form.full_name,
-      email: form.email,
-      booking_id: booking.id,
-    });
-    if (res.data?.url) {
-      window.location.href = res.data.url;
-    } else {
+    try {
+      const payload = {
+        ...form,
+        preferred_regions: form.preferred_regions.join(', '),
+        services_required: form.services_required.join(', '),
+        status: 'new',
+      };
+      await base44.entities.OfferRequest.create(payload);
       setDone(true);
+    } catch (e) {
+      alert('Something went wrong. Please try again or message us on WhatsApp.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
-
-  if (paymentStatus === 'success') {
-    return (
-      <div className="min-h-[70vh] flex items-center justify-center px-4">
-        <div className="max-w-md w-full text-center">
-          <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle size={36} className="text-green-600" />
-          </div>
-          <h2 className="font-heading text-3xl font-bold mb-3">You're booked!</h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
-            Payment received. We will contact you on WhatsApp within 24 hours to confirm your spot and send full trip details.
-          </p>
-          <a
-            href="https://wa.me/447758162004"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#25D366] text-white font-semibold rounded-full text-sm hover:brightness-105 transition-all shadow-md"
-          >
-            <MessageCircle size={18} />
-            Message us on WhatsApp
-          </a>
-        </div>
-      </div>
-    );
-  }
-
-  if (paymentStatus === 'cancelled') {
-    return (
-      <div className="min-h-[70vh] flex items-center justify-center px-4">
-        <div className="max-w-md w-full text-center">
-          <h2 className="font-heading text-2xl font-bold mb-3">Payment cancelled</h2>
-          <p className="text-muted-foreground mb-6">No charge was made. You can try again below.</p>
-          <button
-            onClick={() => setPaymentStatus(null)}
-            className="px-8 py-3 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all"
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   if (done) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center px-4">
-        <div className="max-w-md w-full text-center">
+      <div className="py-20 px-4">
+        <div className="max-w-md mx-auto text-center">
           <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
             <CheckCircle size={36} className="text-primary" />
           </div>
-          <h2 className="font-heading text-3xl font-bold mb-3">{"You're on the list."}</h2>
+          <h2 className="font-heading text-3xl font-bold mb-4">Request received.</h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
-            Thank you for your reservation request. We have received your enquiry and will contact you shortly with availability, recommended flight information and next steps.
-          </p>
-          <p className="text-muted-foreground text-sm mb-6">
-            Requested: <strong>{form.departure_date}</strong> &nbsp;&middot;&nbsp; Guests: <strong>{form.guests}</strong>
+            We received your request and will prepare a personalised Montenegro offer. We'll be in touch within 24 hours.
           </p>
           <a
-            href={`https://wa.me/447758162004?text=Hi! I just submitted a booking request for ${encodeURIComponent(form.departure_date)} for ${form.guests} guest(s).`}
+            href={`https://wa.me/447758162004?text=Hi! I just submitted a trip request for Montenegro.`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#25D366] text-white font-semibold rounded-full text-sm hover:brightness-105 transition-all shadow-md"
@@ -162,274 +86,223 @@ export default function Book() {
     <div className="py-16 md:py-24 px-4">
       <div className="max-w-2xl mx-auto">
 
-        {/* What happens next */}
-        <div className="mb-10 bg-card rounded-2xl border border-border p-6 shadow-sm">
-          <h3 className="font-heading text-lg font-semibold text-center mb-5">What Happens After You Submit?</h3>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-0">
-            {[
-              { n: '1', label: 'Submit your enquiry', sub: 'Takes 2 minutes' },
-              { n: '2', label: 'We confirm availability', sub: 'Within 24 hours' },
-              { n: '3', label: 'Book your flight', sub: 'Friday London to Podgorica' },
-              { n: '4', label: 'Receive trip info', sub: 'Full details & packing list' },
-              { n: '5', label: 'Meet your group', sub: 'At the airport in Montenegro' },
-            ].map((s, i, arr) => (
-              <div key={i} className="flex sm:flex-col items-center sm:items-center flex-1 gap-3 sm:gap-2">
-                <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center flex-shrink-0">{s.n}</div>
-                <div className="sm:text-center">
-                  <p className="font-semibold text-xs text-foreground leading-tight">{s.label}</p>
-                  <p className="text-xs text-muted-foreground">{s.sub}</p>
-                </div>
-                {i < arr.length - 1 && <div className="hidden sm:block w-full h-px bg-border flex-1" />}
+        <div className="text-center mb-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-semibold mb-3">
+            Trip Planner
+          </p>
+          <h1 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            Tell us what you want.
+          </h1>
+          <p className="text-muted-foreground max-w-lg mx-auto">
+            Share your travel wishes and we'll prepare a personalised Montenegro offer — for accommodation, transport and experiences.
+          </p>
+        </div>
+
+        <div className="bg-card rounded-2xl p-6 md:p-8 shadow-sm border border-border space-y-8">
+
+          {/* Contact details */}
+          <section>
+            <h2 className="font-heading text-lg font-semibold mb-4 flex items-center gap-2">
+              <Users size={20} className="text-primary" /> Your Details
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>Full Name *</Label>
+                <Input value={form.customer_name} onChange={e => set('customer_name', e.target.value)} placeholder="Your name" />
               </div>
-            ))}
-          </div>
-        </div>
-
-
-        <h1 className="font-heading text-3xl md:text-4xl font-bold text-center mb-2">Reserve Your Spot</h1>
-        <div className="flex justify-center mb-3">
-          <PrivateRoomBadge size="md" />
-        </div>
-        <p className="text-center text-muted-foreground text-sm mb-4">Summer 2026 · 4 Nights Mountains · 3 Nights Adriatic Coast</p>
-        <div className="flex items-center justify-center gap-2 mb-8">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-sm font-semibold text-red-600">Only 8 guests per departure — some dates already filling up</span>
-        </div>
-
-        {/* Step indicator */}
-        <div className="flex items-center justify-center gap-2 mb-10">
-          {STEPS.map((s, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                i < step ? 'bg-primary text-primary-foreground' :
-                i === step ? 'bg-accent text-accent-foreground' :
-                'bg-muted text-muted-foreground'
-              }`}>
-                {i < step ? '✓' : i + 1}
-              </div>
-              {i < STEPS.length - 1 && (
-                <div className={`h-px w-8 md:w-16 transition-all ${i < step ? 'bg-primary' : 'bg-border'}`} />
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="bg-card rounded-2xl p-6 md:p-8 shadow-sm border border-border min-h-[340px]">
-
-          {/* Step 0 - Choose Date */}
-          {step === 0 && (
-            <div>
-              <h2 className="font-heading text-xl font-semibold mb-6 flex items-center gap-2">
-                <Calendar size={20} className="text-primary" /> Choose Your Departure
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {DATES.map(d => {
-                  const status = getStatusLabel(d.spots);
-                  return (
-                    <button
-                      key={d.label}
-                      onClick={() => set('departure_date', d.label)}
-                      className={`text-left p-4 rounded-xl border-2 transition-all ${
-                        form.departure_date === d.label
-                          ? 'border-primary bg-primary/5'
-                          : 'border-border hover:border-primary/40'
-                      }`}
-                    >
-                      <div className="mb-2">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs text-muted-foreground font-medium">{8 - d.spots} / 8 booked</span>
-                          <span className="text-xs text-muted-foreground">{d.spots} left</span>
-                        </div>
-                        <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-green-500 transition-all"
-                            style={{ width: `${((8 - d.spots) / 8) * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                      {d.guaranteed && (
-                        <span className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full border border-green-200 mb-1">
-                          ✓ Guaranteed Departure
-                        </span>
-                      )}
-                      <p className="font-semibold text-sm">{d.label}</p>
-                      <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1.5">
-                        <span className="text-xs text-muted-foreground">&#10003; 4 Nights Mountains</span>
-                        <span className="text-xs text-muted-foreground">&#10003; 3 Nights Coast</span>
-                        <span className="text-xs text-muted-foreground">&#10003; Private Room</span>
-                      </div>
-                      <p className="text-xs font-semibold text-foreground mt-1.5">£999 per person</p>
-                      <p className={`text-xs mt-1 font-medium ${status.color}`}>{status.text}</p>
-                    </button>
-                  );
-                })}
+              <div className="space-y-1.5">
+                <Label>Email *</Label>
+                <Input type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="your@email.com" />
               </div>
             </div>
-          )}
-
-          {/* Step 1 - Guests */}
-          {step === 1 && (
-            <div>
-              <h2 className="font-heading text-xl font-semibold mb-6 flex items-center gap-2">
-                <Users size={20} className="text-primary" /> How Many Guests?
-              </h2>
-              <div className="grid grid-cols-4 gap-3 mb-8">
-                {[1,2,3,4,5,6,7,8].map(n => (
+            <div className="grid sm:grid-cols-2 gap-4 mt-4">
+              <div className="space-y-1.5">
+                <Label>WhatsApp *</Label>
+                <Input value={form.whatsapp} onChange={e => set('whatsapp', e.target.value)} placeholder="+44..." />
+              </div>
+              <div className="space-y-1.5">
+                <Label>Country</Label>
+                <Input value={form.country} onChange={e => set('country', e.target.value)} placeholder="e.g. United Kingdom" />
+              </div>
+            </div>
+            <div className="space-y-1.5 mt-4">
+              <Label>Preferred contact method</Label>
+              <div className="flex gap-3">
+                {['whatsapp', 'email', 'phone'].map(m => (
                   <button
-                    key={n}
-                    onClick={() => set('guests', n)}
-                    className={`py-4 rounded-xl border-2 font-bold text-lg transition-all ${
-                      form.guests === n ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:border-primary/40'
+                    key={m}
+                    onClick={() => set('preferred_contact_method', m)}
+                    className={`flex-1 py-2.5 rounded-xl border-2 text-sm font-medium capitalize transition-all ${
+                      form.preferred_contact_method === m ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
                     }`}
                   >
-                    {n}
+                    {m}
                   </button>
                 ))}
               </div>
-              <div className="bg-secondary/50 rounded-xl p-4 text-sm text-muted-foreground">
-                <p>Total: <strong className="text-foreground">£{form.guests * 999}</strong> &nbsp;·&nbsp; £999 per person</p>
-                <p className="text-xs mt-1 text-muted-foreground">Flexible payment options may be available at checkout through Klarna, subject to eligibility and approval. Summer in Montenegro does not provide finance directly.</p>
+            </div>
+          </section>
+
+          {/* Group & dates */}
+          <section>
+            <h2 className="font-heading text-lg font-semibold mb-4 flex items-center gap-2">
+              <Calendar size={20} className="text-primary" /> Group & Dates
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <Label>Adults</Label>
+                <Input type="number" min="1" value={form.adults} onChange={e => set('adults', parseInt(e.target.value) || 1)} />
               </div>
-              <div className="mt-6 space-y-2">
-                <Label className="text-sm">Activity preference</Label>
-                <div className="flex gap-3">
-                  {['relaxed','balanced','active'].map(l => (
-                    <button
-                      key={l}
-                      onClick={() => set('activity_level', l)}
-                      className={`flex-1 py-2.5 rounded-xl border-2 text-sm font-medium capitalize transition-all ${
-                        form.activity_level === l ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
-                      }`}
-                    >
-                      {l}
-                    </button>
-                  ))}
-                </div>
+              <div className="space-y-1.5">
+                <Label>Children</Label>
+                <Input type="number" min="0" value={form.children} onChange={e => set('children', parseInt(e.target.value) || 0)} />
               </div>
             </div>
-          )}
-
-          {/* Step 2 - Contact */}
-          {step === 2 && (
-            <div className="space-y-4">
-              <h2 className="font-heading text-xl font-semibold mb-4 flex items-center gap-2">
-                <User size={20} className="text-primary" /> Your Details
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <Label>Full Name *</Label>
-                  <Input required value={form.full_name} onChange={e => set('full_name', e.target.value)} placeholder="Your name" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label>Email *</Label>
-                  <Input required type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="your@email.com" />
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <Label>WhatsApp Number *</Label>
-                  <Input required value={form.whatsapp} onChange={e => set('whatsapp', e.target.value)} placeholder="+44..." />
-                </div>
-                <div className="space-y-1.5">
-                  <Label>Country</Label>
-                  <Input value={form.country} onChange={e => set('country', e.target.value)} placeholder="e.g. United Kingdom" />
-                </div>
-              </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <Label>Are you travelling from London?</Label>
-                  <Input value={form.from_london} onChange={e => set('from_london', e.target.value)} placeholder="Yes / No" />
-                </div>
-                <div className="space-y-1.5">
-                  <Label>Which London airport?</Label>
-                  <Input value={form.airport} onChange={e => set('airport', e.target.value)} placeholder="e.g. Luton, Stansted, Gatwick" />
-                </div>
+            <div className="grid sm:grid-cols-2 gap-4 mt-4">
+              <div className="space-y-1.5">
+                <Label>Arrival date</Label>
+                <Input type="date" value={form.arrival_date} onChange={e => set('arrival_date', e.target.value)} />
               </div>
               <div className="space-y-1.5">
-                <Label>Dietary requirements</Label>
-                <Input value={form.dietary} onChange={e => set('dietary', e.target.value)} placeholder="e.g. vegetarian, nut allergy" />
-              </div>
-              <div className="space-y-1.5">
-                <Label>Medical notes or accessibility needs</Label>
-                <Input value={form.medical_notes} onChange={e => set('medical_notes', e.target.value)} placeholder="Any relevant medical or accessibility information" />
-              </div>
-              <div className="space-y-1.5">
-                <Label>How did you hear about us?</Label>
-                <Select onValueChange={v => set('source', v)}>
-                  <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                  <SelectContent>
-                    {['TikTok','Instagram','Facebook','Google','Friend','Other'].map(s => (
-                      <SelectItem key={s} value={s}>{s}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-1.5">
-                <Label>Anything else we should know?</Label>
-                <Textarea rows={2} value={form.notes} onChange={e => set('notes', e.target.value)} placeholder="Questions, requests..." />
+                <Label>Departure date</Label>
+                <Input type="date" value={form.departure_date} onChange={e => set('departure_date', e.target.value)} />
               </div>
             </div>
-          )}
+            <label className="flex items-center gap-2 mt-4 text-sm text-muted-foreground cursor-pointer">
+              <input type="checkbox" checked={form.flexible_dates} onChange={e => set('flexible_dates', e.target.checked)} className="w-4 h-4 rounded" />
+              My dates are flexible
+            </label>
+          </section>
 
-          {/* Step 3 - Review */}
-          {step === 3 && (
-            <div>
-              <h2 className="font-heading text-xl font-semibold mb-6 flex items-center gap-2">
-                <CheckCircle size={20} className="text-primary" /> Review your booking
-              </h2>
-              <div className="space-y-3 mb-8">
-                {[
-                  ['Departure', form.departure_date],
-                  ['Guests', `${form.guests} ${form.guests === 1 ? 'person' : 'people'}`],
-                  ['Activity preference', form.activity_level],
-                  ['Country', form.country || '—'],
-                  ['From London?', form.from_london || '—'],
-                  ['London airport', form.airport || '—'],
-                  ['How did you hear about us?', form.source || '—'],
-                  ['Name', form.full_name],
-                  ['Email', form.email],
-                  ['WhatsApp', form.whatsapp],
-                  ['Dietary', form.dietary || '—'],
-                  ['Medical / Accessibility', form.medical_notes || '—'],
-                ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between py-2 border-b border-border text-sm">
-                    <span className="text-muted-foreground">{k}</span>
-                    <span className="font-medium capitalize">{v}</span>
-                  </div>
+          {/* Trip style */}
+          <section>
+            <h2 className="font-heading text-lg font-semibold mb-4 flex items-center gap-2">
+              <Compass size={20} className="text-primary" /> Trip Style
+            </h2>
+            <div className="space-y-1.5 mb-4">
+              <Label>Trip type</Label>
+              <div className="flex flex-wrap gap-2">
+                {['solo', 'couple', 'family', 'friends', 'group'].map(t => (
+                  <button
+                    key={t}
+                    onClick={() => set('trip_type', t)}
+                    className={`px-4 py-2 rounded-xl border-2 text-sm font-medium capitalize transition-all ${
+                      form.trip_type === t ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {t}
+                  </button>
                 ))}
               </div>
-              <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 text-sm text-muted-foreground">
-                You will be taken to a secure Stripe checkout to complete your payment. We will confirm your spot and send trip details once payment is received.
+            </div>
+            <div className="space-y-1.5 mb-4">
+              <Label>Travel style</Label>
+              <div className="flex gap-3">
+                {['relaxed', 'balanced', 'active'].map(l => (
+                  <button
+                    key={l}
+                    onClick={() => set('travel_style', l)}
+                    className={`flex-1 py-2.5 rounded-xl border-2 text-sm font-medium capitalize transition-all ${
+                      form.travel_style === l ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {l}
+                  </button>
+                ))}
               </div>
             </div>
-          )}
+            <div className="space-y-1.5">
+              <Label>Budget range</Label>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  ['budget', 'Budget'],
+                  ['mid_range', 'Mid-range'],
+                  ['premium', 'Premium'],
+                  ['luxury', 'Luxury'],
+                  ['unsure', 'Not sure yet'],
+                ].map(([v, label]) => (
+                  <button
+                    key={v}
+                    onClick={() => set('budget_range', v)}
+                    className={`px-4 py-2 rounded-xl border-2 text-sm font-medium transition-all ${
+                      form.budget_range === v ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Regions & services */}
+          <section>
+            <h2 className="font-heading text-lg font-semibold mb-4 flex items-center gap-2">
+              <MapPin size={20} className="text-primary" /> Regions & Services
+            </h2>
+            <div className="space-y-1.5 mb-4">
+              <Label>Preferred regions (select any)</Label>
+              <div className="flex flex-wrap gap-2">
+                {REGIONS.map(r => (
+                  <button
+                    key={r}
+                    onClick={() => toggleArray('preferred_regions', r)}
+                    className={`px-4 py-2 rounded-xl border-2 text-sm font-medium transition-all ${
+                      form.preferred_regions.includes(r) ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {r}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-1.5 mb-4">
+              <Label>What do you need help with?</Label>
+              <div className="flex flex-wrap gap-2">
+                {SERVICES.map(s => (
+                  <button
+                    key={s}
+                    onClick={() => toggleArray('services_required', s)}
+                    className={`px-4 py-2 rounded-xl border-2 text-sm font-medium transition-all ${
+                      form.services_required.includes(s) ? 'border-primary bg-primary/5 text-primary' : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-1.5 mb-4">
+              <Label>Accommodation preferences</Label>
+              <Input value={form.accommodation_preferences} onChange={e => set('accommodation_preferences', e.target.value)} placeholder="e.g. boutique hotel, apartment, villa..." />
+            </div>
+            <div className="space-y-1.5">
+              <Label>Activities you'd enjoy</Label>
+              <Textarea rows={2} value={form.activities} onChange={e => set('activities', e.target.value)} placeholder="e.g. boat trips, hiking, wine tours, beach days..." />
+            </div>
+          </section>
+
+          {/* Special requests */}
+          <section>
+            <h2 className="font-heading text-lg font-semibold mb-4">Anything else?</h2>
+            <div className="space-y-1.5">
+              <Label>Special requests or notes</Label>
+              <Textarea rows={3} value={form.special_requests} onChange={e => set('special_requests', e.target.value)} placeholder="Dietary needs, accessibility, celebrations, questions..." />
+            </div>
+          </section>
         </div>
 
-        {/* Navigation */}
-        <div className="flex gap-3 mt-6 sticky bottom-0 bg-background/95 backdrop-blur-sm pb-6 pt-3 -mx-4 px-4 sm:static sm:bg-transparent sm:pb-0 sm:pt-0 sm:mx-0 sm:px-0 border-t border-border sm:border-0">
-          {step > 0 && (
-            <Button variant="outline" onClick={() => setStep(s => s - 1)} className="flex items-center gap-1 rounded-full">
-              <ChevronLeft size={16} /> Back
-            </Button>
-          )}
-          <div className="flex-1" />
-          {step < 3 ? (
-            <Button
-              onClick={() => setStep(s => s + 1)}
-              disabled={step === 0 && !form.departure_date}
-              className="bg-accent text-accent-foreground hover:brightness-105 rounded-full px-8 flex items-center gap-1"
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-          ) : (
-            <Button
-              onClick={submit}
-              disabled={loading || !form.full_name || !form.email || !form.whatsapp}
-              className="bg-accent text-accent-foreground hover:brightness-105 rounded-full px-8"
-            >
-              {loading ? 'Processing...' : `Pay £${form.guests * 999} & Reserve`}
-            </Button>
-          )}
+        <div className="mt-6">
+          <Button
+            onClick={submit}
+            disabled={loading || !form.customer_name || !form.email || !form.whatsapp}
+            className="w-full bg-accent text-accent-foreground hover:brightness-105 rounded-full py-4 text-base font-bold"
+          >
+            {loading ? 'Sending...' : 'Submit My Trip Request'}
+          </Button>
+          <p className="text-center text-xs text-muted-foreground mt-4">
+            No payment required. We'll prepare your personalised offer and contact you within 24 hours.
+          </p>
         </div>
       </div>
     </div>

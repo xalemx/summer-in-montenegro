@@ -23,7 +23,7 @@ export default function Layout() {
               to="/book"
               className="flex-1 flex items-center justify-center gap-2 py-4 bg-accent text-accent-foreground font-bold rounded-2xl text-sm shadow-lg"
             >
-              Reserve Your Spot →
+              Start Planning →
             </Link>
             <a
               href="https://wa.me/447758162004"

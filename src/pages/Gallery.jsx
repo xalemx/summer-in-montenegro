@@ -177,7 +177,7 @@ export default function Gallery() {
           to="/book"
           className="inline-flex items-center gap-2 px-10 py-4 bg-accent text-accent-foreground font-bold rounded-full hover:brightness-110 transition-all shadow-xl"
         >
-          Reserve Your Spot
+          Start Planning
         </Link>
       </section>
 

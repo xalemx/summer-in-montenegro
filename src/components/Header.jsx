@@ -3,16 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const NAV = [
-  { label: 'Why Montenegro', to: '/about-montenegro' },
-  { label: 'Experience', to: '/experience' },
-  { label: '2026 Dates', to: '/dates' },
-  { label: 'Pricing', to: '/pricing' },
-  { label: 'Accommodation', to: '/accommodation' },
+  { label: 'Explore Montenegro', to: '/about-montenegro' },
+  { label: 'How It Works', to: '/experience' },
+  { label: 'Accommodation Ideas', to: '/accommodation' },
   { label: 'Activities', to: '/activities' },
-  { label: 'Summer 2027', to: '/summer-2027' },
-  { label: 'Gallery', to: '/gallery' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Start Planning', to: '/book' },
 ];
 
 export default function Header() {

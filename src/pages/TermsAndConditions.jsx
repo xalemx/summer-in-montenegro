@@ -5,87 +5,65 @@ export default function TermsAndConditions() {
 
         <p className="text-primary/70 text-xs tracking-[0.4em] uppercase font-semibold mb-4">Legal</p>
         <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-3 leading-tight">
-          Booking, Cancellation &amp; Refund Policy
+          Service Terms &amp; Policy
         </h1>
         <p className="text-muted-foreground mb-12">Summer in Montenegro</p>
 
         <div className="space-y-10 text-foreground">
 
           <section>
-            <h2 className="font-heading text-xl font-bold mb-2">1. Booking Confirmation</h2>
+            <h2 className="font-heading text-xl font-bold mb-2">1. Personalised Travel Planning</h2>
             <p className="text-muted-foreground leading-relaxed">
-              A booking is confirmed once full payment has been received.
+              Summer in Montenegro is a personalised travel planning service. We do not sell fixed packages or display prices online. Every offer is prepared individually based on your request.
             </p>
           </section>
 
           <section>
-            <h2 className="font-heading text-xl font-bold mb-2">2. Cooling-Off Period</h2>
+            <h2 className="font-heading text-xl font-bold mb-2">2. How It Works</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Customers may cancel within 14 days of booking and receive a full refund, provided departure is more than 30 days away.
+              You submit a trip request telling us your dates, group size, travel style and preferences. We review your request and prepare a personalised offer, usually within 24 hours. You can accept, adjust or decline the offer.
             </p>
           </section>
 
           <section>
-            <h2 className="font-heading text-xl font-bold mb-2">3. Customer Cancellations</h2>
-            <div className="space-y-3 mt-3">
-              {[
-                { timing: 'More than 60 days before departure', policy: 'Full refund.' },
-                { timing: '30–60 days before departure', policy: '50% refund.' },
-                { timing: 'Less than 30 days before departure', policy: 'No refund.' },
-              ].map((row, i) => (
-                <div key={i} className="flex gap-4 p-4 rounded-xl bg-card border border-border">
-                  <div className="flex-1">
-                    <p className="font-semibold text-sm text-foreground">{row.timing}</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">{row.policy}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p className="text-muted-foreground leading-relaxed mt-4">
-              Customers may transfer their booking to another person subject to availability and approval.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="font-heading text-xl font-bold mb-2">4. Third-Party Payment Options</h2>
+            <h2 className="font-heading text-xl font-bold mb-2">3. Offers &amp; Pricing</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Summer in Montenegro does not provide finance or instalment plans directly. Payment options such as Klarna may be available at checkout subject to eligibility and availability. Any payment arrangements through third-party providers are subject to those providers' own terms and conditions.
+              Offers are personalised and valid for a limited period stated in the proposal. Prices depend on your dates, group size, accommodation style, transport needs, activities and level of service. No payment is required to request an offer.
             </p>
           </section>
 
           <section>
-            <h2 className="font-heading text-xl font-bold mb-2">5. Changes by Summer in Montenegro</h2>
+            <h2 className="font-heading text-xl font-bold mb-2">4. Booking &amp; Payment</h2>
             <p className="text-muted-foreground leading-relaxed">
-              We reserve the right to change accommodation, activities or itinerary where necessary due to weather, safety, availability or operational reasons.
+              Once you accept an offer, we confirm availability and provide payment instructions. A booking is confirmed once payment has been received according to the terms stated in your offer.
             </p>
           </section>
 
           <section>
-            <h2 className="font-heading text-xl font-bold mb-2">6. Trip Cancellation by Summer in Montenegro</h2>
-            <p className="text-muted-foreground leading-relaxed mb-3">
-              If we cancel a departure, customers may choose:
-            </p>
-            <ul className="space-y-2">
-              {['A full refund', 'Transfer to another available departure date.'].map((item, i) => (
-                <li key={i} className="flex items-start gap-2 text-muted-foreground text-sm">
-                  <span className="text-primary font-bold mt-0.5">•</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="font-heading text-xl font-bold mb-2">7. Flights and Travel Insurance</h2>
+            <h2 className="font-heading text-xl font-bold mb-2">5. Cancellations &amp; Refunds</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Flights are booked separately and are not included in the trip price. Customers are responsible for their own flight arrangements and travel insurance.
+              Cancellation and refund terms depend on the specific services and providers included in your offer. These terms will be clearly stated in your personalised proposal before you commit to anything.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-heading text-xl font-bold mb-2">6. Changes by Summer in Montenegro</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              We reserve the right to adjust accommodation, activities or itinerary where necessary due to weather, safety, availability or operational reasons. We will inform you of any changes as soon as possible.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-heading text-xl font-bold mb-2">7. Flights &amp; Travel Insurance</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Flights and travel insurance are arranged separately unless explicitly included in your offer. You are responsible for your own flight arrangements and travel insurance.
             </p>
           </section>
 
           <section>
             <h2 className="font-heading text-xl font-bold mb-2">8. Contact</h2>
             <p className="text-muted-foreground leading-relaxed">
-              For booking enquiries, cancellations or changes, please contact:{' '}
+              For enquiries, changes or questions, please contact:{' '}
               <a href="mailto:summerinmontenegro.com@gmail.com" className="text-primary underline underline-offset-2 hover:opacity-80 transition-opacity">
                 summerinmontenegro.com@gmail.com
               </a>
