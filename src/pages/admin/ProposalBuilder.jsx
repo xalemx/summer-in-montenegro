@@ -4,6 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { ProposalItemForm } from '@/components/proposals/ProposalItemForm';
 import ItineraryBoard from '@/components/proposals/ItineraryBoard';
 import Timeline from '@/components/admin/Timeline';
+import AISuggestions from '@/components/admin/AISuggestions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -32,6 +33,8 @@ export default function ProposalBuilder() {
   const [newItemDay, setNewItemDay] = useState(1);
   const [me, setMe] = useState(null);
   const [timeline, setTimeline] = useState([]);
+  const [recommendations, setRecommendations] = useState(null);
+  const [genLoading, setGenLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -48,13 +51,16 @@ export default function ProposalBuilder() {
   }, []);
 
   useEffect(() => {
-    if (!selectedProjectId) { setProject(null); setProposal(null); setItems([]); setTimeline([]); return; }
+    if (!selectedProjectId) { setProject(null); setProposal(null); setItems([]); setTimeline([]); setRecommendations(null); return; }
     const loadTimeline = () => base44.entities.TimelineEvent.filter({ travel_project_id: selectedProjectId }, 'created_date', 200).then(setTimeline).catch(() => {});
     (async () => {
       setLoading(true);
       try {
         const p = await base44.entities.TravelProject.get(selectedProjectId);
         setProject(p);
+        let recs = null;
+        if (p.ai_recommendations) { try { recs = typeof p.ai_recommendations === 'string' ? JSON.parse(p.ai_recommendations) : p.ai_recommendations; } catch (e) {} }
+        setRecommendations(recs);
         const props = await base44.entities.Proposal.filter({ travel_project_id: selectedProjectId }, '-created_date', 20);
         const draft = props.find(x => x.status === 'draft') || props[0] || null;
         setProposal(draft);
@@ -138,6 +144,44 @@ export default function ProposalBuilder() {
       });
       setTimeline(prev => [...prev, ev]);
     } catch (e) { console.error('timeline log failed', e); }
+  };
+
+  const itemTypeForCategory = (cat) => {
+    const c = (cat || '').toLowerCase();
+    if (['hotel', 'apartment', 'villa'].includes(c)) return 'Accommodation';
+    if (c === 'restaurant') return 'Restaurant';
+    if (c === 'boat operator') return 'Boat Trip';
+    if (c === 'tour guide') return 'Guide';
+    return 'Activity';
+  };
+
+  const generateSuggestions = async () => {
+    setGenLoading(true);
+    try {
+      const res = await base44.functions.invoke('generateRecommendations', { project_id: selectedProjectId });
+      setRecommendations(res.data.recommendations);
+    } catch (e) { alert('Could not generate suggestions'); } finally { setGenLoading(false); }
+  };
+
+  const acceptSuggestion = async (rec) => {
+    if (!proposal) { alert('Create a proposal first, then accept suggestions.'); return; }
+    const itemType = itemTypeForCategory(rec.category);
+    try {
+      await base44.entities.ProposalItem.create({
+        proposal_id: proposal.id,
+        travel_project_id: selectedProjectId,
+        day_number: 1,
+        item_type: itemType,
+        title: rec.name,
+        supplier_id: rec.supplier_id,
+        description: rec.reasons && rec.reasons.length ? 'AI match: ' + rec.reasons.join(' · ') : '',
+        internal_cost: 0, customer_price: 0, sort_order: 0,
+      });
+      const its = await base44.entities.ProposalItem.filter({ proposal_id: proposal.id }, 'day_number', 500);
+      setItems(its);
+      await persistTotals(its);
+      logEvent('item_added', `Added ${itemType}: ${rec.name}`);
+    } catch (e) { alert('Could not add to proposal'); }
   };
 
   const handleItemSave = async (form) => {
@@ -310,6 +354,14 @@ export default function ProposalBuilder() {
                   <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">{project.ai_summary}</p>
                 </div>
               )}
+
+              <AISuggestions
+                recommendations={recommendations}
+                onGenerate={generateSuggestions}
+                onAccept={acceptSuggestion}
+                genLoading={genLoading}
+                hasProposal={!!proposal}
+              />
 
               <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
                 <Label className="mb-2 block">Consultant notes</Label>

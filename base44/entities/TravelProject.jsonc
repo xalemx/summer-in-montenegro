@@ -118,6 +118,10 @@
       "type": "string",
       "title": "AI Summary"
     },
+    "ai_recommendations": {
+      "type": "string",
+      "title": "AI Recommendations"
+    },
     "recommended_regions": {
       "type": "string",
       "title": "Recommended Regions"
