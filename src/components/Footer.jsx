@@ -8,6 +8,7 @@ const LINKS = [
   { label: 'Activities', to: '/activities' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Supplier Portal', to: '/supplier' },
 ];
 
 export default function Footer() {

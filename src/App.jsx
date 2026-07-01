@@ -29,6 +29,7 @@ import Pricing from './pages/Pricing';
 import AboutMontenegro from './pages/AboutMontenegro';
 import Gallery from './pages/Gallery';
 import TermsAndConditions from './pages/TermsAndConditions';
+import SupplierPortal from './pages/supplier/SupplierPortal';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -56,6 +57,7 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
+      <Route path="/supplier" element={<SupplierPortal />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/experience" element={<Experience />} />

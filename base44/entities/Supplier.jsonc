@@ -91,6 +91,20 @@
     "internal_pricing_notes": {
       "type": "string",
       "title": "Internal Pricing Notes"
+    },
+    "availability_status": {
+      "type": "string",
+      "title": "Availability Status",
+      "enum": [
+        "available",
+        "limited",
+        "fully_booked"
+      ],
+      "default": "available"
+    },
+    "availability_notes": {
+      "type": "string",
+      "title": "Availability Notes"
     }
   },
   "required": [

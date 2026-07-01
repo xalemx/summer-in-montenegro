@@ -1,0 +1,75 @@
+{
+  "name": "SupplierQuote",
+  "type": "object",
+  "properties": {
+    "supplier_id": {
+      "type": "string",
+      "title": "Supplier ID"
+    },
+    "supplier_name": {
+      "type": "string",
+      "title": "Supplier Name"
+    },
+    "travel_project_id": {
+      "type": "string",
+      "title": "Travel Project ID"
+    },
+    "reference_number": {
+      "type": "string",
+      "title": "Reference Number"
+    },
+    "proposal_item_id": {
+      "type": "string",
+      "title": "Proposal Item ID"
+    },
+    "item_title": {
+      "type": "string",
+      "title": "Item Title"
+    },
+    "requested_by": {
+      "type": "string",
+      "title": "Requested By"
+    },
+    "request_details": {
+      "type": "string",
+      "title": "Request Details"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Due Date"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "requested",
+        "quoted",
+        "declined",
+        "booked"
+      ],
+      "default": "requested"
+    },
+    "supplier_price": {
+      "type": "number",
+      "title": "Supplier Price"
+    },
+    "currency": {
+      "type": "string",
+      "title": "Currency",
+      "default": "EUR"
+    },
+    "supplier_notes": {
+      "type": "string",
+      "title": "Supplier Notes"
+    },
+    "responded_date": {
+      "type": "string",
+      "title": "Responded Date"
+    }
+  },
+  "required": [
+    "supplier_id",
+    "request_details"
+  ]
+}
