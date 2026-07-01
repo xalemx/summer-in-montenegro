@@ -64,12 +64,12 @@ export default function Book() {
           <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
             <CheckCircle size={36} className="text-primary" />
           </div>
-          <h2 className="font-heading text-3xl font-bold mb-4">Request received.</h2>
+          <h2 className="font-heading text-3xl font-bold mb-4">Let's start planning.</h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
-            We received your request and will prepare a personalised Montenegro offer. We'll be in touch within 24 hours.
+            We've received your trip details. We'll review them and prepare a personalised Montenegro plan — then be in touch within 24 hours to start the conversation.
           </p>
           <a
-            href={`https://wa.me/447758162004?text=Hi! I just submitted a trip request for Montenegro.`}
+            href={`https://wa.me/447758162004?text=Hi! I just started planning a Montenegro trip.`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#25D366] text-white font-semibold rounded-full text-sm hover:brightness-105 transition-all shadow-md"
@@ -91,10 +91,10 @@ export default function Book() {
             Trip Planner
           </p>
           <h1 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-            Tell us what you want.
+          Let's plan your trip together.
           </h1>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Share your travel wishes and we'll prepare a personalised Montenegro offer — for accommodation, transport and experiences.
+            Tell us what you have in mind. We'll review it together and prepare a personalised Montenegro plan for you.
           </p>
         </div>
 
@@ -298,7 +298,7 @@ export default function Book() {
             disabled={loading || !form.customer_name || !form.email || !form.whatsapp}
             className="w-full bg-accent text-accent-foreground hover:brightness-105 rounded-full py-4 text-base font-bold"
           >
-            {loading ? 'Sending...' : 'Submit My Trip Request'}
+            {loading ? 'Sending...' : 'Start Planning My Trip'}
           </Button>
           <p className="text-center text-xs text-muted-foreground mt-4">
             No payment required. We'll prepare your personalised offer and contact you within 24 hours.
