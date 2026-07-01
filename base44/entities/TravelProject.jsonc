@@ -115,6 +115,18 @@
       "type": "string",
       "title": "AI Summary"
     },
+    "recommended_regions": {
+      "type": "string",
+      "title": "Recommended Regions"
+    },
+    "recommended_activities": {
+      "type": "string",
+      "title": "Recommended Activities"
+    },
+    "recommended_services": {
+      "type": "string",
+      "title": "Recommended Services"
+    },
     "consultant_notes": {
       "type": "string",
       "title": "Consultant Notes"

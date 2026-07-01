@@ -32,6 +32,7 @@ export default function Book() {
   });
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const [ref, setRef] = useState('');
 
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
   const toggleArray = (k, v) => setForm(p => {
@@ -42,13 +43,8 @@ export default function Book() {
   const submit = async () => {
     setLoading(true);
     try {
-      const payload = {
-        ...form,
-        preferred_regions: form.preferred_regions.join(', '),
-        services_required: form.services_required.join(', '),
-        status: 'new',
-      };
-      await base44.entities.OfferRequest.create(payload);
+      const response = await base44.functions.invoke('createTravelProject', { ...form });
+      if (response?.data?.reference_number) setRef(response.data.reference_number);
       setDone(true);
     } catch (e) {
       alert('Something went wrong. Please try again or message us on WhatsApp.');
@@ -66,7 +62,7 @@ export default function Book() {
           </div>
           <h2 className="font-heading text-3xl font-bold mb-4">Let's start planning.</h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
-            We've received your trip details. We'll review them and prepare a personalised Montenegro plan — then be in touch within 24 hours to start the conversation.
+            We've received your trip details{ref && ` (ref: ${ref})`}. We'll review them and prepare a personalised Montenegro plan — then be in touch within 24 hours to start the conversation.
           </p>
           <a
             href={`https://wa.me/447758162004?text=Hi! I just started planning a Montenegro trip.`}
