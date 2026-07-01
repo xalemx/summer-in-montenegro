@@ -1,4 +1,4 @@
-import { Sparkles, BedDouble, Waves, UtensilsCrossed } from 'lucide-react';
+import { Sparkles, BedDouble, Waves, UtensilsCrossed, MapPin } from 'lucide-react';
 
 const BUCKET_META = {
   hotels: { label: 'Hotels', icon: BedDouble },
@@ -18,7 +18,7 @@ function RecCard({ rec, onAccept, disabled }) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
           <p className="font-semibold text-sm truncate">{rec.name}</p>
-          {rec.category && <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{rec.category}</span>}
+          {(rec.category || rec.entity_type) && <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{rec.category || rec.entity_type}</span>}
         </div>
         {rec.reasons && rec.reasons.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-1.5">
@@ -35,7 +35,7 @@ function RecCard({ rec, onAccept, disabled }) {
 }
 
 export default function AISuggestions({ recommendations, onGenerate, onAccept, genLoading, hasProposal }) {
-  const hasRecs = recommendations && (recommendations.hotels?.length || recommendations.activities?.length || recommendations.restaurants?.length);
+  const hasRecs = recommendations && (recommendations.places?.length || recommendations.hotels?.length || recommendations.activities?.length || recommendations.restaurants?.length);
   return (
     <div className="bg-primary/5 rounded-2xl border border-primary/20 p-5">
       <div className="flex items-center justify-between mb-3">
@@ -47,10 +47,18 @@ export default function AISuggestions({ recommendations, onGenerate, onAccept, g
           {genLoading ? 'Generating…' : hasRecs ? 'Regenerate' : 'Generate'}
         </button>
       </div>
-      {genLoading && <p className="text-sm text-muted-foreground">Analysing your suppliers and matching to this trip…</p>}
-      {!genLoading && !hasRecs && <p className="text-sm text-muted-foreground">Click Generate to get AI-matched hotels, activities and restaurants from your supplier list.</p>}
+      {genLoading && <p className="text-sm text-muted-foreground">Matching your trip to Montenegro destinations, experiences and suppliers…</p>}
+      {!genLoading && !hasRecs && <p className="text-sm text-muted-foreground">Click Generate to get AI-matched places, experiences and suppliers for this trip.</p>}
       {hasRecs && (
         <div className="space-y-4">
+          {(recommendations.places?.length > 0) && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5"><MapPin size={13} /> Places & Experiences</p>
+              <div className="space-y-2">
+                {recommendations.places.map(rec => <RecCard key={rec.entity_id} rec={rec} onAccept={onAccept} disabled={!hasProposal} />)}
+              </div>
+            </div>
+          )}
           {['hotels', 'activities', 'restaurants'].map(bucket => {
             const recs = recommendations[bucket] || [];
             if (!recs.length) return null;
