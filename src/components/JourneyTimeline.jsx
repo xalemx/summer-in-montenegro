@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Plane } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const ROUTE = [
   { icon: '✈️', label: 'Podgorica', sub: 'Arrival', type: 'transit' },

@@ -1,5 +1,3 @@
-import { MessageCircle, ChevronRight } from 'lucide-react';
-
 export default function WhatsAppButton() {
   return (
     <a

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
-import { Plus, Search, Pencil, ArrowLeft } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 
 const CATEGORIES = ['Hotel', 'Apartment', 'Villa', 'Transfer Company', 'Private Driver', 'Boat Operator', 'Activity Provider', 'Restaurant', 'Tour Guide', 'National Park', 'Other'];
 const STATUS_STYLE = {

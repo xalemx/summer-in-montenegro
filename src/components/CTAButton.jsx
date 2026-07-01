@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function CTAButton({ to = '/book', children = 'Reserve Your Spot', variant = 'primary', className = '' }) {
+export default function CTAButton({ to = '/book', children = 'Start Planning', variant = 'primary', className = '' }) {
   const styles = variant === 'primary'
     ? 'bg-accent text-accent-foreground hover:brightness-105 shadow-md'
     : 'bg-white/20 text-white border border-white/30 hover:bg-white/30 backdrop-blur-sm';

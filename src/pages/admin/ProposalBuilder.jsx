@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Plus, Trash2, Send, Save, FileText, Sparkles } from 'lucide-react';
+import { Plus, Send, Save, FileText, Sparkles } from 'lucide-react';
 
 const STATUS_COLORS = {
   planning: 'bg-blue-100 text-blue-700',
