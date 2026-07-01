@@ -163,9 +163,18 @@ export default function ProposalBuilder() {
     } catch (e) { alert('Could not generate suggestions'); } finally { setGenLoading(false); }
   };
 
-  const acceptSuggestion = async (rec) => {
+  const itemTypeForBucket = (bucket, rec) => {
+    if (bucket === 'suppliers') return itemTypeForCategory(rec.category);
+    if (bucket === 'restaurants') return 'Restaurant';
+    if (bucket === 'experiences') return 'Experience';
+    if (['beaches', 'national_parks', 'viewpoints', 'routes'].includes(bucket)) return 'Activity';
+    return 'Other';
+  };
+
+  const acceptSuggestion = async (rec, bucket) => {
     if (!proposal) { alert('Create a proposal first, then accept suggestions.'); return; }
-    const itemType = rec.itemType || itemTypeForCategory(rec.category);
+    const itemType = itemTypeForBucket(bucket, rec);
+    const supplier_id = bucket === 'suppliers' ? rec.id : '';
     try {
       await base44.entities.ProposalItem.create({
         proposal_id: proposal.id,
@@ -173,7 +182,7 @@ export default function ProposalBuilder() {
         day_number: rec.suggested_day || 1,
         item_type: itemType,
         title: rec.name,
-        supplier_id: rec.supplier_id || '',
+        supplier_id,
         description: rec.reasons && rec.reasons.length ? 'AI match: ' + rec.reasons.join(' · ') : '',
         internal_cost: 0, customer_price: 0, sort_order: 0,
       });
