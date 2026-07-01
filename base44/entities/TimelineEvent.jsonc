@@ -1,0 +1,48 @@
+{
+  "name": "TimelineEvent",
+  "type": "object",
+  "properties": {
+    "travel_project_id": {
+      "type": "string",
+      "title": "Travel Project ID"
+    },
+    "reference_number": {
+      "type": "string",
+      "title": "Reference Number"
+    },
+    "event_type": {
+      "type": "string",
+      "title": "Event Type",
+      "enum": [
+        "trip_created",
+        "summary_created",
+        "proposal_created",
+        "proposal_updated",
+        "proposal_sent",
+        "version_created",
+        "item_added",
+        "item_updated",
+        "item_removed",
+        "status_changed",
+        "customer_message",
+        "change_requested",
+        "customer_accepted",
+        "customer_declined",
+        "note"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "title": "Message"
+    },
+    "actor_name": {
+      "type": "string",
+      "title": "Actor Name"
+    }
+  },
+  "required": [
+    "travel_project_id",
+    "event_type",
+    "message"
+  ]
+}

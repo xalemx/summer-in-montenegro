@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { ProposalItemForm } from '@/components/proposals/ProposalItemForm';
 import ItineraryBoard from '@/components/proposals/ItineraryBoard';
+import Timeline from '@/components/admin/Timeline';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -29,6 +30,8 @@ export default function ProposalBuilder() {
   const [showItemForm, setShowItemForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [newItemDay, setNewItemDay] = useState(1);
+  const [me, setMe] = useState(null);
+  const [timeline, setTimeline] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -40,11 +43,13 @@ export default function ProposalBuilder() {
         setProjects(p);
         setSuppliers(s);
       } catch (e) { console.error(e); }
+      try { const u = await base44.auth.me(); setMe(u); } catch (e2) {}
     })();
   }, []);
 
   useEffect(() => {
-    if (!selectedProjectId) { setProject(null); setProposal(null); setItems([]); return; }
+    if (!selectedProjectId) { setProject(null); setProposal(null); setItems([]); setTimeline([]); return; }
+    const loadTimeline = () => base44.entities.TimelineEvent.filter({ travel_project_id: selectedProjectId }, 'created_date', 200).then(setTimeline).catch(() => {});
     (async () => {
       setLoading(true);
       try {
@@ -59,8 +64,11 @@ export default function ProposalBuilder() {
         } else {
           setItems([]);
         }
+        await loadTimeline();
       } catch (e) { console.error(e); } finally { setLoading(false); }
     })();
+    const unsub = base44.entities.TimelineEvent.subscribe(() => loadTimeline());
+    return () => unsub();
   }, [selectedProjectId]);
 
   const totals = items.reduce((acc, i) => {
@@ -90,6 +98,7 @@ export default function ProposalBuilder() {
       await base44.entities.TravelProject.update(selectedProjectId, { status: 'proposal' });
       setProposal(np);
       setProject({ ...project, status: 'proposal' });
+      logEvent('proposal_created', 'Proposal created');
     } catch (e) { alert('Could not create proposal'); } finally { setBusy(false); }
   };
 
@@ -119,6 +128,18 @@ export default function ProposalBuilder() {
     setShowItemForm(true);
   };
 
+  const logEvent = async (event_type, message) => {
+    const actor = (me?.full_name || 'Consultant').split(' ')[0];
+    try {
+      const ev = await base44.entities.TimelineEvent.create({
+        travel_project_id: selectedProjectId,
+        reference_number: project?.reference_number || '',
+        event_type, message, actor_name: actor,
+      });
+      setTimeline(prev => [...prev, ev]);
+    } catch (e) { console.error('timeline log failed', e); }
+  };
+
   const handleItemSave = async (form) => {
     try {
       if (editingItem) {
@@ -129,6 +150,7 @@ export default function ProposalBuilder() {
       const its = await base44.entities.ProposalItem.filter({ proposal_id: proposal.id }, 'day_number', 500);
       setItems(its);
       await persistTotals(its);
+      logEvent(editingItem ? 'item_updated' : 'item_added', `${editingItem ? 'Updated' : 'Added'} ${form.item_type}: ${form.title}`);
     } catch (e) { alert('Could not save item'); }
     setShowItemForm(false);
     setEditingItem(null);
@@ -141,6 +163,7 @@ export default function ProposalBuilder() {
       const its = await base44.entities.ProposalItem.filter({ proposal_id: proposal.id }, 'day_number', 500);
       setItems(its);
       await persistTotals(its);
+      logEvent('item_removed', `Removed ${item.item_type}: ${item.title}`);
     } catch (e) { alert('Could not delete'); }
   };
 
@@ -159,6 +182,7 @@ export default function ProposalBuilder() {
         margin: price - cost,
       });
       alert('Draft saved');
+      logEvent('proposal_updated', 'Updated proposal details');
     } catch (e) { alert('Could not save'); } finally { setBusy(false); }
   };
 
@@ -169,6 +193,7 @@ export default function ProposalBuilder() {
       const sentDate = new Date().toISOString();
       await base44.entities.Proposal.update(proposal.id, { status: 'sent', sent_date: sentDate });
       setProposal({ ...proposal, status: 'sent', sent_date: sentDate });
+      logEvent('proposal_sent', 'Proposal sent to customer');
       alert('Proposal sent! Customer portal link: ' + window.location.origin + '/trip/' + project.reference_number);
     } catch (e) { alert('Could not send'); } finally { setBusy(false); }
   };
@@ -214,6 +239,7 @@ export default function ProposalBuilder() {
       setItems(its);
       await base44.entities.TravelProject.update(selectedProjectId, { status: 'proposal' });
       setProject({ ...project, status: 'proposal' });
+      logEvent('version_created', `Created version v${newVersion}`);
     } catch (e) { alert('Could not create new version'); } finally { setBusy(false); }
   };
 
@@ -288,6 +314,11 @@ export default function ProposalBuilder() {
               <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
                 <Label className="mb-2 block">Consultant notes</Label>
                 <Textarea rows={3} value={project.consultant_notes || ''} onChange={e => setProject({ ...project, consultant_notes: e.target.value })} onBlur={async () => { await base44.entities.TravelProject.update(project.id, { consultant_notes: project.consultant_notes }); }} placeholder="Private notes..." />
+              </div>
+
+              <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
+                <h2 className="font-heading text-lg font-bold mb-3">Activity Timeline</h2>
+                <Timeline events={timeline} />
               </div>
             </div>
 

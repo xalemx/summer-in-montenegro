@@ -46,6 +46,14 @@ Deno.serve(async (req) => {
       special_requests: data.special_requests,
     });
 
+    await base44.asServiceRole.entities.TimelineEvent.create({
+      travel_project_id: project.id,
+      reference_number: ref,
+      event_type: 'trip_created',
+      message: `Trip request received from ${data.customer_name || 'customer'}`,
+      actor_name: data.customer_name || 'Customer',
+    });
+
     // Generate the internal AI summary for the consultant.
     let aiSummary = '';
     let travellerProfile = '';
@@ -103,6 +111,14 @@ Deno.serve(async (req) => {
         recommended_activities: recommendedActivities,
         recommended_services: recommendedServices,
         transport_required: recommendedServices,
+      });
+
+      await base44.asServiceRole.entities.TimelineEvent.create({
+        travel_project_id: project.id,
+        reference_number: ref,
+        event_type: 'summary_created',
+        message: 'AI created summary',
+        actor_name: 'AI',
       });
     } catch (aiError) {
       console.error('AI summary generation failed (project still created):', aiError);

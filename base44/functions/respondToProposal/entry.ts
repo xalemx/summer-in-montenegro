@@ -32,6 +32,16 @@ Deno.serve(async (req) => {
     await base44.asServiceRole.entities.Proposal.update(proposal_id, proposalUpdate);
     if (proposal.travel_project_id) {
       await base44.asServiceRole.entities.TravelProject.update(proposal.travel_project_id, { status: projectStatus });
+
+      const evtType = action === 'accept' ? 'customer_accepted' : action === 'changes' ? 'change_requested' : 'customer_declined';
+      const evtMsg = action === 'accept' ? 'Customer accepted proposal' : action === 'changes' ? 'Customer requested changes' : 'Customer declined proposal';
+      await base44.asServiceRole.entities.TimelineEvent.create({
+        travel_project_id: proposal.travel_project_id,
+        reference_number: proposal.reference_number || '',
+        event_type: evtType,
+        message: evtMsg,
+        actor_name: 'Customer',
+      });
     }
 
     return Response.json({ ok: true, status: proposalUpdate.status });
