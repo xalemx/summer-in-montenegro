@@ -18,6 +18,7 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Book from './pages/Book';
 import ProposalBuilder from './pages/admin/ProposalBuilder';
+import Calendar from './pages/admin/Calendar';
 import ProposalView from './pages/ProposalView';
 import TripPortal from './pages/TripPortal';
 import Suppliers from './pages/admin/Suppliers';
@@ -67,6 +68,7 @@ const AuthenticatedApp = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
         <Route path="/admin/proposal-builder" element={<ProposalBuilder />} />
+        <Route path="/admin/calendar" element={<Calendar />} />
         <Route path="/admin/suppliers" element={<Suppliers />} />
         <Route path="/admin/suppliers/new" element={<SupplierForm />} />
         <Route path="/admin/suppliers/:id" element={<SupplierDetail />} />

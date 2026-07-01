@@ -225,7 +225,10 @@ export default function ProposalBuilder() {
             <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-semibold mb-1">Admin</p>
             <h1 className="font-heading text-3xl font-bold">Proposal Builder</h1>
           </div>
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Back to site</Link>
+          <div className="flex gap-4 text-sm">
+            <Link to="/admin/calendar" className="text-muted-foreground hover:text-foreground">Calendar</Link>
+            <Link to="/" className="text-muted-foreground hover:text-foreground">← Back to site</Link>
+          </div>
         </div>
 
         {/* Project selector */}
