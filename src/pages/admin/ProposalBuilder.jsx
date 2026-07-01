@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { ProposalItemForm } from '@/components/proposals/ProposalItemForm';
+import ItineraryBoard from '@/components/proposals/ItineraryBoard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,6 +28,7 @@ export default function ProposalBuilder() {
   const [busy, setBusy] = useState(false);
   const [showItemForm, setShowItemForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [newItemDay, setNewItemDay] = useState(1);
 
   useEffect(() => {
     (async () => {
@@ -100,6 +102,21 @@ export default function ProposalBuilder() {
       margin: price - cost,
     });
     setProposal({ ...proposal, total_internal_cost: cost, total_customer_price: price, margin: price - cost });
+  };
+
+  const handleReorder = async (newItems) => {
+    setItems(newItems);
+    try {
+      await base44.entities.ProposalItem.bulkUpdate(
+        newItems.map(i => ({ id: i.id, day_number: i.day_number, sort_order: i.sort_order }))
+      );
+    } catch (e) { console.error('Could not save order', e); }
+  };
+
+  const addItemToDay = (day) => {
+    setEditingItem(null);
+    setNewItemDay(day);
+    setShowItemForm(true);
   };
 
   const handleItemSave = async (form) => {
@@ -199,13 +216,6 @@ export default function ProposalBuilder() {
       setProject({ ...project, status: 'proposal' });
     } catch (e) { alert('Could not create new version'); } finally { setBusy(false); }
   };
-
-  const itemsByDay = items.reduce((acc, i) => {
-    const d = i.day_number || 1;
-    (acc[d] = acc[d] || []).push(i);
-    return acc;
-  }, {});
-  const days = Object.keys(itemsByDay).sort((a, b) => a - b);
 
   return (
     <div className="py-10 px-4 md:px-6 min-h-screen bg-muted/30">
@@ -326,50 +336,22 @@ export default function ProposalBuilder() {
                   </div>
 
                   {/* Items */}
-                  <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
-                    <div className="flex items-center justify-between mb-4">
-                      <h2 className="font-heading text-lg font-bold">Day-by-day Itinerary</h2>
-                      <Button onClick={() => { setEditingItem(null); setShowItemForm(true); }} className="bg-accent text-accent-foreground rounded-full text-sm">
-                        <Plus size={16} className="mr-1" /> Add Item
-                      </Button>
-                    </div>
-
-                    {items.length === 0 && <p className="text-muted-foreground text-sm text-center py-6">No items yet. Add accommodation, transfers, activities and more.</p>}
-
-                    {days.map(day => (
-                      <div key={day} className="mb-5">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-2">Day {day}</h3>
-                        <div className="space-y-2">
-                          {itemsByDay[day].sort((a,b) => (a.sort_order||0) - (b.sort_order||0)).map(item => {
-                            const supplier = suppliers.find(s => s.id === item.supplier_id);
-                            return (
-                              <div key={item.id} className="flex items-start gap-3 p-3 rounded-xl border border-border bg-background">
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{item.item_type}</span>
-                                    <h4 className="font-semibold text-sm">{item.title}</h4>
-                                  </div>
-                                  {item.description && <p className="text-xs text-muted-foreground mt-1">{item.description}</p>}
-                                  <div className="flex gap-3 mt-1.5 text-xs text-muted-foreground">
-                                    {item.location && <span>📍 {item.location}</span>}
-                                    {supplier && <span>🏷 {supplier.supplier_name}</span>}
-                                  </div>
-                                </div>
-                                <div className="text-right flex-shrink-0">
-                                  <p className="text-xs text-muted-foreground">Cost €{(Number(item.internal_cost) || 0).toFixed(0)}</p>
-                                  <p className="text-sm font-bold text-foreground">€{(Number(item.customer_price) || 0).toFixed(0)}</p>
-                                </div>
-                                <div className="flex flex-col gap-1 flex-shrink-0">
-                                  <button onClick={() => { setEditingItem(item); setShowItemForm(true); }} className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground text-xs">Edit</button>
-                                  <button onClick={() => deleteItem(item)} className="p-1.5 rounded-lg hover:bg-destructive/10 text-destructive"><Trash2 size={14} /></button>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
+                    <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
+                      <div className="flex items-center justify-between mb-4">
+                        <h2 className="font-heading text-lg font-bold">Day-by-day Itinerary</h2>
+                        <Button onClick={() => addItemToDay(1)} className="bg-accent text-accent-foreground rounded-full text-sm">
+                          <Plus size={16} className="mr-1" /> Add Item
+                        </Button>
                       </div>
-                    ))}
-                  </div>
+                      <ItineraryBoard
+                        items={items}
+                        suppliers={suppliers}
+                        onAddItem={addItemToDay}
+                        onEditItem={(item) => { setEditingItem(item); setShowItemForm(true); }}
+                        onDeleteItem={deleteItem}
+                        onReorder={handleReorder}
+                      />
+                    </div>
 
                   {/* Totals + actions */}
                   <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
@@ -415,6 +397,7 @@ export default function ProposalBuilder() {
           proposalId={proposal.id}
           travelProjectId={selectedProjectId}
           suppliers={suppliers}
+          defaultDay={newItemDay}
           onSave={handleItemSave}
           onClose={() => { setShowItemForm(false); setEditingItem(null); }}
         />

@@ -7,11 +7,11 @@ import { Button } from '@/components/ui/button';
 
 const ITEM_TYPES = ['Accommodation', 'Transfer', 'Activity', 'Restaurant', 'Guide', 'Car Rental', 'Boat Trip', 'Experience', 'Other'];
 
-export function ProposalItemForm({ item, proposalId, travelProjectId, suppliers, onSave, onClose }) {
+export function ProposalItemForm({ item, proposalId, travelProjectId, suppliers, onSave, onClose, defaultDay = 1 }) {
   const [form, setForm] = useState({
     proposal_id: proposalId,
     travel_project_id: travelProjectId,
-    day_number: 1,
+    day_number: defaultDay,
     item_type: 'Accommodation',
     title: '',
     description: '',
