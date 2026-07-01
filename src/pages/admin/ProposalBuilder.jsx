@@ -1,0 +1,374 @@
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { base44 } from '@/api/base44Client';
+import { ProposalItemForm } from '@/components/proposals/ProposalItemForm';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Plus, Trash2, Send, Save, FileText, Sparkles } from 'lucide-react';
+
+const STATUS_COLORS = {
+  planning: 'bg-blue-100 text-blue-700',
+  proposal: 'bg-amber-100 text-amber-700',
+  confirmed: 'bg-green-100 text-green-700',
+  completed: 'bg-slate-200 text-slate-700',
+  closed: 'bg-slate-100 text-slate-500',
+};
+
+export default function ProposalBuilder() {
+  const [projects, setProjects] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
+  const [selectedProjectId, setSelectedProjectId] = useState('');
+  const [project, setProject] = useState(null);
+  const [proposal, setProposal] = useState(null);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [showItemForm, setShowItemForm] = useState(false);
+  const [editingItem, setEditingItem] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const [p, s] = await Promise.all([
+          base44.entities.TravelProject.list('-created_date', 100),
+          base44.entities.Supplier.filter({ status: 'active' }, '-created_date', 200),
+        ]);
+        setProjects(p);
+        setSuppliers(s);
+      } catch (e) { console.error(e); }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedProjectId) { setProject(null); setProposal(null); setItems([]); return; }
+    (async () => {
+      setLoading(true);
+      try {
+        const p = await base44.entities.TravelProject.get(selectedProjectId);
+        setProject(p);
+        const props = await base44.entities.Proposal.filter({ travel_project_id: selectedProjectId }, '-created_date', 20);
+        const draft = props.find(x => x.status === 'draft') || props[0] || null;
+        setProposal(draft);
+        if (draft) {
+          const its = await base44.entities.ProposalItem.filter({ proposal_id: draft.id }, 'day_number', 500);
+          setItems(its);
+        } else {
+          setItems([]);
+        }
+      } catch (e) { console.error(e); } finally { setLoading(false); }
+    })();
+  }, [selectedProjectId]);
+
+  const totals = items.reduce((acc, i) => {
+    acc.cost += Number(i.internal_cost) || 0;
+    acc.price += Number(i.customer_price) || 0;
+    return acc;
+  }, { cost: 0, price: 0 });
+  totals.margin = totals.price - totals.cost;
+
+  const createProposal = async () => {
+    setBusy(true);
+    try {
+      const ref = `PROP-${Date.now().toString().slice(-6)}`;
+      const np = await base44.entities.Proposal.create({
+        travel_project_id: selectedProjectId,
+        reference_number: ref,
+        version: 1,
+        status: 'draft',
+        title: `${project.customer_name} — Montenegro Trip`,
+        summary: '',
+        total_internal_cost: 0,
+        total_customer_price: 0,
+        margin: 0,
+        customer_notes: '',
+        internal_notes: '',
+      });
+      await base44.entities.TravelProject.update(selectedProjectId, { status: 'proposal' });
+      setProposal(np);
+      setProject({ ...project, status: 'proposal' });
+    } catch (e) { alert('Could not create proposal'); } finally { setBusy(false); }
+  };
+
+  const persistTotals = async (newItems) => {
+    const cost = newItems.reduce((s, i) => s + (Number(i.internal_cost) || 0), 0);
+    const price = newItems.reduce((s, i) => s + (Number(i.customer_price) || 0), 0);
+    await base44.entities.Proposal.update(proposal.id, {
+      total_internal_cost: cost,
+      total_customer_price: price,
+      margin: price - cost,
+    });
+    setProposal({ ...proposal, total_internal_cost: cost, total_customer_price: price, margin: price - cost });
+  };
+
+  const handleItemSave = async (form) => {
+    try {
+      if (editingItem) {
+        await base44.entities.ProposalItem.update(editingItem.id, form);
+      } else {
+        await base44.entities.ProposalItem.create(form);
+      }
+      const its = await base44.entities.ProposalItem.filter({ proposal_id: proposal.id }, 'day_number', 500);
+      setItems(its);
+      await persistTotals(its);
+    } catch (e) { alert('Could not save item'); }
+    setShowItemForm(false);
+    setEditingItem(null);
+  };
+
+  const deleteItem = async (item) => {
+    if (!confirm('Delete this item?')) return;
+    try {
+      await base44.entities.ProposalItem.delete(item.id);
+      const its = await base44.entities.ProposalItem.filter({ proposal_id: proposal.id }, 'day_number', 500);
+      setItems(its);
+      await persistTotals(its);
+    } catch (e) { alert('Could not delete'); }
+  };
+
+  const saveDraft = async () => {
+    setBusy(true);
+    try {
+      const cost = items.reduce((s, i) => s + (Number(i.internal_cost) || 0), 0);
+      const price = items.reduce((s, i) => s + (Number(i.customer_price) || 0), 0);
+      await base44.entities.Proposal.update(proposal.id, {
+        title: proposal.title,
+        summary: proposal.summary,
+        customer_notes: proposal.customer_notes,
+        internal_notes: proposal.internal_notes,
+        total_internal_cost: cost,
+        total_customer_price: price,
+        margin: price - cost,
+      });
+      alert('Draft saved');
+    } catch (e) { alert('Could not save'); } finally { setBusy(false); }
+  };
+
+  const sendProposal = async () => {
+    if (!confirm('Send this proposal to the customer? Status will change to Sent.')) return;
+    setBusy(true);
+    try {
+      await base44.entities.Proposal.update(proposal.id, { status: 'sent' });
+      setProposal({ ...proposal, status: 'sent' });
+      alert('Proposal sent! Customer view link: ' + window.location.origin + '/proposal/' + proposal.id);
+    } catch (e) { alert('Could not send'); } finally { setBusy(false); }
+  };
+
+  const itemsByDay = items.reduce((acc, i) => {
+    const d = i.day_number || 1;
+    (acc[d] = acc[d] || []).push(i);
+    return acc;
+  }, {});
+  const days = Object.keys(itemsByDay).sort((a, b) => a - b);
+
+  return (
+    <div className="py-10 px-4 md:px-6 min-h-screen bg-muted/30">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-semibold mb-1">Admin</p>
+            <h1 className="font-heading text-3xl font-bold">Proposal Builder</h1>
+          </div>
+          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Back to site</Link>
+        </div>
+
+        {/* Project selector */}
+        <div className="bg-card rounded-2xl border border-border p-5 mb-6 shadow-sm">
+          <Label className="mb-2 block">Select Travel Project</Label>
+          <select
+            value={selectedProjectId}
+            onChange={e => setSelectedProjectId(e.target.value)}
+            className="w-full md:w-96 h-11 rounded-md border border-input bg-background px-3 text-sm"
+          >
+            <option value="">— Choose a project —</option>
+            {projects.map(p => (
+              <option key={p.id} value={p.id}>
+                {p.reference_number || 'No ref'} · {p.customer_name} · {p.status}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {loading && <p className="text-muted-foreground text-center py-10">Loading…</p>}
+
+        {!loading && project && (
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* Left: customer wishes */}
+            <div className="lg:col-span-1 space-y-4">
+              <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="font-heading text-lg font-bold">Customer Wishes</h2>
+                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${STATUS_COLORS[project.status] || 'bg-slate-100'}`}>{project.status}</span>
+                </div>
+                <dl className="space-y-2.5 text-sm">
+                  <div><dt className="text-muted-foreground text-xs">Customer</dt><dd className="font-medium">{project.customer_name}</dd></div>
+                  <div><dt className="text-muted-foreground text-xs">Email / WhatsApp</dt><dd className="font-medium">{project.email} · {project.whatsapp}</dd></div>
+                  {project.country && <div><dt className="text-muted-foreground text-xs">Country</dt><dd>{project.country}</dd></div>}
+                  <div><dt className="text-muted-foreground text-xs">Group</dt><dd>{project.adults} adults · {project.children} children</dd></div>
+                  <div><dt className="text-muted-foreground text-xs">Dates</dt><dd>{project.arrival_date || '—'} → {project.departure_date || '—'} {project.flexible_dates && '(flexible)'}</dd></div>
+                  <div><dt className="text-muted-foreground text-xs">Style / Budget</dt><dd className="capitalize">{project.travel_style || '—'} · {project.budget_range || '—'}</dd></div>
+                  {project.preferred_regions && <div><dt className="text-muted-foreground text-xs">Regions</dt><dd>{project.preferred_regions}</dd></div>}
+                  {project.accommodation_preferences && <div><dt className="text-muted-foreground text-xs">Accommodation</dt><dd>{project.accommodation_preferences}</dd></div>}
+                  {project.activities && <div><dt className="text-muted-foreground text-xs">Activities</dt><dd>{project.activities}</dd></div>}
+                  {project.services_required && <div><dt className="text-muted-foreground text-xs">Services</dt><dd>{project.services_required}</dd></div>}
+                  {project.transport_required && <div><dt className="text-muted-foreground text-xs">Transport</dt><dd>{project.transport_required}</dd></div>}
+                  {project.special_requests && <div><dt className="text-muted-foreground text-xs">Special requests</dt><dd>{project.special_requests}</dd></div>}
+                </dl>
+              </div>
+
+              {project.ai_summary && (
+                <div className="bg-primary/5 rounded-2xl border border-primary/20 p-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles size={16} className="text-primary" />
+                    <h3 className="font-semibold text-sm">AI Summary</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">{project.ai_summary}</p>
+                </div>
+              )}
+
+              <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
+                <Label className="mb-2 block">Consultant notes</Label>
+                <Textarea rows={3} value={project.consultant_notes || ''} onChange={e => setProject({ ...project, consultant_notes: e.target.value })} onBlur={async () => { await base44.entities.TravelProject.update(project.id, { consultant_notes: project.consultant_notes }); }} placeholder="Private notes..." />
+              </div>
+            </div>
+
+            {/* Right: proposal editor */}
+            <div className="lg:col-span-2 space-y-4">
+              {!proposal ? (
+                <div className="bg-card rounded-2xl border border-border p-10 text-center shadow-sm">
+                  <FileText size={32} className="mx-auto text-muted-foreground mb-3" />
+                  <h2 className="font-heading text-xl font-bold mb-2">No proposal yet</h2>
+                  <p className="text-muted-foreground mb-5 text-sm">Create a new proposal for this travel project.</p>
+                  <Button onClick={createProposal} disabled={busy} className="bg-primary text-primary-foreground rounded-full px-8">
+                    <Plus size={18} className="mr-1" /> Create Proposal
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  {/* Proposal header */}
+                  <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <span className="text-xs text-muted-foreground">{proposal.reference_number} · v{proposal.version}</span>
+                        <span className={`ml-2 text-xs px-2.5 py-1 rounded-full font-medium ${proposal.status === 'draft' ? 'bg-amber-100 text-amber-700' : proposal.status === 'sent' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100'}`}>{proposal.status}</span>
+                      </div>
+                      <Link to={`/proposal/${proposal.id}`} target="_blank" className="text-xs text-primary underline">View customer page ↗</Link>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="space-y-1.5">
+                        <Label>Trip title</Label>
+                        <Input value={proposal.title || ''} onChange={e => setProposal({ ...proposal, title: e.target.value })} />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label>Summary (shown to customer)</Label>
+                        <Textarea rows={3} value={proposal.summary || ''} onChange={e => setProposal({ ...proposal, summary: e.target.value })} placeholder="A short overview of the trip..." />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label>Important notes (shown to customer)</Label>
+                        <Textarea rows={2} value={proposal.customer_notes || ''} onChange={e => setProposal({ ...proposal, customer_notes: e.target.value })} placeholder="What's included, terms, things to know..." />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label>Internal notes (private)</Label>
+                        <Textarea rows={2} value={proposal.internal_notes || ''} onChange={e => setProposal({ ...proposal, internal_notes: e.target.value })} placeholder="Private notes not shown to customer..." />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Items */}
+                  <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
+                    <div className="flex items-center justify-between mb-4">
+                      <h2 className="font-heading text-lg font-bold">Day-by-day Itinerary</h2>
+                      <Button onClick={() => { setEditingItem(null); setShowItemForm(true); }} className="bg-accent text-accent-foreground rounded-full text-sm">
+                        <Plus size={16} className="mr-1" /> Add Item
+                      </Button>
+                    </div>
+
+                    {items.length === 0 && <p className="text-muted-foreground text-sm text-center py-6">No items yet. Add accommodation, transfers, activities and more.</p>}
+
+                    {days.map(day => (
+                      <div key={day} className="mb-5">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-2">Day {day}</h3>
+                        <div className="space-y-2">
+                          {itemsByDay[day].sort((a,b) => (a.sort_order||0) - (b.sort_order||0)).map(item => {
+                            const supplier = suppliers.find(s => s.id === item.supplier_id);
+                            return (
+                              <div key={item.id} className="flex items-start gap-3 p-3 rounded-xl border border-border bg-background">
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">{item.item_type}</span>
+                                    <h4 className="font-semibold text-sm">{item.title}</h4>
+                                  </div>
+                                  {item.description && <p className="text-xs text-muted-foreground mt-1">{item.description}</p>}
+                                  <div className="flex gap-3 mt-1.5 text-xs text-muted-foreground">
+                                    {item.location && <span>📍 {item.location}</span>}
+                                    {supplier && <span>🏷 {supplier.supplier_name}</span>}
+                                  </div>
+                                </div>
+                                <div className="text-right flex-shrink-0">
+                                  <p className="text-xs text-muted-foreground">Cost €{(Number(item.internal_cost) || 0).toFixed(0)}</p>
+                                  <p className="text-sm font-bold text-foreground">€{(Number(item.customer_price) || 0).toFixed(0)}</p>
+                                </div>
+                                <div className="flex flex-col gap-1 flex-shrink-0">
+                                  <button onClick={() => { setEditingItem(item); setShowItemForm(true); }} className="p-1.5 rounded-lg hover:bg-muted text-muted-foreground text-xs">Edit</button>
+                                  <button onClick={() => deleteItem(item)} className="p-1.5 rounded-lg hover:bg-destructive/10 text-destructive"><Trash2 size={14} /></button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Totals + actions */}
+                  <div className="bg-card rounded-2xl border border-border p-5 shadow-sm">
+                    <div className="grid grid-cols-3 gap-4 mb-5 text-center">
+                      <div>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider">Internal cost</p>
+                        <p className="font-heading text-2xl font-bold">€{totals.cost.toFixed(0)}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider">Customer price</p>
+                        <p className="font-heading text-2xl font-bold text-primary">€{totals.price.toFixed(0)}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider">Margin</p>
+                        <p className={`font-heading text-2xl font-bold ${totals.margin >= 0 ? 'text-green-600' : 'text-destructive'}`}>€{totals.margin.toFixed(0)}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <Button onClick={saveDraft} disabled={busy} variant="outline" className="flex-1 rounded-full">
+                        <Save size={16} className="mr-1" /> Save Draft
+                      </Button>
+                      <Button onClick={sendProposal} disabled={busy} className="flex-1 bg-primary text-primary-foreground rounded-full">
+                        <Send size={16} className="mr-1" /> Send to Customer
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
+        {!loading && !project && projects.length === 0 && (
+          <div className="text-center py-20 text-muted-foreground">
+            <p>No travel projects yet. They appear here when customers submit trip requests.</p>
+          </div>
+        )}
+      </div>
+
+      {showItemForm && proposal && (
+        <ProposalItemForm
+          item={editingItem}
+          proposalId={proposal.id}
+          travelProjectId={selectedProjectId}
+          suppliers={suppliers}
+          onSave={handleItemSave}
+          onClose={() => { setShowItemForm(false); setEditingItem(null); }}
+        />
+      )}
+    </div>
+  );
+}

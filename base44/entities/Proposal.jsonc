@@ -1,0 +1,67 @@
+{
+  "name": "Proposal",
+  "type": "object",
+  "properties": {
+    "travel_project_id": {
+      "type": "string",
+      "title": "Travel Project ID"
+    },
+    "reference_number": {
+      "type": "string",
+      "title": "Reference Number"
+    },
+    "version": {
+      "type": "number",
+      "title": "Version",
+      "default": 1
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "draft",
+        "sent",
+        "changes_requested",
+        "accepted",
+        "declined",
+        "cancelled"
+      ],
+      "default": "draft"
+    },
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Summary"
+    },
+    "total_internal_cost": {
+      "type": "number",
+      "title": "Total Internal Cost",
+      "default": 0
+    },
+    "total_customer_price": {
+      "type": "number",
+      "title": "Total Customer Price",
+      "default": 0
+    },
+    "margin": {
+      "type": "number",
+      "title": "Margin",
+      "default": 0
+    },
+    "customer_notes": {
+      "type": "string",
+      "title": "Customer Notes"
+    },
+    "internal_notes": {
+      "type": "string",
+      "title": "Internal Notes"
+    }
+  },
+  "required": [
+    "travel_project_id",
+    "title"
+  ]
+}

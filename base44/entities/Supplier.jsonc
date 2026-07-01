@@ -1,0 +1,76 @@
+{
+  "name": "Supplier",
+  "type": "object",
+  "properties": {
+    "supplier_name": {
+      "type": "string",
+      "title": "Supplier Name"
+    },
+    "category": {
+      "type": "string",
+      "title": "Category",
+      "enum": [
+        "Hotel",
+        "Apartment",
+        "Villa",
+        "Transfer Company",
+        "Private Driver",
+        "Boat Operator",
+        "Activity Provider",
+        "Restaurant",
+        "Tour Guide",
+        "National Park",
+        "Other"
+      ]
+    },
+    "location": {
+      "type": "string",
+      "title": "Location"
+    },
+    "contact_name": {
+      "type": "string",
+      "title": "Contact Name"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "whatsapp": {
+      "type": "string",
+      "title": "WhatsApp"
+    },
+    "website": {
+      "type": "string",
+      "title": "Website"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "services": {
+      "type": "string",
+      "title": "Services"
+    },
+    "internal_notes": {
+      "type": "string",
+      "title": "Internal Notes"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "supplier_name",
+    "category"
+  ]
+}

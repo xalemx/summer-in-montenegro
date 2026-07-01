@@ -1,0 +1,43 @@
+{
+  "name": "Customer",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "title": "Full Name"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "whatsapp": {
+      "type": "string",
+      "title": "WhatsApp"
+    },
+    "country": {
+      "type": "string",
+      "title": "Country"
+    },
+    "preferred_contact_method": {
+      "type": "string",
+      "title": "Preferred Contact Method",
+      "enum": [
+        "whatsapp",
+        "email",
+        "phone"
+      ]
+    },
+    "tags": {
+      "type": "string",
+      "title": "Tags"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    }
+  },
+  "required": [
+    "full_name",
+    "email"
+  ]
+}

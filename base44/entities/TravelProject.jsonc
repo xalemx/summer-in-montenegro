@@ -1,0 +1,131 @@
+{
+  "name": "TravelProject",
+  "type": "object",
+  "properties": {
+    "reference_number": {
+      "type": "string",
+      "title": "Reference Number"
+    },
+    "customer_id": {
+      "type": "string",
+      "title": "Customer ID"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "Customer Name"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "whatsapp": {
+      "type": "string",
+      "title": "WhatsApp"
+    },
+    "country": {
+      "type": "string",
+      "title": "Country"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "planning",
+        "proposal",
+        "confirmed",
+        "completed",
+        "closed"
+      ],
+      "default": "planning"
+    },
+    "arrival_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Arrival Date"
+    },
+    "departure_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Departure Date"
+    },
+    "flexible_dates": {
+      "type": "boolean",
+      "title": "Flexible Dates",
+      "default": true
+    },
+    "adults": {
+      "type": "number",
+      "title": "Adults",
+      "default": 1
+    },
+    "children": {
+      "type": "number",
+      "title": "Children",
+      "default": 0
+    },
+    "travel_style": {
+      "type": "string",
+      "title": "Travel Style",
+      "enum": [
+        "relaxed",
+        "balanced",
+        "active"
+      ]
+    },
+    "traveller_profile": {
+      "type": "string",
+      "title": "Traveller Profile"
+    },
+    "budget_range": {
+      "type": "string",
+      "title": "Budget Range",
+      "enum": [
+        "budget",
+        "mid_range",
+        "premium",
+        "luxury",
+        "unsure"
+      ]
+    },
+    "preferred_regions": {
+      "type": "string",
+      "title": "Preferred Regions"
+    },
+    "accommodation_preferences": {
+      "type": "string",
+      "title": "Accommodation Preferences"
+    },
+    "activities": {
+      "type": "string",
+      "title": "Activities"
+    },
+    "services_required": {
+      "type": "string",
+      "title": "Services Required"
+    },
+    "transport_required": {
+      "type": "string",
+      "title": "Transport Required"
+    },
+    "special_requests": {
+      "type": "string",
+      "title": "Special Requests"
+    },
+    "ai_summary": {
+      "type": "string",
+      "title": "AI Summary"
+    },
+    "consultant_notes": {
+      "type": "string",
+      "title": "Consultant Notes"
+    },
+    "assigned_consultant": {
+      "type": "string",
+      "title": "Assigned Consultant"
+    }
+  },
+  "required": [
+    "customer_name",
+    "email"
+  ]
+}

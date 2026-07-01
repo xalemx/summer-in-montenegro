@@ -17,6 +17,8 @@ import PartnerAccess from './pages/PartnerAccess';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Book from './pages/Book';
+import ProposalBuilder from './pages/admin/ProposalBuilder';
+import ProposalView from './pages/ProposalView';
 
 import Pricing from './pages/Pricing';
 import AboutMontenegro from './pages/AboutMontenegro';
@@ -60,6 +62,8 @@ const AuthenticatedApp = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
+        <Route path="/admin/proposal-builder" element={<ProposalBuilder />} />
+        <Route path="/proposal/:id" element={<ProposalView />} />
 
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about-montenegro" element={<AboutMontenegro />} />
