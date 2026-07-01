@@ -72,6 +72,14 @@
       "type": "number",
       "title": "Sort Order",
       "default": 0
+    },
+    "latitude": {
+      "type": "number",
+      "title": "Latitude"
+    },
+    "longitude": {
+      "type": "number",
+      "title": "Longitude"
     }
   },
   "required": [

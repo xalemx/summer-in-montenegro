@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import RequestChangesForm from '@/components/proposals/RequestChangesForm';
+import ProposalMap from '@/components/proposals/ProposalMap';
 import { Button } from '@/components/ui/button';
 import { Check, MessageSquare, XCircle, Calendar, Users, MapPin, Bed, Car, Compass, Utensils } from 'lucide-react';
 
@@ -148,6 +149,14 @@ export default function ProposalView() {
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Route map */}
+          {items.length > 0 && (
+            <div className="mb-10">
+              <h2 className="font-heading text-2xl font-bold mb-5">Your Route on the Map</h2>
+              <ProposalMap items={items} />
             </div>
           )}
 
