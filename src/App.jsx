@@ -19,6 +19,9 @@ import Contact from './pages/Contact';
 import Book from './pages/Book';
 import ProposalBuilder from './pages/admin/ProposalBuilder';
 import ProposalView from './pages/ProposalView';
+import Suppliers from './pages/admin/Suppliers';
+import SupplierForm from './pages/admin/SupplierForm';
+import SupplierDetail from './pages/admin/SupplierDetail';
 
 import Pricing from './pages/Pricing';
 import AboutMontenegro from './pages/AboutMontenegro';
@@ -63,6 +66,10 @@ const AuthenticatedApp = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
         <Route path="/admin/proposal-builder" element={<ProposalBuilder />} />
+        <Route path="/admin/suppliers" element={<Suppliers />} />
+        <Route path="/admin/suppliers/new" element={<SupplierForm />} />
+        <Route path="/admin/suppliers/:id" element={<SupplierDetail />} />
+        <Route path="/admin/suppliers/:id/edit" element={<SupplierForm />} />
         <Route path="/proposal/:id" element={<ProposalView />} />
 
         <Route path="/pricing" element={<Pricing />} />

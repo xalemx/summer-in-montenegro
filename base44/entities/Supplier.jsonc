@@ -53,7 +53,7 @@
     },
     "services": {
       "type": "string",
-      "title": "Services"
+      "title": "Services Offered"
     },
     "internal_notes": {
       "type": "string",
@@ -64,9 +64,33 @@
       "title": "Status",
       "enum": [
         "active",
-        "inactive"
+        "inactive",
+        "preferred",
+        "needs_review"
       ],
       "default": "active"
+    },
+    "photos": {
+      "type": "array",
+      "title": "Photos",
+      "items": {
+        "type": "string"
+      }
+    },
+    "documents": {
+      "type": "array",
+      "title": "Documents",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commission_percentage": {
+      "type": "number",
+      "title": "Commission Percentage"
+    },
+    "internal_pricing_notes": {
+      "type": "string",
+      "title": "Internal Pricing Notes"
     }
   },
   "required": [
