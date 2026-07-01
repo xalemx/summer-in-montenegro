@@ -46,17 +46,6 @@ export default function SocialFeed() {
           </div>
           <div className="flex gap-3">
             <a
-              href="https://www.tiktok.com/@summerinmontenegro.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 transition-colors rounded-full text-white text-sm font-medium"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.53V6.79a4.85 4.85 0 0 1-1.02-.1z"/>
-              </svg>
-              TikTok
-            </a>
-            <a
               href="https://www.instagram.com/summerinmontenegro_com"
               target="_blank"
               rel="noopener noreferrer"
@@ -68,12 +57,12 @@ export default function SocialFeed() {
           </div>
         </div>
 
-        {/* TikTok-style vertical grid */}
+        {/* Vertical grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           {POSTS.map((post, i) => (
             <a
               key={i}
-              href={i % 2 === 0 ? 'https://www.tiktok.com/@summerinmontenegro.com' : 'https://www.instagram.com/summerinmontenegro_com'}
+              href="https://www.instagram.com/summerinmontenegro_com"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative rounded-2xl overflow-hidden cursor-pointer block"
