@@ -1,175 +1,366 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 
-const HOTEL_CATS = ['Hotel', 'Apartment', 'Villa'];
-const ACT_CATS = ['Activity Provider', 'Boat Operator', 'Tour Guide', 'National Park'];
-const REST_CATS = ['Restaurant'];
+const safe = (v: any) => {
+  if (Array.isArray(v)) return v.join(', ');
+  return v || '';
+};
 
-const trunc = (s, n) => (s || '').toString().slice(0, n);
-const clampScore = (v) => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
+const clampScore = (n: any) => Math.max(0, Math.min(100, Math.round(Number(n) || 0)));
 
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
     const user = await base44.auth.me();
-    if (!user) return Response.json({ error: 'Unauthorized' }, { status: 401 });
+
+    if (!user) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const body = await req.json().catch(() => ({}));
     const projectId = body.project_id;
-    if (!projectId) return Response.json({ error: 'project_id required' }, { status: 400 });
+
+    if (!projectId) {
+      return Response.json({ error: 'project_id required' }, { status: 400 });
+    }
 
     const project = await base44.asServiceRole.entities.TravelProject.get(projectId);
-    if (!project) return Response.json({ error: 'Project not found' }, { status: 404 });
 
-    const e = base44.asServiceRole.entities;
+    if (!project) {
+      return Response.json({ error: 'Project not found' }, { status: 404 });
+    }
+
     const [
-      active, preferred,
-      regions, destinations, experiences, beaches, parks, attractions, restaurants, viewpoints, routes,
+      regions,
+      destinations,
+      experiences,
+      routes,
+      beaches,
+      nationalParks,
+      restaurants,
+      viewpoints,
+      activeSuppliers,
+      preferredSuppliers,
     ] = await Promise.all([
-      e.Supplier.filter({ status: 'active' }, 'sort_order', 200),
-      e.Supplier.filter({ status: 'preferred' }, 'sort_order', 200),
-      e.Region.list('sort_order', 60),
-      e.Destination.list('sort_order', 120),
-      e.Experience.list('sort_order', 120),
-      e.Beach.list('sort_order', 120),
-      e.NationalPark.list('sort_order', 60),
-      e.Attraction.list('sort_order', 120),
-      e.Restaurant.list('sort_order', 120),
-      e.Viewpoint.list('sort_order', 60),
-      e.Route.list('sort_order', 60),
+      base44.asServiceRole.entities.Region.list('sort_order', 100),
+      base44.asServiceRole.entities.Destination.list('sort_order', 200),
+      base44.asServiceRole.entities.Experience.list('sort_order', 200),
+      base44.asServiceRole.entities.Route.list('sort_order', 100),
+      base44.asServiceRole.entities.Beach.list('sort_order', 100),
+      base44.asServiceRole.entities.NationalPark.list('sort_order', 100),
+      base44.asServiceRole.entities.Restaurant.list('sort_order', 150),
+      base44.asServiceRole.entities.Viewpoint.list('sort_order', 100),
+      base44.asServiceRole.entities.Supplier.filter({ status: 'active' }, 'sort_order', 200),
+      base44.asServiceRole.entities.Supplier.filter({ status: 'preferred' }, 'sort_order', 200),
     ]);
 
-    // ---- Suppliers (bookable) ----
-    const pool = [...(active || []), ...(preferred || [])];
-    const bucketOf = (c) => HOTEL_CATS.includes(c) ? 'hotel' : ACT_CATS.includes(c) ? 'activity' : REST_CATS.includes(c) ? 'restaurant' : null;
-    const suppliers = pool.map(s => ({
-      id: s.id, name: s.supplier_name, category: s.category, bucket: bucketOf(s.category),
-      location: s.location, description: s.description, services: s.services, availability: s.availability_status,
-    })).filter(c => c.bucket);
+    const supplierPool = [...(activeSuppliers || []), ...(preferredSuppliers || [])];
 
-    const supplierLine = suppliers.map(c =>
-      `#${c.id} | ${c.bucket} | ${c.name} (${c.category}) | loc: ${c.location || ''} | ${trunc(c.description, 180)} | services: ${trunc(c.services, 120)} | availability: ${c.availability || ''}`
-    ).join('\n');
-
-    // ---- Knowledge base (places & experiences) ----
-    const kb = [];
-    const addKB = (arr, type, fn) => (arr || []).forEach(x => { const line = fn(x); if (line) kb.push(`${x.id} | ${type} | ${line}`); });
-
-    addKB(regions, 'region', r => `${r.name} | best_for: ${trunc(r.best_for, 90)} | season: ${trunc(r.best_season, 60)} | airport: ${trunc(r.travel_time_from_airport, 50)}`);
-    addKB(destinations, 'destination', d => `${d.name} | region: ${d.region_name || ''} | type: ${d.type || ''} | best_for: ${trunc(d.best_for, 90)} | highlights: ${trunc(d.highlights, 130)}`);
-    addKB(experiences, 'experience', x => `${x.name} | category: ${x.category || ''} | region: ${x.region_name || ''} | dest: ${x.destination_name || ''} | price: ${x.price_range || ''} | duration: ${x.duration || ''} | suitable: ${trunc(x.suitable_for, 90)}`);
-    addKB(beaches, 'beach', b => `${b.name} | region: ${b.region_name || ''} | dest: ${b.destination_name || ''} | type: ${b.type || ''} | best_for: ${trunc(b.best_for, 90)}`);
-    addKB(parks, 'national_park', p => `${p.name} | region: ${p.region_name || ''} | activities: ${trunc(p.best_activities, 110)} | entry: ${p.entry_fee || ''}`);
-    addKB(attractions, 'attraction', a => `${a.name} | category: ${a.category || ''} | region: ${a.region_name || ''} | dest: ${a.destination_name || ''} | best_time: ${a.best_time || ''} | duration: ${a.duration || ''}`);
-    addKB(restaurants, 'restaurant', r => `${r.name} | region: ${r.region_name || ''} | dest: ${r.destination_name || ''} | cuisine: ${r.cuisine || ''} | price: ${r.price_range || ''} | speciality: ${trunc(r.speciality, 90)}`);
-    addKB(viewpoints, 'viewpoint', v => `${v.name} | region: ${v.region_name || ''} | dest: ${v.destination_name || ''} | best_time: ${v.best_time || ''} | access: ${v.access || ''}`);
-    addKB(routes, 'route', r => `${r.name} | days: ${r.duration_days || ''} | difficulty: ${r.difficulty || ''} | transport: ${r.transport_mode || ''} | regions: ${r.region_names || ''} | highlights: ${trunc(r.highlights, 130)}`);
-
-    const kbLine = kb.join('\n');
-
-    const projLine = [
+    const projectText = [
       `Customer: ${project.customer_name}`,
       `Group: ${project.adults || 1} adults, ${project.children || 0} children`,
-      `Trip type: ${project.trip_type || 'not specified'}`,
-      `Budget: ${project.budget_range || 'not specified'}`,
-      `Travel style: ${project.travel_style || 'not specified'}`,
-      `Preferred regions: ${project.preferred_regions || 'not specified'}`,
       `Dates: ${project.arrival_date || '?'} to ${project.departure_date || '?'}`,
-      `Accommodation prefs: ${project.accommodation_preferences || 'not specified'}`,
-      `Activities interest: ${project.activities || 'not specified'}`,
-      `Services needed: ${project.services_required || 'not specified'}`,
+      `Flexible dates: ${project.flexible_dates ? 'yes' : 'no'}`,
+      `Travel style: ${project.travel_style || 'not specified'}`,
+      `Traveller profile: ${project.traveller_profile || 'not specified'}`,
+      `Budget: ${project.budget_range || 'not specified'}`,
+      `Preferred regions: ${project.preferred_regions || 'not specified'}`,
+      `Accommodation preferences: ${project.accommodation_preferences || 'not specified'}`,
+      `Activities: ${project.activities || 'not specified'}`,
+      `Services required: ${project.services_required || 'not specified'}`,
+      `Transport required: ${project.transport_required || 'not specified'}`,
+      `Special requests: ${project.special_requests || 'none'}`,
+      `Existing AI summary: ${project.ai_summary || ''}`,
     ].join('\n');
 
-    const prompt = `You are a senior Montenegro travel consultant AI. Using the trip details below, the Montenegro knowledge base (regions, destinations, experiences, beaches, national parks, attractions, restaurants, viewpoints, routes) and the available bookable suppliers, produce TWO sets of recommendations:
+    const regionText = (regions || []).map((r: any) =>
+      `#${r.id} | ${r.name} | ${safe(r.overview).slice(0, 220)} | best for: ${safe(r.best_for)} | highlights: ${safe(r.highlights)} | season: ${safe(r.best_season)}`
+    ).join('\n');
 
-1) PLACES — the best-matching knowledge-base entries to shape the itinerary: which regions, destinations, experiences, beaches, national parks, attractions, restaurants and viewpoints fit the group size, budget, travel style, preferred regions and stated interests. Recommend up to 12, highest match first. Use the exact entity_id and entity_type from the knowledge base.
-2) SUPPLIERS — the best bookable suppliers grouped into hotels, activities and restaurants (up to 5 each), using the exact supplier_id.
+    const destinationText = (destinations || []).map((d: any) =>
+      `#${d.id} | ${d.name} | region: ${d.region_name || ''} | type: ${d.type || ''} | ${safe(d.overview).slice(0, 220)} | best for: ${safe(d.best_for)} | lat:${d.latitude || ''} lng:${d.longitude || ''}`
+    ).join('\n');
 
-Score every pick 0-100 and give 3 short reason tags (e.g. "Family", "Quiet", "Near Old Town", "Great value"). Only use ids that appear in the provided lists — never invent ids.
+    const experienceText = (experiences || []).map((e: any) =>
+      `#${e.id} | ${e.name} | category: ${e.category || ''} | region: ${e.region_name || ''} | destination: ${e.destination_name || ''} | ${safe(e.description).slice(0, 220)} | duration:${e.duration || ''} | suitable:${safe(e.suitable_for)} | price:${e.price_range || ''} | supplier:${e.supplier_id || ''}`
+    ).join('\n');
 
-TRIP:
-${projLine}
+    const routeText = (routes || []).map((r: any) =>
+      `#${r.id} | ${r.name} | days:${r.duration_days || ''} | difficulty:${r.difficulty || ''} | transport:${r.transport_mode || ''} | regions:${safe(r.region_names)} | destinations:${safe(r.destination_names)} | highlights:${safe(r.highlights)} | ${safe(r.description).slice(0, 220)}`
+    ).join('\n');
 
-KNOWLEDGE BASE (id | type | details):
-${kbLine}
+    const beachText = (beaches || []).map((b: any) =>
+      `#${b.id} | ${b.name} | region:${b.region_name || ''} | destination:${b.destination_name || ''} | type:${b.type || ''} | best for:${safe(b.best_for)} | ${safe(b.description).slice(0, 180)} | lat:${b.latitude || ''} lng:${b.longitude || ''}`
+    ).join('\n');
 
-AVAILABLE SUPPLIERS (id | bucket | name (category) | details):
-${supplierLine}`;
+    const parkText = (nationalParks || []).map((p: any) =>
+      `#${p.id} | ${p.name} | region:${p.region_name || ''} | ${safe(p.overview).slice(0, 220)} | highlights:${safe(p.highlights)} | activities:${safe(p.best_activities)} | lat:${p.latitude || ''} lng:${p.longitude || ''}`
+    ).join('\n');
 
-    const arrItem = (extra) => ({
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          supplier_id: { type: 'string' },
-          name: { type: 'string' },
-          category: { type: 'string' },
-          match_score: { type: 'integer' },
-          reasons: { type: 'array', items: { type: 'string' } },
-          ...extra,
-        },
-      },
-    });
+    const restaurantText = (restaurants || []).map((r: any) =>
+      `#${r.id} | ${r.name} | region:${r.region_name || ''} | destination:${r.destination_name || ''} | cuisine:${r.cuisine || ''} | price:${r.price_range || ''} | dietary:${safe(r.dietary_options)} | ambience:${safe(r.ambience)} | ${safe(r.description).slice(0, 180)} | lat:${r.latitude || ''} lng:${r.longitude || ''}`
+    ).join('\n');
+
+    const viewpointText = (viewpoints || []).map((v: any) =>
+      `#${v.id} | ${v.name} | region:${v.region_name || ''} | destination:${v.destination_name || ''} | best time:${v.best_time || ''} | access:${safe(v.access)} | ${safe(v.description).slice(0, 180)} | lat:${v.latitude || ''} lng:${v.longitude || ''}`
+    ).join('\n');
+
+    const supplierText = supplierPool.map((s: any) =>
+      `#${s.id} | ${s.supplier_name} | category:${s.category || ''} | location:${s.location || ''} | services:${safe(s.services).slice(0, 180)} | ${safe(s.description).slice(0, 180)}`
+    ).join('\n');
+
+    const prompt = `
+You are a senior Montenegro destination management consultant.
+
+Analyse the TravelProject and recommend the best structured Montenegro plan using the knowledge base.
+
+Return only valid JSON matching the schema.
+
+Important:
+- Recommend actual Region, Destination, Experience, Route, Beach, NationalPark, Restaurant, Viewpoint and Supplier records from the provided lists only.
+- Use exact IDs from the data.
+- Score each match 0-100.
+- Give short consultant-friendly reasons.
+- Suggest day numbers where useful.
+- Keep recommendations internal-only.
+- Consider allergies, children, budget, travel pace, transport and special requests.
+
+TRAVEL PROJECT:
+${projectText}
+
+REGIONS:
+${regionText}
+
+DESTINATIONS:
+${destinationText}
+
+EXPERIENCES:
+${experienceText}
+
+ROUTES:
+${routeText}
+
+BEACHES:
+${beachText}
+
+NATIONAL PARKS:
+${parkText}
+
+RESTAURANTS:
+${restaurantText}
+
+VIEWPOINTS:
+${viewpointText}
+
+SUPPLIERS:
+${supplierText}
+`;
 
     const schema = {
       type: 'object',
       properties: {
-        places: {
+        consultant_summary: { type: 'string' },
+        suggested_route_overview: { type: 'string' },
+
+        regions: {
           type: 'array',
           items: {
             type: 'object',
             properties: {
-              entity_type: { type: 'string' },
-              entity_id: { type: 'string' },
+              id: { type: 'string' },
               name: { type: 'string' },
-              match_score: { type: 'integer' },
+              match_score: { type: 'number' },
               reasons: { type: 'array', items: { type: 'string' } },
             },
           },
         },
-        hotels: arrItem(),
-        activities: arrItem(),
-        restaurants: arrItem(),
+
+        destinations: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              region_name: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        routes: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        experiences: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              category: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        beaches: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        national_parks: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        restaurants: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        viewpoints: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        suppliers: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              name: { type: 'string' },
+              category: { type: 'string' },
+              suggested_day: { type: 'number' },
+              match_score: { type: 'number' },
+              reasons: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
+
+        day_by_day_structure: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              day_number: { type: 'number' },
+              title: { type: 'string' },
+              description: { type: 'string' },
+              recommended_place_names: { type: 'array', items: { type: 'string' } },
+            },
+          },
+        },
       },
     };
 
-    const llmRes = await base44.asServiceRole.integrations.Core.InvokeLLM({ prompt, response_json_schema: schema });
-    const out = (llmRes && llmRes.output) ? llmRes.output : (llmRes || {});
+    const llmRes = await base44.asServiceRole.integrations.Core.InvokeLLM({
+      prompt,
+      response_json_schema: schema,
+    });
 
-    const supplierIds = new Set(suppliers.map(s => s.id));
-    const kbIds = new Set();
-    [regions, destinations, experiences, beaches, parks, attractions, restaurants, viewpoints, routes]
-      .forEach(arr => (arr || []).forEach(x => kbIds.add(x.id)));
+    const raw = llmRes?.output || llmRes || {};
 
-    const cleanSuppliers = (arr) => (arr || [])
-      .filter(r => r.supplier_id && supplierIds.has(r.supplier_id))
-      .slice(0, 5)
-      .map(r => ({
-        supplier_id: r.supplier_id,
-        name: r.name,
-        category: r.category,
-        match_score: clampScore(r.match_score),
-        reasons: (r.reasons || []).slice(0, 3),
-      }));
-
-    const cleanPlaces = (arr) => (arr || [])
-      .filter(r => r.entity_id && kbIds.has(r.entity_id))
-      .slice(0, 12)
-      .map(r => ({
-        entity_type: r.entity_type,
-        entity_id: r.entity_id,
-        name: r.name,
-        match_score: clampScore(r.match_score),
-        reasons: (r.reasons || []).slice(0, 3),
-      }));
-
-    const recs = {
-      places: cleanPlaces(out.places),
-      hotels: cleanSuppliers(out.hotels),
-      activities: cleanSuppliers(out.activities),
-      restaurants: cleanSuppliers(out.restaurants),
+    const valid = {
+      regions: new Set((regions || []).map((x: any) => x.id)),
+      destinations: new Set((destinations || []).map((x: any) => x.id)),
+      routes: new Set((routes || []).map((x: any) => x.id)),
+      experiences: new Set((experiences || []).map((x: any) => x.id)),
+      beaches: new Set((beaches || []).map((x: any) => x.id)),
+      national_parks: new Set((nationalParks || []).map((x: any) => x.id)),
+      restaurants: new Set((restaurants || []).map((x: any) => x.id)),
+      viewpoints: new Set((viewpoints || []).map((x: any) => x.id)),
+      suppliers: new Set(supplierPool.map((x: any) => x.id)),
     };
 
-    await base44.asServiceRole.entities.TravelProject.update(projectId, { ai_recommendations: JSON.stringify(recs) });
-    return Response.json({ recommendations: recs });
+    const clean = (arr: any[], validSet: Set<string>) =>
+      (arr || [])
+        .filter((r) => r.id && validSet.has(r.id))
+        .slice(0, 8)
+        .map((r) => ({
+          ...r,
+          match_score: clampScore(r.match_score),
+          suggested_day: Number(r.suggested_day) || 1,
+          reasons: (r.reasons || []).slice(0, 4),
+        }));
+
+    const recommendations = {
+      consultant_summary: raw.consultant_summary || '',
+      suggested_route_overview: raw.suggested_route_overview || '',
+      regions: clean(raw.regions, valid.regions),
+      destinations: clean(raw.destinations, valid.destinations),
+      routes: clean(raw.routes, valid.routes),
+      experiences: clean(raw.experiences, valid.experiences),
+      beaches: clean(raw.beaches, valid.beaches),
+      national_parks: clean(raw.national_parks, valid.national_parks),
+      restaurants: clean(raw.restaurants, valid.restaurants),
+      viewpoints: clean(raw.viewpoints, valid.viewpoints),
+      suppliers: clean(raw.suppliers, valid.suppliers),
+      day_by_day_structure: (raw.day_by_day_structure || []).slice(0, 14),
+    };
+
+    await base44.asServiceRole.entities.TravelProject.update(projectId, {
+      ai_recommendations: JSON.stringify(recommendations),
+      recommended_regions: recommendations.regions.map((r: any) => r.name).join(', '),
+      recommended_activities: [
+        ...recommendations.experiences.map((x: any) => x.name),
+        ...recommendations.beaches.map((x: any) => x.name),
+        ...recommendations.national_parks.map((x: any) => x.name),
+      ].join(', '),
+      recommended_services: recommendations.suppliers.map((s: any) => s.name).join(', '),
+    });
+
+    return Response.json({ recommendations });
   } catch (error) {
     console.error('generateRecommendations error', error);
     return Response.json({ error: error.message }, { status: 500 });
