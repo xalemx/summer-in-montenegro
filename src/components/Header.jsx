@@ -29,7 +29,7 @@ export default function Header() {
         ? 'bg-background/90 backdrop-blur-2xl border-border/60 shadow-md h-16'
         : 'bg-background/85 backdrop-blur-xl border-border/30 h-[72px]'
     }`}>
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16' : 'h-[72px]'}`}>
         <Link to="/" className="font-heading text-lg font-medium text-primary tracking-[0.04em] hover:opacity-75 transition-opacity">
           Summer in Montenegro
         </Link>
