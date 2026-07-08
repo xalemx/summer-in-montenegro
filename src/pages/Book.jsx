@@ -44,31 +44,69 @@ export default function Book() {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [ref, setRef] = useState('');
+  const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
 
-  const set = (k, v) => setForm(p => ({ ...p, [k]: v }));
+  const set = (k, v) => {
+    setForm(p => ({ ...p, [k]: v }));
+    setErrors(p => ({ ...p, [k]: undefined }));
+  };
   const toggleArray = (k, v) => setForm(p => {
     const arr = p[k] || [];
     return { ...p, [k]: arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v] };
   });
 
+  const validateStep = (s) => {
+    const errs = {};
+    if (s === 1) {
+      if (!form.adults || form.adults < 1) errs.adults = 'At least one adult is required.';
+      if (form.children < 0) errs.children = 'Children cannot be negative.';
+    }
+    if (s === 2 && !form.flexible_dates) {
+      if (form.arrival_date && form.departure_date && form.departure_date <= form.arrival_date) {
+        errs.departure_date = 'Departure must be after arrival.';
+      }
+    }
+    if (s === 6) {
+      if (!form.customer_name.trim()) errs.customer_name = 'Your name is required.';
+      if (!form.email.trim()) {
+        errs.email = 'Email is required.';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+        errs.email = 'Please enter a valid email address.';
+      }
+      if (!form.whatsapp.trim()) {
+        errs.whatsapp = 'WhatsApp number is required.';
+      } else if (!/^\+?[\d\s()-]{7,}$/.test(form.whatsapp.trim())) {
+        errs.whatsapp = 'Please enter a valid phone number (e.g. +44 7700 900000).';
+      }
+    }
+    return errs;
+  };
+
   const submit = async () => {
     setLoading(true);
+    setSubmitError('');
     try {
       const response = await base44.functions.invoke('createTravelProject', { ...form });
       if (response?.data?.reference_number) setRef(response.data.reference_number);
       setDone(true);
     } catch (e) {
-      alert('Something went wrong. Please try again or message us on WhatsApp.');
+      setSubmitError('Something went wrong. Please try again or message us on WhatsApp.');
     } finally {
       setLoading(false);
     }
   };
 
-  const next = () => { if (step < 6) setStep(step + 1); else submit(); };
+  const next = () => {
+    const errs = validateStep(step);
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+    if (step < 6) setStep(step + 1); else submit();
+  };
   const back = () => setStep(Math.max(1, step - 1));
 
-  const contactValid = form.customer_name.trim() && form.email.trim() && form.whatsapp.trim();
-  const canContinue = step < 6 || contactValid;
+  const stepHasErrors = Object.keys(validateStep(step)).length > 0;
+  const canContinue = !stepHasErrors;
   const current = STEPS[step - 1];
   const StepIcon = current.icon;
 
@@ -175,10 +213,12 @@ export default function Book() {
                 <div className="space-y-1.5">
                   <Label>Adults</Label>
                   <Input type="number" min="1" value={form.adults} onChange={e => set('adults', parseInt(e.target.value) || 1)} />
+                  {errors.adults && <p className="text-xs text-destructive mt-1">{errors.adults}</p>}
                 </div>
                 <div className="space-y-1.5">
                   <Label>Children</Label>
                   <Input type="number" min="0" value={form.children} onChange={e => set('children', parseInt(e.target.value) || 0)} />
+                  {errors.children && <p className="text-xs text-destructive mt-1">{errors.children}</p>}
                 </div>
               </div>
               <p className="text-sm text-muted-foreground">{current.sub}</p>
@@ -196,6 +236,7 @@ export default function Book() {
                 <div className="space-y-1.5">
                   <Label>Departure date</Label>
                   <Input type="date" value={form.departure_date} onChange={e => set('departure_date', e.target.value)} />
+                  {errors.departure_date && <p className="text-xs text-destructive mt-1">{errors.departure_date}</p>}
                 </div>
               </div>
               <label className="flex items-center gap-2 text-sm cursor-pointer">
@@ -276,16 +317,19 @@ export default function Book() {
                 <div className="space-y-1.5">
                   <Label>Full Name *</Label>
                   <Input value={form.customer_name} onChange={e => set('customer_name', e.target.value)} placeholder="Your name" />
+                  {errors.customer_name && <p className="text-xs text-destructive mt-1">{errors.customer_name}</p>}
                 </div>
                 <div className="space-y-1.5">
                   <Label>Email *</Label>
                   <Input type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="your@email.com" />
+                  {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
                 </div>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <Label>WhatsApp *</Label>
                   <Input value={form.whatsapp} onChange={e => set('whatsapp', e.target.value)} placeholder="+44..." />
+                  {errors.whatsapp && <p className="text-xs text-destructive mt-1">{errors.whatsapp}</p>}
                 </div>
                 <div className="space-y-1.5">
                   <Label>Country</Label>
@@ -303,6 +347,10 @@ export default function Book() {
             </div>
           )}
         </div>
+
+        {submitError && (
+          <p className="text-sm text-destructive text-center mt-4">{submitError}</p>
+        )}
 
         {/* Nav buttons */}
         <div className="flex items-center gap-3 mt-6">
