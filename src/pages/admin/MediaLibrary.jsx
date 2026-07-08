@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { Loader2, Upload, Search, Trash2, ImageIcon, ArrowLeft } from 'lucide-react';
+import { toast } from 'sonner';
 
 const CATEGORIES = ['Hotel', 'Restaurant', 'Boat', 'Beach', 'Activity', 'Room', 'Scenery', 'Food', 'Other'];
 
@@ -28,13 +29,13 @@ export default function MediaLibrary() {
       const up = await base44.integrations.Core.UploadFile({ file });
       await base44.entities.MediaAsset.create({ url: up.file_url, title: file.name.replace(/\.[^.]+$/, ''), category: uploadCat });
       load();
-    } catch (err) { alert('Upload failed'); } finally { setUploading(false); e.target.value = ''; }
+    } catch (err) { toast.error('Upload failed'); } finally { setUploading(false); e.target.value = ''; }
   };
 
   const remove = async (id) => {
     if (!confirm('Remove this photo from the library? Suppliers using it will keep their reference.')) return;
     try { await base44.entities.MediaAsset.delete(id); setAssets(prev => prev.filter(a => a.id !== id)); }
-    catch (e) { alert('Could not delete'); }
+    catch (e) { toast.error('Could not delete photo'); }
   };
 
   const filtered = assets.filter(a => {

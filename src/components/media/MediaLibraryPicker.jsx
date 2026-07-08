@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Loader2, Upload, Search, X, Check, ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 const CATEGORIES = ['Hotel', 'Restaurant', 'Boat', 'Beach', 'Activity', 'Room', 'Scenery', 'Food', 'Other'];
 
@@ -46,7 +47,7 @@ export default function MediaLibraryPicker({ open, onClose, onSelect, exclude = 
       });
       setAssets(prev => [created, ...prev]);
       setSelected(prev => [...prev, up.file_url]);
-    } catch (err) { alert('Upload failed'); } finally { setUploading(false); e.target.value = ''; }
+    } catch (err) { toast.error('Upload failed'); } finally { setUploading(false); e.target.value = ''; }
   };
 
   const confirm = () => { onSelect(selected); setSelected([]); onClose(); };

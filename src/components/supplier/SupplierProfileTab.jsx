@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Upload, Trash2, Loader2, Library } from 'lucide-react';
 import MediaLibraryPicker from '@/components/media/MediaLibraryPicker';
+import { toast } from 'sonner';
 
 export default function SupplierProfileTab({ supplier, onUpdate }) {
   const [f, setF] = useState({
@@ -27,8 +28,8 @@ export default function SupplierProfileTab({ supplier, onUpdate }) {
     try {
       const res = await base44.functions.invoke('supplierPortal', { action: 'update_profile', fields: f });
       onUpdate(res.data.supplier);
-      alert('Profile saved');
-    } catch (e) { alert('Could not save'); } finally { setSaving(false); }
+      toast.success('Profile saved');
+    } catch (e) { toast.error('Could not save profile'); } finally { setSaving(false); }
   };
 
   const onFile = async (e) => {
@@ -38,14 +39,14 @@ export default function SupplierProfileTab({ supplier, onUpdate }) {
       const up = await base44.integrations.Core.UploadFile({ file });
       const res = await base44.functions.invoke('supplierPortal', { action: 'upload_photo', photo_url: up.file_url });
       onUpdate(res.data.supplier);
-    } catch (err) { alert('Upload failed'); } finally { setUploading(false); e.target.value = ''; }
+    } catch (err) { toast.error('Upload failed'); } finally { setUploading(false); e.target.value = ''; }
   };
 
   const removePhoto = async (i) => {
     try {
       const res = await base44.functions.invoke('supplierPortal', { action: 'remove_photo', index: i });
       onUpdate(res.data.supplier);
-    } catch (e) { alert('Could not remove'); }
+    } catch (e) { toast.error('Could not remove photo'); }
   };
 
   const pickFromLibrary = async (urls) => {

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import { Pencil, ArrowLeft, Mail, Phone, Globe, MapPin, User, FileText, Percent, UserPlus } from 'lucide-react';
+import { toast } from 'sonner';
 
 const STATUS_STYLE = {
   active: 'bg-green-100 text-green-700',
@@ -45,15 +46,15 @@ export default function SupplierDetail() {
   }, [id]);
 
   const inviteSupplier = async () => {
-    if (!supplier.email) { alert('Add an email to this supplier first.'); return; }
+    if (!supplier.email) { toast.error('Add an email to this supplier first.'); return; }
     try {
       await base44.users.inviteUser(supplier.email, 'user');
-      alert(`Invitation sent to ${supplier.email}. They can log in and open the Supplier Portal.`);
-    } catch (e) { alert('Could not invite: ' + (e?.response?.data?.error || e.message)); }
+      toast.success(`Invitation sent to ${supplier.email}.`, { description: 'They can log in and open the Supplier Portal.' });
+    } catch (e) { toast.error('Could not invite: ' + (e?.response?.data?.error || e.message)); }
   };
 
   const createQuote = async () => {
-    if (!quoteForm.request_details) { alert('Add request details.'); return; }
+    if (!quoteForm.request_details) { toast.error('Add request details.'); return; }
     setCreatingQuote(true);
     try {
       await base44.entities.SupplierQuote.create({
@@ -69,7 +70,7 @@ export default function SupplierDetail() {
       setQuoteForm({ item_title: '', request_details: '', due_date: '' });
       setShowQuoteForm(false);
       setQuotes(await base44.entities.SupplierQuote.filter({ supplier_id: id }, '-created_date', 100));
-    } catch (e) { alert('Could not create quote request'); } finally { setCreatingQuote(false); }
+    } catch (e) { toast.error('Could not create quote request'); } finally { setCreatingQuote(false); }
   };
 
   if (loading) return <div className="py-32 text-center text-muted-foreground">Loading…</div>;

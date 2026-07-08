@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Plus, Trash2, Save, ArrowLeft } from 'lucide-react';
 import MediaLibraryPicker from '@/components/media/MediaLibraryPicker';
+import { toast } from 'sonner';
 
 const CATEGORIES = ['Hotel', 'Apartment', 'Villa', 'Transfer Company', 'Private Driver', 'Boat Operator', 'Activity Provider', 'Restaurant', 'Tour Guide', 'National Park', 'Other'];
 const STATUSES = ['active', 'inactive', 'preferred', 'needs_review'];
@@ -39,7 +40,7 @@ export default function SupplierForm() {
           commission_percentage: s.commission_percentage || 0, internal_pricing_notes: s.internal_pricing_notes || '',
           photos: s.photos || [], documents: s.documents || [],
         });
-      } catch (e) { alert('Supplier not found'); navigate('/admin/suppliers'); } finally { setLoading(false); }
+      } catch (e) { toast.error('Supplier not found'); navigate('/admin/suppliers'); } finally { setLoading(false); }
     })();
   }, [id]);
 
@@ -70,7 +71,7 @@ export default function SupplierForm() {
         const created = await base44.entities.Supplier.create(payload);
         navigate(`/admin/suppliers/${created.id}`);
       }
-    } catch (e) { alert('Could not save supplier'); } finally { setBusy(false); }
+    } catch (e) { toast.error('Could not save supplier'); } finally { setBusy(false); }
   };
 
   if (loading) return <div className="py-32 text-center text-muted-foreground">Loading…</div>;

@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2, Clock, Check, X, Lock } from 'lucide-react';
+import { toast } from 'sonner';
 
 const STATUS = {
   requested: { label: 'Awaiting your response', style: 'bg-amber-100 text-amber-700', icon: Clock },
@@ -26,7 +27,7 @@ function QuoteCard({ q, onRespond }) {
     try {
       await base44.functions.invoke('supplierPortal', { action: 'respond_quote', quote_id: q.id, status, supplier_price: price, supplier_notes: notes });
       onRespond();
-    } catch (e) { alert('Could not submit'); } finally { setSaving(false); }
+    } catch (e) { toast.error('Could not submit quote'); } finally { setSaving(false); }
   };
 
   return (

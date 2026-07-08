@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Loader2, Circle, AlertCircle, XCircle } from 'lucide-react';
+import { toast } from 'sonner';
 
 const OPTIONS = [
   { value: 'available', label: 'Available — accepting new bookings', icon: Circle, color: 'text-green-600' },
@@ -21,8 +22,8 @@ export default function SupplierAvailabilityTab({ supplier, onUpdate }) {
     try {
       const res = await base44.functions.invoke('supplierPortal', { action: 'update_availability', availability_status: status, availability_notes: notes });
       onUpdate(res.data.supplier);
-      alert('Availability updated');
-    } catch (e) { alert('Could not save'); } finally { setSaving(false); }
+      toast.success('Availability updated');
+    } catch (e) { toast.error('Could not save availability'); } finally { setSaving(false); }
   };
 
   return (

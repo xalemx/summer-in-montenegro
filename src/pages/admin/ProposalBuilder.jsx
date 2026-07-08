@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Plus, Send, Save, FileText, Sparkles } from 'lucide-react';
+import { toast } from 'sonner';
 
 const STATUS_COLORS = {
   planning: 'bg-blue-100 text-blue-700',
@@ -105,7 +106,7 @@ export default function ProposalBuilder() {
       setProposal(np);
       setProject({ ...project, status: 'proposal' });
       logEvent('proposal_created', 'Proposal created');
-    } catch (e) { alert('Could not create proposal'); } finally { setBusy(false); }
+    } catch (e) { toast.error('Could not create proposal'); } finally { setBusy(false); }
   };
 
   const persistTotals = async (newItems) => {
@@ -151,7 +152,7 @@ export default function ProposalBuilder() {
     try {
       const res = await base44.functions.invoke('generateRecommendations', { project_id: selectedProjectId });
       setRecommendations(res.data.recommendations);
-    } catch (e) { alert('Could not generate suggestions'); } finally { setGenLoading(false); }
+    } catch (e) { toast.error('Could not generate suggestions'); } finally { setGenLoading(false); }
   };
 
   const itemTypeFromBucket = (bucket, rec) => {
@@ -194,7 +195,7 @@ export default function ProposalBuilder() {
 
   const acceptSuggestion = async (rec, bucket = 'suppliers') => {
     if (!proposal) {
-      alert('Create a proposal first, then add AI suggestions.');
+      toast.error('Create a proposal first, then add AI suggestions.');
       return;
     }
 
@@ -230,7 +231,7 @@ export default function ProposalBuilder() {
       logEvent('item_added', `Added AI suggestion: ${rec.name}`);
     } catch (error) {
       console.error(error);
-      alert('Could not add suggestion to proposal');
+      toast.error('Could not add suggestion to proposal');
     }
   };
 
@@ -245,7 +246,7 @@ export default function ProposalBuilder() {
       setItems(its);
       await persistTotals(its);
       logEvent(editingItem ? 'item_updated' : 'item_added', `${editingItem ? 'Updated' : 'Added'} ${form.item_type}: ${form.title}`);
-    } catch (e) { alert('Could not save item'); }
+    } catch (e) { toast.error('Could not save item'); }
     setShowItemForm(false);
     setEditingItem(null);
   };
@@ -258,7 +259,7 @@ export default function ProposalBuilder() {
       setItems(its);
       await persistTotals(its);
       logEvent('item_removed', `Removed ${item.item_type}: ${item.title}`);
-    } catch (e) { alert('Could not delete'); }
+    } catch (e) { toast.error('Could not delete item'); }
   };
 
   const saveDraft = async () => {
@@ -275,9 +276,9 @@ export default function ProposalBuilder() {
         total_customer_price: price,
         margin: price - cost,
       });
-      alert('Draft saved');
+      toast.success('Draft saved');
       logEvent('proposal_updated', 'Updated proposal details');
-    } catch (e) { alert('Could not save'); } finally { setBusy(false); }
+    } catch (e) { toast.error('Could not save draft'); } finally { setBusy(false); }
   };
 
   const sendProposal = async () => {
@@ -288,8 +289,8 @@ export default function ProposalBuilder() {
       await base44.entities.Proposal.update(proposal.id, { status: 'sent', sent_date: sentDate });
       setProposal({ ...proposal, status: 'sent', sent_date: sentDate });
       logEvent('proposal_sent', 'Proposal sent to customer');
-      alert('Proposal sent! Customer portal link: ' + window.location.origin + '/trip/' + project.reference_number);
-    } catch (e) { alert('Could not send'); } finally { setBusy(false); }
+      toast.success('Proposal sent!', { description: 'Customer portal: ' + window.location.origin + '/trip/' + project.reference_number });
+    } catch (e) { toast.error('Could not send proposal'); } finally { setBusy(false); }
   };
 
   const createNewVersion = async () => {
@@ -334,7 +335,7 @@ export default function ProposalBuilder() {
       await base44.entities.TravelProject.update(selectedProjectId, { status: 'proposal' });
       setProject({ ...project, status: 'proposal' });
       logEvent('version_created', `Created version v${newVersion}`);
-    } catch (e) { alert('Could not create new version'); } finally { setBusy(false); }
+    } catch (e) { toast.error('Could not create new version'); } finally { setBusy(false); }
   };
 
   return (

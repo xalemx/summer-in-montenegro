@@ -12,6 +12,7 @@ import {
   Check, MessageSquare, XCircle, Calendar, Users, Compass, MapPin,
   Bed, Car, Utensils, Sailboat, Sparkles, Send, Clock, Plane, Star, Camera
 } from 'lucide-react';
+import { toast } from 'sonner';
 
 const STATUS_STYLE = {
   planning: 'bg-blue-100 text-blue-700',
@@ -83,7 +84,7 @@ export default function TripPortal() {
     try {
       await base44.functions.invoke('respondToProposal', { proposal_id: latestProposal.id, action, ...payload });
       await reload(project);
-    } catch (e) { alert('Something went wrong'); } finally { setActing(false); }
+    } catch (e) { toast.error('Something went wrong'); } finally { setActing(false); }
   };
 
   const submitMessage = async (override = {}) => {
@@ -103,7 +104,7 @@ export default function TripPortal() {
       setMsg({ message_type: 'message', subject: '', message: '' });
       setMsgSent(true);
       setMessages(await base44.entities.TripMessage.filter({ travel_project_id: project.id }, '-created_date', 50));
-    } catch (e) { alert('Could not send message'); } finally { setSendingMsg(false); }
+    } catch (e) { toast.error('Could not send message'); } finally { setSendingMsg(false); }
   };
 
   const submitReview = async () => {
@@ -122,7 +123,7 @@ export default function TripPortal() {
       setReview('');
       setReviewSent(true);
       setMessages(await base44.entities.TripMessage.filter({ travel_project_id: project.id }, '-created_date', 50));
-    } catch (e) { alert('Could not submit review'); } finally { setSendingMsg(false); }
+    } catch (e) { toast.error('Could not submit review'); } finally { setSendingMsg(false); }
   };
 
   if (loading) {
