@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Car, Home as HomeIcon, Compass, HeartHandshake, MessageSquare, FileText, Plane } from 'lucide-react';
 
-const HERO_IMG = 'https://media.base44.com/images/public/6a14e6049e3182804fee97ce/61df8e3be_petar-lazarevic-J6Ij4p87lD8-unsplash1.jpg';
-
 const steps = [
   { icon: MessageSquare, title: 'Tell us your wishes', text: 'Share what you dream of — coast, mountains, lakes, villas or hidden villages.' },
   { icon: FileText, title: 'We design your proposal', text: 'Your travel specialist builds a personal plan with stays, transport and experiences.' },
@@ -19,30 +17,41 @@ const services = [
 export default function Home() {
   return (
     <div className="bg-background">
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-        <img src={HERO_IMG} alt="Montenegro coastline at golden hour" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/55" />
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        <img
+          src="/images/montenegro-hero.webp"
+          alt="Bay of Kotor in Montenegro"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
-          <p className="text-xs tracking-[0.35em] uppercase mb-5 text-white/70">
-            Your Montenegro Travel Concierge
+        <div className="absolute inset-0 bg-black/45" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 text-white">
+          <p className="uppercase tracking-[0.35em] text-sm mb-5 text-white/80">
+            Private Montenegro Travel
           </p>
 
-          <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Your Montenegro.<br />Designed Around You.
+          <h1 className="font-heading text-5xl md:text-7xl max-w-3xl leading-tight mb-6">
+            Montenegro trips planned around you.
           </h1>
 
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tell us what you dream of — coast, mountains, lakes, villas, hidden villages or local experiences — and we’ll build a personalised plan.
+          <p className="text-lg md:text-xl max-w-2xl text-white/85 mb-8">
+            Beaches, mountains, old towns, boat days and local experiences — designed into one personal summer plan.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/book" className="px-9 py-4 rounded-full bg-accent text-accent-foreground font-bold hover:brightness-110 transition">
-              Start Planning My Trip
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              to="/book"
+              className="px-8 py-4 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 transition"
+            >
+              Start Planning
             </Link>
 
-            <Link to="/experience" className="px-9 py-4 rounded-full border border-white/40 text-white font-semibold hover:bg-white/10 transition">
-              How It Works
+            <Link
+              to="/about-montenegro"
+              className="px-8 py-4 rounded-full border border-white/40 text-white font-semibold text-sm hover:bg-white/10 transition"
+            >
+              Explore Montenegro
             </Link>
           </div>
         </div>
