@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useToast } from '@/components/ui/use-toast';
 
 const REGIONS = ['Bay of Kotor', 'Budva Riviera', 'Lake Skadar', 'Durmitor', 'Prokletije & Gusinje', 'Bar & Ulcinj', 'Not sure yet'];
 const SERVICES = ['Accommodation', 'Airport transfers', 'Car rental / driver', 'Activities & experiences', 'Full trip planning', 'Just advice'];
@@ -46,6 +47,7 @@ export default function Book() {
   const [ref, setRef] = useState('');
   const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState('');
+  const { toast } = useToast();
 
   const set = (k, v) => {
     setForm(p => ({ ...p, [k]: v }));
@@ -83,15 +85,52 @@ export default function Book() {
     return errs;
   };
 
+  const validateForm = () => {
+    const errors = [];
+
+    if (!form.customer_name.trim()) errors.push('Name is required.');
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) errors.push('Enter a valid email address.');
+    if (!form.whatsapp.trim()) errors.push('WhatsApp number is required.');
+
+    if (form.arrival_date && form.departure_date) {
+      if (new Date(form.departure_date) <= new Date(form.arrival_date)) {
+        errors.push('Departure date must be after arrival date.');
+      }
+    }
+
+    if (form.adults < 1) errors.push('At least one adult is required.');
+
+    return errors;
+  };
+
   const submit = async () => {
+    const errors = validateForm();
+
+    if (errors.length) {
+      toast({
+        title: 'Please check your details',
+        description: errors[0],
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setLoading(true);
-    setSubmitError('');
+
     try {
       const response = await base44.functions.invoke('createTravelProject', { ...form });
-      if (response?.data?.reference_number) setRef(response.data.reference_number);
+
+      if (response?.data?.reference_number) {
+        setRef(response.data.reference_number);
+      }
+
       setDone(true);
     } catch (e) {
-      setSubmitError('Something went wrong. Please try again or message us on WhatsApp.');
+      toast({
+        title: 'Something went wrong',
+        description: 'Please try again or message us on WhatsApp.',
+        variant: 'destructive',
+      });
     } finally {
       setLoading(false);
     }
