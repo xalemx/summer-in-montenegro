@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Car, Home as HomeIcon, Compass, HeartHandshake, MessageSquare, FileText, Plane } from 'lucide-react';
+import { PremiumCard } from '@/components/PremiumCard';
 
 const steps = [
   { icon: MessageSquare, title: 'Tell us your wishes', text: 'Share what you dream of — coast, mountains, lakes, villas or hidden villages.' },
@@ -68,12 +69,12 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {steps.map((s, i) => (
-              <div key={s.title} className="relative bg-card rounded-2xl border border-border shadow-sm p-7 text-center">
+              <PremiumCard key={s.title} className="relative p-7 text-center">
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">{i + 1}</span>
                 <s.icon className="mx-auto mb-4 text-primary" size={30} />
                 <h3 className="font-heading text-xl font-semibold mb-2">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{s.text}</p>
-              </div>
+              </PremiumCard>
             ))}
           </div>
         </div>
@@ -94,11 +95,11 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((item) => (
-            <div key={item.title} className="p-6 rounded-2xl border bg-card shadow-sm">
+            <PremiumCard key={item.title} className="p-6">
               <item.icon className="mb-5 text-primary" size={28} />
               <h3 className="font-heading text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-            </div>
+            </PremiumCard>
           ))}
         </div>
       </section>
