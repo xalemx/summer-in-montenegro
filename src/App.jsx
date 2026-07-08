@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Toaster } from "@/components/ui/toaster"
 import { Toaster as SonnerToaster } from "@/components/ui/sonner"
 import { QueryClientProvider } from '@tanstack/react-query'
@@ -9,31 +10,37 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Layout from './components/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
-import Experience from './pages/Experience';
-import DepartureDates from './pages/DepartureDates';
-import Accommodation from './pages/Accommodation';
-import Activities from './pages/Activities';
-import Summer2027 from './pages/Summer2027';
-import PartnerOffers from './pages/PartnerOffers';
-import PartnerAccess from './pages/PartnerAccess';
-import FAQ from './pages/FAQ';
-import Contact from './pages/Contact';
-import Book from './pages/Book';
-import ProposalBuilder from './pages/admin/ProposalBuilder';
-import Calendar from './pages/admin/Calendar';
-import ProposalRedirect from './pages/ProposalRedirect';
-import TripPortal from './pages/TripPortal';
-import Suppliers from './pages/admin/Suppliers';
-import SupplierForm from './pages/admin/SupplierForm';
-import SupplierDetail from './pages/admin/SupplierDetail';
-import MediaLibrary from './pages/admin/MediaLibrary';
-import Analytics from './pages/admin/Analytics';
 
-import Pricing from './pages/Pricing';
-import AboutMontenegro from './pages/AboutMontenegro';
-import Gallery from './pages/Gallery';
-import TermsAndConditions from './pages/TermsAndConditions';
-import SupplierPortal from './pages/supplier/SupplierPortal';
+const PageLoader = () => (
+  <div className="fixed inset-0 flex items-center justify-center">
+    <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin" />
+  </div>
+);
+
+const Experience = lazy(() => import('./pages/Experience'));
+const DepartureDates = lazy(() => import('./pages/DepartureDates'));
+const Accommodation = lazy(() => import('./pages/Accommodation'));
+const Activities = lazy(() => import('./pages/Activities'));
+const Summer2027 = lazy(() => import('./pages/Summer2027'));
+const PartnerOffers = lazy(() => import('./pages/PartnerOffers'));
+const PartnerAccess = lazy(() => import('./pages/PartnerAccess'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Book = lazy(() => import('./pages/Book'));
+const ProposalBuilder = lazy(() => import('./pages/admin/ProposalBuilder'));
+const Calendar = lazy(() => import('./pages/admin/Calendar'));
+const ProposalRedirect = lazy(() => import('./pages/ProposalRedirect'));
+const TripPortal = lazy(() => import('./pages/TripPortal'));
+const Suppliers = lazy(() => import('./pages/admin/Suppliers'));
+const SupplierForm = lazy(() => import('./pages/admin/SupplierForm'));
+const SupplierDetail = lazy(() => import('./pages/admin/SupplierDetail'));
+const MediaLibrary = lazy(() => import('./pages/admin/MediaLibrary'));
+const Analytics = lazy(() => import('./pages/admin/Analytics'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const AboutMontenegro = lazy(() => import('./pages/AboutMontenegro'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'));
+const SupplierPortal = lazy(() => import('./pages/supplier/SupplierPortal'));
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -60,6 +67,7 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
+    <Suspense fallback={<PageLoader />}>
     <Routes>
       <Route path="/supplier" element={<SupplierPortal />} />
       <Route element={<Layout />}>
@@ -93,6 +101,7 @@ const AuthenticatedApp = () => {
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
+    </Suspense>
   );
 };
 
