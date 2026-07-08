@@ -29,11 +29,14 @@ export default function Contact() {
             <span className="text-sm text-muted-foreground">Message us directly</span>
           </a>
 
-          <div className="p-7 rounded-2xl border bg-card shadow-sm flex flex-col items-center gap-3">
+          <a
+            href="mailto:hello@summerinmontenegro.com"
+            className="p-7 rounded-2xl border bg-card shadow-sm flex flex-col items-center gap-3 hover:border-primary/40 transition"
+          >
             <Mail className="text-primary" />
             <strong>Email</strong>
-            <span className="text-sm text-muted-foreground">Use the enquiry form</span>
-          </div>
+            <span className="text-sm text-muted-foreground">hello@summerinmontenegro.com</span>
+          </a>
         </div>
 
         <Link to="/book" className="inline-block px-9 py-4 rounded-full bg-accent text-accent-foreground font-bold">
