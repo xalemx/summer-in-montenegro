@@ -6,6 +6,7 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Layout from './components/Layout';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Experience from './pages/Experience';
 import DepartureDates from './pages/DepartureDates';
@@ -71,14 +72,16 @@ const AuthenticatedApp = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
-        <Route path="/admin/proposal-builder" element={<ProposalBuilder />} />
-        <Route path="/admin/calendar" element={<Calendar />} />
-        <Route path="/admin/suppliers" element={<Suppliers />} />
-        <Route path="/admin/suppliers/new" element={<SupplierForm />} />
-        <Route path="/admin/suppliers/:id" element={<SupplierDetail />} />
-        <Route path="/admin/suppliers/:id/edit" element={<SupplierForm />} />
-        <Route path="/admin/media" element={<MediaLibrary />} />
-        <Route path="/admin/analytics" element={<Analytics />} />
+        <Route element={<ProtectedRoute requireAdmin />}>
+          <Route path="/admin/proposal-builder" element={<ProposalBuilder />} />
+          <Route path="/admin/calendar" element={<Calendar />} />
+          <Route path="/admin/suppliers" element={<Suppliers />} />
+          <Route path="/admin/suppliers/new" element={<SupplierForm />} />
+          <Route path="/admin/suppliers/:id" element={<SupplierDetail />} />
+          <Route path="/admin/suppliers/:id/edit" element={<SupplierForm />} />
+          <Route path="/admin/media" element={<MediaLibrary />} />
+          <Route path="/admin/analytics" element={<Analytics />} />
+        </Route>
         <Route path="/proposal/:id" element={<ProposalRedirect />} />
         <Route path="/trip/:reference_number" element={<TripPortal />} />
 

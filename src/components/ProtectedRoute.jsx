@@ -9,8 +9,15 @@ const DefaultFallback = () => (
   </div>
 );
 
-export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthenticatedElement }) {
-  const { isAuthenticated, isLoadingAuth, authChecked, authError, checkUserAuth } = useAuth();
+const Forbidden = () => (
+  <div className="fixed inset-0 flex flex-col items-center justify-center gap-2">
+    <p className="font-heading text-2xl font-bold">Access denied</p>
+    <p className="text-muted-foreground text-sm">You need admin privileges to view this page.</p>
+  </div>
+);
+
+export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthenticatedElement, requireAdmin = false }) {
+  const { user, isAuthenticated, isLoadingAuth, authChecked, authError, checkUserAuth } = useAuth();
 
   useEffect(() => {
     if (!authChecked && !isLoadingAuth) {
@@ -31,6 +38,10 @@ export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthe
 
   if (!isAuthenticated) {
     return unauthenticatedElement;
+  }
+
+  if (requireAdmin && user?.role !== 'admin') {
+    return <Forbidden />;
   }
 
   return <Outlet />;
