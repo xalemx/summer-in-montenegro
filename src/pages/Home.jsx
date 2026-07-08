@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div className="bg-background">
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-        <img src={HERO_IMG} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={HERO_IMG} alt="Montenegro coastline at golden hour" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/55" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
