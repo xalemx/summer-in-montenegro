@@ -25,7 +25,7 @@ export default function Home() {
       />
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         <img
-          src="/images/montenegro-hero.webp"
+          src="https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?auto=format&fit=crop&w=2000&q=80"
           alt="Bay of Kotor in Montenegro"
           className="absolute inset-0 w-full h-full object-cover"
         />
