@@ -4,7 +4,7 @@ export default function WhatsAppButton() {
       href="https://wa.me/447758162004?text=Hi%20%E2%80%94%20I%27d%20love%20to%20know%20more%20about%20Summer%20in%20Montenegro!"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 hidden md:flex items-center gap-0 hover:gap-2 group bg-[#25D366] hover:bg-[#20b558] text-white rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden"
+      className="hidden md:flex fixed bottom-6 right-6 z-50 items-center gap-0 hover:gap-2 group bg-[#25D366] hover:bg-[#20b558] text-white rounded-full shadow-lg hover:shadow-xl transition-all overflow-hidden"
       aria-label="Chat on WhatsApp"
     >
       <div className="w-14 h-14 flex items-center justify-center flex-shrink-0">
