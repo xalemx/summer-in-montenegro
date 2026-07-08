@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
 import { useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
@@ -16,7 +15,7 @@ const Forbidden = () => (
   </div>
 );
 
-export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthenticatedElement, requireAdmin = false }) {
+export default function ProtectedRoute({ children, fallback = <DefaultFallback />, unauthenticatedElement, requireAdmin = false }) {
   const { user, isAuthenticated, isLoadingAuth, authChecked, authError, checkUserAuth } = useAuth();
 
   useEffect(() => {
@@ -44,5 +43,5 @@ export default function ProtectedRoute({ fallback = <DefaultFallback />, unauthe
     return <Forbidden />;
   }
 
-  return <Outlet />;
+  return children;
 }

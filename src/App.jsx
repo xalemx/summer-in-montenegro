@@ -81,16 +81,14 @@ const AuthenticatedApp = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/book" element={<Book />} />
-        <Route element={<ProtectedRoute requireAdmin />}>
-          <Route path="/admin/proposal-builder" element={<ProposalBuilder />} />
-          <Route path="/admin/calendar" element={<Calendar />} />
-          <Route path="/admin/suppliers" element={<Suppliers />} />
-          <Route path="/admin/suppliers/new" element={<SupplierForm />} />
-          <Route path="/admin/suppliers/:id" element={<SupplierDetail />} />
-          <Route path="/admin/suppliers/:id/edit" element={<SupplierForm />} />
-          <Route path="/admin/media" element={<MediaLibrary />} />
-          <Route path="/admin/analytics" element={<Analytics />} />
-        </Route>
+        <Route path="/admin/proposal-builder" element={<ProtectedRoute requireAdmin><ProposalBuilder /></ProtectedRoute>} />
+        <Route path="/admin/calendar" element={<ProtectedRoute requireAdmin><Calendar /></ProtectedRoute>} />
+        <Route path="/admin/suppliers" element={<ProtectedRoute requireAdmin><Suppliers /></ProtectedRoute>} />
+        <Route path="/admin/suppliers/new" element={<ProtectedRoute requireAdmin><SupplierForm /></ProtectedRoute>} />
+        <Route path="/admin/suppliers/:id" element={<ProtectedRoute requireAdmin><SupplierDetail /></ProtectedRoute>} />
+        <Route path="/admin/suppliers/:id/edit" element={<ProtectedRoute requireAdmin><SupplierForm /></ProtectedRoute>} />
+        <Route path="/admin/media" element={<ProtectedRoute requireAdmin><MediaLibrary /></ProtectedRoute>} />
+        <Route path="/admin/analytics" element={<ProtectedRoute requireAdmin><Analytics /></ProtectedRoute>} />
         <Route path="/proposal/:id" element={<ProposalRedirect />} />
         <Route path="/trip/:reference_number" element={<TripPortal />} />
 
