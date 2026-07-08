@@ -22,7 +22,9 @@ Deno.serve(async (req) => {
     if (data.services_required) lines.push(`Services needed: ${arr(data.services_required)}`);
     if (data.special_requests) lines.push(`Special requests: ${data.special_requests}`);
 
-    const ref = `SIM-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const randomPart = Array.from(crypto.getRandomValues(new Uint8Array(6)))
+      .map(b => String.fromCharCode(65 + (b % 26))).join('');
+    const ref = `SIM-2026-${randomPart}`;
 
     // Create the project immediately so the enquiry is never lost, even if AI fails.
     const project = await base44.asServiceRole.entities.TravelProject.create({
