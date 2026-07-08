@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Car, Home as HomeIcon, Compass, HeartHandshake, MessageSquare, FileText, Plane } from 'lucide-react';
 import { PremiumCard } from '@/components/PremiumCard';
+import SEO from '@/components/SEO';
 
 const steps = [
   { icon: MessageSquare, title: 'Tell us your wishes', text: 'Share what you dream of — coast, mountains, lakes, villas or hidden villages.' },
@@ -18,6 +19,10 @@ const services = [
 export default function Home() {
   return (
     <div className="bg-background">
+      <SEO
+        title="Plan Your Montenegro Summer Trip"
+        description="Private Montenegro travel planning for beaches, mountains, transfers, accommodation and local experiences."
+      />
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         <img
           src="/images/montenegro-hero.webp"
